@@ -1,4 +1,4 @@
-# Code Weekly Challenge Kotlin/Anndroid 2022
+# Code Weekly Challenge Kotlin/Android 2022
 ## Proyecto de retos semanales de la comunidad **[MoureDev](https://moure.dev)** para practicar [Kotlin](https://github.com/JetBrains/kotlin) y Android.
 
 ![https://mouredev.com/discord](https://github.com/mouredev/mouredev/blob/master/mouredev_weekly_challenge.png)
