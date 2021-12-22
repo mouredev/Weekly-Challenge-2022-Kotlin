@@ -2,7 +2,7 @@ package com.mouredev.weeklychallenge2022
 
 /*
  * Tienes toda la información ensencial en:
- * https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/README.md">README.md
+ * https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/README.md
  *
  * Cada nuevo reto se añadirá en un fichero .kt
  *
