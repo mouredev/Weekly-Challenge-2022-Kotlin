@@ -21,5 +21,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    val res = (1..100).map { value ->
+        when {
+            value % 5 == 0 && value % 3 == 0 -> "fizzbuzz"
+            value % 3 == 0 -> "fizz"
+            value % 5 == 0 -> "buzz"
+            else -> value
+        }
+    }
+    println(res.joinToString("\n"))
 }
