@@ -15,6 +15,12 @@
 # Java class files
 *.class
 
+# JetBrains IDE
+.idea/
+
+# Visual Studio Code
+.vscode
+
 # Generated files
 bin/
 gen/
