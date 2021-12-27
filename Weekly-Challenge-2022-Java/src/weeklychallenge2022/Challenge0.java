@@ -19,7 +19,6 @@ package weeklychallenge2022;
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
 /**
  *
  * @author Brais
@@ -32,22 +31,26 @@ public class Challenge0 {
     public static void main(String[] args) {
         final int limite = 100;
         for (int i = 1; i <= limite; i++) {
-            fizzBuzz(i);
+            System.out.println(fizzBuzz(i));
         }
     }
 
-    private static void fizzBuzz(int numero) {
+    private static String fizzBuzz(int numero) {
         boolean fizz = numero % 3 == 0,
                 buzz = numero % 5 == 0,
                 fizzBuzz = numero % 15 == 0;
+
         if (fizzBuzz) {
-            System.out.println("fizzbuzz");
-        } else if (fizz) {
-            System.out.println("fizz");
-        } else if (buzz) {
-            System.out.println("buzz");
-        } else {
-            System.out.println(numero);
+            return "fizzbuzz";
         }
+        if (fizz) {
+            return "fizz";
+        }
+        if (buzz) {
+            return "buzz";
+        }
+
+        return String.valueOf(numero);
+
     }
 }
