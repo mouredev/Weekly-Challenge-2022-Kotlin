@@ -21,5 +21,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    challengeFizzBuzz()
 }
+
+fun challengeFizzBuzz(limitCount: Int = 100) {
+    for (item in (1..limitCount)) {
+        println(when {
+            item.isDivisibleBy(5) and item.isDivisibleBy(3) -> "fizzbuzz"
+            item.isDivisibleBy(3)                                  -> "fizz"
+            item.isDivisibleBy(5)                                  -> "buzz"
+            else                                                          -> item
+        })
+    }
+}
+
+fun Int.isDivisibleBy(divider: Int) = this % divider == 0
