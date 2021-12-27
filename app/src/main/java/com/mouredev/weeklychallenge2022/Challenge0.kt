@@ -21,5 +21,16 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val numbers = (1..100).toList()
+    numbers.forEach{
+        println(it.toString() + " " + multiOfThree(it) + multiOfFive(it))
+    }
+}
 
+fun multiOfThree(number: Int): String {
+    return if (number % 3 == 0) "fizz" else ""
+}
+
+fun multiOfFive(number: Int): String {
+    return if (number % 5 == 0) "buzz" else ""
 }
