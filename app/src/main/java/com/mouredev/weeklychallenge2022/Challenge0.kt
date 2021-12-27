@@ -21,5 +21,23 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    fizzBuzz(100)
+}
 
+fun fizzBuzz(num: Int){
+    var arr: ArrayList<Any> = arrayListOf()
+
+    for (i in 1..num){
+        if(i % 3 == 0 && i % 5 == 0){
+            arr.add("fizzbuzz")
+        }else if(i % 3 == 0){
+            arr.add("fizz")
+        }else if(i % 5 == 0){
+            arr.add("buzz")
+        }else{
+            arr.add(i)
+        }
+
+    }
+    println(arr)
 }
