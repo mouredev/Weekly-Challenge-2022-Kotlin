@@ -21,5 +21,6 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+ var numero = 0
+ println(numero)
 }
