@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+//package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #0
@@ -20,6 +20,22 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+// ESTA HECHO EN JAVASCRIPT
+// HE HECHO QUE POR DEFECTO L FUNCION DEVUELVA DE 1 A 100 
+// PERO HE DEJADO ABIERTO QUE EL USUARIO PUEDA INTRODUCIR EL NUMERO QUE QUIERA
 
+const fizzBuzz = (number = 100) => {
+    for (let i = 1; i <= number; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log("fizzbuzz");
+        } else if (i % 3 === 0) {
+            console.log("fizz");
+        } else if (i % 5 === 0) {
+            console.log("buzz");
+        } else {
+            console.log(i);
+        }
+    }
 }
+
+fizzBuzz(256)
