@@ -14,21 +14,29 @@
     </head>
     <body>
         
-        <c:forEach var="cadena" begin="1" end="100" step="1">
-            
-            <c:if test="${cadena%3==0 && cadena%5==0}">
-                <c:out value="fizzbuzz"/> <br>
-            </c:if> 
+        <c:forEach var="numero" begin="1" end="100" step="1">
 
-            <c:if test="${cadena%3==0}">
-                <c:out value="fizz"/> <br>
-            </c:if>
+            <c:choose>
                 
-            <c:if test="${cadena%5==0}">
-                <c:out value="buzz"/> <br>
-            </c:if>   
-                        
-        </c:forEach>
+                <c:when test="${numero%3==0 && numero%5==0}">
+                    <c:out value="fizzbuzz"/> <br>
+                </c:when>
+
+                <c:when test="${numero%3==0}">
+                    <c:out value="fizz"/> <br>
+                </c:when>
+                
+                <c:when test="${numero%5==0}">
+                    <c:out value="buzz"/> <br>
+                </c:when>
+                    
+                <c:otherwise>
+                    <c:out value="${numero}"/> <br>  
+                </c:otherwise>
+                    
+            </c:choose>
+            
+        </c:forEach> 
         
     </body>
 </html>
