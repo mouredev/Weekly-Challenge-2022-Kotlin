@@ -21,5 +21,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    for( i in 1..100){
 
+        when{
+            i.mod(3) == 0 && i.mod(5) == 0 -> println("fizzbuzz")
+            i.mod(3) == 0 -> println("fizz")
+            i.mod(5) == 0 -> println("buzz")
+            else -> println(i)
+        }
+    }
 }
