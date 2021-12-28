@@ -22,4 +22,32 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    for(i in 1..100){
+
+        if (isMultiple(i,5) and isMultiple(i,3)){
+            println("fizzbuzz")
+            continue
+        }
+
+        if(isMultiple(i,3)){
+            println("fizz")
+            continue
+        }
+
+        if(isMultiple(i,5)){
+            println("buzz")
+            continue
+        }
+
+        println(i)
+
+    }
+
 }
+
+fun isMultiple(num : Int, multiple : Int): Boolean{
+
+    return if(num % multiple == 0) true else false
+
+}
+
