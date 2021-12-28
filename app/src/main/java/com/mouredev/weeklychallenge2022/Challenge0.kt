@@ -21,6 +21,14 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
- var numero = 0
- println(numero)
+    for (num in 1..100) {
+        println(printFizzBuzz(num))
+    }
+}
+
+fun printFizzBuzz(number: Int): String {
+    if(number%3 == 0 && number%5 == 0) return "fizzbuzz"
+    if(number%3 == 0) return "fizz"
+    if(number%5 == 0) return "buzz"
+    return number.toString()
 }
