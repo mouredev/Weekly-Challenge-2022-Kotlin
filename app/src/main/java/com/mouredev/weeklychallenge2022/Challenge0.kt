@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import android.icu.lang.UCharacter
+
 /*
  * Reto #0
  * EL FAMOSO "FIZZ BUZZ"
@@ -21,5 +23,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+//    val startTime = System.currentTimeMillis()
+    (1..100).forEach { num ->
+        if(num % 5 == 0) {
+            if(num % 3 == 0) {
+                print("fizz")
+            }
+            println("buzz")
+        } else if(num % 3 == 0) {
+            println("fizz")
+        } else {
+            println(num)
+        }
+    }
+//    println("execution time: ${System.currentTimeMillis() - startTime} ms")
 }
