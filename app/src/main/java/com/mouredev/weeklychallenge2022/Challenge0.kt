@@ -21,5 +21,16 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    (1..100).forEach { println(fizzbuzz(it)) }
 }
+
+fun fizzbuzz(number: Int): String {
+    return when {
+        isMultipleOf(number, 3) && isMultipleOf(number, 5) -> "fizzbuzz"
+        isMultipleOf(number, 3) -> "fizz"
+        isMultipleOf(number, 5) -> "buzz"
+        else -> number.toString()
+    }
+}
+
+fun isMultipleOf(n: Int, m: Int) = n % m == 0
