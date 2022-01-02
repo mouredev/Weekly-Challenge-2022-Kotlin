@@ -25,16 +25,16 @@ fun main() {
     for (i in 1.rangeTo(100)) {
         when {
             (i % 3) == 0 &&  (i % 5) == 0 -> {
-                print("fizzbuzz \n")
+                println("fizzbuzz")
             }
             (i % 3) == 0 -> {
-                print("fizz \n")
+                println("fizz")
             }
             (i % 5) == 0 -> {
-                print("buzz \n")
+                println("buzz")
             }
             else -> {
-                print("$i \n")
+                println(i)
             }
         }
 
