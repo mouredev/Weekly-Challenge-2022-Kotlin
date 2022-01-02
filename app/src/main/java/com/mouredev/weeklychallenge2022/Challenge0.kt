@@ -21,5 +21,17 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    for (i in 1..100) {
+        val threeMultiple = (i % 3) == 0
+        val fiveMultiple = (i % 5) == 0
+        if (threeMultiple && fiveMultiple) {
+            println("fizzbuzz")
+        } else if (threeMultiple) {
+            println("fizz")
+        } else if (fiveMultiple) {
+            println("buzz")
+        } else {
+            println(i)
+        }
+    }
 }
