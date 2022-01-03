@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -21,5 +23,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    print("Introduce a word: ")
+    val word = readLine()?.lowercase(Locale.getDefault())
+    print("Introduce an other word: ")
+    val other = readLine()?.lowercase(Locale.getDefault())
+    println("$word and $other are anagrams? " +
+            if(areAnagrams(word?: "", other?: "")) "YES" else "NO"
+    )
+}
 
+fun areAnagrams(word: String, other: String): Boolean {
+    if(word == other || word.length != other.length) return false
+    val sortedWord = word.split("").sorted().joinToString("")
+    val sortedOther = other.split("").sorted().joinToString("")
+    return (sortedWord == sortedOther)
 }
