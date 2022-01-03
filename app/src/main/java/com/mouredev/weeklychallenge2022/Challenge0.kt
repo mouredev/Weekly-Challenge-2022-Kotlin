@@ -27,6 +27,7 @@ fun main() {
 fun fizzBuzz(num: Int){
     var arr: ArrayList<Any> = arrayListOf()
 
+
     for (i in 1..num){
         if(i % 3 == 0 && i % 5 == 0){
             arr.add("fizzbuzz")
@@ -37,7 +38,6 @@ fun fizzBuzz(num: Int){
         }else{
             arr.add(i)
         }
-
     }
     println(arr)
 }
