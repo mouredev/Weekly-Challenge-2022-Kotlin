@@ -25,15 +25,15 @@ import android.icu.lang.UCharacter
 fun main() {
 //    val startTime = System.currentTimeMillis()
     (1..100).forEach { num ->
-        if(num % 5 == 0) {
-            if(num % 3 == 0) {
-                print("fizz")
+        when {
+            num % 5 == 0 -> {
+                if(num % 3 == 0) {
+                    print("fizz")
+                }
+                println("buzz")
             }
-            println("buzz")
-        } else if(num % 3 == 0) {
-            println("fizz")
-        } else {
-            println(num)
+            num % 3 == 0 -> println("fizz")
+            else -> println(num)
         }
     }
 //    println("execution time: ${System.currentTimeMillis() - startTime} ms")
