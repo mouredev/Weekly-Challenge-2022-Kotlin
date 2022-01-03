@@ -21,5 +21,22 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    println(isAnAnagrama("test1", "t1set"))
+}
 
+fun isAnAnagrama(str1: String, str2: String): Boolean {
+    if (str1.length != str2.length) {
+        return false
+    }
+
+    val array1: CharArray = str1.toCharArray()
+    val array2: CharArray = str2.toCharArray()
+    array1.sort()
+    array2.sort()
+    for ((index, value) in array1.withIndex()) {
+        if (value != array2[index]) {
+            return false
+        }
+    }
+    return true
 }
