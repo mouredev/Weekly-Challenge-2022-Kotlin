@@ -21,5 +21,29 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    println("Ingrese la primer palabra:")
+    val word1: String = readWord()
 
+    println("Ingrese la segunda palabra:")
+    val word2: String = readWord()
+
+    println("\nLas palabras ingresadas *${if(isAnagram(word1, word2)) "son" else "no son"}* anagramas")
+}
+
+/**
+ * Lee una linea del stdin y se queda con la primer palabra antes de un espacio si lo hay.
+ */
+fun readWord(): String = readLine()?.split(regex = Regex("\\s"))?.first() ?: ""
+
+/**
+ * Indica si los string recibidos con anagramas.
+ * Si ambos strings son exactamente iguales devuelve False.
+ * Ignora si son mayusculas o minusculas.
+ */
+fun isAnagram(anagram: String, original: String): Boolean {
+    val lowerAnagram = anagram.lowercase()
+    val lowerOriginal = original.lowercase()
+    if(lowerAnagram.length != lowerOriginal.length || lowerAnagram == lowerOriginal) return false
+    // Uso toCharArray() para poder usar sorted()
+    return lowerAnagram.toCharArray().sorted() == lowerOriginal.toCharArray().sorted()
 }
