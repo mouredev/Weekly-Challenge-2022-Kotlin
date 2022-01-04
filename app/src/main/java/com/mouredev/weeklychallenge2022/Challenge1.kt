@@ -22,4 +22,31 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    val word1 = "Acuerdo"
+    val word2 = "Ecuador"
+
+    if (checkWords(word1,word2))
+        println("$word1 y $word2 son anagramas")
+    else
+        println("$word1 y $word2 no son anagramas")
+
 }
+
+fun checkWords(word1: String, word2: String) : Boolean {
+
+    return if (word1.uppercase() != word2.uppercase()) {
+
+        val temp1 = (Array(word1.length) { word1[it].toString().uppercase() })
+        val temp2 = (Array(word2.length) { word2[it].toString().uppercase() })
+
+        temp1.sort()
+        temp2.sort()
+
+        temp1 contentEquals temp2
+
+    } else
+
+        false
+}
+
+
