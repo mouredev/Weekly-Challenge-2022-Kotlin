@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package es.jaimefere
 
 import android.icu.lang.UCharacter
 
