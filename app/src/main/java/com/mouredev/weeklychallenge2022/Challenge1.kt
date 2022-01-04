@@ -22,7 +22,7 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
-    print(esAnagrama("Nicolad","Nicolás"))
+    print(esAnagrama("Riesgo","Sergio"))
 
 }
 
