@@ -1,14 +1,11 @@
 package com.mouredev.weeklychallenge2022
 
-import android.icu.lang.UCharacter
-
 /*
  * Reto #0
  * EL FAMOSO "FIZZ BUZZ"
  * Fecha publicación enunciado: 27/12/21
  * Fecha publicación resolución: 03/01/22
  * Dificultad: FÁCIL
- *
  * Enunciado: Escribe un programa que muestre por consola (con un print) los números de 1 a 100 (ambos incluidos y con un salto de línea entre cada impresión), sustituyendo los siguientes:
  * - Múltiplos de 3 por la palabra "fizz".
  * - Múltiplos de 5 por la palabra "buzz".
@@ -23,18 +20,18 @@ import android.icu.lang.UCharacter
  */
 
 fun main() {
-//    val startTime = System.currentTimeMillis()
-    (1..100).forEach { num ->
-        when {
-            num % 5 == 0 -> {
-                if(num % 3 == 0) {
-                    print("fizz")
-                }
-                println("buzz")
-            }
-            num % 3 == 0 -> println("fizz")
-            else -> println(num.toString())
+
+    for (index in 1..100) {
+        val divisibleByThree = index % 3 == 0
+        val divisibleByFive = index % 5 == 0
+        if (divisibleByThree && divisibleByFive) {
+            println("fizzbuzz")
+        } else if (divisibleByThree) {
+            println("fizz")
+        } else if (divisibleByFive) {
+            println("buzz")
+        } else {
+            println(index)
         }
     }
-//    println("execution time: ${System.currentTimeMillis() - startTime} ms")
 }
