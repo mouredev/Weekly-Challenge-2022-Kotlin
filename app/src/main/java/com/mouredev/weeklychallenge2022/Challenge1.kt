@@ -22,7 +22,14 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
-    print(esAnagrama("Riesgo","Sergio"))
+    val palabra1 = "Riesgo"
+    val palabra2 = "Sergio"
+
+    if(esAnagrama(palabra1,palabra2)){
+        print("$palabra1 y $palabra2 son anagrama")
+    }else{
+        print("$palabra1 y $palabra2 no son anagrama")
+    }
 
 }
 
