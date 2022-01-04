@@ -22,4 +22,24 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    println( Anagrama("Acuerdo", "recaudo"))
+}
+
+//Arroz y Zorra
+
+fun Anagrama(palabra1:String, palabra2:String):Boolean{
+    var comprobador = false;
+
+    val arr1 = Array(palabra1.length){palabra1[it].toString().uppercase()}
+    val arr2 = Array(palabra2.length){palabra2[it].toString().uppercase()}
+    if(!palabra1.equals(palabra2)){
+        if(palabra1.length == palabra2.length){
+            arr1.sort()
+            arr2.sort()
+           comprobador=arr1 contentEquals arr2
+        }
+    }
+
+
+    return comprobador
 }
