@@ -22,4 +22,12 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    if(isAnagram("llenaba", "ballena")) println("Es un anagrama") else println("No es un anagrama")
+}
+
+fun isAnagram(string1: String, string2: String) : Boolean {
+
+    return string1.length == string2.length &&
+            string1 != string2 &&
+            string1.chars().sorted().toArray().contentEquals(string2.chars().sorted().toArray())
 }
