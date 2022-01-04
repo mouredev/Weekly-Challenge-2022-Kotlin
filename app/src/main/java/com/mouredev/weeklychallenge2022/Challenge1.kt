@@ -21,5 +21,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    println(isAnagram("hola", "hoal"))
+}
 
+fun isAnagram(word: String, anagram: String): Boolean {
+    val wordLowerCase = word.lowercase()
+    val anagramLowerCase = anagram.lowercase()
+    return wordLowerCase != anagramLowerCase
+            && wordLowerCase.length == anagramLowerCase.length
+            && wordLowerCase.all { anagramLowerCase.contains(it) }
 }
