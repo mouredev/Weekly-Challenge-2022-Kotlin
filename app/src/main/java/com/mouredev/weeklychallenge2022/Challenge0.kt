@@ -21,7 +21,6 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
-<<<<<<< HEAD
     for (index in 1..100) {
         val divisibleByThree = index % 3 == 0
         val divisibleByFive = index % 5 == 0
@@ -34,21 +33,5 @@ fun main() {
         } else {
             println(index)
         }
-=======
-    var message: String
-
-    for (x in 1..100) {
-        if(x % 3 === 0 && x % 5 === 0){
-            message = "fizzbuzz"
-        }else if(x % 3 === 0){
-            message = "fizz"
-        }else if(x % 5 === 0){
-            message = "buzz"
-        }else{
-            message = x.toString()
-        }
-
-        println(message)
->>>>>>> Solution first Challenge
     }
 }

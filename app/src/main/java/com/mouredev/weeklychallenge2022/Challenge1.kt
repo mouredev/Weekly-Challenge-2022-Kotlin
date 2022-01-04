@@ -22,4 +22,21 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    print(esAnagrama("Nicolad","Nicolás"))
+
+}
+
+
+fun esAnagrama (palabra1: String, palabra2: String) : Boolean {
+
+    var retorno = true
+
+    if(palabra1 === palabra2 || palabra1.length != palabra2.length){
+       retorno = false
+    }else{
+        for (i in palabra1) {
+            retorno = palabra2.contains(i)
+        }
+    }
+    return retorno
 }
