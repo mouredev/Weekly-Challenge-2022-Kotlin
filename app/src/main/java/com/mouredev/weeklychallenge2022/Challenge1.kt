@@ -42,7 +42,7 @@ fun checkWords(word1: String, word2: String) : Boolean {
         arrayWord1.sort()
         arrayWord2.sort()
 
-        arrayWord1 contentEquals arrayWord1
+        arrayWord1 contentEquals arrayWord2
 
     } else
 
