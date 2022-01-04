@@ -36,13 +36,13 @@ fun checkWords(word1: String, word2: String) : Boolean {
 
     return if (word1.uppercase() != word2.uppercase()) {
 
-        val temp1 = (Array(word1.length) { word1[it].toString().uppercase() })
-        val temp2 = (Array(word2.length) { word2[it].toString().uppercase() })
+        val arrayWord1 = Array(word1.length) { word1[it].toString().uppercase() }
+        val arrayWord2 = Array(word2.length) { word2[it].toString().uppercase() }
 
-        temp1.sort()
-        temp2.sort()
+        arrayWord1.sort()
+        arrayWord2.sort()
 
-        temp1 contentEquals temp2
+        arrayWord1 contentEquals arrayWord1
 
     } else
 
