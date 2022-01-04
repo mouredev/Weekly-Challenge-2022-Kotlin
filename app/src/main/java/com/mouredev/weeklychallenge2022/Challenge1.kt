@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -21,5 +23,24 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    var scan = Scanner(System.`in`)
+    print("Introduzca la primera palabra: ")
+    var word1 = scan.nextLine()
+    print("Introduzca la segunda palabra: ")
+    var word2 = scan.nextLine()
+    println("¿Són las palabras introducidas anagramas? "+esAnagrama(word1, word2))
+}
+fun esAnagrama(w1: String, w2: String): Boolean{
+    if(w1.length != w2.length)
+        return false;
+    else{
 
+        var aW1 = w1.lowercase().toCharArray().sorted()
+        var aw2 = w2.lowercase().toCharArray().sorted()
+        if(aW1.equals(aw2))
+            return true
+        else
+            return false
+    }
+    return false
 }
