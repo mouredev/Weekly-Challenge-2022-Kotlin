@@ -13,13 +13,18 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 [![Android Studio](https://img.shields.io/badge/Android_Studio-4.2-blue.svg?longCache=true&style=popout-square)](https://developer.android.com/studio)
 [![Android](https://img.shields.io/badge/Android-6-green.svg?longCache=true&style=popout-square)](https://www.android.com)
 
+## Listado de retos
+* **#0** - 27/12/21 - `EL FAMOSO "FIZZ BUZZ"`
+* **#1** - 03/01/22 - `¿ES UN ANAGRAMA?`
+* **#2** - 10/01/22 - `Publicación nuevo reto...`
+
 ### ¿Cómo puedo participar?
 
 **Puedes hacer libremente un fork del proyecto y trabajar con Git para ir sincronizando las actualizaciones del proyecto.**
 
 * Cada lunes se publicará un nuevo reto de código.
 * Cada reto será un nuevo fichero dentro de `app/src/main/java/com/mouredev/weeklychallenge2022` donde se indicará la fecha, el enunciado y la información necesaria para llevarlo a cabo.
-* Se comunicará en el canal `#🗓reto-semanal` de [Discord](https://mouredev.com/discord), en directo desde [Twitch](https://twitch.tv/mouredev) y se subirá el enunciado al [repositorio](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin).
+* Se comunicará en el canal `#🔁reto-semanal` de [Discord](https://mouredev.com/discord), en directo desde [Twitch](https://twitch.tv/mouredev) y se subirá el enunciado al [repositorio](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin).
 * Dispondrás de una semana para resolverlo, preguntar tus dudas, debatir y aportar ayuda en el canal de Discord.
 * El lunes siguiente se subirá la resolución al repositorio, se comentará en directo desde Twitch (utilizando alguna solución de entre los asistentes o que se haya realizado una pull request al proyecto) y se añadirá el nuevo reto semanal.
 * Comenzará de nuevo el proceso.
@@ -51,10 +56,6 @@ Todo esto se puede hacer desde línea de comandos, pero si prefieres puedes usar
 	* `Fetch upstream` permite sincronizar tu proyecto con el original en caso de que se haya actualizado.
 * Para sincronizar tu proyecto con el original y mantenerlo actualizado también puedes hacer un `merge commit`, `squash merge` o `rebase`(ten en cuenta que cada uno se comporta de una manera, conservando o no tus propios cambios).
 * Una vez se publique el nuevo reto, la solución del anterior, y comente las soluciones, cerraré las pasadas `pull request` para dejar paso a las que se hagan para el nuevo reto.
-
-## Listado de retos
-* **#0** - 27/12/21 - `EL FAMOSO "FIZZ BUZZ"`
-* **#1** - 03/01/22 - `Publicación nuevo reto...`
 
 ## ![https://mouredev.com](https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_emote.png) Hola, mi nombre es Brais Moure.
 ### Freelance full-stack iOS & Android engineer
