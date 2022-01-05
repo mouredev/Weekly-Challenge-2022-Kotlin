@@ -32,7 +32,8 @@ public class Challenge1 {
      */
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        String palabra1, palabra2;
+        String palabra1,
+                palabra2;
 
         System.out.println("Escribe una palabra");
         palabra1 = teclado.nextLine();
@@ -48,11 +49,19 @@ public class Challenge1 {
     
      */
     private static boolean isAnagrama(String cadena1, String cadena2) {
-        return (cadena1.length() == cadena2.length()) ? ((!cadena1.equals(cadena2)) ? (compara(cadena1, cadena2)) : false) : false;
+        //No tienen la misma longitud
+        if (!(cadena1.length() == cadena2.length())) return false;
+        //No son exactamente iguales
+        if (cadena1.equals(cadena2)) return false;
+        //Compara que tenga las mismas letras
+        return compara(cadena1, cadena2);
+
     }
 
     private static boolean compara(String uno, String dos) {
-        char[] unoChar = uno.toCharArray(), dosChar = dos.toCharArray();
+        char[] unoChar = uno.toCharArray(),
+                dosChar = dos.toCharArray();
+
         Arrays.sort(unoChar);
         Arrays.sort(dosChar);
         return new String(unoChar).equals(new String(dosChar));
