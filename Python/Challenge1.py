@@ -19,7 +19,7 @@
 def anagramaConsult(firstWord:str, secondWord:str):
   itsAnagrama = True
 
-  if firstWord == secondWord:
+  if firstWord == secondWord or len(firstWord) != len(secondWord):
     itsAnagrama = False
   else:
     for letter in firstWord:
