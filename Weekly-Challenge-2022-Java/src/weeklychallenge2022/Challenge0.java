@@ -36,21 +36,13 @@ public class Challenge0 {
     }
 
     private static String fizzBuzz(int numero) {
-        boolean fizz = numero % 3 == 0,
-                buzz = numero % 5 == 0,
-                fizzBuzz = numero % 15 == 0;
-
-        if (fizzBuzz) {
-            return "fizzbuzz";
-        }
-        if (fizz) {
-            return "fizz";
-        }
-        if (buzz) {
-            return "buzz";
-        }
-
+        //multiplos de 3 y 5
+        if (numero % 15 == 0) return "fizzbuzz";
+        //multiplos de 3
+        if (numero % 3 == 0) return "fizz";
+        //multiplos de 5
+        if (numero % 5 == 0) return "buzz";
+        
         return String.valueOf(numero);
-
     }
 }
