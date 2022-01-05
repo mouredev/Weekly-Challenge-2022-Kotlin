@@ -21,5 +21,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    val word1 = "night"
+    val word2 = "thing"
+    if(word1.alphabetized() == word2.alphabetized()){
+        print("$word1 & $word2 are anagrams")
+    }else{
+        print("$word1 & $word2 are not anagrams")
+    }
 }
+
+fun String.alphabetized() = String(toCharArray().apply { sort() })
