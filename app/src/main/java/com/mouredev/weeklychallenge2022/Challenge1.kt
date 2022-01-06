@@ -1,5 +1,10 @@
 package com.mouredev.weeklychallenge2022
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.util.*
+import kotlin.collections.HashMap
+
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -20,6 +25,26 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+@RequiresApi(Build.VERSION_CODES.N)
+fun StringToMap(string:String): Map<Char, Int> {
+    val map_String: MutableMap<Char, Int> = HashMap()
+    for (char in string)
+    {
+        map_String.putIfAbsent(char, 0)
+        map_String[char] = map_String[char]!! + 1
+    }
+    return map_String
+}
 
+@RequiresApi(Build.VERSION_CODES.N)
+fun Is_Anagram(string1: String, string2:String): Boolean{
+    val map_String1: Map<Char, Int> = StringToMap(string1)
+    val map_String2: Map<Char, Int> = StringToMap(string2)
+    return map_String1.equals(map_String2)&&string1!=string2
+}
+
+@RequiresApi(Build.VERSION_CODES.N)
+fun main() {
+    val result: Boolean = Is_Anagram("AAAABBBBCDEF","CDEFAAAABBBB")
+    print(result)
 }
