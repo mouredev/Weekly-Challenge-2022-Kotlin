@@ -20,7 +20,6 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
     for (index in 1..100) {
         val divisibleByThree = index % 3 == 0
         val divisibleByFive = index % 5 == 0
