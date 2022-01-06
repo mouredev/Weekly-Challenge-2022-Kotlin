@@ -22,15 +22,17 @@ package com.mouredev.weeklychallenge2022
 
 
 
-fun check(word1: String, word2: String){
+fun check(word1: String, word2: String): Boolean{
     if (word1 == word2){
         print("$word1 & $word2 are the same word")
-        return
+        return false
     }
     if(word1.alphabetized() == word2.alphabetized()){
         print("$word1 & $word2 are anagrams")
+        return true
     }else{
         print("$word1 & $word2 are not anagrams")
+        return false
     }
 
 }
