@@ -23,16 +23,24 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    //Función que cuenta el número de apariencias de una determinada letra dentro de una palabra
     fun contadorOcurrencias (palabra: String, letra: Char): Int {
         return palabra.filter { it == letra }.length
     }
 
+    //Función para dar formato a las distintas palabras
     fun formatearPalabra(palabra: String): String {
-        return palabra.lowercase().trim().replace(" ", "")
+        return palabra.lowercase().trim()
+            .replace(" ", "")
+            .replace("á","a")
+            .replace("é","e")
+            .replace("í","i")
+            .replace("ó","o")
+            .replace("ú","u")
     }
 
+    //Función principal del reto
     fun esAnagrama (palabraUno : String, palabraDos : String) : Boolean{
-
         val palabraUnoFormateada = formatearPalabra(palabraUno)
         val palabraDosFormateada = formatearPalabra(palabraDos)
 
@@ -41,7 +49,6 @@ fun main() {
         }
 
         for(letra in palabraUnoFormateada) {
-
             val aparicionesEnPalabraUnoFormateada = contadorOcurrencias(palabraUnoFormateada, letra)
             val aparicionesEnPalabraDosFormateada = contadorOcurrencias(palabraDosFormateada, letra)
 
@@ -52,9 +59,10 @@ fun main() {
         return true
     }
 
-    //
-    if(esAnagrama("/ab-12","/ba-21")){
+    //LLAMADA A LA FUNCIÓN PRINCIPAL
+    if(esAnagrama("canción         ","noi             cnac")){
         println("SON ANAGRAMAS")
+
     }else{
         println("NO SON ANAGRAMAS")
     }
