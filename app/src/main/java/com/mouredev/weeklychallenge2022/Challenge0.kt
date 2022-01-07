@@ -20,16 +20,7 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println("Moure Solution:")
-    mouredev()
-    println()
-    println("My Solution:")
-    mySolution()
-    println()
-    println("When Solution:")
-    whenSolution()
-}
-fun mouredev() {
+
     for (index in 1..100) {
         val divisibleByThree = index % 3 == 0
         val divisibleByFive = index % 5 == 0
@@ -41,30 +32,6 @@ fun mouredev() {
             println("buzz")
         } else {
             println(index)
-        }
-    }
-}
-
-fun mySolution() {
-    for (f in 1..100){
-        if (f%3 == 0 && f%5 == 0) {
-            println("fizzbuzz")
-        } else if (f%3 == 0){
-            println("fizz")
-        } else if (f%5 == 0){
-            println("buzz")
-        } else {
-            println(f)
-        }
-    }
-}
-fun whenSolution() {
-    for (i in 1..100){
-        when {
-            (i % 3 == 0 && i % 5 == 0) -> print("fizzbuzz\n")
-            i % 3 == 0 -> print("fizz\n")
-            i % 5 == 0 -> print("buzz\n")
-            else -> println(i)
         }
     }
 }
