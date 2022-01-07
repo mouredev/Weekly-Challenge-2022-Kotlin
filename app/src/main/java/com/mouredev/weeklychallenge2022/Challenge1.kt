@@ -21,5 +21,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    someTests()
+}
 
+fun isAnagram (word1: String, word2: String): Boolean{
+    if (word1.length != word2.length || word1 == word2) return false
+    val sorted1 = word1.toCharArray().sort()
+    val sorted2 = word2.toCharArray().sort()
+    return sorted1 == sorted2
+}
+
+fun someTests(){
+    println(isAnagram("asd", "sad")) // true
+    println(isAnagram("abcd", "abcde")) // false
+    println(isAnagram("Challenge1", "Challenge1")) // false
 }
