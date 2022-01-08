@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -20,6 +22,52 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
 
+fun main() {
+    val scanner = Scanner(System.`in`)
+    var firstWord = scanner.nextLine()
+    var secondWord = scanner.nextLine()
+    val anagrama = evaluteAnagrama(firstWord, secondWord)
+    if (anagrama == true){
+        println("Son anagramas")
+    }else{
+        println("No son anagramas")
+    }
+}
+
+fun evaluteAnagrama(correctWord: String, disorderedWord: String): Boolean {
+    var evaluation = false
+    if (correctWord.length != disorderedWord.length || correctWord == disorderedWord) {
+        return evaluation
+    } else {
+        var counterCorrect = 0
+        var counterIncorrect = 0
+        var individualCorrectWord: Char
+        var individualDisorderedWord: Char
+        for (i in 0 until disorderedWord.length) {
+            individualCorrectWord = correctWord[i]
+            individualDisorderedWord = disorderedWord[i]
+            if (individualCorrectWord == individualDisorderedWord) {
+                counterCorrect++
+            } else {
+                for (j in 0 until correctWord.length) {
+                    individualCorrectWord = correctWord[j]
+                    if (individualCorrectWord != individualDisorderedWord) {
+                        counterIncorrect++
+                    } else {
+                        counterCorrect++
+                        counterIncorrect = 0
+                        break
+                    }
+                }
+            }
+        }
+        if (counterCorrect == correctWord.length) {
+            evaluation = true
+        }
+        if (counterIncorrect == correctWord.length) {
+            evaluation = false
+        }
+    }
+    return evaluation
 }
