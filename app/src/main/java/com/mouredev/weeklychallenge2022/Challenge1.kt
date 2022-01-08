@@ -22,4 +22,41 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    var resultAnagrama = anagrama("ana", "aan")
+    println("el resultado de comparar es $resultAnagrama")
+
+
+
+
+
+
 }
+fun anagrama(
+    word1: String,
+    word2: String
+): Boolean {
+    val arrayWord1 : CharArray = word1.toCharArray()
+    val arrayWord2 : CharArray = word2.toCharArray()
+
+    var resultadoWord1 = true
+    var resultadoWord2 = true
+    if ((arrayWord1.size != arrayWord2.size) || (word1==word2)){
+        return false
+
+    }
+    else {
+        for (i in arrayWord1.indices){
+            if (!arrayWord2.contains (arrayWord1[i])){
+                resultadoWord1= false
+            }
+            if (!arrayWord1.contains (arrayWord2[i])){
+                resultadoWord2= false
+            }
+
+        }
+        return resultadoWord1&&resultadoWord2
+    }
+
+}
+
+
