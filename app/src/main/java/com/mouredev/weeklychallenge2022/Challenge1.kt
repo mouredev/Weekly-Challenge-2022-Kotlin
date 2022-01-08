@@ -21,5 +21,34 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    printAnagram("tac", "tac") //iguales
+    printAnagram("taco", "tac") //diferente tamaño
+    printAnagram("roma", "amor") //anagrama ok
+    printAnagram("Tom Marvolo Riddle", "I am Lord Voldemort") //Anagrama frases y mayusculas
+}
 
+fun printAnagram (word1: String, word2:String){
+    if (isAnagram(word1, word2)) {
+        println("Las palabras: $word1 y $word2 son anagramas entre ellas")
+    } else {
+        println("Las palabras: $word1 y $word2 NO son anagramas entre ellas")
+    }
+}
+
+fun isAnagram (word1: String, word2: String): Boolean {
+    val word1Sort = sortedLowerWord(word1)
+    val word2Sort = sortedLowerWord(word2)
+    if(word1 == word2) return false
+    if(word1Sort.length != word2Sort.length) return false
+    if(word1Sort.equals(word2Sort, true)) return true
+    return false
+}
+
+fun sortedLowerWord(word : String): String {
+    val wordSort = word.lowercase().toCharArray().sorted()
+    var wordReturn = ""
+    for(letter in wordSort){
+        wordReturn += letter
+    }
+    return wordReturn.trim()
 }
