@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -22,4 +24,24 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    val word1 = "bad credit"
+    val word2 = "debit card"
+
+    if(isAnAnagram(word1, word2)) {
+        print("$word1 and $word2 are anagrams")
+    } else {
+        print("$word1 and $word2 aren't anagrams")
+    }
+}
+
+fun isAnAnagram(word1: String, word2: String) : Boolean {
+
+    if(word1.length != word2.length || word1 == word2) return false
+
+    var word1Sorted = word1.lowercase().toCharArray().sorted().joinToString("")
+    var word2Sorted = word2.lowercase().toCharArray().sorted().joinToString("")
+
+    if(word1Sorted == word2Sorted) return true
+
+    return false
 }
