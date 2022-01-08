@@ -21,5 +21,50 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val word1 = "night"
+    val word2 = "thing";
 
+    val isAnagram = word1.isAnagramOf(word2)
+
+    print("$word1 is ")
+    if (!isAnagram) print("not ")
+    println("an anagram of $word2")
+}
+
+fun String.isAnagramOf(word: String): Boolean {
+    if (this.length != word.length || this == word)
+        return false
+    val currentWordMap = createMapFromWord(this)
+    val comparedWordMap = createMapFromWord(word)
+
+    for (entry in currentWordMap.entries) {
+        val letter = entry.key
+        val currentWordOccurrences = entry.value
+        val comparedWordOccurrences = comparedWordMap[letter]
+        val sameLetterCountIsDifferent =
+            comparedWordOccurrences == null || currentWordOccurrences.size != comparedWordOccurrences.size
+        if (sameLetterCountIsDifferent) {
+            return false
+        } else if (currentWordOccurrences.containsAll(comparedWordOccurrences!!)) {
+            return false
+        }
+    }
+    return true
+}
+
+fun createMapFromWord(word: String): Map<Char, List<Int>> {
+    val map = mutableMapOf<Char, MutableList<Int>>()
+    for (i in word.indices) {
+        val letter = word[i]
+        if (map.containsKey(letter)) {
+            val list = map[letter]
+            if (list != null) {
+                list.add(i)
+                map[letter] = list
+            }
+        } else {
+            map[letter] = mutableListOf(i)
+        }
+    }
+    return map
 }
