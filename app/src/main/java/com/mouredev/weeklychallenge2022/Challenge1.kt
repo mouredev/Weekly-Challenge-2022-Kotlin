@@ -21,5 +21,39 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    var firstWord: String
+    var secondWord: String
+    var result: Boolean = false
 
+    print("Introduce la primera palabra: ")
+    firstWord = readLine().toString()
+    print("Introduce la segunda palabra: ")
+    secondWord = readLine().toString()
+
+    print("Es la segunda palabra anagrama de la primera? " + isAnagram(firstWord, secondWord))
+}
+
+fun isAnagram(word1: String, word2: String): Boolean{
+
+    // Si las dos palabras son iguales  --> No es anagrama
+
+    if (word1 == word2){
+        return false
+    }
+    else{
+        // Si las palabras tienen distinta longitud --> No es anagrama
+        if (word1.length != word2.length){
+            return false
+        }
+        else {
+                // Vamos a comprobar si es anagrama
+            var arrayWord1 : CharArray = word1.uppercase().toCharArray()
+            var arrayWord2 : CharArray = word2.uppercase().toCharArray()
+
+            arrayWord1.sort()
+            arrayWord2.sort()
+
+            return arrayWord1 contentEquals arrayWord2
+        }
+    }
 }
