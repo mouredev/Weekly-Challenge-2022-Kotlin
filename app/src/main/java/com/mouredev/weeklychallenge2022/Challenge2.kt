@@ -20,5 +20,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    var sec1: Long = 0
+    var sec2: Long = 1
+    print("$sec1 , $sec2")
+    for(num in 2 .. 48){
+        val result = sec1 + sec2
+        print(", $result")
+        sec1 = sec2
+        sec2 = result
+    }
 }
