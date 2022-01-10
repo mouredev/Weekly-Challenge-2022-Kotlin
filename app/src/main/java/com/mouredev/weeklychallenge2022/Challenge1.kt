@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.util.*
-
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -15,7 +13,7 @@ import java.util.*
  * Dos palabras exactamente iguales no son anagrama.
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🗓reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
@@ -23,18 +21,12 @@ import java.util.*
  */
 
 fun main() {
-    print("Introduce a word: ")
-    val word = readLine()?.lowercase(Locale.getDefault())
-    print("Introduce an other word: ")
-    val other = readLine()?.lowercase(Locale.getDefault())
-    println("$word and $other are anagrams? " +
-            if(areAnagrams(word?: "", other?: "")) "YES" else "NO"
-    )
+    println(isAnagram("amor", "roma"))
 }
 
-fun areAnagrams(word: String, other: String): Boolean {
-    if(word == other || word.length != other.length) return false
-    val sortedWord = word.split("").sorted().joinToString("")
-    val sortedOther = other.split("").sorted().joinToString("")
-    return (sortedWord == sortedOther)
+private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
+    if (wordOne.lowercase() == wordTwo.lowercase()) {
+        return false
+    }
+    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
