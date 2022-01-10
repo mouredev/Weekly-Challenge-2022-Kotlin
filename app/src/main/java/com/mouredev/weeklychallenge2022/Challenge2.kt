@@ -20,10 +20,10 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var sec1 = 0
-    var sec2 = 1
+    var sec1: Long = 0
+    var sec2: Long = 1
     print("$sec1 , $sec2")
-    for(num in 2 .. 50){
+    for(num in 2 .. 48){
         val result = sec1 + sec2
         print(", $result")
         sec1 = sec2
