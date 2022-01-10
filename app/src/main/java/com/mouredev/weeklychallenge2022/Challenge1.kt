@@ -20,6 +20,19 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
 
+fun areAnagrams(wordA: String, wordB: String): Boolean {
+    return (wordA.length == wordB.length) &&
+            (wordA.compareTo(wordB, true) != 0) &&
+            (wordA.filterIndexed { index, c -> wordB[index].lowercase() == c.lowercase() }.isEmpty())
+}
+
+fun main() {
+    println(areAnagrams("Roma",""))
+    println(areAnagrams("Roma","Roma"))
+    println(areAnagrams("Roma","romana"))
+    println(areAnagrams("Roma","Italia"))
+    println(areAnagrams("Roma","ramo"))
+    println(areAnagrams("Roma","mora"))
+    println(areAnagrams("Roma","amor"))
 }
