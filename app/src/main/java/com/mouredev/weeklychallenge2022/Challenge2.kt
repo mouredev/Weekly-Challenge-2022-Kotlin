@@ -20,8 +20,8 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var penultimate = 0L
-    var ultimate = 1L
+    var penultimate: Long = 0
+    var ultimate: Long = 1
     (2..49).forEach { _ ->
         print("$penultimate, ")
         ultimate += penultimate
