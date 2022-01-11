@@ -21,18 +21,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 
-fun areAnagrams(wordA: String, wordB: String): Boolean {
-    return (wordA.length == wordB.length) &&
-            (wordA.compareTo(wordB, true) != 0) &&
-            (wordA.filterIndexed { index, c -> wordB[index].lowercase() == c.lowercase() }.isEmpty())
+fun areAnagram(wordA: String, wordB: String): Boolean {
+    return (wordA.lowercase().toCharArray().sortedArray().contentEquals(wordB.lowercase().toCharArray().sortedArray())) &&
+            (wordA.filterIndexed { index, c -> wordB[index].lowercase() == c.lowercase() }.isEmpty())   // para reordenar TODAS las letras
 }
 
 fun main() {
-    println(areAnagrams("Roma",""))
-    println(areAnagrams("Roma","Roma"))
-    println(areAnagrams("Roma","romana"))
-    println(areAnagrams("Roma","Italia"))
-    println(areAnagrams("Roma","ramo"))
-    println(areAnagrams("Roma","mora"))
-    println(areAnagrams("Roma","amor"))
+    println(areAnagram("Roma",""))
+    println(areAnagram("Roma","Roma"))
+    println(areAnagram("Roma","Peru"))
+    println(areAnagram("Roma","romana"))
+    println(areAnagram("Roma","ramo"))
+    println(areAnagram("Roma","mora"))
+    println(areAnagram("Roma","Moar"))
+    println(areAnagram("Roma","amor"))
 }
