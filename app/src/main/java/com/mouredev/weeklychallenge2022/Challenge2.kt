@@ -20,5 +20,12 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    var penultimate = 0L
+    var ultimate = 1L
+    (2..49).forEach { _ ->
+        print("$penultimate, ")
+        ultimate += penultimate
+        penultimate = ultimate - penultimate
+    }
+    print("$penultimate, $ultimate")
 }
