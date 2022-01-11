@@ -1,6 +1,4 @@
-package es.jaimefere
-
-import android.icu.lang.UCharacter
+package es.jaimefere.weeklychallenge2022
 
 /*
  * Reto #0

@@ -1,4 +1,4 @@
-package es.jaimefere.weeklychallenge2022
+package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #1
@@ -21,18 +21,12 @@ package es.jaimefere.weeklychallenge2022
  */
 
 fun main() {
-    println(areAnagram("Roma",""))
-    println(areAnagram("Roma","Roma"))
-    println(areAnagram("Roma","romana"))
-    println(areAnagram("Roma","Peru"))
-    println(areAnagram("Roma","ramo"))
-    println(areAnagram("Roma","mora"))
-    println(areAnagram("Roma","moar"))
-    println(areAnagram("Roma","amor"))
+    println(isAnagram("amor", "roma"))
 }
 
-private fun areAnagram(wordA: String, wordB: String): Boolean {
-    return wordA.lowercase().toCharArray().sortedArray().contentEquals(wordB.lowercase().toCharArray().sortedArray()) &&
-            wordA.filterIndexed { index, c -> wordB[index].lowercase() == c.lowercase() }.isEmpty()   // para reordenar TODAS las letras
-
+private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
+    if (wordOne.lowercase() == wordTwo.lowercase()) {
+        return false
+    }
+    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
