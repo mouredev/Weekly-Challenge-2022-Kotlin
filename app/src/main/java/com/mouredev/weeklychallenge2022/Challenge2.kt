@@ -20,5 +20,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    const endNumber = 50;
+    var first = 0;
+    var second = 1;
+    var sum:Long = 0;
 
+    print("First $endNumber Fibonacci numbers: ");
+
+    for (i in 1..endNumber) {
+        sum = first + second;
+        first = second;
+        second = sum;
+        print("$sum ");
+    }
+    
 }
