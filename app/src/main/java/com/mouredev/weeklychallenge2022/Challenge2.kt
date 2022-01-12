@@ -20,5 +20,12 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    for (i in 0..49){
+        print(fibonacci(i))
+        print(", ")
+    }
+}
 
+fun fibonacci(numero: Int): Long {
+    return if ((numero == 0) or (numero == 1))  numero.toLong() else fibonacci(numero-1)+fibonacci(numero-2)
 }
