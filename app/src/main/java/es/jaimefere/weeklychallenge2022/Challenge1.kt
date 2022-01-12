@@ -32,7 +32,9 @@ fun main() {
 }
 
 private fun areAnagram(wordA: String, wordB: String): Boolean {
-    return wordA.lowercase().toCharArray().sortedArray().contentEquals(wordB.lowercase().toCharArray().sortedArray()) &&
-            wordA.filterIndexed { index, c -> wordB[index].lowercase() == c.lowercase() }.isEmpty()   // para reordenar TODAS las letras
+    return wordA.length == wordB.length && wordA.lowercase().filterIndexed { index, c ->
+        (wordB[index].lowercase() == c.toString()) ||   // que cumpla que TODAS las letras están en otra posición (reordenadas)
+                (wordA.lowercase().filter { it == c }.count() != wordB.lowercase().filter { it == c }.count())
+    }.isEmpty()
 
 }
