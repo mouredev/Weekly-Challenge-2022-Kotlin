@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package com.company;
 
 /*
  * Reto #2
@@ -19,6 +19,11 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
 
+public class Challenge2 {
+
+    public static void main(String[] args) {
+	// write your code here
+    }
 }
+
