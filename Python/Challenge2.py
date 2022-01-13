@@ -21,14 +21,11 @@ for i in range(50):
   # Si la lista tiene un largo menor que 2, inserta directamente el valor de i
   if len(suFibonacci) < 2:
     suFibonacci.append(i)
-
-    # Imprime el último valor de la lista
-    print(suFibonacci[-1])
   
   # En caso de que la lista tenga 2 o más elementos, realiza la suma de los últimos 2 valores
   else:
     addValues = suFibonacci[-2] + suFibonacci[-1]
     suFibonacci.append(addValues)
 
-    # Imprime el último valor de la lista
-    print(suFibonacci[-1])
+  # Imprime el último valor de la lista
+  print(suFibonacci[-1])
