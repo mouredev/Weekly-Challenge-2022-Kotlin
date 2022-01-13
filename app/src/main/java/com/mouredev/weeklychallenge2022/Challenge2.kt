@@ -20,5 +20,15 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    var x = 0
+    var y = 1
+    var z: Int
 
+    for (i in 1..50){
+        println(x)
+        z = x + y
+        x = y
+        y = z
+
+    }
 }
