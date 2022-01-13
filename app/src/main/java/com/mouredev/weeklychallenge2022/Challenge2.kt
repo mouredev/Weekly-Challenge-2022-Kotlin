@@ -21,4 +21,31 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+
+    val numbers: MutableList<Int> = mutableListOf()
+
+
+    var cont = 0
+
+    for (i in 0..50){
+        var suma = 0
+        var longitud : Int = numbers.size
+
+        if (longitud == 0){
+            numbers.add(i)
+            continue
+        }
+
+        suma = if(longitud == 1){
+            i
+        }else{
+            (numbers[longitud-1]+numbers[longitud-2])
+        }
+
+        numbers.add(suma)
+    }
+
+
+    print(numbers.toString())
+
 }
