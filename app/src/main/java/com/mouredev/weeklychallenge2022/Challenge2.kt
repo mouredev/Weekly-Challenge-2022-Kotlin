@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package com.mouredev.weeklychallenge2022;
 
 /*
  * Reto #2
@@ -19,6 +19,15 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
 
+fun secuenciaFibonacci(){
+    var arrSecuencia = arrayListOf(0.toLong(), 1.toLong()); 
+    while (arrSecuencia.size < 50) { 
+        arrSecuencia.add( ( arrSecuencia[arrSecuencia.size - 1] ).toLong() + ( arrSecuencia[arrSecuencia.size - 2]).toLong() ); 
+    } 
+    println(arrSecuencia); 
+}
+
+fun main() {
+    secuenciaFibonacci();
 }
