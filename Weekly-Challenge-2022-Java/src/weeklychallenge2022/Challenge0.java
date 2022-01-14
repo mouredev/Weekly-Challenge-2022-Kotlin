@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package weeklychallenge2022;
 
 /*
  * Reto #0
@@ -19,7 +19,30 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+/**
+ *
+ * @author Brais
+ */
+public class Challenge0 {
 
-fun main() {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        final int limite = 100;
+        for (int i = 1; i <= limite; i++) {
+            System.out.println(fizzBuzz(i));
+        }
+    }
 
+    private static String fizzBuzz(int numero) {
+        //multiplos de 3 y 5
+        if (numero % 15 == 0) return "fizzbuzz";
+        //multiplos de 3
+        if (numero % 3 == 0) return "fizz";
+        //multiplos de 5
+        if (numero % 5 == 0) return "buzz";
+        
+        return String.valueOf(numero);
+    }
 }
