@@ -19,6 +19,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+const val NUMBERS = 50
 
+fun main() {
+    fibonacciFirstN(NUMBERS)
+}
+
+fun fibonacciFirstN(n: Int){
+    val fibo = LongArray(n)
+    fibo[0] = 0
+    fibo[1] = 1
+    print("First $n Fibonacci numbers starting from 0: ")
+    print("${fibo[0]}, ${fibo[1]}")
+    for (i in 2 until n){
+        fibo[i] = fibo[i-1] + fibo[i-2]
+        print(", ${fibo[i]}")
+    }
 }
