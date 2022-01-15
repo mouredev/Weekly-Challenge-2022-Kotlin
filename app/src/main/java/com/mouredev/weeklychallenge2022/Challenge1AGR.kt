@@ -13,7 +13,7 @@ package com.mouredev.weeklychallenge2022
  * Dos palabras exactamente iguales no son anagrama.
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🗓reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
@@ -25,6 +25,8 @@ fun main() {
         print("Son un anagrama")
     else
         print("No son un anagrama")
+
+    println(isAnagram("amor", "roma"))
 }
 
 fun anagrama(word1: String, word2: String): Boolean{
@@ -40,5 +42,11 @@ fun anagrama(word1: String, word2: String): Boolean{
     word2Arr.sort()
 
     return word1Arr contentEquals word2Arr
+}
 
+private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
+    if (wordOne.lowercase() == wordTwo.lowercase()) {
+        return false
+    }
+    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
