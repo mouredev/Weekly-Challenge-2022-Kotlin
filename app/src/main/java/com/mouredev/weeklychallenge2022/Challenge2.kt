@@ -18,7 +18,25 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+val elementFibonacci :MutableList<Long> = ArrayList()
+
+
+fun fibonacci(iteration:Int):Long{
+    if (iteration==0){
+        elementFibonacci.add(0)
+        return elementFibonacci.get(0)
+    }
+    if (iteration==1) {
+        elementFibonacci.add(1)
+        return elementFibonacci.get(1)
+    }
+    val newElementFibonacci : Long = elementFibonacci.get(iteration-1)+ elementFibonacci.get(iteration-2)
+    elementFibonacci.add(newElementFibonacci)
+    return newElementFibonacci
+}
 
 fun main() {
-
+    for(index in 0..49){
+        println(index.toString()+ ".- " + fibonacci(index).toString())
+    }
 }
