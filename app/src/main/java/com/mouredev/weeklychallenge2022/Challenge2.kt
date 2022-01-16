@@ -20,5 +20,25 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    fiboCincuenta()
 }
+
+fun fiboCincuenta(){
+
+    val losCincuentaDeFibo = arrayListOf<Float>()
+
+    for(i in 1 until 50) {
+
+        if(i == 1){
+            losCincuentaDeFibo.add(i.toFloat()-1)
+            losCincuentaDeFibo.add(i.toFloat())
+        }
+        losCincuentaDeFibo.add(losCincuentaDeFibo[i] + losCincuentaDeFibo[i-1])
+    }
+
+    for(i in 0 until losCincuentaDeFibo.size) {
+        println("Este es el valor $i de la serie de Fibo: ${losCincuentaDeFibo[i]}")
+    }
+}
+
+
