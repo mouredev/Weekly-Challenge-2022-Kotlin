@@ -20,5 +20,24 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    calculateFibonacci(50)
 }
+
+
+fun calculateFibonacci(n: Long) {
+    fibonnaci(0, n, 0, 0)
+}
+
+fun fibonnaci(currentIteration: Long, limit: Long, previousValue: Long, currentValue: Long) {
+    print(currentValue)
+    if (currentIteration < limit) {
+        print(", ")
+        fibonnaci(
+            currentIteration + 1,
+            limit,
+            currentValue,
+            if (currentValue == 0L) 1 else previousValue + currentValue
+        )
+    }
+}
+
