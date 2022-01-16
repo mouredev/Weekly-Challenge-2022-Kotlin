@@ -13,7 +13,7 @@ package com.mouredev.weeklychallenge2022
  * Dos palabras exactamente iguales no son anagrama.
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🗓reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
@@ -31,40 +31,11 @@ fun main() {
     println("an anagram of $word2")
 }
 
-fun String.isAnagramOf(word: String): Boolean {
-    if (this.length != word.length || this == word)
+
+fun String.isAnagramOf(wordTwo: String): Boolean {
+    if (this.lowercase() == wordTwo.lowercase()) {
         return false
-    val currentWordMap = createMapFromWord(this)
-    val comparedWordMap = createMapFromWord(word)
-
-    for (entry in currentWordMap.entries) {
-        val letter = entry.key
-        val currentWordOccurrences = entry.value
-        val comparedWordOccurrences = comparedWordMap[letter]
-        val sameLetterCountIsDifferent =
-            comparedWordOccurrences == null || currentWordOccurrences.size != comparedWordOccurrences.size
-        if (sameLetterCountIsDifferent) {
-            return false
-        } else if (currentWordOccurrences.containsAll(comparedWordOccurrences!!)) {
-            return false
-        }
     }
-    return true
-}
-
-fun createMapFromWord(word: String): Map<Char, List<Int>> {
-    val map = mutableMapOf<Char, MutableList<Int>>()
-    for (i in word.indices) {
-        val letter = word[i]
-        if (map.containsKey(letter)) {
-            val list = map[letter]
-            if (list != null) {
-                list.add(i)
-                map[letter] = list
-            }
-        } else {
-            map[letter] = mutableListOf(i)
-        }
-    }
-    return map
+    return this.lowercase().toCharArray().sortedArray()
+        .contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
