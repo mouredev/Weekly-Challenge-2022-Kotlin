@@ -20,5 +20,15 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    println(fibonacci(50))
+}
+//n -> cantidad de números de fibonacci
+//
+private fun fibonacci(n : Int) : ArrayList<Long>{
+    val resultado : ArrayList<Long> = arrayListOf<Long>()
+    resultado.addAll(listOf(0,1))
+    for (num in 0..n-3){
+        resultado.add(resultado[num]+resultado[num+1])
+    }
+    return resultado
 }
