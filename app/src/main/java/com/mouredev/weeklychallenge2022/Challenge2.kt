@@ -20,5 +20,17 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    print(fibonacci(50))
+}
 
+fun fibonacci(size: Int): List<Long>{
+    val fibSequence = mutableListOf<Long>()
+    for (n in 0 until size){
+        fibSequence.add(when(n){
+            0 -> 0L
+            1 -> 1L
+            else -> fibSequence[n - 1] + fibSequence[n - 2]
+        })
+    }
+    return fibSequence
 }
