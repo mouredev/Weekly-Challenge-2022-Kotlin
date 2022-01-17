@@ -20,4 +20,26 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+   for (i in 1..100){
+       if(esPrimo(i)){
+           println(i)
+       }
+   }
+}
+
+fun esPrimo(number:Int):Boolean{
+
+    var cont = 0
+
+    for(i in 1..number){
+        if(number % i == 0){
+            cont++
+        }
+    }
+
+    if(cont > 2 || cont == 1){
+        return false
+    }
+
+    return true
 }
