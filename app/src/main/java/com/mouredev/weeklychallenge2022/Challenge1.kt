@@ -21,28 +21,16 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
-}
 
-<<<<<<< HEAD
     val palabra1 = "Riesgo"
     val palabra2 = "Sergio"
 
-    if(esAnagrama(palabra1,palabra2)){
+    if (esAnagrama(palabra1, palabra2)) {
         print("$palabra1 y $palabra2 son anagrama")
-    }else{
+    } else {
         print("$palabra1 y $palabra2 no son anagrama")
     }
-
-=======
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
->>>>>>> ffc1ce70141507fea379a8efab08bcdea5565095
 }
-
 
 fun esAnagrama (palabra1: String, palabra2: String) : Boolean {
 

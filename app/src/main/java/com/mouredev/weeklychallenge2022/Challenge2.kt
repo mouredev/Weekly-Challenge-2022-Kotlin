@@ -21,4 +21,23 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    var valor:Long
+    var list = mutableListOf<Long>()
+
+    for(i in 0..49) {
+        when (i) {
+            0 -> {
+                list.add(i.toLong())
+            }
+            1 -> {
+                list.add(i.toLong())
+            }
+            else -> {
+                valor = list[i - 2] + list[i - 1]
+                list.add(valor)
+            }
+        }
+    }
+
+    list.mapIndexed { index, number -> println("F. de $index = $number") }
 }
