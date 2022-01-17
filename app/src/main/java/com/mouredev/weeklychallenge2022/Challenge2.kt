@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.math.BigInteger
+
 /*
  * Reto #2
  * LA SUCESIÓN DE FIBONACCI
@@ -21,6 +23,7 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+<<<<<<< HEAD
     var valor:Long
     var list = mutableListOf<Long>()
 
@@ -41,3 +44,17 @@ fun main() {
 
     list.mapIndexed { index, number -> println("F. de $index = $number") }
 }
+=======
+    var n0: Long = 0
+    var n1: Long = 1
+
+    (1..50).forEach { _ ->
+
+        println(n0)
+
+        val fib = n0 + n1
+        n0 = n1
+        n1 = fib
+    }
+}
+>>>>>>> 1932e8729572fd8082d48e96f5626a390d6a20da
