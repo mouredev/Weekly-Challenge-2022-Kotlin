@@ -21,12 +21,22 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
+
+    val word1 = "bad credit"
+    val word2 = "debit card"
+
+    if(isAnAnagram(word1, word2)) {
+        print("$word1 and $word2 are anagrams")
+    } else {
+        print("$word1 and $word2 aren't anagrams")
+    }
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+fun isAnAnagram(word1: String, word2: String) : Boolean {
+
+    if (word1.length != word2.length || word1 == word2) return false
+
+    return word1.lowercase().toCharArray().sortedArray().contentEquals(word2.lowercase().toCharArray().sortedArray())
+
+    // var word1Sorted = word1.lowercase().toCharArray().sorted().joinToString("") We can omit toCharArray().sorted().joinToString("") with sortedArray()
 }
