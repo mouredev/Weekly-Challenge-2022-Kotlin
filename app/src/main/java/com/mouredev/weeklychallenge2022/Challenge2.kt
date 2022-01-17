@@ -20,5 +20,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    val sucesion = LongArray(50)
+    for (i in 0..49) {
+        if (i < 2) {
+            sucesion[i] = i.toLong()
+        } else {
+            sucesion[i] = sucesion[i - 1] + sucesion[i - 2]
+        }
+        println((i+1).toString() + " " + sucesion[i].toString())
+    }
 }
