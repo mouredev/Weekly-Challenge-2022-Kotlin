@@ -16,7 +16,13 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 ## Listado de retos
 * **#0** - 27/12/21 - `EL FAMOSO "FIZZ BUZZ"`
 * **#1** - 03/01/22 - `¿ES UN ANAGRAMA?`
+<<<<<<< 5bd9f202a42f77d4d74635b1b9e05dd5b025a9b7
 * **#2** - 10/01/22 - `Publicación nuevo reto...`
+=======
+* **#2** - 10/01/22 - `LA SUCESIÓN DE FIBONACCI`
+* **#3** - 17/01/22 - `¿ES UN NÚMERO PRIMO?`
+* **#4** - 24/01/22 - `Publicación nuevo reto...`
+>>>>>>> Resolución Reto #2 y enunciado Reto #3
 
 ### ¿Cómo puedo participar?
 
