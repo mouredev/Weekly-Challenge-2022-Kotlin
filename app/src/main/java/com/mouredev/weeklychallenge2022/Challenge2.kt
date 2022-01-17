@@ -19,6 +19,18 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun fibonacci(n: Int){
+    var initial: Int = 0
+    var second: Int = 1
+    println(initial) // Print 0
+    for (i in 0..n){
+        val sum = initial + second
+        initial = second
+        second = sum
+        println(initial)
+    }
+}
 
+fun main() {
+    fibonacci(50)
 }
