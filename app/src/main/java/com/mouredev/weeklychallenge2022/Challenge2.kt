@@ -20,9 +20,9 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var x = 0
-    var y = 1
-    var z: Int
+    var x: Long = 0
+    var y: Long = 1
+    var z: Long
 
     for (i in 1..50){
         println(x)
