@@ -20,4 +20,20 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+    val num = 11
+    var flag = false
+
+    for (i in 2..num / 2) {
+        if (num % i == 0) {
+            flag = true
+            break
+        }
+    }
+
+    if (!flag) {
+        println("$num es un numero primo.")
+    } else {
+        println("$num no es un numero primo.")
+      }
+
 }
