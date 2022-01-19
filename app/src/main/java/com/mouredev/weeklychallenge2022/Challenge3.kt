@@ -34,21 +34,16 @@ fun main() {
  * NOTA: La función mostrará siempre por lo menos el número 2 (primer número primo)
  */
 fun Prime(maxNumber:Int): List<Int> {
-    val minNumber = 2
-    var primeNumbers = listOf(minNumber)
+    val minNumber: Int = 2
+    var primeNumbers = mutableListOf(minNumber)
 
     for (i in (minNumber+1)..maxNumber) {
-        var isPrime = true
-        for (number in primeNumbers){
-        	if (i % number == 0){    
-                isPrime = false
-                break
-            } 
+        var isPrime: Boolean = true
+        for (number in primeNumbers) {
+        	if (i % number == 0) { isPrime = false; break } 
         }
 
-        if (isPrime) {
-            primeNumbers += i
-        }
+        if (isPrime) primeNumbers.add(i)
     }
     return primeNumbers 
 }
