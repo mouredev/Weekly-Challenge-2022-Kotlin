@@ -19,5 +19,30 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val range = (1..100)
 
+    getPrimes(range).also {
+        println("List of prime numbers: $it")
+    }
+}
+
+// Used:  The sieve of Eratosthenes for finding all prime numbers up to any given limit
+private fun getPrimes(range: IntRange): List<Int> {
+    var list = range.toMutableList().also { println("List of input number: $it") }
+    var pointer = list.indices.first
+
+    while (list[pointer] * list[pointer] < list.last()) {
+        if (list[pointer] != 1) {
+            val subList = list.subList(pointer, list.lastIndex)
+            val noPrimesValuesList = subList
+                .filter { it != list[pointer] }
+                .filter { it % list[pointer] == 0 }
+                .map { it }
+                .toList()
+            list.removeAll(noPrimesValuesList)
+        }
+        pointer++
+    }
+
+    return list
 }
