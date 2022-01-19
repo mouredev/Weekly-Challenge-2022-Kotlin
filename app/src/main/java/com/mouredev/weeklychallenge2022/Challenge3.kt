@@ -19,5 +19,31 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val primeNumbers = Prime(100)
+    println(primeNumbers)
+}
 
+/**
+ * Un número primo es un número entero con exactamente dos divisores integrales, 1 y el número mismo. 
+ * El número 1 no es un primo, ya que solo tiene un divisor.
+ * 
+ * Para saber si un número es primo hay que divirlo por los números primos menores que él hasta llegar a un cociente igual o menor que el divisor.
+ *  - Si ninguna de estas divisiones es exacta, el número es primo.
+ *  - Si alguna de las divisiones es exacta el número es compuesto y podemos interrumpir el proceso.
+ * 
+ * NOTA: La función mostrará siempre por lo menos el número 2 (primer número primo)
+ */
+fun Prime(maxNumber:Int): List<Int> {
+    val minNumber: Int = 2
+    var primeNumbers = mutableListOf(minNumber)
+
+    for (i in (minNumber+1)..maxNumber) {
+        var isPrime: Boolean = true
+        for (number in primeNumbers) {
+        	if (i % number == 0) { isPrime = false; break } 
+        }
+
+        if (isPrime) primeNumbers.add(i)
+    }
+    return primeNumbers 
 }
