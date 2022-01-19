@@ -21,17 +21,32 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
+    for(i in 1..100){
+
+        if (isMultiple(i,5) and isMultiple(i,3)){
             println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
+            continue
         }
+
+        if(isMultiple(i,3)){
+            println("fizz")
+            continue
+        }
+
+        if(isMultiple(i,5)){
+            println("buzz")
+            continue
+        }
+
+        println(i)
+
     }
+
 }
+
+fun isMultiple(num : Int, multiple : Int): Boolean{
+
+    return if(num % multiple == 0) true else false
+
+}
+
