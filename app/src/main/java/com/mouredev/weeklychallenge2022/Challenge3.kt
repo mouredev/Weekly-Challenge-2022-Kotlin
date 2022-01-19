@@ -20,4 +20,10 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+     for (i in 1..100){
+        
+        if ( i % 2 != 0 )  println(i); else continue;
+
+    }
+
 }
