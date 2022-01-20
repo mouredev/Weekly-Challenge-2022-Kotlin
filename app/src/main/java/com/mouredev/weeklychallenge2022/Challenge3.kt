@@ -23,9 +23,7 @@ fun main() {
 }
 
 private fun primes(num:Int) {
-    for (x in (1..num).filter{ x -> isPrime(x)}) {
-        println(x)
-    }
+    println((1..num).filter{ x -> isPrime(x)})
 }
 
 private fun isPrime(num:Int) :Boolean {
