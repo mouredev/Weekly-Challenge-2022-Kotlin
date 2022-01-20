@@ -19,5 +19,15 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    primes(100)
+}
 
+private fun primes(num:Int) {
+    for (x in (1..num).filter{ x -> isPrime(x)}) {
+        println(x)
+    }
+}
+
+private fun isPrime(num:Int) :Boolean {
+    return (num > 1 && (2..(num / 2)).filter { i -> num % i == 0}.size == 0)
 }
