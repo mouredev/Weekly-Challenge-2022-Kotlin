@@ -19,5 +19,24 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    prime(20)
+}
 
+fun prime(num : Int){
+    if(isPrime(num)) {
+        println("El número $num es primo.")
+    } else {
+        println("El número $num no es primo.")
+    }
+
+    for(num in 1..100){
+        if (isPrime(num)) println(num)
+    }
+}
+
+fun isPrime(num : Int) : Boolean {
+    for(i in 2 until num){
+        if(num % i == 0) return false
+    }
+    return true
 }
