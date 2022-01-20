@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.floor
+import kotlin.math.sqrt
+
 /*
  * Reto #3
  * ¿ES UN NÚMERO PRIMO?
@@ -19,5 +22,17 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    for (num in 2..100) {
+        var esPrimo = true
+        val max = floor(sqrt(num.toDouble()))
+        var index = 2
+        while ((esPrimo == true) && (index <= max)) {
+            if (num % index == 0) {
+                esPrimo = false
+            }
+            index++
+        }
+        if (esPrimo==true) println(num)
+    }
 
 }
