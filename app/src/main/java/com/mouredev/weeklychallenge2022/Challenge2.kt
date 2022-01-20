@@ -22,5 +22,19 @@ import java.math.BigInteger
  */
 
 fun main() {
+    Fibonacci()
+}
 
+fun Fibonacci(): Long{
+    var num1: Long = 0
+
+    var num2: Long = 1
+
+    var res: Long = 0
+    for (index in 1..50){
+        res = num1 + num2
+        num1 = num2
+        num2 = res
+    }
+    return res
 }
