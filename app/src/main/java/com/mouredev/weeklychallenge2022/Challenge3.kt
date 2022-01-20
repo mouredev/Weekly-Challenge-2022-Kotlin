@@ -19,5 +19,22 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    (1..100).forEach { number ->
+        if(isPrime(number)) {
+            println(number)
+        }
+    }
+}
 
+fun isPrime(number: Int): Boolean {
+    if(number < 2) {
+        return false
+    } else {
+        (2 until number).forEach { partialNumber ->
+            if(number % partialNumber == 0) {
+                return false
+            }
+        }
+        return true
+    }
 }
