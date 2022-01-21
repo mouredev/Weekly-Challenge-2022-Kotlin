@@ -20,4 +20,29 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
 
+
+    if(numPrim(3)){
+        println("El numero es prim")
+    }else{
+        println("El numero no es prim")
+    }
+
+    for (index in 1..100){
+        if(numPrim(index)) println(index)
+    }
+}
+
+fun numPrim (num : Int): Boolean{
+
+    //Primo es cuando se divide solo entre 1 y entre el mismo entre ninguno mas
+    //Indica el numero en la llamada de la funcion
+    //Recorrer el array hasta el numero indicado
+    //El 1 no es primo
+    var prim = true
+        for(index in 2 until num){
+               if(num % index == 0){
+                   prim = false
+               }
+        }
+    return prim
 }
