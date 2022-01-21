@@ -19,5 +19,19 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    println("Numeros primos entre el 1 y el 100")
+    for (num in 1..100) {
+        if (isPrimeNumber(num)) {
+            println(num)
+        }
+    }
+}
 
+fun isPrimeNumber(number: Int): Boolean {
+    for (num in 2..number) {
+        if (num != number && number % num == 0) {
+            return false
+        }
+    }
+    return true
 }
