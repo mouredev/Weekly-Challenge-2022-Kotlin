@@ -16,8 +16,30 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
+ *
+ * Está hecho en javascript, espero que se entienda quería participar de alguna manera y pues aquí está
  */
 
-fun main() {
 
+
+var primo = 1;
+
+for (var i=2; i<=100; i++) {
+    var dos = 0;
+    var tres = 0;
+    var cinco = 0;
+    var siete = 0;
+    dos = i % 2;
+    tres = i % 3;
+    cinco = i % 5;
+    siete = i % 7;
+
+    if (primo == 1 && i > 2 && dos == 0) primo = 0;
+    if (primo == 1 && i > 3 && tres==0) primo = 0;
+    if (primo == 1 && i > 5 && cinco==0) primo  = 0;
+    if (primo == 1 && i > 7 && siete==0) primo = 0;
+
+    if(primo == 1) console.log(i);
+
+    primo = 1;
 }
