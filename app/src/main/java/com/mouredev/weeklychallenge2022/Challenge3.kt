@@ -20,6 +20,7 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
     primes(100)
+    eratostenes()
 }
 
 private fun primes(num:Int) {
@@ -28,4 +29,12 @@ private fun primes(num:Int) {
 
 private fun isPrime(num:Int) :Boolean {
     return (num > 1 && (2..(num / 2)).filter { i -> num % i == 0}.size == 0)
+}
+
+private fun eratostenes() {
+    println((1..100).filter { x -> cribado(x) })
+}
+
+private fun cribado(num:Int) :Boolean {
+    return (num > 1 && listOf(2, 3, 5, 7).filter { i -> num % i == 0 && num / i != 1}.size == 0)
 }
