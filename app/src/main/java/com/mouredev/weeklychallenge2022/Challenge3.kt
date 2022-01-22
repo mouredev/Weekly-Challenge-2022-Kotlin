@@ -19,5 +19,22 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    for (i in 1..100) {
+        if (i == 1) {
+            continue
+        }
+        var esPrimo = false
+        for (j in 1..i) {
+            if (i % j == 0) {
+                if (j != 1 && j != i) {
+                    break
+                } else if (j == i) {
+                    esPrimo = true
+                }
+            }
+        }
+        if (esPrimo) {
+            println(i)
+        }
+    }
 }
