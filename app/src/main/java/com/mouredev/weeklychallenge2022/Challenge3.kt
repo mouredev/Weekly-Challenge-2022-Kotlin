@@ -43,11 +43,6 @@ fun main() {
 private fun primo(num: Int): Boolean{
     var cont = 0 //cuenta las veces que un número es divisible, es decir que da de resto 0
     var raiz = sqrt(num.toDouble()).toInt() //pasamos el número introducido a Double para realizar la raiz cuadrada
-    //var raiz = sqrt(num1).toInt() //paso la raiz cuadrada a entero para poder usarla en el for
-    
-    if(num==2) return true //el 2 es el único número primo par
-    
-    if(num%2==0)return false //si el número es par, ya sabemos que no es primo
     
     //hacemos un recorrido desde el 1 hasta la raiz, debido a propiedades de los número primos
     //que me indican que sólo he de probar si es divisible desde el 1 hasta la raiz de dicho número
