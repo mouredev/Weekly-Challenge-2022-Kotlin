@@ -19,11 +19,28 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var primoNumber : Boolean
-    for (i in 2..100){
-        primoNumber = true
-        for (j in 2 until i) if (i%j == 0) primoNumber = false
-        if (primoNumber)println("$i es primo")
+
+    (1..100).forEach { number ->
+        if (isPrime(number)) {
+            println(number)
+        }
     }
 }
+
+private fun isPrime(number: Int): Boolean {
+
+    if (number < 2) {
+        return false
+    }
+
+    for (i in 2 until number) {
+        if (number % i == 0) {
+            return false
+        }
+    }
+
+    return true
+}
+
+
 
