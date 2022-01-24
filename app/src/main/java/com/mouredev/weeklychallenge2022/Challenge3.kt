@@ -19,12 +19,20 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
-        }
+  (1..100).forEach { n ->
+    if (esPrimo(n)) {
+      print("${n} ")
     }
+  }
+}
+
+fun esPrimo(num: Int): Boolean {
+  if (num == 2) return true
+  if (num < 2 || num % 2 == 0) return false
+  for (i in 3..Math.sqrt(num.toDouble()).toInt() step 2) {
+    if (num % i == 0) return false
+  }
+  return true
 }
 
 private fun isPrime(number: Int): Boolean {

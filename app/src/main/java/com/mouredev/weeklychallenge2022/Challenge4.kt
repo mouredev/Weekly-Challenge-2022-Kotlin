@@ -20,3 +20,32 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+  val poligono1 = "3 5 4"
+  val poligono2 = "4"
+  val poligono3 = "3 4"
+
+  areaPoligono(poligono1)
+  areaPoligono(poligono2)
+  areaPoligono(poligono3)
+}
+
+fun areaPoligono(poligono: String) {
+  val input = poligono.split(" ")
+  var lados = DoubleArray(input.size) { input[it].toDouble() }
+
+  var area: Double; area2: Double
+
+  if (lados.size == 1) {
+    area = Math.pow(lados[0].toDouble(), 2.0)
+    println("El área del cuadrado es: $area")
+  } else if (lados.size == 2) {
+    area = lados[0].toDouble() * lados[1].toDouble()
+    area2 = (lados[0].toDouble() * lados[1].toDouble()) / 2
+    println("El área del rectángulo es: $area ; El área del triángulo es: $area2")
+  } else {
+    lados = lados.sortedArray()
+    area = (lados[0].toDouble() * lados[1].toDouble()) / 2
+    println("El área del triangulo es: $area")
+  }
+}
