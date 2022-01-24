@@ -1,14 +1,16 @@
 package com.mouredev.weeklychallenge2022
 
 /*
- * Reto #3
- * ¿ES UN NÚMERO PRIMO?
- * Fecha publicación enunciado: 17/01/22
- * Fecha publicación resolución: 24/01/22
- * Dificultad: MEDIA
+ * Reto #4
+ * ÁREA DE UN POLÍGONO
+ * Fecha publicación enunciado: 24/01/22
+ * Fecha publicación resolución: 31/01/22
+ * Dificultad: FÁCIL
  *
- * Enunciado: Escribe un programa que se encargue de comprobar si un número es o no primo.
- * Hecho esto, imprime los números primos entre 1 y 100.
+ * Enunciado: Crea UNA ÚNICA FUNCIÓN (importante que sólo sea una) que sea capaz de calcular y retornar el área de un polígono.
+ * - La función recibirá por parámetro sólo UN polígono a la vez.
+ * - Los polígonos soportados serán Triángulo, Cuadrado y Rectángulo.
+ * - Imprime el cálculo del área de un polígono de cada tipo.
  *
  * Información adicional:
  * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
@@ -18,6 +20,3 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-
-}
