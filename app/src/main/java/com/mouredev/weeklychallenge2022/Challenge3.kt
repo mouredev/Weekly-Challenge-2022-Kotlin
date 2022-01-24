@@ -18,6 +18,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
 
+fun Int.isPrime(): Boolean{
+
+    var prim = false
+    for (i in 2..this / 2) {
+        return this % i == 0
+    }
+    return prim
+}
+
+
+fun main(args: Array<String>) {
+    (1..100).forEach{ num ->
+        println(if(!num.isPrime()) "$num is a prime number"
+        else "$num is not a prime number")
+    }
 }
