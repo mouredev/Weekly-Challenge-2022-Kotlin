@@ -19,4 +19,28 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    area(2) //cuadrado
+    area(2,3,4,5) // debe sacar mensaje de error
+    area(2,4) // rectangulo
+    area(2,3,4) // triangulo
+}
 
+private fun area (vararg polygon: Int) {
+    // Implementanción rapida. No verifica que se le pase que un lado o la altura sea 0
+    when{
+        polygon.size == 1 -> {
+            print("El área del cuadrado pasado es: ")
+            println(polygon[0]*polygon[0])
+        }
+        polygon.size == 2 -> {
+            print("El área del rectangulo pasado es: ")
+            println(polygon[0]*polygon[1])
+        }
+        polygon.size == 3 -> {
+            print("El área del triangulo pasado es: ")
+            println((polygon[0]*polygon[1])/2)
+        }
+        else -> println("No has pasado un poligono correcto")
+    }
+}
