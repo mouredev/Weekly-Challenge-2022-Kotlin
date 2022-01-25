@@ -11,11 +11,6 @@ package com.mouredev.weeklychallenge2022
  * La serie Fibonacci se compone por una sucesión de números en la que el siguiente siempre es la suma de los dos anteriores.
  * 0, 1, 1, 2, 3, 5, 8, 13...
  *
- * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
- * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
- * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
- * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
 
@@ -23,6 +18,10 @@ fun main() {
     fiboCincuenta()
 }
 
+
+/*
+FUNCIÓN DE MARTINEZ
+ */
 fun fiboCincuenta(){
 
     val losCincuentaDeFibo = arrayListOf<Float>()

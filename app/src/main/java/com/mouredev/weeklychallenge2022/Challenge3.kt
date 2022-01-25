@@ -10,11 +10,6 @@ package com.mouredev.weeklychallenge2022
  * Enunciado: Escribe un programa que se encargue de comprobar si un número es o no primo.
  * Hecho esto, imprime los números primos entre 1 y 100.
  *
- * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
- * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
- * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
- * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
 
@@ -27,6 +22,9 @@ fun main() {
     }
 }
 
+/*
+FUNCION DE MARTINEZ
+ */
 fun esPrimo(num : Int) : Boolean {
 
     var contador = 0
@@ -40,5 +38,23 @@ fun esPrimo(num : Int) : Boolean {
             }
         }
     }
+    return true
+}
+
+/*
+FUNCION DE MOURE
+ */
+private fun isPrime(number: Int): Boolean {
+
+    if (number < 2) {
+        return false
+    }
+
+    for (i in 2 until number) {
+        if (number % i == 0) {
+            return false
+        }
+    }
+
     return true
 }
