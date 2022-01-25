@@ -20,3 +20,41 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+/**
+ * You can edit, run, and share this code. 
+ * play.kotlinlang.org 
+ */
+
+fun main() {
+    println(Triangle(10.0, 10.0).getArea())
+    println(Square(10.0).getArea())
+    println(Rectangle(5.0, 10.0).getArea())
+}
+
+abstract class Polygon {
+    val side: Double
+    val height: Double
+    constructor(side: Double, height: Double) {
+        this.side = side
+        this.height = height
+    }
+    abstract fun getArea() :Double
+}
+
+class Triangle(side: Double, height: Double): Polygon(side, height) {
+	override fun getArea() :Double {
+        return super.side * super.height / 2.0
+    }
+}
+
+class Square(side: Double): Polygon(side, side) {
+    override fun getArea() :Double {
+        return super.side * super.height
+    }
+}
+
+class Rectangle(side: Double, height: Double): Polygon(side, height) {
+	override fun getArea() :Double {
+        return super.side * super.height
+    }
+}
