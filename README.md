@@ -18,7 +18,8 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#1** - 03/01/22 - `¿ES UN ANAGRAMA?`
 * **#2** - 10/01/22 - `LA SUCESIÓN DE FIBONACCI`
 * **#3** - 17/01/22 - `¿ES UN NÚMERO PRIMO?`
-* **#4** - 24/01/22 - `Publicación nuevo reto...`
+* **#4** - 24/01/22 - `ÁREA DE UN POLÍGONO`
+* **#5** - 31/01/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 
