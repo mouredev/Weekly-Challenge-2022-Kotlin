@@ -21,43 +21,34 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(Polygon(4.0).getArea())
-    println(Polygon(7.0, 4.0).getArea())
-    println(Polygon(3.0, 4.0, 5.0).getArea())
+    println(Polygon(true,4.0).getArea())
+    println(Polygon(true, 7.0, 4.0).getArea())
+    println(Polygon(false, 3.0, 4.0, 5.0).getArea())    
+    println(Polygon(false, 3.0, 4.0).getArea())     // isosceles
+    println(Polygon(false, 3.0).getArea())      // equilateral
 }
 
-class Polygon {
-    val possibleDistinctSideLengths: Int
-    var width: Double
-    var height: Double = 0.0
-    var length: Double = 0.0
-
-    constructor(sideWidth: Double) {
-        possibleDistinctSideLengths = 1
-        width = sideWidth
-    }
-
-    constructor(base: Double, height: Double) {
-        possibleDistinctSideLengths = 2
-        width = base
-        this.height = height
-    }
-
-    constructor(sideLengthA: Double, sideLengthB: Double, sideLengthC: Double) {
-        possibleDistinctSideLengths = 3
-        width = sideLengthA
-        height = sideLengthB
-        length = sideLengthC
-    }
-
+class Polygon(
+    private val hasFourVertices: Boolean,
+    private var sideA: Double,
+    private var sideB: Double = 0.0,
+    private var sideC: Double = 0.0
+) {
     fun getArea(): Double {
-        return when(possibleDistinctSideLengths) {
-            1 -> width * width
-            2 -> width * height
-            else -> {
-                val semiperimeter = (width + height + length) / 2.0
-                Math.sqrt(semiperimeter * (semiperimeter - width) * (semiperimeter - height) * (semiperimeter - length))
+        return if(hasFourVertices) {
+            if(sideB == 0.0) {  // square
+                sideB = sideA
             }
+            sideA * sideB
+        } else {
+            if(sideB == 0.0) {  // equilateral
+                sideB = sideA
+            }
+            if(sideC == 0.0) {  // isosceles
+                sideC = sideB
+            }
+            val semiperimeter = (sideA + sideB + sideC) / 2.0
+            Math.sqrt(semiperimeter * (semiperimeter - sideA) * (semiperimeter - sideB) * (semiperimeter - sideC))
         }
     }
 }
