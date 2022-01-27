@@ -20,3 +20,22 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    val dataInput = arrayOf<String>("triangulo", "cuadrado", "rectangulo")
+    var base = 10
+    var height = 2
+
+    dataInput.forEach{
+        println("Area de $it con base $base y altura $height es: ${calculateArea(it, base, height)}")
+    } 
+}
+
+private fun calculateArea(polygon: String, base: Int, height:Int): Int {
+    var area = 0
+    when(polygon){
+        "triangulo"  -> area=(base*height)/2 
+        "cuadrado"   -> area=base*base //para el cuadrado solo se tendra en cuenta uno de los lados, en este caso la base
+        "rectangulo" -> area=base*height
+    }
+    return area
+}
