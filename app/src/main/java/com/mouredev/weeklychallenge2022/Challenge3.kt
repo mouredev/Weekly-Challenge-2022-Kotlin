@@ -22,17 +22,16 @@ import kotlin.math.sqrt
  */
 
 fun main() {
-    for (num in 2..100) {
-        var esPrimo = true
-        val max = floor(sqrt(num.toDouble()))
-        var index = 2
-        while ((esPrimo == true) && (index <= max)) {
-            if (num % index == 0) {
-                esPrimo = false
-            }
-            index++
-        }
-        if (esPrimo==true) println(num)
+    for (i in 1..100) {
+        if (prime(i)) println(i)
     }
+}
 
+private fun prime(number: Int): Boolean {
+    if (number < 2) return false
+    val max = floor(sqrt(number.toDouble())).toInt()
+    for (i in 2..max) {
+        if (number % i == 0) return false
+    }
+    return true
 }
