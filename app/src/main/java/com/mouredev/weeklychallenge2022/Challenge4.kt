@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.sqrt
+
 /*
  * Reto #4
  * ÁREA DE UN POLÍGONO
@@ -20,3 +22,37 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+
+    var area: Double
+    val a = 2.0
+    val b = 3.2
+    val c = 5.1
+
+    area = polygonArea(a)
+    println("El área de un cuadrado de lado $a es: $area")
+
+    area = polygonArea(a, b)
+    println("El área de un rectángulo de lados $a y $b es: $area")
+
+    area = polygonArea(a, b, c)
+    println("El área de un triángulo de lados $a, $b y $c es: $area")
+
+}
+
+private fun polygonArea(vararg side: Double): Double {
+    val area: Double
+    when (side.size) {
+        1 -> area = side[0] * side[0]
+        2 -> area = side[0] * side[1]
+        3 -> {
+            val s = (side[0] + side[1] + side[2]) / 2
+            area = sqrt(s * (s - side[0]) * (s - side[1]) * (s - side[2]))
+        }
+        else -> {
+            area = 0.0
+            println("Polígono no soportado")
+        }
+    }
+    return area
+}
