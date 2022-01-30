@@ -42,7 +42,7 @@ fun main() {
 
 private fun polygonArea(vararg side: Double): Double {
     val area: Double
-    if (side.filter { n -> n <= 0.0 }.isNotEmpty()) {
+    if (side.filter { n -> n <= 0 }.isNotEmpty()) {
         println("El polígono introducido no es válido:")
         return 0.0
     }
