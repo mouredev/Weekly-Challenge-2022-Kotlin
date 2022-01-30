@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #4
  * ÁREA DE UN POLÍGONO
@@ -20,3 +22,25 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main() {
+
+    println(areaPoligono("Rectangulo"))
+
+}
+
+private fun areaPoligono(poligono: String): Double {
+
+    var area = 0.0
+    val base = 5.0
+    val altura = 4.0
+
+    when (poligono) {
+        "Triangulo" -> area = (base * altura) / 2
+        "Cuadrado" -> area = base.pow(2)
+        "Rectangulo" -> area = base * altura
+    }
+
+    return area
+
+}
