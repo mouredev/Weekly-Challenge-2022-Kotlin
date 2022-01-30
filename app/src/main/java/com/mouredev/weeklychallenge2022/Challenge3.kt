@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.floor
+import kotlin.math.sqrt
+
 /*
  * Reto #3
  * ¿ES UN NÚMERO PRIMO?
@@ -19,28 +22,16 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
-        }
+    for (i in 1..100) {
+        if (prime(i)) println(i)
     }
 }
 
-private fun isPrime(number: Int): Boolean {
-
-    if (number < 2) {
-        return false
+private fun prime(number: Int): Boolean {
+    if (number < 2) return false
+    val max = floor(sqrt(number.toDouble())).toInt()
+    for (i in 2..max) {
+        if (number % i == 0) return false
     }
-
-    for (i in 2 until number) {
-        if (number % i == 0) {
-            return false
-        }
-    }
-
     return true
 }
-
-
-

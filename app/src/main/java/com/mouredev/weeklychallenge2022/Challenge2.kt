@@ -22,16 +22,15 @@ import java.math.BigInteger
  */
 
 fun main() {
-
-    var n0: Long = 0
-    var n1: Long = 1
-
-    (1..50).forEach { _ ->
-
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
+    var anteriorPrevio : Long = 0
+    var previo : Long = 1
+    var siguiente : Long
+    println(anteriorPrevio)
+    println(previo)
+    for (i in 0 .. 50){
+        siguiente=anteriorPrevio+previo;
+        anteriorPrevio=previo;
+        previo=siguiente;
+        println(siguiente)
     }
 }
