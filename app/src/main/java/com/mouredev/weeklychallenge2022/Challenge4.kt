@@ -42,6 +42,10 @@ fun main() {
 
 private fun polygonArea(vararg side: Double): Double {
     val area: Double
+    if (side.filter { n -> n <= 0.0 }.isNotEmpty()) {
+        println("El polígono introducido no es válido:")
+        return 0.0
+    }
     when (side.size) {
         1 -> area = side[0] * side[0]
         2 -> area = side[0] * side[1]
@@ -51,7 +55,7 @@ private fun polygonArea(vararg side: Double): Double {
         }
         else -> {
             area = 0.0
-            println("Polígono no soportado")
+            println("Polígono no soportado:")
         }
     }
     return area
