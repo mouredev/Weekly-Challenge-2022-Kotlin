@@ -20,3 +20,30 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+ 	fun main() {
+		var miPoligono: Poligono? = null
+		miPoligono = Poligono.Triangulo
+		println("${miPoligono.name}")
+
+ 	}
+
+	enum class Poligono (val base: Int, val altura: Int) {
+		Triangulo(base = 0, altura = 0),
+		Cuadrado(base = 0, altura = 0),
+		Rectangulo(base = 0,altura = 0);
+
+		fun area(): Int {
+			return when (this) {
+				Triangulo -> (this.base * this.altura) / 2
+				Cuadrado -> this.base * this.altura
+				Rectangulo -> this.base + this.altura
+			}
+		}
+	}
+
+
+	fun areaPoligono (figura: Poligono): Int{
+		return figura.area();
+	}
+
+
