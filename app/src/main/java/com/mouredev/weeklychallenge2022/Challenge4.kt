@@ -21,29 +21,33 @@ package com.mouredev.weeklychallenge2022
  */
 
  	fun main() {
-		var miPoligono: Poligono? = null
-		miPoligono = Poligono.Triangulo
-		println("${miPoligono.name}")
+
+		val poligono1 = Poligono.Triangulo
+		val poligono2 = Poligono.Rectangulo
+		val poligono3 = Poligono.Cuadrado
+
+		println("El área del ${poligono1.name} es ${areaPoligono(poligono1)}")
+		println("El área del ${poligono2.name} es ${areaPoligono(poligono2)}")
+		println("El área del ${poligono3.name} es ${areaPoligono(poligono3)}")
 
  	}
 
 	enum class Poligono (val base: Int, val altura: Int) {
-		Triangulo(base = 0, altura = 0),
-		Cuadrado(base = 0, altura = 0),
-		Rectangulo(base = 0,altura = 0);
+		Triangulo(base = 3, altura = 6),
+		Cuadrado(base = 4, altura = 4),
+		Rectangulo(base = 5,altura = 8);
 
 		fun area(): Int {
 			return when (this) {
-				Triangulo -> (this.base * this.altura) / 2
+				Triangulo -> (this.base * this.altura)/2
 				Cuadrado -> this.base * this.altura
 				Rectangulo -> this.base + this.altura
 			}
 		}
 	}
 
-
 	fun areaPoligono (figura: Poligono): Int{
-		return figura.area();
+		return figura.area()
 	}
 
 
