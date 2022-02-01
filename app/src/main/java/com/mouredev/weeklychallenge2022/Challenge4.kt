@@ -20,3 +20,24 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+
+enum class Polygon {
+    SQUARE, RECTANGLE, TRIANGLE;
+
+    fun getArea(weight: Double, height: Double?): Double {
+        return when (this) {
+            SQUARE -> weight * weight
+            RECTANGLE -> weight * height!!
+            TRIANGLE -> ((weight * weight) / 2)
+        }
+    }
+}
+
+fun main() {
+    println(Polygon.SQUARE.getArea(3.14, null))
+    println(Polygon.RECTANGLE.getArea(3.14, 5.47))
+    println(Polygon.TRIANGLE.getArea(5.0, null))
+
+}
+
