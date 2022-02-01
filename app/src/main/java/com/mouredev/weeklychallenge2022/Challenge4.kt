@@ -32,11 +32,14 @@ package com.mouredev.weeklychallenge2022
 
  	}
 
+// Clase para crear el tipo de objeto Poligono con una base y altura determinadas
+
 	enum class Poligono (val base: Int, val altura: Int) {
 		Triangulo(base = 3, altura = 6),
 		Cuadrado(base = 4, altura = 4),
 		Rectangulo(base = 5,altura = 8);
 
+// Creamos una función interna para retornar area del poligono asignado
 		fun area(): Int {
 			return when (this) {
 				Triangulo -> (this.base * this.altura)/2
@@ -46,6 +49,7 @@ package com.mouredev.weeklychallenge2022
 		}
 	}
 
+// Función solicitada que devuelve el área del poligono
 	fun areaPoligono (figura: Poligono): Int{
 		return figura.area()
 	}
