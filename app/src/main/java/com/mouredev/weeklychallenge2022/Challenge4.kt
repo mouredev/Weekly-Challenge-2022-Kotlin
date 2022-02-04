@@ -20,3 +20,14 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    calculoPoligono("Triángulo", 5,5)
+}
+
+fun calculoPoligono(poligono: String, num1: Int, num2: Int){
+    when(poligono){
+        "Triángulo" -> println("base * altura / 2 "+" = " + " ${(num1 * num2)/2} ")
+        "Cuadrado" -> println("lado * lado" + " = " + "${num1 * num2}")
+        "Rectangulo" -> println("base * altura" + " = " + "${num1 * num2}")
+    }
+}
