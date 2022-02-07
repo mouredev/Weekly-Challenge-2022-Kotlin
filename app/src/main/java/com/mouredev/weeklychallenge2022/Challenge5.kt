@@ -19,3 +19,25 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    aspectRatio(16, 9)
+
+    if (16 * 9 == 144){
+        println("El ratio de la imagen es 144")
+    }else{
+        println("Error en el sistema!")
+    }
+
+
+
+
+
+}
+
+private fun aspectRatio(ancho: Int, largo: Int): Int {
+
+    var ratio = (ancho * largo)
+    return  ratio
+
+}
+
