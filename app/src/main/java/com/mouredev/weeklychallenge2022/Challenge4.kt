@@ -21,35 +21,52 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(Polygon(true,4.0).getArea())
-    println(Polygon(true, 7.0, 4.0).getArea())
-    println(Polygon(false, 3.0, 4.0, 5.0).getArea())
-    println(Polygon(false, 3.0, 4.0).getArea())     // isosceles
-    println(Polygon(false, 3.0).getArea())      // equilateral
+
+    area(Triangle(10.0, 5.0))
+    area(Rectangle(5.0, 7.0))
+    area(Square(4.0))
 }
 
-class Polygon(
-    private val hasFourVertices: Boolean,
-    private val sideA: Double,
-    private var sideB: Double = 0.0,
-    private var sideC: Double = 0.0
-) {
-    fun getArea(): Double {
-        return if(hasFourVertices) {
-            if(sideB == 0.0) {  // square
-                sideB = sideA
-            }
-            sideA * sideB
-        } else {
-            if(sideB == 0.0) {  // equilateral
-                sideB = sideA
-            }
-            if(sideC == 0.0) {  // isosceles
-                sideC = sideB
-            }
-            val semiperimeter = (sideA + sideB + sideC) / 2.0
-            Math.sqrt(semiperimeter * (semiperimeter - sideA) * (semiperimeter - sideB) * (semiperimeter - sideC)).format(2)
-        }
+interface Polygon {
+
+    fun area(): Double
+    fun printArea()
+}
+
+data class Triangle(val base: Double, val height: Double): Polygon {
+
+    override fun area(): Double {
+        return (base * height) / 2
+    }
+
+    override fun printArea() {
+        println("El área del triángulo es ${area()}")
     }
 }
 
+data class Rectangle(val length: Double, val width: Double): Polygon {
+
+    override fun area(): Double {
+        return length * width
+    }
+
+    override fun printArea() {
+        println("El área del rectángulo es ${area()}")
+    }
+}
+
+data class Square(val side: Double): Polygon {
+
+    override fun area(): Double {
+        return side * side
+    }
+
+    override fun printArea() {
+        println("El área del cuadrado es ${area()}")
+    }
+}
+
+private fun area(polygon: Polygon): Double {
+    polygon.printArea()
+    return polygon.area()
+}

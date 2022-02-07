@@ -48,8 +48,9 @@ class Polygon(
                 sideC = sideB
             }
             val semiperimeter = (sideA + sideB + sideC) / 2.0
-            Math.sqrt(semiperimeter * (semiperimeter - sideA) * (semiperimeter - sideB) * (semiperimeter - sideC)).format(2)
+            Math.sqrt(semiperimeter * (semiperimeter - sideA) * (semiperimeter - sideB) * (semiperimeter - sideC))
         }
     }
 }
+
 
