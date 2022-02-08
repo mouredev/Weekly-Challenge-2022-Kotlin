@@ -18,3 +18,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+
+    var word: String
+
+    print("Introduce la frase a invertir: ")
+    word = readLine().toString()
+    reverseString(word)
+}
+
+private fun reverseString(word: String){
+    var reverseWord = ""
+
+    for (i in word.length-1 downTo 0)
+        reverseWord += word[i]
+
+    print(reverseWord)
+}
