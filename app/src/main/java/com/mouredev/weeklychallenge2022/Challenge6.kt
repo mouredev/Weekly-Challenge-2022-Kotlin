@@ -18,3 +18,18 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    val testCases = listOf("Hola Mundo!", "Este es el reto numero 6.", "", "1", "Emoji 🤔")
+    testCases.forEach { testStr -> println("'${invert(testStr)}'") }
+}
+
+fun invert(str: String): String {
+    val n = str.length
+    val newStr = CharArray(n)
+
+    for (i in 0 until n) { // Same as 'for (i in 0 until str.length)' and 'for (i in str.indices)'
+        val j = n - i - 1
+        newStr[j] = str[i]
+    }
+    return newStr.joinToString("")
+}
