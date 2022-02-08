@@ -18,3 +18,23 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(reverseString("Hola Mundo"))
+    println(reverseString("Con COBOL esto no pasaba!"))
+    println(reverseString("Viva Flutter y el MoureCorcho!!!"))
+}
+
+private fun reverseString(phrase: String): String {
+
+    var x = 0
+    var result = ""
+
+    phrase.forEach { x++ } // Contamos cantidad de caracteres
+
+    while (x != 0) {
+        result += phrase.get(x - 1) // Invertimos la cadena
+        x--
+    }
+
+    return result
+}
