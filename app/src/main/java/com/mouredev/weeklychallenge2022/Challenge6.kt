@@ -18,3 +18,17 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(reverse("Hola mundo").equals("odnum aloH"))
+    println(reverse("What is Lorem Ipsum?").equals("?muspI meroL si tahW"))
+}
+
+fun reverse(value: String) :String {
+    var result = ""
+    var i = value.length-1
+    while (i >= 0) {
+        result += value[i]
+        i--
+    }
+    return result
+}
