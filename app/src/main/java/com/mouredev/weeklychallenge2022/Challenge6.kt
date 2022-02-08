@@ -18,3 +18,23 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+
+    var input = "0"
+    println("Ingrese 9 para salir")
+    do {
+        println("Ingrese cadena: ")
+        input = readLine() ?: "0"
+        if (input != "9") {
+            val charInput = input.toCharArray()
+            var reverseInput = CharArray(charInput.size)
+            val max = charInput.size
+            for (i in max.downTo(1)) {
+                reverseInput[max - i] = charInput[i - 1]
+            }
+            val reverseString = reverseInput.concatToString()
+            println(reverseString)
+        }
+    } while (input != "9")
+}
+
