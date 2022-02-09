@@ -18,3 +18,17 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    println(reverse("Hola Mundo"))
+    println(reverse("123456789"))
+}
+
+fun reverse(s: String): String {
+    val res = CharArray(s.length)
+    for (i in 0..(s.length-1)/2){
+        res[i] = s[s.length-1-i]
+        res[s.length-1-i] = s[i]
+    }
+
+    return String(res)
+}
