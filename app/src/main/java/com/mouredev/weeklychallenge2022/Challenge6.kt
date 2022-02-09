@@ -17,4 +17,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    val inputString: String = "hola"
+    val outputString: String = reverseString(inputString)
+    
+    println("Entrada: $inputString \n Salida: $outputString")
+}
 
+fun reverseString (inputString: String): String {        
+    var outputString: String = ""
+    var outputIndex: Int = inputString.length  
+    
+    inputString.forEach { 
+        outputIndex--
+        outputString += inputString[outputIndex]        
+    }      
+   
+    return outputString
+}
