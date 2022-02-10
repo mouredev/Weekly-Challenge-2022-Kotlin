@@ -18,3 +18,21 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    cadenas("hello world", "dlrow olleh")
+
+}
+
+private fun cadenas(worldOne: String, worldTwo: String): Boolean {
+
+    if (worldOne.lowercase().toCharArray().sortedArray().contentEquals(worldTwo.lowercase().toCharArray().sortedArray())
+    ) {
+        println(worldTwo)
+        return true
+    } else {
+        println("Error")
+    }
+    return false
+
+
+}
