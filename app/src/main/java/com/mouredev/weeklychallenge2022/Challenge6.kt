@@ -18,3 +18,32 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main() {
+    var cadena1 = "Hola mundo"
+
+    var cadenaSeparada : CharArray = cadena1.toCharArray()
+
+
+    var cadenaInvertida = invertir(cadenaSeparada)
+    print(cadenaInvertida)
+}
+
+
+private fun invertir(cadena : CharArray) : String{
+    var cadenaInvertida : String = ""
+
+
+
+    var tamaño = cadena.size - 1
+
+    while (tamaño >= 0){
+        cadenaInvertida += cadena[tamaño].toString()
+        tamaño--
+    }
+
+
+
+    return cadenaInvertida
+
+}
