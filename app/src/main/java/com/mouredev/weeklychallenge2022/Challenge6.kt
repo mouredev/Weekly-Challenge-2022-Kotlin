@@ -18,3 +18,15 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+
+    fun reverseWord(word: String): String {
+        var finalWord = ""
+        for (i in word.length-1 downTo 0) {
+            finalWord += word[i]
+        }
+        return finalWord
+    }
+
+    println(reverseWord("This is a Test String!"))
+}
