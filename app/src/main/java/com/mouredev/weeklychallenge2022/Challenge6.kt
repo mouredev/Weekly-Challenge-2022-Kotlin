@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import android.text.TextUtils
+
 /*
  * Reto #6
  * INVIRTIENDO CADENAS
@@ -17,4 +19,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(reverse("Hola mundo"))
+}
+
+private fun reverse(originalString: String): String {
+    val x = originalString.length - 1
+    var reverseString = ""
+
+    for (index in x downTo 0) {
+        reverseString += originalString[index]
+    }
+
+    return reverseString
+}
 
