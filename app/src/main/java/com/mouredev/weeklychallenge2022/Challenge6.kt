@@ -18,3 +18,13 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    val originText = "Hola Mundo"
+    var reverseText = ""
+
+    val charOriginText = originText.toCharArray()
+    for(i in charOriginText.size -1 downTo 0) {
+        reverseText += charOriginText.get(i)
+    }
+    println("Cadena invertida => $reverseText")
+}
