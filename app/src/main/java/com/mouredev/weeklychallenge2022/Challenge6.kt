@@ -18,3 +18,14 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    print(invertirCadena("roma"))
+}
+
+fun invertirCadena(string: String): String{
+    var cadenaInvertida = ""
+    for (i in string.length - 1 downTo 0){
+        cadenaInvertida += string[i]
+    }
+    return cadenaInvertida
+}
