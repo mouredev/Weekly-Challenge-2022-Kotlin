@@ -19,15 +19,10 @@
 #  */
 
 
-isPalindrome <- function(x) {
-  x <- tolower(x)
+reverseString <- function(x) {
   split <- strsplit(x, "")[[1]]
   reversed <- rev(split)
   join <- paste(reversed, collapse = "")
 
-  if (join == x) {
-    "Is a palindrome"
-  } else {
-    "Not a palindrome"
-  }
+  print(join)
 }
