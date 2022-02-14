@@ -18,3 +18,14 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+
+fun main(){
+    darLaVuelta("Hola mundo")
+}
+
+fun darLaVuelta(txt: String){
+   for (letter in txt.length-1 downTo 0){
+       print(txt[letter])
+   }
+}
