@@ -19,28 +19,22 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    var number = 11
 
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
-        }
+    if(checkPrimeNumber(number)) println("$number is a prime number") else println("$number is not a prime number")
+
+    (1..100).forEach { i ->
+        if(checkPrimeNumber(i)) println(i)
     }
+
 }
 
-private fun isPrime(number: Int): Boolean {
-
-    if (number < 2) {
-        return false
-    }
+fun checkPrimeNumber(number: Int): Boolean {
+    var prime = true
 
     for (i in 2 until number) {
-        if (number % i == 0) {
-            return false
-        }
+        if(number % i == 0) return false
     }
 
-    return true
+    return prime
 }
-
-
-

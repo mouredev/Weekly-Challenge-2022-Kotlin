@@ -20,53 +20,40 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-
-    area(Triangle(10.0, 5.0))
-    area(Rectangle(5.0, 7.0))
-    area(Square(4.0))
-}
-
-interface Polygon {
-
-    fun area(): Double
-    fun printArea()
-}
-
-data class Triangle(val base: Double, val height: Double): Polygon {
-
-    override fun area(): Double {
-        return (base * height) / 2
-    }
-
-    override fun printArea() {
-        println("El área del triángulo es ${area()}")
+abstract class Polygon {
+    open fun calculateArea() : Double {
+        return 0.0
     }
 }
 
-data class Rectangle(val length: Double, val width: Double): Polygon {
+class Triangle: Polygon() {
+    private var base = 5.0
+    private var height = 10.0
 
-    override fun area(): Double {
-        return length * width
-    }
-
-    override fun printArea() {
-        println("El área del rectángulo es ${area()}")
+    override fun calculateArea() : Double {
+        return base * height / 2
     }
 }
 
-data class Square(val side: Double): Polygon {
+class Square: Polygon() {
+    private var side = 3.8
 
-    override fun area(): Double {
+    override fun calculateArea(): Double {
         return side * side
     }
+}
 
-    override fun printArea() {
-        println("El área del cuadrado es ${area()}")
+class Rectangle: Polygon() {
+    private var width = 8.5
+    private var height = 3
+
+    override fun calculateArea(): Double {
+        return width * height
     }
 }
 
-private fun area(polygon: Polygon): Double {
-    polygon.printArea()
-    return polygon.area()
+fun main() {
+    println("Triangle area: ${Triangle().calculateArea()}")
+    println("Square area: ${Square().calculateArea()}")
+    println("Rectangle area: ${Rectangle().calculateArea()}")
 }
