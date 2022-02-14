@@ -22,7 +22,7 @@ fun main() {
 
 fun InvertirCadena(textoOrdenado: String) {
     val cadenaOrdenada = textoOrdenado.toCharArray()
-    val cadenaInvertida = CharArray(cadenaOrdenada.size).
+    val cadenaInvertida = CharArray(cadenaOrdenada.size)
 
     for (i in cadenaOrdenada.indices.reversed()) {
         cadenaInvertida[cadenaInvertida.size - i - 1] = cadenaOrdenada[i]
