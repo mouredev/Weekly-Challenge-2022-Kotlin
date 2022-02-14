@@ -40,7 +40,7 @@ def has_punctuation(phrase: str) -> list:
     #
     # for _ in punctuation_chars:
     #   phrase = phrase.replace(_, "")
-    # Return phrase.lower().split()
+    # Return phrase.lower().split(" ")
     #
 
     return new_word.lower().split(" ")
