@@ -18,3 +18,19 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main() {
+    val inputString: String = "Hello World"
+    val outputString: String = inputString.customReversed()
+    println("Entrada: $inputString \n Salida: $outputString")
+}
+
+fun String.customReversed(): String {
+    var outputString: String = ""
+    var outputIndex: Int = this.length - 1
+    this.forEach { _ ->
+        outputString += this[outputIndex]
+        outputIndex--
+    }
+    return outputString
+}
