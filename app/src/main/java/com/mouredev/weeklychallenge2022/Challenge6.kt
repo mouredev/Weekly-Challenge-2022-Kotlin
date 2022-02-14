@@ -28,6 +28,15 @@ fun String.reverse(): String {
     return result
 }
 
+fun recursiveReverseText(text: String, index: Int = 0, reversedText: String = ""): String {
+    return if(index < text.length) {
+        recursiveReverseText(text, index+1, "${text[index]}${reversedText}")
+    } else {
+        reversedText
+    }
+}
+
 fun main() {
     println("Hola mundo".reverse())
+    println(recursiveReverseText("Hola mundo"))
 }
