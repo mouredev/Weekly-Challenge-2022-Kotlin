@@ -17,7 +17,7 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
     val textoOrdenado = "Hola mundo"
-    InvertirCadena(textoOrdenado).
+    InvertirCadena(textoOrdenado)
 }
 
 fun InvertirCadena(textoOrdenado: String) {
