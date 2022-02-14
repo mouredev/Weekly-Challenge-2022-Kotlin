@@ -6,6 +6,7 @@ package com.mouredev.weeklychallenge2022
  * Fecha publicación enunciado: 27/12/21
  * Fecha publicación resolución: 03/01/22
  * Dificultad: FÁCIL
+ *
  * Enunciado: Escribe un programa que muestre por consola (con un print) los números de 1 a 100 (ambos incluidos y con un salto de línea entre cada impresión), sustituyendo los siguientes:
  * - Múltiplos de 3 por la palabra "fizz".
  * - Múltiplos de 5 por la palabra "buzz".
@@ -20,7 +21,25 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    fizzBuzz(100)
+}
 
+fun fizzBuzz(num: Int){
+    var arr: ArrayList<Any> = arrayListOf()
+
+
+    for (i in 1..num){
+        if(i % 3 == 0 && i % 5 == 0){
+            arr.add("fizzbuzz")
+        }else if(i % 3 == 0){
+            arr.add("fizz")
+        }else if(i % 5 == 0){
+            arr.add("buzz")
+        }else{
+            arr.add(i)
+        }
+    }
+    println(arr)
     for (index in 1..100) {
         val divisibleByThree = index % 3 == 0
         val divisibleByFive = index % 5 == 0
