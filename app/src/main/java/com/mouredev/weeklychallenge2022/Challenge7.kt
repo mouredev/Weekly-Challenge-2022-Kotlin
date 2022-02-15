@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.Normalizer
+
 /*
  * Reto #7
  * CONTANDO PALABRAS
@@ -19,3 +21,34 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    println (countWordsOccurences("Lunes, mARTes: miércoLES\$JUeves *VierNes+sábado&¨^doMingo^miércoles ¡SABAdo! domingo"))
+}
+
+fun replaceSpecialChars(input: String): String {
+    val out = input.replace(Regex("""[$,.:;*+_~¨"^`#&!¡¿?|°¬<>]"""), " ")
+    return out
+}
+
+private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
+
+fun CharSequence.unaccent(): String {
+    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
+    return REGEX_UNACCENT.replace(temp, "")
+}
+
+fun countWordsOccurences(input: String): Map<String, Int> {
+    val filter = replaceSpecialChars(input).lowercase().unaccent()
+    val words = filter.split(" ")
+    val wordsCount = mutableMapOf<String, Int>()
+
+    for (word in words){
+        if (!wordsCount.contains(word)){
+            wordsCount.put(word, 1)
+        } else wordsCount[word] = wordsCount.getValue(word) + 1
+    }
+    wordsCount.remove("")
+
+    return wordsCount
+}
