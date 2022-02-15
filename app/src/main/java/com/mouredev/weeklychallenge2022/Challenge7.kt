@@ -19,3 +19,70 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+var arrayPalabras = arrayListOf<String>()
+var arrayContador = arrayListOf<Int>()
+fun main() {
+
+    cuentaPalabras("Lo que pasa y lo que no pasa: es lo que pasa al final si pasa?")
+    //cuentaPalabras("no se si voy a poder repetir o no se si no voy a repetir")
+
+}
+fun cuentaPalabras(cadena: String){
+
+    arrayPalabras.clear()
+    arrayContador.clear()
+    var palabra = ""
+    var indiceBucle = 0
+
+    val caracteresEspeciales= ",?¿:.!¡"
+    while(indiceBucle < cadena.length){
+
+        if(cadena[indiceBucle] != ' '){
+            var x=0
+            while (x < caracteresEspeciales.length-1){ if(caracteresEspeciales[x]==cadena[indiceBucle]){ x=1000 }
+                x++
+            }
+            if(x!=1001){
+                palabra += cadena[indiceBucle]
+            }
+        }else
+        {
+            anadirPalabra(palabra)
+            palabra = ""
+        }
+        indiceBucle++
+    }
+    anadirPalabra(palabra)
+    var x=0
+    var sintaxis = " veces"
+    while(x< arrayPalabras.size-1){
+        x++
+
+        if(arrayContador[x]==1){
+            sintaxis=" vez"
+        }else{
+            sintaxis =" veces"
+        }
+        {
+        }
+        println(arrayPalabras[x] +" aparece " + arrayContador[x] + sintaxis)
+
+    }
+}
+fun anadirPalabra(palabra: String){
+
+    arrayPalabras.add(palabra)
+    arrayContador.add(1)
+    var x = 0
+    while(x < arrayPalabras.size-1){
+       if(arrayPalabras[x].lowercase() == palabra.lowercase() ){
+            arrayPalabras.removeAt(arrayPalabras.size-1)
+            arrayContador.removeAt((arrayContador.size-1))
+            arrayContador[x]++
+            x=arrayPalabras.size+1
+        }
+        x++
+    }
+
+}
