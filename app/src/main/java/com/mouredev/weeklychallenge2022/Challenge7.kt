@@ -1,4 +1,5 @@
 package com.mouredev.weeklychallenge2022
+import kotlin.collections.HashMap
 
 /*
  * Reto #7
@@ -19,3 +20,36 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    var frase = "* - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación. * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación."
+    println(contar(frase))
+}
+
+fun normalize(palabra:String): String{
+    return palabra.replace(".","")
+        .replace(".","")
+        .replace(",","")
+        .replace("¿","")
+        .replace("?","")
+        .replace("!","")
+        .replace("¡","").lowercase()
+}
+
+
+fun contar(frase:String): HashMap<String, Int> {
+    val palabras = frase.split(" ").map { e -> normalize(e) }
+    val cont= HashMap<String,Int>()
+
+    for (palabra in palabras){
+        val k = palabra
+        if (cont.containsKey(k)){
+            var v = cont.getValue(k)
+            v++
+            cont[k] = v
+        }else{
+            cont[k] = 1
+        }
+    }
+    return cont
+}
