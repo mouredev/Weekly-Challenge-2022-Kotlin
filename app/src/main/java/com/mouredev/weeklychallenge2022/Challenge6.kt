@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import android.text.TextUtils
-
 /*
  * Reto #6
  * INVIRTIENDO CADENAS
@@ -22,9 +20,11 @@ import android.text.TextUtils
 
 fun main() {
     println(reverse("Hola mundo"))
+    println(recursiveReverse("Hola mundo"))
 }
 
-private fun reverse(originalString: String): String {
+//Mi solución
+/*private fun reverse(originalString: String): String {
     val x = originalString.length - 1
     var reverseString = ""
 
@@ -33,5 +33,26 @@ private fun reverse(originalString: String): String {
     }
 
     return reverseString
+}*/
+
+private fun reverse(text: String): String {
+    val textCount = text.count() - 1
+    var reversedText = ""
+    for (index in 0..textCount) {
+        reversedText += text[textCount - index]
+    }
+    return reversedText
+}
+
+// Sin un bucle, mediante una función recursiva
+private fun recursiveReverse(text: String, index: Int = 0, reversedText: String = ""): String {
+    val textCount = text.count() - 1
+    var newReversedText = reversedText
+    newReversedText += text[textCount - index]
+    if (index < textCount) {
+        val newIndex = index + 1
+        newReversedText = recursiveReverse(text, newIndex, newReversedText)
+    }
+    return newReversedText
 }
 
