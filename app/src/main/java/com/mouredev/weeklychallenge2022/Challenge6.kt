@@ -23,18 +23,6 @@ fun main() {
     println(recursiveReverse("Hola mundo"))
 }
 
-//Mi solución
-/*private fun reverse(originalString: String): String {
-    val x = originalString.length - 1
-    var reverseString = ""
-
-    for (index in x downTo 0) {
-        reverseString += originalString[index]
-    }
-
-    return reverseString
-}*/
-
 private fun reverse(text: String): String {
     val textCount = text.count() - 1
     var reversedText = ""
@@ -55,4 +43,3 @@ private fun recursiveReverse(text: String, index: Int = 0, reversedText: String 
     }
     return newReversedText
 }
-
