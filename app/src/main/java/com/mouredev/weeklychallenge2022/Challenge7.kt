@@ -19,3 +19,30 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+
+
+    fun wordCounter(text: String) {
+        val letterRegex = Regex("[^\\p{L}]+")
+        val wordList: List<String> = text.split(letterRegex)
+
+        val wordMap = mutableMapOf<String, Int>()
+        for (listWord in wordList) {
+            val word = listWord.lowercase()
+            if (word in wordMap) {
+                wordMap[word] = wordMap[word]!!.inc()
+            } else if (word.isNotBlank()) {
+                wordMap[word] = 1
+            }
+        }
+
+        for ((word, count) in wordMap)
+            println("$word: $count")
+    }
+    wordCounter(
+        "Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS " +
+                "en los que se publicarán semanalmente los mismos retos. " +
+                "Así podrás elegir el que mejor se adapta a tus necesidades (o practicar en ambos)."
+    )
+}

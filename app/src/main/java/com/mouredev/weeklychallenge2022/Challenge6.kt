@@ -19,7 +19,6 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-<<<<<<< HEAD
 
     fun reverseWord(word: String): String {
         var finalWord = ""
@@ -30,10 +29,6 @@ fun main() {
     }
 
     println(reverseWord("This is a Test String!"))
-}
-=======
-    println(reverse("Hola mundo"))
-    println(recursiveReverse("Hola mundo"))
 }
 
 private fun reverse(text: String): String {
@@ -56,5 +51,3 @@ private fun recursiveReverse(text: String, index: Int = 0, reversedText: String 
     }
     return newReversedText
 }
-
->>>>>>> upstream/main
