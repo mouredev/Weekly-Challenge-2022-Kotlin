@@ -24,8 +24,6 @@ var arrayPalabras = arrayListOf<String>()
 var arrayContador = arrayListOf<Int>()
 fun main() {
 
-// enlace al proyecto: https://github.com/framarcol/Weekly-Challenge-2022-Kotlin.git
-
     cuentaPalabras("Lo que pasa y lo que no pasa: es lo que pasa al final si pasa?")
     //cuentaPalabras("no se si voy a poder repetir o no se si no voy a repetir")
 
