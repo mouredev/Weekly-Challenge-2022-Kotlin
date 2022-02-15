@@ -43,4 +43,3 @@ private fun recursiveReverse(text: String, index: Int = 0, reversedText: String 
     }
     return newReversedText
 }
-
