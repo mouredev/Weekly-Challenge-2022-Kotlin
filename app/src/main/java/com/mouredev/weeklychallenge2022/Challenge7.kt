@@ -74,3 +74,27 @@ private fun chekWord(inputWord:String, wordCounter:ArrayList<Pair<String, Int>>)
    }
    return exists
 }
+
+/*************************************************************
+private fun countWords (inputText: String) {
+    var words = ArrayList<Word> ()
+    var stringAux = ""
+    var maxIndex = inputText.length - 1
+    val puntuationSigns = arrayOf(" ", ",", ".", ":", ";")
+    
+    for (index in 0..maxIndex) {
+        val eval = inputText[index].toString()
+        
+        if (eval !in puntuationSigns) stringAux += eval
+        
+        if (eval in puntuationSigns||index==maxIndex) {
+            words.add(Word(stringAux, 1))
+            stringAux=""
+        }
+    }
+    
+    println(words[1].word)
+}
+
+class Word constructor(var word: String, var count: Int)
+*********************************************************/
