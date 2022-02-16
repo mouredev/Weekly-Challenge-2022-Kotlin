@@ -20,6 +20,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
 fun main() {
     countRepeat("texto, Texto, indice, texto, azul")
 }
@@ -41,3 +42,4 @@ private fun countRepeat(text: String){
         println("$it    $count")
     }
 }
+
