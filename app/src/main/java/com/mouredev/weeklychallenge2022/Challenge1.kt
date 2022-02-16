@@ -21,12 +21,22 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
+   isAnagrama('MateriaLismo', 'meMorialiSta')
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+function isAnagrama( firstWord = '', secondWord = '') {
+
+
+    if ( firstWord.toLowerCase() === secondWord.toLowerCase()) { return; }
+    if ( firstWord.length !== secondWord.length) { return; }
+
+    const splitFirstWord =  firstWord.toLowerCase().split('').sort();
+    const splitSecondWord =  secondWord.toLowerCase().split('').sort();
+
+    const equals = splitFirstWord.every( ( character, i ) => character === splitSecondWord[i]);
+
+
+   
+    return console.log({ equals });
+
 }
