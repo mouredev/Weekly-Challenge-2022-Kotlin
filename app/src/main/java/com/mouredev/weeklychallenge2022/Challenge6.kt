@@ -18,3 +18,28 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    println(reverse("esto esta alreves"))
+    println(whileReverse("esto esta alreves"))
+}
+
+private fun reverse(text: String, index: Int = 0, reversed: String = ""): String{
+    val textSize = text.count() -1
+    var newReversed = reversed
+    newReversed += text[textSize-index]
+    if (index < textSize){
+        val newIndex = index + 1
+        return reverse(text, newIndex, newReversed)
+    }
+    return newReversed
+}
+
+private fun whileReverse(texto: String): String{
+    var textSize = texto.count()-1
+    var reversed = ""
+    while (textSize >= 0){
+        reversed += texto[textSize]
+        textSize--
+    }
+    return reversed
+}
