@@ -19,3 +19,25 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+fun ejercicio7() {
+        val myMap:MutableMap<String,Int> = mutableMapOf<String,Int>()
+        val text="Crea un programa que cuente cuantas veces se repite cada palabra y que muestre el recuento final de todas ellas. Los signos de puntuación no forman parte de la palabra. Una palabra es la misma aunque aparezca en mayúsculas y minúsculas. No se pueden utilizar funciones propias del lenguaje que lo resuelvan automáticamente."
+        val textclean=text.replace(",.:;/-*¿?¡!","").lowercase().split(" ")
+
+        for (item in 0 until textclean.size){
+            //println(" ======  ${myMap}")
+            if (textclean[item] in myMap){
+                val conteo = myMap[textclean[item]].toString().toInt()+1
+                myMap.put(textclean[item],conteo)
+            }else {
+                myMap.put(textclean[item],1)
+            }
+        }
+        println("${myMap}")
+
+        for ((key,value) in myMap){
+                println("${key} --> $value")
+        }
+    }
