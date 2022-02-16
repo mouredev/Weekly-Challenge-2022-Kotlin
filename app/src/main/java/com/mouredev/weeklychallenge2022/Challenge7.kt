@@ -21,29 +21,27 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
-    fun wordCounter(text: String) {
-        val wordList = splitTextIntoWords(text)
-
-        val wordMap = mutableMapOf<String, Int>()
-        for (newWord in wordList) {
-            val word = newWord.lowercase()
-            if (word in wordMap) {
-                wordMap[word] = wordMap[word]!!.inc()
-            } else {
-                wordMap[word] = 1
-            }
-        }
-
-        for ((word, count) in wordMap)
-            println("$word: $count")
-    }
-
     wordCounter(
         "Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS " +
                 "en los que se publicarán semanalmente los mismos retos. " +
                 "Así podrás elegir el que mejor se adapta a tus necesidades (o practicar en ambos)."
     )
+}
+
+fun wordCounter(text: String) {
+    val wordList = splitTextIntoWords(text)
+
+    val wordMap = mutableMapOf<String, Int>()
+    for (newWord in wordList) {
+        val word = newWord.lowercase()
+        if (word in wordMap)
+            wordMap[word] = wordMap[word]!!.inc()
+        else
+            wordMap[word] = 1
+    }
+
+    for ((word, count) in wordMap)
+        println("$word: $count")
 }
 
 fun splitTextIntoWords(text: String): List<String> {
