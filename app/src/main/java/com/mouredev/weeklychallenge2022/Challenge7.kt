@@ -20,81 +20,44 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-
 fun main() {
    val inputText = "Hola mundo en Kotlin en"
    
    countWords(inputText)
 }
 
-private fun countWords (inputText: String) {
-   var counter = ArrayList<Pair<String, Int>> ()
-   var stringAux = "" //Para no usar substring
-   // var index = 0
-    var maxIndex = inputText.length - 1
-    val puntuationSigns = arrayOf(" ", ",", ".", ":", ";")
-   
-   for (index in 0..maxIndex) {
-      if (index==maxIndex&&inputText[index].toString() !in puntuationSigns) stringAux += inputText[index]
-       
-      if (index==maxIndex||inputText[index].toString() in puntuationSigns){
-            var sile = chekWord(stringAux, counter)
-            if (!sile.first){
-                val pair = Pair(stringAux, 1)
-                counter.add(pair)            
-            } else {                
-                counter[sile.second].second++
-            }
-            
-            stringAux=""
-        } else {
-            stringAux += inputText[index] 
-        }
-   }
-   
-   if (chekWord("Kotlin", counter).first) println("si le")
-
-   println(counter)
-   
-}
-
-private fun isPuntuation (inputChar: String): Boolean {
-   var check = false
-   
-   if (inputChar in arrayOf(" ", ",", ".", ":", ";")) check = true
-   
-   return check
-}
-
-private fun chekWord(inputWord:String, wordCounter:ArrayList<Pair<String, Int>>): Pair<Boolean, Int> {
-   var exists = Pair(false, 0)
-
-   for (i in 0..wordCounter.size - 1) {
-      if (inputWord in wordCounter[i].first) exists = Pair(true, i)
-   }
-   return exists
-}
-
-/*************************************************************
-private fun countWords (inputText: String) {
-    var words = ArrayList<Word> ()
+private fun countWords(input: String){    
+    var counter = ArrayList<Pair<String, Int>> ()
     var stringAux = ""
-    var maxIndex = inputText.length - 1
+    var maxIndex = input.length - 1
     val puntuationSigns = arrayOf(" ", ",", ".", ":", ";")
+    
+    for (index in 0..maxIndex) {        
+       val eval = input[index].toString()
+       
+       if (eval !in puntuationSigns) stringAux += eval
+       
+       if (eval in puntuationSigns||index==maxIndex) {
+           counter=updateCounter(counter, stringAux)           
+           stringAux=""
+       }
+   } 
+   
+   println(counter)
+}
+
+private fun updateCounter(counter: ArrayList<Pair<String, Int>>, input: String): ArrayList<Pair<String, Int>> {
+    val maxIndex = counter.size - 1
+    var exists = false
     
     for (index in 0..maxIndex) {
-        val eval = inputText[index].toString()
-        
-        if (eval !in puntuationSigns) stringAux += eval
-        
-        if (eval in puntuationSigns||index==maxIndex) {
-            words.add(Word(stringAux, 1))
-            stringAux=""
-        }
+        if (input == counter[index].first) {
+            exists = true
+            counter[index] = Pair(counter[index].first, counter[index].second + 1)
+        }        
     }
     
-    println(words[1].word)
+    if (!exists) counter.add(Pair(input, 1))
+    
+    return counter    
 }
-
-class Word constructor(var word: String, var count: Int)
-*********************************************************/
