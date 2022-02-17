@@ -19,3 +19,45 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+   val inputText = "Hola mundo en Kotlin en"
+   
+   countWords(inputText)
+}
+
+private fun countWords(input: String){    
+    var counter = ArrayList<Pair<String, Int>> ()
+    var stringAux = ""
+    var maxIndex = input.length - 1
+    val puntuationSigns = arrayOf(" ", ",", ".", ":", ";")
+    
+    for (index in 0..maxIndex) {        
+       val eval = input[index].toString()
+       
+       if (eval !in puntuationSigns) stringAux += eval
+       
+       if (eval in puntuationSigns||index==maxIndex) {
+           counter=updateCounter(counter, stringAux)           
+           stringAux=""
+       }
+   } 
+   
+   println(counter)
+}
+
+private fun updateCounter(counter: ArrayList<Pair<String, Int>>, input: String): ArrayList<Pair<String, Int>> {
+    val maxIndex = counter.size - 1
+    var exists = false
+    
+    for (index in 0..maxIndex) {
+        if (input == counter[index].first) {
+            exists = true
+            counter[index] = Pair(counter[index].first, counter[index].second + 1)
+        }        
+    }
+    
+    if (!exists) counter.add(Pair(input, 1))
+    
+    return counter    
+}
