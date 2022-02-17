@@ -25,8 +25,8 @@ fun main() {
 }
 
 private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
+    if (wordOne.toLowerCase() == wordTwo.toLowerCase()) {
         return false
     }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+    return wordOne.toLowerCase().toCharArray().sortedArray().contentEquals(wordTwo.toLowerCase().toCharArray().sortedArray())
 }
