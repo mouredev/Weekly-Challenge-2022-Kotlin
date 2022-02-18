@@ -21,5 +21,17 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    for (i in 1..100) {
+        when {
+            i.isMultipleOfTree -> println("fizz")
+            i.isMultipleOfFive -> println("fizzbuzz")
+            i.isMultipleOfTree && i.isMultipleOfFive -> println("fizzbuzz")
+            else -> println(i)
+        }
+    }
 }
+
+private val Int.isMultipleOfTree get() = this % 3 == 0
+
+private val Int.isMultipleOfFive get() = this % 5 == 0
+
