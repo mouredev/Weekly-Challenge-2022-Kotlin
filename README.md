@@ -13,13 +13,28 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 [![Android Studio](https://img.shields.io/badge/Android_Studio-4.2-blue.svg?longCache=true&style=popout-square)](https://developer.android.com/studio)
 [![Android](https://img.shields.io/badge/Android-6-green.svg?longCache=true&style=popout-square)](https://www.android.com)
 
+## Vídeo explicación retos
+
+<a href="https://youtu.be/14v4IINunvY"><img src="http://i3.ytimg.com/vi/14v4IINunvY/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
+
+## Listado de retos
+* **#0** - 27/12/21 - `EL FAMOSO "FIZZ BUZZ"`
+* **#1** - 03/01/22 - `¿ES UN ANAGRAMA?`
+* **#2** - 10/01/22 - `LA SUCESIÓN DE FIBONACCI`
+* **#3** - 17/01/22 - `¿ES UN NÚMERO PRIMO?`
+* **#4** - 24/01/22 - `ÁREA DE UN POLÍGONO`
+* **#5** - 01/02/22 - `ASPECT RATIO DE UNA IMAGEN`
+* **#6** - 07/02/22 - `INVIRTIENDO CADENAS`
+* **#7** - 14/02/22 - `CONTANDO PALABRAS`
+* **#8** - 21/02/22 - `Publicación nuevo reto...`
+
 ### ¿Cómo puedo participar?
 
 **Puedes hacer libremente un fork del proyecto y trabajar con Git para ir sincronizando las actualizaciones del proyecto.**
 
 * Cada lunes se publicará un nuevo reto de código.
 * Cada reto será un nuevo fichero dentro de `app/src/main/java/com/mouredev/weeklychallenge2022` donde se indicará la fecha, el enunciado y la información necesaria para llevarlo a cabo.
-* Se comunicará en el canal `#🗓reto-semanal` de [Discord](https://mouredev.com/discord), en directo desde [Twitch](https://twitch.tv/mouredev) y se subirá el enunciado al [repositorio](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin).
+* Se comunicará en el canal `#🔁reto-semanal` de [Discord](https://mouredev.com/discord), en directo desde [Twitch](https://twitch.tv/mouredev) y se subirá el enunciado al [repositorio](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin).
 * Dispondrás de una semana para resolverlo, preguntar tus dudas, debatir y aportar ayuda en el canal de Discord.
 * El lunes siguiente se subirá la resolución al repositorio, se comentará en directo desde Twitch (utilizando alguna solución de entre los asistentes o que se haya realizado una pull request al proyecto) y se añadirá el nuevo reto semanal.
 * Comenzará de nuevo el proceso.
@@ -37,6 +52,20 @@ Si quieres unirte a nuestra comunidad de desarrollo, aprender programación de A
 [![Twitch](https://img.shields.io/badge/Twitch-Retos_en_directo-9146FF?style=for-the-badge&logo=twitch&logoColor=white&labelColor=101010)](https://twitch.tv/mouredev)
 [![Discord](https://img.shields.io/badge/Discord-Canal_de_chat_para_retos-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=101010)](https://mouredev.com/discord)
 [![Link](https://img.shields.io/badge/Links_de_interés-moure.dev-39E09B?style=for-the-badge&logo=Linktree&logoColor=white&labelColor=101010)](https://mouredev.com)
+
+### Cómo trabajar con Git y GitHub de forma colaborativa
+
+Deberás realizar flujos de actualización, sincronización y `pull request` desde tu `fork` del proyecto hacia el principal (habitualmente nombrado como `upstream/main`).
+Todo esto se puede hacer desde línea de comandos, pero si prefieres puedes usar clientes gráficos como [GitHub Desktop](https://desktop.github.com/) (muy simple) o [GitKraken](https://www.gitkraken.com/invite/cZWhJq1v) (más avanzado y potente).
+
+* Desde tu repo en la propia web de GitHub podrás realizar muchas acciones.
+* Si te resulta más fácil, puedes crear una `branch`(rama) para resolver cada reto y así simplificar la `pull request`. También puedes ignorar ciertos ficheros.
+* Resuelve el ejercicio y realiza `commit` y `push` del mismo a tu proyecto.
+* Desde GitHub, una vez hecho el `fork` verás opciones como "Contribute" o "Fetch upstream":
+	* `Contribute` permite abrir una `pull request`(deberás seleccionar el mío como repositorio base contra el que comparar tu proyecto). Así yo podré ver los ficheros modificados de tu proyecto con la solución a los retos. Intenta que el título de la `pull request` siga esta convención: **"Solución Reto #[número del reto]" (Solución Reto #0)**. 
+	* `Fetch upstream` permite sincronizar tu proyecto con el original en caso de que se haya actualizado.
+* Para sincronizar tu proyecto con el original y mantenerlo actualizado también puedes hacer un `merge commit`, `squash merge` o `rebase`(ten en cuenta que cada uno se comporta de una manera, conservando o no tus propios cambios).
+* Una vez se publique el nuevo reto, la solución del anterior, y comente las soluciones, cerraré las pasadas `pull request` para dejar paso a las que se hagan para el nuevo reto.
 
 ## ![https://mouredev.com](https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_emote.png) Hola, mi nombre es Brais Moure.
 ### Freelance full-stack iOS & Android engineer
