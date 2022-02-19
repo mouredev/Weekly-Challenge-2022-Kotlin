@@ -21,5 +21,31 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
+    println("Welcome to ANAGRAMA")
+    println("Enter the first string: ")
+    val str1 = readLine()
+    println("Enter the second string: ")
+    val str2 = readLine()
+    val isAnagrama = isAnagrama(str1.toString(), str2.toString())
+    println("These string are ANAGRAMA?")
+    println("$isAnagrama")
 }
+
+private fun isAnagrama(str1: String, str2: String): Boolean {
+    var result = str1.lowercase() != str2.lowercase()
+    if (result) {
+        result = str1.length == str2.length
+        if (result) {
+            str1.lowercase().forEach {
+                if (result) {
+                    result = numberOfOcurrence(it, str1.lowercase()) == numberOfOcurrence(it, str2.lowercase())
+                }
+            }
+        }
+    }
+    return result
+}
+
+private fun numberOfOcurrence(char: Char, string: String) = string.filter {
+    it == char
+}.count()
