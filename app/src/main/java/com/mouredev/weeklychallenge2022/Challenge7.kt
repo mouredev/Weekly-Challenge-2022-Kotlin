@@ -19,3 +19,27 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    println("Enter the text for count")
+    val text = readLine()
+    println(countWordRepetitions(text.toString()))
+}
+
+private fun countWordRepetitions(text: String) {
+    val regex = Regex("[^a-z0-9]")
+    val splitText = regex.replace(text.lowercase(), " ").split(" ").sorted()
+    var lastWord = ""
+    var count = 0
+    splitText.forEach { word ->
+        if (word == lastWord) {
+            count++
+        } else {
+            if (lastWord != "") {
+                println("$lastWord -> $count")
+            }
+            lastWord = word
+            count = 1
+        }
+    }
+    println("$lastWord -> $count")
+}
