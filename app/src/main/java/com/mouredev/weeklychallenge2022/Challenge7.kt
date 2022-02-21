@@ -19,3 +19,27 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+fun <T> hasDuplicates(arr: Array<T>): Boolean {
+    arr.sort()
+    var previous: T? = null
+    for (e in arr)
+    {
+        if (e != null && e == previous) {
+            return true
+        }
+        previous = e
+    }
+    return false
+}
+ 
+fun main() {
+    val arr = "I'm on the highway to hell".split(" ").toTypedArray()
+    if (hasDuplicates(arr)) {
+        println("Repeated elements found")
+    }
+    else {
+        println("No repeated elements found")
+    }
+}
