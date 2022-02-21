@@ -40,4 +40,4 @@ def decimal_to_binary(decimal_number: int):
 decimal_to_binary(15000)
 
 # Test Result
-# The decimal number 100, in binary is 11101010011000.
+# The decimal number 15000, in binary is 11101010011000.
