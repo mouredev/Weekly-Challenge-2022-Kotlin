@@ -17,27 +17,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 fun main() {
-    val input = 15    
+    val input = 21
     val result = intToBin(input) 
     
     println("El valor $input en binario es $result")
 }
 
-fun intToBin (value: Int): Long {
+private fun intToBin (value: Int): String {
 	var input = value
-    var result = 0.00
-    var exponent = 0.00
+    var result = ""
     
     while (input >= 1) {        
-        val module = input%2        
-        
-        if (module != 0) {
-            result = result + Math.pow(10.00, exponent)
-        }
-        
-        exponent++
-        input/=2
+        result = result + input%2
+        input/=2    
     }
     
-    return result.toLong()
+    return result
 }
