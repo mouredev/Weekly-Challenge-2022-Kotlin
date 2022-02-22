@@ -17,3 +17,25 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+
+    print("Introduce el numero a convertir: ")
+    var number =  readLine()?.toIntOrNull()
+
+    if (number != null)
+        print("El decimal $number equivale al binario ${DecimalToBinary(number)}")
+    else
+        print("Lo siento. No has pasado un numero decimal valido")
+}
+
+private fun DecimalToBinary (decimal: Int): String {
+
+    var binaryNumber = ""
+
+    if (decimal < 2)
+        binaryNumber = decimal.toString() + binaryNumber
+    else
+        binaryNumber = DecimalToBinary(decimal / 2) + (decimal % 2).toString() + binaryNumber
+
+    return binaryNumber
+}
