@@ -16,4 +16,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    val input = 21
+    val result = intToBin(input) 
+    
+    println("El valor $input en binario es $result")
+}
 
+private fun intToBin (value: Int): String {
+	var input = value
+    var result = ""
+    
+    while (input >= 1) {        
+        result = result + input%2
+        input/=2    
+    }
+    
+    return result
+}
