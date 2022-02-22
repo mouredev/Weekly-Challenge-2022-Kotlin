@@ -17,3 +17,32 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(args: Array<String>) {
+    println(convertDecimalToBinaryRecursive(19))
+}
+
+
+
+
+/*
+Version recursiva
+ */
+fun convertDecimalToBinaryRecursive(number: Int): String {
+    val list =  aux(number)
+    var str = ""
+    for (i in 0 until  list.size){
+        str += list[i]
+    }
+    return str
+}
+
+fun aux(number: Int): MutableList<String>{
+    if(number == 0)
+        return mutableListOf()
+
+    val reminder = (number % 2).toString()
+    val quotient = number / 2
+    val newList =  aux(quotient)
+    newList.add(reminder)
+    return newList
+}

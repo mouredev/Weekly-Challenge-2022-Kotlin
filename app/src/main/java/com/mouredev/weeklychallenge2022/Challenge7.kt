@@ -21,7 +21,7 @@ package com.mouredev.weeklychallenge2022
  */
 
 
-fun main(){
+fun main1(){
 
     wordsCount( "so we created this collection of online text tools. Unlike many other tools, we made our tools free")
 }
