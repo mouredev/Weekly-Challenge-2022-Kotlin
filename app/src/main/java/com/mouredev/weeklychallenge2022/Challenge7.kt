@@ -18,13 +18,15 @@ import java.util.ArrayList
  */
 
 fun main() {
-    //contadorDePalabrasModerno("La casa de Brais no es una casa cualquiera es una casa muy especial")
-    contadorDePalabrasClasico("La casa de")
+    //contadorDePalabras("La casa de Brais no es una casa cualquiera es una casa muy especial")
 }
 
-fun contadorDePalabrasModerno(frase : String){
+/*
+FUNCION DE MARTINEZ
+ */
+fun contadorDePalabras(frase : String){
 
-     val arrayDePalabras= frase.split(" ", ignoreCase = true)
+     val arrayDePalabras= frase.split(" ")
 
     for (palabra in arrayDePalabras){
         var currentCounter = arrayDePalabras.filter { it == palabra }.size
@@ -32,10 +34,33 @@ fun contadorDePalabrasModerno(frase : String){
     }
 }
 
-fun contadorDePalabrasClasico(frase : String){
-    val arrayOfWords = stringToArrayOfWords(frase)
-    var contadorDepalabras = 0
+/*
+FUNCION DE MOURE
+ */
+fun countWords(text: String) {
+
+    val words = mutableMapOf<String, Int>()
+
+    text.lowercase().replace("[^a-z0-9]".toRegex(), " ").split(" ").forEach { key ->
+        if (key.isEmpty()) {
+            return@forEach
+        }
+        if (words[key] != null) {
+            words[key] = words.getValue(key) + 1
+        } else {
+            words[key] = 1
+        }
+    }
+
+    words.forEach { word ->
+        println("${word.key} se ha repetido ${word.value} ${if(word.value == 1) "vez" else "veces"}")
+    }
 }
+
+
+/*Método tradicioanl para dividir una string en un array de
+palabras sin tener que usar ningún método del lenguaje que
+lo haga automaticamente*/
 
 fun stringToArrayOfWords (frase : String) : ArrayList<String>{
     var fraseAux = "$frase "
