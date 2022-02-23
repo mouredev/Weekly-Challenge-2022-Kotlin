@@ -21,7 +21,27 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    if (anagrama("Materialismo", "Memorialista"))
+        print("Son un anagrama")
+    else
+        print("No son un anagrama")
+
     println(isAnagram("amor", "roma"))
+}
+
+fun anagrama(word1: String, word2: String): Boolean{
+
+    if (word1.length != word2.length || word1 == word2){
+        return false
+    }
+
+    val word1Arr : CharArray = word1.uppercase().toCharArray()
+    val word2Arr : CharArray = word2.uppercase().toCharArray()
+
+    word1Arr.sort()
+    word2Arr.sort()
+
+    return word1Arr contentEquals word2Arr
 }
 
 private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
