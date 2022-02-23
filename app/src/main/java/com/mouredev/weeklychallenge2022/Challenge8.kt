@@ -17,3 +17,19 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+const decimalToBinary = (item: number): void => {
+  let binary = ''
+
+  while (item > 0) {
+    const result = item % 2
+    binary = result.toString() + binary
+    item = Math.floor(item / 2)
+  }
+
+ console.log(binary)
+}
+
+# Test
+decimalToBinary(156)
+
+# El binario es 10011100
