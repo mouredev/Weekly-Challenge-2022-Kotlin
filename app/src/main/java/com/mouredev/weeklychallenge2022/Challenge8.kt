@@ -17,3 +17,27 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    val number = 14
+    val codeBinary = toCodeBinary(number)
+    print("The number: $number is equal to: ${codeBinary.asReversed()} in binary")
+}
+
+fun toCodeBinary(number: Int ): ArrayList<Byte>{
+    val codeBinary :ArrayList<Byte> = arrayListOf()
+    var modNumber = number
+    if (number>0){
+        do {
+            if (modNumber == 1){
+                codeBinary.add(1)
+            }else if (modNumber % 2 == 1){
+                codeBinary.add(1)
+            } else {
+                codeBinary.add(0)
+            }
+            modNumber /= 2
+        }while (modNumber >=1)
+    }
+
+    return codeBinary
+}
