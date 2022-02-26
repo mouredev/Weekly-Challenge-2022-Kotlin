@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import es.jaimefere.weeklychallenge2022.reverse
-
 /*
  * Reto #7
  * CONTANDO PALABRAS
@@ -22,14 +20,27 @@ import es.jaimefere.weeklychallenge2022.reverse
  *
  */
 
-fun countWords(phrase: String) {
-    val text = Regex("[^a-z\\s]").replace(phrase.lowercase(),"")
-    text.split(" ").toSet().forEach { word ->
-        val wordOccurrences = text.split(word).count() - 1
-        println("${word.uppercase()} aparece $wordOccurrences ${if(wordOccurrences > 1) "veces" else "vez"} en la frase")
+fun main() {
+    countWords("Hola, mi nombre es brais. Mi nombre completo es Brais Moure (MoureDev).")
+}
+
+fun countWords(text: String) {
+
+    val words = mutableMapOf<String, Int>()
+
+    text.lowercase().replace("[^a-z0-9]".toRegex(), " ").split(" ").forEach { key ->
+        if (key.isEmpty()) {
+            return@forEach
+        }
+        if (words[key] != null) {
+            words[key] = words.getValue(key) + 1
+        } else {
+            words[key] = 1
+        }
+    }
+
+    words.forEach { word ->
+        println("${word.key} se ha repetido ${word.value} ${if(word.value == 1) "vez" else "veces"}")
     }
 }
 
-fun main() {
-    countWords("Hola Brais, yo no me llamo brais.")
-}
