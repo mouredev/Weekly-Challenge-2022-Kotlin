@@ -19,3 +19,33 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main () {
+
+    words("Sunflower")
+}
+
+private fun words(one:String ="Sunflower"):Int {
+    var two = "Sun"
+    var three = "flo"
+    var four = "wer"
+    var x = 0
+
+
+    for (two in one){
+        x++
+    }
+    1
+    for (three in one){
+        x++
+    }
+    2
+    for (four in one){
+        x++
+    }
+    3
+
+    return x
+}
+
+
