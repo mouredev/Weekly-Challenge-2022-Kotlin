@@ -17,3 +17,33 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println("Enter number to calculate binary")
+    val number = readLine()
+    try {
+        number?.let {
+            val result = toBinary(it.toLong())
+            println("$number in binary is -> $result")
+        }
+    }catch (e:NumberFormatException){
+        println("$number isn't a number, please enter a number")
+    }
+}
+
+private tailrec fun toBinary(number: Long, result: String = ""): String {
+    return if (number == 0L || number == 1L) {
+        "$number$result"
+    } else {
+        val rest = number % 2
+        val newNumber = getNewNumber(rest, number)
+        toBinary(newNumber, "$rest$result")
+    }
+}
+
+private fun getNewNumber(rest: Long, number: Long) : Long = if (rest == 0L){
+    number / 2
+} else {
+    (number / 2 + DECIMAL).toLong()
+}
+
+private const val DECIMAL = 0.5
