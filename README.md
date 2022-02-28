@@ -26,7 +26,8 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#5** - 01/02/22 - `ASPECT RATIO DE UNA IMAGEN`
 * **#6** - 07/02/22 - `INVIRTIENDO CADENAS`
 * **#7** - 14/02/22 - `CONTANDO PALABRAS`
-* **#8** - 21/02/22 - `Publicación nuevo reto...`
+* **#8** - 18/02/22 - `DECIMAL A BINARIO`
+* **#8** - 02/03/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 
