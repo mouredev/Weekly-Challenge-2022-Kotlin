@@ -17,3 +17,23 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    val num = 999
+    println("$num en decimal = ${num.decimalToBinary()} en binario")
+}
+
+
+fun Int.decimalToBinary(): Long{
+    var decimalNum: Int = this
+    var binaryNumber: Long = 0
+    var remainder: Int
+    var i = 1
+
+    while (decimalNum != 0) {
+        remainder = decimalNum % 2
+        decimalNum /= 2
+        binaryNumber += (remainder * i).toLong()
+        i *= 10
+    }
+    return binaryNumber
+}
