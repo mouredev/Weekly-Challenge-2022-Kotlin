@@ -20,6 +20,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+<<<<<<< HEAD
 fun main() {
 
     val naturalText = "Chocapic. Es una marca de cereales?"
@@ -96,3 +97,5 @@ private fun decoder(input: String): String {
 
     return decodedInput
 }
+=======
+>>>>>>> dd9319c (Resolución Reto #8 y enunciado Reto #9)
