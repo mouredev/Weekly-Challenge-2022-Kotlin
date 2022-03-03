@@ -20,32 +20,24 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main () {
+fun countWords(text: String) {
 
-    words("Sunflower")
-}
+    val words = mutableMapOf<String, Int>()
 
-private fun words(one:String ="Sunflower"):Int {
-    var two = "Sun"
-    var three = "flo"
-    var four = "wer"
-    var x = 0
-
-
-    for (two in one){
-        x++
+    text.lowercase().replace("[^a-z0-9]".toRegex(), " ").split(" ").forEach { key ->
+        if (key.isEmpty()) {
+            return@forEach
+        }
+        if (words[key] != null) {
+            words[key] = words.getValue(key) + 1
+        } else {
+            words[key] = 1
+        }
     }
-    1
-    for (three in one){
-        x++
-    }
-    2
-    for (four in one){
-        x++
-    }
-    3
 
-    return x
+    words.forEach { word ->
+        println("${word.key} se ha repetido ${word.value} ${if(word.value == 1) "vez" else "veces"}")
+    }
 }
 
 
