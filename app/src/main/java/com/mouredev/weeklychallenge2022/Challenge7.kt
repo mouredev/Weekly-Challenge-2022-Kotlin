@@ -1,4 +1,5 @@
 package com.mouredev.weeklychallenge2022
+import kotlin.collections.HashMap
 
 /*
  * Reto #7
