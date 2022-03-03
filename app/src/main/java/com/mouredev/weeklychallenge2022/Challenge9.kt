@@ -20,3 +20,168 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+
+    val morse = Morse()
+
+    val inputTextoNatural = "Hola soy \"goku\". Eres goku? si, lo soy."
+    println("Texto natural a código Morse")
+    println("Traduciendo: $inputTextoNatural")
+    println("Código Morse: ${morse.translate(inputTextoNatural)}")
+
+    val inputMorse = ".... --- .-.. .-  ... --- -.--  .-..-. --. --- -.- ..- .-..-. .-.-.-  . .-. . ...  --. --- -.- ..- ..--..  ... .. --..--  .-.. ---  ... --- -.-- .-.-.-"
+    morse.mode = morse.translateModeFromCodeToText
+    println("Código Morse a texto natural")
+    println("Traduciendo: $inputMorse")
+    println("Texto natural: ${morse.translate(inputMorse)}")
+
+}
+
+class Morse {
+
+    private val alphabet: Alphabet = Alphabet()
+    val translateModeFromTextToCode: Int = 0
+    val translateModeFromCodeToText: Int = 1
+
+    private var characterSeparator: String = " "
+    private var currentAlphabet: Map<String, String> = alphabet.map
+
+    var mode: Int = translateModeFromTextToCode
+        set(mode) {
+            if(validateMode()) {
+                println("Error!: An unknown mode has setted")
+            }
+            field = mode
+            when (mode) {
+                translateModeFromTextToCode -> {
+                    currentAlphabet = alphabet.map
+                    characterSeparator = " "
+                }
+                translateModeFromCodeToText -> {
+                    currentAlphabet = alphabet.reverseMap
+                    characterSeparator = ""
+                }
+                else -> currentAlphabet = alphabet.emptyMap
+            }
+        }
+
+    fun translate(input: String): String {
+        var translated = ""
+        val preprocessedInput: List<String> = preprocessInput(input)
+        for (character in preprocessedInput) {
+            translated += currentAlphabet[character] + characterSeparator
+        }
+        return translated
+    }
+
+    private fun validateMode(): Boolean {
+        return mode != translateModeFromTextToCode && mode != translateModeFromCodeToText
+    }
+
+    private fun preprocessInput(input: String): List<String> {
+        return when(mode) {
+            translateModeFromTextToCode -> input.uppercase().toCharArray().map { character -> character.toString() }
+            translateModeFromCodeToText -> input.split(" ")
+            else -> arrayListOf()
+        }
+    }
+}
+
+class Alphabet {
+    val map: Map<String, String> = mapOf(
+        Pair("A", ".-"),
+        Pair("B", "-..."),
+        Pair("C", "-.-."),
+        Pair("CH", "----"),
+        Pair("D", "-.."),
+        Pair("E", "."),
+        Pair("F", "..-."),
+        Pair("G", "--."),
+        Pair("H", "...."),
+        Pair("I", ".."),
+        Pair("J", ".---"),
+        Pair("K", "-.-"),
+        Pair("L", ".-.."),
+        Pair("M", "--"),
+        Pair("N", "-."),
+        Pair("Ñ", "--.--"),
+        Pair("O", "---"),
+        Pair("P", ".--."),
+        Pair("Q", "--.-"),
+        Pair("R", ".-."),
+        Pair("S", "..."),
+        Pair("T", "-"),
+        Pair("U", "..-"),
+        Pair("V", "...-"),
+        Pair("W", ".--"),
+        Pair("X", "-..-"),
+        Pair("Y", "-.--"),
+        Pair("Z", "--.."),
+        Pair("0", "-----"),
+        Pair("1", ".----"),
+        Pair("2", "..---"),
+        Pair("3", "...--"),
+        Pair("4", "....-"),
+        Pair("5", "....."),
+        Pair("6", "-...."),
+        Pair("7", "--..."),
+        Pair("8", "---.."),
+        Pair("9", "----."),
+        Pair(".", ".-.-.-"),
+        Pair(",", "--..--"),
+        Pair("?", "..--.."),
+        Pair("\"", ".-..-."),
+        Pair("/", "-..-."),
+        Pair(" ", "")
+    )
+
+    val reverseMap: Map<String, String> = mapOf(
+        Pair(".-", "A"),
+        Pair("-...", "B"),
+        Pair("-.-.", "C"),
+        Pair("----", "CH"),
+        Pair("-..", "D"),
+        Pair(".", "E"),
+        Pair("..-.", "F"),
+        Pair("--.", "G"),
+        Pair("....", "H"),
+        Pair("..", "I"),
+        Pair(".---", "J"),
+        Pair( "-.-", "K"),
+        Pair(".-..", "L"),
+        Pair("--", "M"),
+        Pair("-.", "N"),
+        Pair("--.--", "Ñ"),
+        Pair("---", "O"),
+        Pair(".--.", "P"),
+        Pair("--.-", "Q"),
+        Pair(".-.", "R"),
+        Pair("...", "S"),
+        Pair("-", "T"),
+        Pair("..-", "U"),
+        Pair("...-", "V"),
+        Pair(".--", "W"),
+        Pair("-..-", "X"),
+        Pair("-.--", "Y"),
+        Pair("--..", "Z"),
+        Pair("-----", "0"),
+        Pair(".----", "1"),
+        Pair("..---", "2"),
+        Pair("...--", "3"),
+        Pair("....-", "4"),
+        Pair(".....", "5"),
+        Pair("-....", "6"),
+        Pair("--...", "7"),
+        Pair("---..", "8"),
+        Pair("----.", "9"),
+        Pair(".-.-.-", "."),
+        Pair("--..--", ","),
+        Pair("..--..", "?"),
+        Pair(".-..-.", "\""),
+        Pair("-..-.", "/"),
+        Pair("", " ")
+    )
+
+    val emptyMap: Map<String, String> = mapOf()
+}
+
