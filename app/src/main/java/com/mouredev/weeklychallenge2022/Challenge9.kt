@@ -35,19 +35,22 @@ val letter = arrayOf(
 var code = arrayOf(
     ".-", "-...", "-.-.", "————", "-..", ".",
     "..-.", "--.", "....", "..", ".---",
-    "-.-", ".-..", "--", "-.", "——·——", "---", ".--.",
+    "-.-", ".-..", "--", "-.", "——.——", "---", ".--.",
     "--.-", ".-.", "...", "-", "..-", "...-",
     ".--", "-..-", "-.--", "--..", "-----", ".----",
     "..---", "...--", "....-", ".....", "-....", "--...",
-    "---..", "----.", "·—·—·—", "——··——", "··——··", "·—··—·",
+    "---..", "----.", ".—.—.—", "——..——", "..——..", ".—..—.",
     "/"
 )
 
 fun main() {
-    val word = "Terry0022 is the rockstar"
-    val morse = "- . .-. .-. -.-- ----- ----- ..--- ..---    .. ...    - .... .    .-. --- -.-. -.- ... - .- .-."
-    println(translate(word))
-    println(translate(morse))
+    val word = "Terry0022 is the \"rockstar\""
+    println("Texto a traducir es: \"$word\"")
+    println("Texto traducido ${translate(word)}")
+
+    val morse = "- . .-. .-. -.-- ----- ----- ..--- ..---  .. ...  - .... .  .—..—. .-. --- -.-. -.- ... - .- .-. .—..—."
+    println("Código morse a traducir es: \"$morse\"")
+    println("Código traducido ${translate(morse)}")
 }
 
 fun translate(text: String): String {
@@ -65,7 +68,7 @@ fun translateToMorse(text: String): String {
         for (j in letter.indices) {
             if (letters[i].toString() == letter[j]) {
                 morse = if (j == 42) {
-                    morse.plus("  ")
+                    morse.plus("")
                 } else {
                     morse.plus(code[j])
                 }.plus(" ")
@@ -78,7 +81,7 @@ fun translateToMorse(text: String): String {
 
 fun translateToText(morse: String): String {
     var text = ""
-    val tmp = morse.replace("    ", " / ")
+    val tmp = morse.replace("  ", " / ")
     val array: List<String> = tmp.split(" ")
     for (i in array.indices) {
         for (j in code.indices) {
