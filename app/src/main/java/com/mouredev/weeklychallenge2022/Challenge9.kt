@@ -20,3 +20,147 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println("Welcome to morse decoder.")
+    println("Enter text for encode or decode: ")
+    val text = readLine()
+    text?.let {
+        println(
+            if (isNotMorse(it)) {
+                encode(it)
+            } else {
+                decode(it)
+            }
+        )
+    }
+
+}
+
+private fun isNotMorse(text: String) =
+    text.any { it in 'A'..'Z' || it in 'a'..'z' || it.isDigit() || it == ',' || it == '?' || it == '\"' || it == '/' }
+
+private fun encode(text: String): String =
+    text.mapIndexed { index, c ->
+        with(c.uppercase()) {
+            try {
+                when {
+                    this == "C" && text[index + 1].uppercase() == "H" -> "CH".toMorse
+                    index != 1 && this == "H" && text[index - 1].uppercase() == "C" -> EMPTY
+                    this == " " -> " "
+                    else -> this.toMorse
+                }
+            }catch (e : StringIndexOutOfBoundsException) {
+                this.toMorse
+            }
+        }
+    }.joinToString(EMPTY)
+
+private fun decode(morse: String): String =
+    morse.split(DOUBLE_SPACE).joinToString(SINGLE_SPACE) { word ->
+        word.split(SINGLE_SPACE).joinToString(EMPTY) { char ->
+            char.toAlphabet
+        }
+    }
+
+private val String.toMorse : String
+    get() =
+        when (this) {
+            "A" -> ".—"
+            "B" -> "—..."
+            "C" -> "—.—."
+            "CH" -> "————"
+            "D" -> "—.."
+            "E" -> "."
+            "F" -> "..—."
+            "G" -> "——."
+            "H" -> "...."
+            "I" -> ".."
+            "J" -> ".———"
+            "K" -> "—.—"
+            "L" -> ".—.."
+            "M" -> "——"
+            "N" -> "—."
+            "Ñ" -> "——.——"
+            "O" -> "———"
+            "P" -> ".——."
+            "Q" -> "——.—"
+            "R" -> ".—."
+            "S" -> "..."
+            "T" -> "—"
+            "U" -> "..—"
+            "V" -> "...—"
+            "W" -> ".——"
+            "X" -> "—..—"
+            "Y" -> "—.——"
+            "Z" -> "——.."
+            "0" -> "—————"
+            "1" -> ".————"
+            "2" -> "..———"
+            "3" -> "...——"
+            "4" -> "....—"
+            "5" -> "....."
+            "6" -> "—...."
+            "7" -> "——..."
+            "8" -> "———.."
+            "9" -> "————."
+            "." -> ".—.—.—"
+            "," -> "——..——"
+            "?" -> "..——.."
+            "\"" -> ".—..—."
+            "/" -> "—..—."
+            else -> EMPTY
+        }.plus(SINGLE_SPACE)
+
+private val String.toAlphabet : String
+    get() =
+        when (this) {
+            ".—" -> "A"
+            "—..." -> "B"
+            "—.—." -> "C"
+            "————" -> "CH"
+            "—.." -> "D"
+            "." -> "E"
+            "..—." -> "F"
+            "——." -> "G"
+            "...." -> "H"
+            ".." -> "I"
+            ".———" -> "J"
+            "—.—" -> "K"
+            ".—.." -> "L"
+            "——" -> "M"
+            "—." -> "N"
+            "——.——" -> "Ñ"
+            "———" -> "O"
+            ".——." -> "P"
+            "——.—" -> "Q"
+            ".—." -> "R"
+            "..." -> "S"
+            "—" -> "T"
+            "..—" -> "U"
+            "...—" -> "V"
+            ".——" -> "W"
+            "—..—" -> "X"
+            "—.——" -> "Y"
+            "——.." -> "Z"
+            "—————" -> "0"
+            ".————" -> "1"
+            "..———" -> "2"
+            "...——" -> "3"
+            "....—" -> "4"
+            "....." -> "5"
+            "—...." -> "6"
+            "——..." -> "7"
+            "———.." -> "8"
+            "————." -> "9"
+            ".—.—.—" -> "."
+            "——..——" -> ","
+            "..——.." -> "?"
+            ".—..—." -> "\""
+            "—..—." -> "/"
+            DOUBLE_SPACE -> SINGLE_SPACE
+            else -> EMPTY
+        }
+
+private const val SINGLE_SPACE = " "
+private const val DOUBLE_SPACE = "  "
+private const val EMPTY = ""
