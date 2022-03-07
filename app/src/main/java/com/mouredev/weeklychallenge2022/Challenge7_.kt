@@ -22,24 +22,27 @@ package com.mouredev.weeklychallenge2022
 
 
 fun main() {
-    countRepeat("texto, Texto, indice, texto, azul")
+    countRepeat("texto, Texto. indice, texto$, azul, pumarosa, puma-rosa - amarillo")
 }
 
 private fun countRepeat(text: String){
-    val newText = text.replace(",", "")
-    val arrayText = newText.lowercase().split(" ")
+
+    val arrayText = text.lowercase().replace("[^a-z0-9]\\s".toRegex(),"/")
+        .split("/")
     val mutableSet: MutableSet<String> = mutableSetOf()
     arrayText.forEach {
-        mutableSet.add(it)
+        mutableSet.add(it.replace("[^a-z]".toRegex(), ""))
     }
     mutableSet.forEach {
         var count = 0
         val compare = it
         arrayText.forEach {
-            if (it == compare)
+            if (it.replace("[^a-z]".toRegex(), "") == compare)
                 count++
-        }
+            }
         println("$it    $count")
     }
 }
+
+
 
