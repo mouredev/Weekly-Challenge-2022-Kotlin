@@ -37,7 +37,7 @@ class Challenge5_() {
             val height = bitmap.height
             val width = bitmap.width
             val aspectRatio = rationalAspectRatio(height.toDouble() / width.toDouble())
-            var aspectRationStr = "${aspectRatio.second}:${aspectRatio.first}"
+            aspectRationStr = "${aspectRatio.second}:${aspectRatio.first}"
 
             aspectRationStr?.let { ratio ->
                 println("El aspect ratio es ${ratio}")
