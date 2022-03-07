@@ -1,0 +1,13 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyAbstractClassInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PyArgumentListInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PyMethodOverridingInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PyMissingTypeHintsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPropertyAccessInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PyPropertyDefinitionInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PyTypeCheckerInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+  </profile>
+</component>
