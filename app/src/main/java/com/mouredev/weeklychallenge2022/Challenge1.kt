@@ -21,12 +21,15 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
+    val a = is_anagramable("hol", "oah")
+    print(a)
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+fun is_anagramable(word1: String, word2: String): Boolean {
+
+    val w1_sorted = word1.toLowerCase().toCharArray().sorted().joinToString("")
+    val w2_sorted = word2.toLowerCase().toCharArray().sorted().joinToString("")
+
+    if (w1_sorted == w2_sorted) return true
+    return false
 }

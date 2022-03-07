@@ -19,28 +19,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(reverse("Hola mundo"))
-    println(recursiveReverse("Hola mundo"))
+    println(invertirCadena("Hola mundo"))
 }
 
-private fun reverse(text: String): String {
-    val textCount = text.count() - 1
-    var reversedText = ""
-    for (index in 0..textCount) {
-        reversedText += text[textCount - index]
+fun invertirCadena(cadena: String): String {
+    var cadenaInvertida = ""
+    for (i in cadena.length - 1 downTo 0) {
+        cadenaInvertida += cadena[i]
     }
-    return reversedText
+    return cadenaInvertida
 }
-
-// Sin un bucle, mediante una función recursiva
-private fun recursiveReverse(text: String, index: Int = 0, reversedText: String = ""): String {
-    val textCount = text.count() - 1
-    var newReversedText = reversedText
-    newReversedText += text[textCount - index]
-    if (index < textCount) {
-        val newIndex = index + 1
-        newReversedText = recursiveReverse(text, newIndex, newReversedText)
-    }
-    return newReversedText
-}
-

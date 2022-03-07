@@ -11,7 +11,7 @@ package com.mouredev.weeklychallenge2022
  * Hecho esto, imprime los números primos entre 1 y 100.
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda a la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
@@ -19,16 +19,23 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
+    (1..100).forEach { n ->
+        if (esPrimo(n)) {
+            print("${n} ")
         }
     }
 }
 
-private fun isPrime(number: Int): Boolean {
+fun esPrimo(num: Int): Boolean {
+    if (num == 2) return true
+    if (num < 2 || num % 2 == 0) return false
+    for (i in 3..Math.sqrt(num.toDouble()).toInt() step 2) {
+        if (num % i == 0) return false
+    }
+    return true
+}
 
+private fun isPrime(number: Int): Boolean {
     if (number < 2) {
         return false
     }
@@ -38,9 +45,5 @@ private fun isPrime(number: Int): Boolean {
             return false
         }
     }
-
     return true
 }
-
-
-

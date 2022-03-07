@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.math.BigInteger
-
 /*
  * Reto #2
  * LA SUCESIÓN DE FIBONACCI
@@ -27,7 +25,6 @@ fun main() {
     var n1: Long = 1
 
     (1..50).forEach { _ ->
-
         println(n0)
 
         val fib = n0 + n1

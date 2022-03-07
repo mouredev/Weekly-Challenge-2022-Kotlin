@@ -21,26 +21,34 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    countWords("Hola, mi nombre es brais. Mi nombre completo es Brais Moure (MoureDev).")
+    var frase = "* - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación. * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación."
+    println(contar(frase))
 }
 
-fun countWords(text: String) {
+fun normalize(palabra: String): String {
+    return palabra.replace(".", "")
+            .replace(".", "")
+            .replace(",", "")
+            .replace("¿", "")
+            .replace("?", "")
+            .replace("!", "")
+            .replace("¡", "")
+            .lowercase()
+}
 
-    val words = mutableMapOf<String, Int>()
+fun contar(frase: String): HashMap<String, Int> {
+    val palabras = frase.split(" ").map { e -> normalize(e) }
+    val cont = HashMap<String, Int>()
 
-    text.lowercase().replace("[^a-z0-9]".toRegex(), " ").split(" ").forEach { key ->
-        if (key.isEmpty()) {
-            return@forEach
-        }
-        if (words[key] != null) {
-            words[key] = words.getValue(key) + 1
+    for (palabra in palabras) {
+        val k = palabra
+        if (cont.containsKey(k)) {
+            var v = cont.getValue(k)
+            v++
+            cont[k] = v
         } else {
-            words[key] = 1
+            cont[k] = 1
         }
     }
-
-    words.forEach { word ->
-        println("${word.key} se ha repetido ${word.value} ${if(word.value == 1) "vez" else "veces"}")
-    }
+    return cont
 }
-
