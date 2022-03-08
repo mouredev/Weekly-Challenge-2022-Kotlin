@@ -21,3 +21,50 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    var expression : String
+
+    print("Introduce la expresión a comprobar: ")
+    expression = readLine().toString()
+
+    if(expression.contains("[({\\[\\]})]".toRegex()))
+        print("La expresión $expression está balanceada? ${Evaluate(expression)}")
+    else
+        print("No es necesario evaluar si la expresion esta equilibrada")
+}
+
+private fun Evaluate (expr: String): Boolean {
+
+    var listOfElements = mutableListOf<Char>()
+
+    for (c in expr){
+        when (c) {
+            '{', '(', '[' -> listOfElements.add(c)
+            '}', ')', ']' -> RemoveFromList(listOfElements, c)
+        }
+    }
+
+    if (listOfElements.isNotEmpty())
+        return  false
+
+    return true
+}
+
+private fun RemoveFromList (itemsList: MutableList<Char>, character: Char ): Boolean {
+    var result = true
+
+    if (itemsList.isEmpty())
+        return false
+    when (character) {
+        '}' -> if (itemsList.last() == '{') {
+                    itemsList.removeLast()
+                } else return false
+        ')' -> if (itemsList.last() == '(') {
+                    itemsList.removeLast()
+                } else return false
+        ']' -> if (itemsList.last() == '[') {
+                    itemsList.removeLast()
+                } else return false
+    }
+    return result
+}
