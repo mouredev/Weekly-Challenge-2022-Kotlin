@@ -20,3 +20,89 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main() {
+
+    println(morseCodeToText("....  ---  .-..  .-  --  ..-  -.  -..  ---"))
+    println(textToMorseCode("hola mundo"))
+}
+
+private fun textToMorseCode(input: String): String {
+
+    val splitText = input.uppercase().split(" ")
+    val morseCodeHM = getHashMap()
+
+    var morseCode = ""
+
+    splitText.forEach { text ->
+        text.forEach { key ->
+            morseCode += "${(morseCodeHM.entries.filter { code -> code.key == key.toString() })[0].value}  "
+         }
+    }
+
+    return morseCode
+}
+
+private fun morseCodeToText(morseCode: String): String {
+
+    val splitMorseCode = morseCode.split("  ")
+    val morseCodeHM = getHashMap()
+
+    var textGenerate = ""
+    splitMorseCode.forEach { text ->
+        textGenerate += (morseCodeHM.entries.filter { code -> code.value == text })[0].key
+    }
+
+    return textGenerate
+}
+
+private fun getHashMap(): HashMap<String, String> {
+    val hashMap: HashMap<String, String> = HashMap()
+
+    hashMap["A"] = ".-"
+    hashMap["B"] = "-..."
+    hashMap["C"] = "-.-."
+    hashMap["CH"] = "----"
+    hashMap["D"] = "-.."
+    hashMap["E"] = "."
+    hashMap["F"] = "..-."
+    hashMap["G"] = "--."
+    hashMap["H"] = "...."
+    hashMap["I"] = ".."
+    hashMap["J"] = ".---"
+    hashMap["K"] = "-.-"
+    hashMap["L"] = ".-.."
+    hashMap["M"] = "--"
+    hashMap["N"] = "-."
+    hashMap["Ñ"] = "--.--"
+    hashMap["O"] = "---"
+    hashMap["P"] = ".--."
+    hashMap["Q"] = "--.-"
+    hashMap["R"] = ".-."
+    hashMap["S"] = "..."
+    hashMap["T"] = "-"
+    hashMap["U"] = "..-"
+    hashMap["V"] = "...-"
+    hashMap["W"] = ".--"
+    hashMap["X"] = "-..-"
+    hashMap["Y"] = "-.--"
+    hashMap["Z"] = "--.."
+    hashMap["0"] = "-----"
+    hashMap["1"] = ".----"
+    hashMap["2"] = "..---"
+    hashMap["3"] = "...--"
+    hashMap["4"] = "....-"
+    hashMap["5"] = "....."
+    hashMap["6"] = "-...."
+    hashMap["7"] = "--..."
+    hashMap["8"] = "---.."
+    hashMap["9"] = "----."
+    hashMap["."] = ".-.-.-"
+    hashMap[","] = "--..--"
+    hashMap["?"] = "..--.."
+    hashMap["/"] = "-..-."
+    hashMap["\""] = ".-..-."
+
+
+    return hashMap
+}
