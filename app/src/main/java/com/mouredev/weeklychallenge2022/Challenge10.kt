@@ -21,3 +21,40 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+ fun main() {
+    val input = "([uno]))"
+    
+    if (isBalanced(input)) { 
+        println("Expresion balanceada")
+    } else {
+        println("Cagada")
+    }
+    
+}
+
+private fun isBalanced(input: String): Boolean {
+    val delimiters = mutableMapOf(")" to "(", "]" to "[", "}" to "{")
+    var controlList: MutableList<String> = mutableListOf()   
+    var output = true
+    
+    input.forEach() {
+        val item = it.toString()
+        
+        when {            
+            delimiters.containsValue(item) -> controlList.add(item)
+            
+            delimiters.containsKey(item) -> {                
+                if (controlList.isEmpty()) return false
+                
+                if (delimiters.get(item) == controlList.last()) {
+                    controlList.removeAt(controlList.size - 1)
+                } else {                    
+                    return false
+                }          
+            }
+        }
+    }    
+    
+    return output
+}
+
