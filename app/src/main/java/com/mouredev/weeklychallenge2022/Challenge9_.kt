@@ -57,12 +57,8 @@ fun morseTranslate(text: String){
             word.split(" ").forEachIndexed{index, it ->
                 for ((key, value) in diccionario) {
                     if (it == value)
-<<<<<<< HEAD
                         print(key)
                         //print(if (index == 0) key else key.lowercase())
-=======
-                        print(if (index == 0) key else key.lowercase())
->>>>>>> 9500d7c (challenge 7)
                 }
             }
             print(" ")
