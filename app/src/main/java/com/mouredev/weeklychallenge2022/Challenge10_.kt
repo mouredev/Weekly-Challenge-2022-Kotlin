@@ -27,19 +27,32 @@ package com.mouredev.weeklychallenge2022
 fun main() {
     balanced("{ [ a * ( c + d ) + ( 2 - 3 )] - 5 }")
     balanced("{ a * ( c + d  + (2 - 3) ] - 5 }")
+    balanced("{ a * ( c + d  + (2 - 3) } - 5 ]")
+
 }
 
 fun balanced(text: String){
     var isBalanced = true
     var charPosicion = 0
-    do {
-        if(text.count { it.equals('{')} != text.count { it.equals('}')})
-            isBalanced = false
-        if(text.count { it.equals('[')} != text.count { it.equals(']')})
-            isBalanced = false
-        if(text.count { it.equals('(')} != text.count { it.equals(')')})
-            isBalanced = false
+    val lastopen = mutableListOf<String>()
+    val delimiters = mapOf('(' to ')', '[' to ']', '{' to '}')
+    while (charPosicion < text.length) {
+        for ((key, value) in delimiters) {
+            if (text.count { it.equals(key) } != text.count { it.equals(value) }){
+                isBalanced = false
+                break
+            }
+            if (text[charPosicion].equals(key))
+                lastopen.add(text[charPosicion].toString())
+            else if (text[charPosicion].equals(value))
+                if (lastopen.isNotEmpty() && lastopen.last().contains(key)){
+                    lastopen.removeLast()
+                }else{
+                    isBalanced = false
+                    break
+                }
+        }
         charPosicion++
-    }while (charPosicion < text.length)
-    println(if (isBalanced) "Está balanceada" else "No está balanceada")
+    }
+    println(if (isBalanced) "$text Está balanceada" else "$text No está balanceada")
 }
