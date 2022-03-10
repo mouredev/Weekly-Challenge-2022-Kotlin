@@ -21,3 +21,29 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(equilibrada( "{ [ a * ( c + d ) ] - 5 }"))
+    println(equilibrada( "{ a * ( c + d ) ] - 5 }"))
+}
+
+private fun equilibrada(word: String) : Boolean {
+
+    val listaCaracters: MutableList<Char> = ArrayList()
+    val delimitadores = listOf<Char>('{', '[', '(')
+    val delimitadoresContrarios = listOf<Char>('}', ']', ')')
+
+    for (char in word) {
+        if (delimitadores.contains(char)){
+            listaCaracters += char
+        }
+        else if (delimitadoresContrarios.contains(char)){
+            if (delimitadores.indexOf(listaCaracters.last()) == delimitadoresContrarios.indexOf(char)){
+                listaCaracters.removeLast()
+            } else {
+                return false
+            }
+        }
+    }
+
+    return listaCaracters.isEmpty()
+}
