@@ -28,7 +28,6 @@ fun main() {
     balanced("{ [ a * ( c + d ) + ( 2 - 3 )] - 5 }")
     balanced("{ a * ( c + d  + (2 - 3) ] - 5 }")
     balanced("{ a * ( c + d  + (2 - 3) } - 5 ]")
-
 }
 
 fun balanced(text: String){
