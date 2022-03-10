@@ -61,11 +61,21 @@ fun main() {
  * */
 
 fun isBalanced(expression: String): Boolean {
+    //usamos una pila para ir almacenando los caracteres
     val stack = Stack<Char>()
+
+    //Recorremos la expresion y por cada caracter :
+    // - Si es un '(','[','{' los metemos en la pila
+    // - Si es un ')',']','}' comprobamos que el ultimo elemento de la pila sea
+    //   su par abierto y asi sabemos que está balanceado.
+    // Por ultimo devolvemos si la pila esta vacia , si no esta vacia significa que
+    // la expresion no está balanceada y devolverá false
 
     expression.forEach {
         when(it){
+
             PARENTHESIS_OPEN -> stack.push(it)
+
             PARENTHESIS_CLOSE -> {
                 if(stack.pop()!= PARENTHESIS_OPEN)
                     return false
