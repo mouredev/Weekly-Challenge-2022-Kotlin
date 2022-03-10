@@ -1,93 +1,62 @@
-/*
-		 * Reto #10 EXPRESIONES EQUILIBRADAS Fecha publicaci贸n enunciado: 07/03/22 Fecha
-		 * publicaci贸n resoluci贸n: 14/03/22 Dificultad: MEDIA
-		 *
-		 * Enunciado: Crea un programa que comprueba si los par茅ntesis, llaves y
-		 * corchetes de una expresi贸n est谩n equilibrados. - Equilibrado significa que
-		 * estos delimitadores se abren y cieran en orden y de forma correcta. -
-		 * Par茅ntesis, llaves y corchetes son igual de prioritarios. No hay uno m谩s
-		 * importante que otro. - Expresi贸n balanceada: { [ a * ( c + d ) ] - 5 } -
-		 * Expresi贸n no balanceada: { a * ( c + d ) ] - 5 }
-		 *
-		 * Informaci贸n adicional: - Usa el canal de nuestro discord
-		 * (https://mouredev.com/discord) "馃攣reto-semanal" para preguntas, dudas o
-		 * prestar ayuda a la comunidad. - Puedes hacer un Fork del repo y una Pull
-		 * Request al repo original para que veamos tu soluci贸n aportada. - Revisar茅 el
-		 * ejercicio en directo desde Twitch el lunes siguiente al de su publicaci贸n. -
-		 * Subir茅 una posible soluci贸n al ejercicio el lunes siguiente al de su
-		 * publicaci贸n.
-		 *
-		 */
+// * Reto #10
+// * EXPRESIONES EQUILIBRADAS
+// * Fecha publicaci髇 enunciado: 07/03/22
+// * Fecha publicaci髇 resoluci髇: 14/03/22
+// * Dificultad: MEDIA
+// *
+// * Enunciado: Crea un programa que comprueba si los par閚tesis, llaves y corchetes de una expresi髇 est醤 equilibrados.
+// * - Equilibrado significa que estos delimitadores se abren y cieran en orden y de forma correcta.
+// * - Par閚tesis, llaves y corchetes son igual de prioritarios. No hay uno m醩 importante que otro.
+// * - Expresi髇 balanceada: { [ a * ( c + d ) ] - 5 }
+// * - Expresi髇 no balanceada: { a * ( c + d ) ] - 5 }
+
+import java.util.*;
 
 public class Week10 {
 
 	public static void main(String[] args) {
 
-		String cadenaNoBalanceada = "{ a * ( c + d ) ] - 5 }";
+		String cadena = "{ a * ( c + d ) ] - 5 }";
 
-		System.out.println(cadenaBalanceada(cadenaNoBalanceada));
+		if (cadenaBalanceada(cadena)) {
+
+			System.out.println("Cadena balanceada.");
+
+		} else {
+
+			System.out.println("Cadena NO balanceada.");
+
+		}
 
 	}
 
-	public static int contarCaracteres(String cadena, char caracter) {
+	public static boolean cadenaBalanceada(String cadena) {
 
-		int count = 0;
+		Stack<Character> stack = new Stack<Character>();
 
 		for (int i = 0; i < cadena.length(); i++) {
 
-			if (caracter == cadena.charAt(i)) {
+			if (cadena.charAt(i) == '{' || cadena.charAt(i) == '[' || cadena.charAt(i) == '(') {
 
-				count++;
+				stack.push(cadena.charAt(i));
+
+			} else if (cadena.charAt(i) == '}' || cadena.charAt(i) == ']' || cadena.charAt(i) == ')') {
+
+				if (stack.empty()) {
+
+					return false;
+
+				} else if (stack.peek() == '{' || stack.peek() == '[' || stack.peek() == '(') {
+
+					stack.pop();
+
+				}
 
 			}
 
 		}
 
-		return count;
-
-	}
-
-	public static boolean numerosIguales(int num1, int num2) {
-
-		boolean correcto = false;
-
-		if (num1 != num2) {
-
-			correcto = false;
-
-		} else {
-
-			correcto = true;
-		}
-
-		return correcto;
-
-	}
-
-	public static String cadenaBalanceada(String cadena) {
-
-		int total1 = contarCaracteres(cadena, '{');
-		int total2 = contarCaracteres(cadena, '}');
-		int total3 = contarCaracteres(cadena, '(');
-		int total4 = contarCaracteres(cadena, ')');
-		int total5 = contarCaracteres(cadena, '[');
-		int total6 = contarCaracteres(cadena, ']');
-
-		boolean llavesBalanceadas, parentesisBalanceados, corchetesBalanceados;
-
-		llavesBalanceadas = numerosIguales(total1, total2);
-		parentesisBalanceados = numerosIguales(total3, total4);
-		corchetesBalanceados = numerosIguales(total5, total6);
-
-		if (llavesBalanceadas && parentesisBalanceados && corchetesBalanceados) {
-
-			return "Cadena Balanceada.";
-
-		} else {
-
-			return "Cadena NO Balanceada.";
-
-		}
+		return stack.empty();
 
 	}
 
