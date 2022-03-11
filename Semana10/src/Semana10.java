@@ -16,7 +16,7 @@ public class Semana10 {
 
 	public static void main(String[] args) {
 
-		String cadena = "{ a * ( c + d ) ] - 5 }";
+		String cadena = "{ [ a * ( [c + d ) ] - 5 }";
 
 		if (cadenaBalanceada(cadena)) {
 
@@ -46,9 +46,15 @@ public class Semana10 {
 
 					return false;
 
-				} else if (stack.peek() == '{' || stack.peek() == '[' || stack.peek() == '(') {
+				} else if (stack.peek() == '{' && cadena.charAt(i) == '}'
+						|| stack.peek() == '[' && cadena.charAt(i) == ']'
+						|| stack.peek() == '(' && cadena.charAt(i) == ')') {
 
 					stack.pop();
+
+				} else {
+
+					return false;
 
 				}
 
@@ -61,4 +67,3 @@ public class Semana10 {
 	}
 
 }
-
