@@ -29,10 +29,10 @@ fun main() {
 }
 
 fun isBalancedExpression(expression : String){
-    val expressionFiltering = expression.filter { !it.isWhitespace() }
+    val filteredExpression = expression.filter { !it.isWhitespace() }
 
     var totalItems = 0
-    expressionFiltering.forEach {value ->
+    filteredExpression.forEach {value ->
 
         if((value == '{' )||(value == '}')){
             totalItems++
