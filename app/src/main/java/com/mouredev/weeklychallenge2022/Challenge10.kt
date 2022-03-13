@@ -20,4 +20,48 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+private const val OPEN_PARENTHESES = '('
+private const val CLOSE_PARENTHESES = ')'
+private const val OPEN_BRACES = '{'
+private const val CLOSE_BRACES = '}'
+private const val OPEN_BRACKETS = '['
+private const val CLOSE_BRACKETS = ']'
+
+fun main() {
+    println("Welcome to is balanced expression.")
+    println("Enter text to check if is balanced expression: ")
+    val text = readLine()
+    text?.let {
+        println(it.isBalancedExpression())
+    }
+}
+
+private fun String.isBalancedExpression(): Boolean {
+    val regex = "[^(){}\\[\\]]".toRegex()
+    val expressions = this.replace(regex, "")
+    val appearedExpressions: MutableList<Char> = mutableListOf()
+    var isBalancedExpression = true
+    expressions.forEach { expression ->
+        if (isBalancedExpression){
+            if (expression == OPEN_PARENTHESES || expression == OPEN_BRACES || expression == OPEN_BRACKETS) {
+                appearedExpressions.add(expression)
+            } else {
+                val index = appearedExpressions.indexOfLast { it == expression.reverse() }
+                isBalancedExpression = index != -1
+                if (isBalancedExpression)
+                    appearedExpressions.removeAt(index)
+            }
+        }
+    }
+    return appearedExpressions.isEmpty() && isBalancedExpression
+}
+
+private fun Char.reverse(): Char =
+    when {
+        this == CLOSE_PARENTHESES -> OPEN_PARENTHESES
+        this == CLOSE_BRACES -> OPEN_BRACES
+        this == CLOSE_BRACKETS -> OPEN_BRACKETS
+        else -> throw IllegalArgumentException()
+    }
+
 
