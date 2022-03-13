@@ -106,13 +106,13 @@ private fun getHashMap(): HashMap<String, String> {
 
     return hashMap
 }
-fun main() {
-
-    val naturalText = "Chocapic. Es una marca de cereales?"
-    val morseText = decoder(naturalText)
-    println(morseText)
-    println(decoder(morseText))
-}
+//fun main() {
+//
+//    val naturalText = "Chocapic. Es una marca de cereales?"
+//    val morseText = decoder(naturalText)
+//    println(morseText)
+//    println(decoder(morseText))
+//}
 
 private fun decoder(input: String): String {
 
