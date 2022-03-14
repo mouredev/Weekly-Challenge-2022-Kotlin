@@ -21,3 +21,34 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(isBalanced("{a + b [c] * (2x2)}}}}"))
+    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{a^4 + (((ax4)}"))
+    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
+        println(isBalanced("{{{{{{(}}}}}}"))
+    println(isBalanced("(a"))
+}
+
+private fun isBalanced(expression: String): Boolean {
+
+    val symbols = mapOf("{" to "}", "[" to "]", "(" to ")")
+    val stack = arrayListOf<String>()
+
+    expression.forEach {
+
+        val symbol = it.toString()
+        val containsKey = symbols.containsKey(symbol)
+
+        if (containsKey || symbols.containsValue(symbol)) {
+            if (containsKey) {
+                stack.add(symbol)
+            } else if (stack.isEmpty() || symbol != symbols[stack.removeLast()]) {
+                return false
+            }
+        }
+    }
+
+    return stack.isEmpty()
+}
