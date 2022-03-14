@@ -27,20 +27,20 @@ fun main() {
 
 private fun removeChars(str1: String, str2: String) {
 
-    var out1 = arrayListOf<Char>()
-    var out2 = arrayListOf<Char>()
+    var out1 = ""  //  var out1 = arrayListOf<Char>()  // Usando Array
+    var out2 = ""  //  var out2 = arrayListOf<Char>()  // Usando Array
 
     str1.replace(" ", "").lowercase().forEach {
         if (!str2.replace(" ", "").lowercase().contains(it)) {
             if (!out1.contains(it)) {
-                out1.add(it)
+                out1 += it  //  out1.add(it)  // Usando Array
             }
         }
     }
     str2.replace(" ", "").lowercase().forEach {
         if (!str1.replace(" ", "").lowercase().contains(it)) {
             if (!out2.contains(it)) {
-                out2.add(it)
+                out2 += it  //  out2.add(it)  // Usando Array
             }
         }
     }
