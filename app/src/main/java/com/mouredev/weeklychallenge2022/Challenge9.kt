@@ -20,3 +20,57 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+val morse: Map<String, String> = mapOf(
+    "A" to ".-",
+    "B" to "-...",
+    "C" to "-.-.",
+    "CH" to "----",
+    "D" to "-..",
+    "E" to ".",
+    "F" to "..-.",
+    "G" to "--.",
+    "H" to "....",
+    "I" to "..",
+    "J" to ".---",
+    "K" to "-.-",
+    "L" to ".-..",
+    "M" to "--",
+    "N" to "-.",
+    "Ñ" to "--.--",
+    "O" to "---",
+    "P" to ".--.",
+    "Q" to "--.-",
+    "R" to ".-.",
+    "S" to "...",
+    "T" to "-",
+    "U" to "..--",
+    "V" to "...--",
+    "W" to ".--",
+    "X" to "-..-",
+    "Y" to "-.--",
+    "Z" to "--.."
+)
+
+fun main() {
+
+    val texto = "Debe detectar automáticamente de qué tipo se trata y realizar la conversión."
+    println(toMorse(texto))
+
+
+}
+
+fun toMorse(texto: String): String {
+    var morseText = ""
+    texto.toCharArray().forEach { word ->
+        morseText += if (word.toString() == " ") {
+            "  "
+        } else {
+            morse.get(word.uppercase()) + " "
+        }
+    }
+    return morseText
+}
+
+fun fromMorse() {
+
+}
