@@ -20,15 +20,19 @@ package com.mouredev.weeklychallenge2022
  */
 
  /* Reto by dovaldev Semana #11 */
-val str1: String = "weekly challenge 2022"
-val str2: String = "reto semanal #11"
-var out1: String = ""
-var out2: String = ""
-
 fun main() {
-    val list_str1 = str1.replace(" ".toRegex(), "").toList().toSet()
-    val list_str2 = str2.replace(" ".toRegex(), "").toList().toSet()
+ 	// ejecutamos la función
+    removeCharacters("Weekly challenge 2022", "Reto semanal #11")
+    removeCharacters("No se si es esto lo que querías", "pero me gustó mucho hacerlo, muy entretenido", true)
+}
 
+/* Función que compara las dos cadenas e imprime solo los carácteres
+ * que no se repiten en las dos cadenas */
+private fun removeCharacters(str1: String, str2: String, toLower: Boolean = false){
+    val list_str1 = str1.toLowerC(toLower).replace(" ".toRegex(), "").toList().toSet()
+    val list_str2 = str2.toLowerC(toLower).replace(" ".toRegex(), "").toList().toSet()
+   	var out1: String = ""
+	var out2: String = ""
 
     list_str1.forEach{
         if(!list_str2.contains(it)) out1+=it
@@ -38,4 +42,10 @@ fun main() {
     }
     println("out1: $out1")
     println("out2: $out2")
+}
+
+private fun String.toLowerC(lower: Boolean): String{
+    return if(lower){
+        this.toLowerCase()
+    } else this
 }
