@@ -22,27 +22,25 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun isBalanced(expression: String): Boolean {
-    val openBrackets = charArrayOf('{','(','[')
-    val closeBrackets = charArrayOf('}',')',']')
-    val onlyBrackets = expression.filter { openBrackets.contains(it) || closeBrackets.contains(it) }
+    val couples = arrayOf("{}","()","[]")
+    val onlyBrackets = expression.filter { char -> couples.map{ it[0] }.contains(char) || couples.map{ it[1] }.contains(char) }
+    val firstCloseBracketIndex = onlyBrackets.indexOfAny(couples.map{ it[1].toString() })
 
-    return if(onlyBrackets.length == 2) {
-        (onlyBrackets == "{}" || onlyBrackets == "()" || onlyBrackets == "[]")
+    return if(firstCloseBracketIndex < 1) {
+        false
+    } else if(onlyBrackets.length == 2) {
+        couples.contains(onlyBrackets)
     } else {
-        val firstCloseBracketIndex = onlyBrackets.indexOfAny(closeBrackets)
-        if(firstCloseBracketIndex < 1) {
-            false
-        } else {
-            isBalanced(onlyBrackets.substring(firstCloseBracketIndex-1,firstCloseBracketIndex+1)) &&
-                    isBalanced(onlyBrackets.substring(0, firstCloseBracketIndex-1) + onlyBrackets.substring(firstCloseBracketIndex+1))
-        }
+        val prevExpression = onlyBrackets.substring(firstCloseBracketIndex-1,firstCloseBracketIndex+1)
+        val restExpression = onlyBrackets.substring(0, firstCloseBracketIndex-1) + onlyBrackets.substring(firstCloseBracketIndex+1)
+        isBalanced(prevExpression) && isBalanced(restExpression)
     }
 }
 
 fun main() {
-    val balancedExpressions = arrayOf("{ [ a * ( c + d ) ] - 5 }", "[()]{}{[()()]()}", "{[{}{}]}[()]", "{{}{}}", "[]{}()")
+    val balancedExpressions = arrayOf("{ [ a * ( c + d ) ] - 5 }", "[()]{}{[()()]()}", "{[{}{}]}[()]", "{{}{}}", "[]{}()", "a+2")
     balancedExpressions.forEach { expression ->
-        println("$expression ${if(!isBalanced(expression)) "NO " else ""}está balanceada")
+        println("$expression ${if(!isBalanced("($expression)")) "NO " else ""}está balanceada")
     }
     println()
     val notBalancedExpressions = arrayOf( "{ a * ( c + d ) ] - 5 }", "[(])", "{()}[)", "{(})", "{")
