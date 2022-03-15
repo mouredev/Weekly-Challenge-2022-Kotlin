@@ -18,3 +18,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+ /* Reto by dovaldev Semana #11 */
+val str1: String = "weekly challenge 2022"
+val str2: String = "reto semanal #11"
+var out1: String = ""
+var out2: String = ""
+
+fun main() {
+    val list_str1 = str1.replace(" ".toRegex(), "").toList().toSet()
+    val list_str2 = str2.replace(" ".toRegex(), "").toList().toSet()
+
+
+    list_str1.forEach{
+        if(!list_str2.contains(it)) out1+=it
+    }
+    list_str2.forEach{
+        if(!list_str1.contains(it)) out2+=it
+    }
+    println("out1: $out1")
+    println("out2: $out2")
+}
