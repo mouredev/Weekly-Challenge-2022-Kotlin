@@ -18,3 +18,29 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    printCharactersReply("hola", "adios")
+}
+
+fun printCharactersReply(str1: String, str2: String) {
+    var out1 = ""
+    var out2 = ""
+    str1.toCharArray().forEach { word ->
+        run {
+            if (!str2.contains(word)) {
+                out1 += word
+            }
+        }
+    }
+    str2.toCharArray().forEach { word ->
+        run {
+            if (!str1.contains(word)) {
+                out2 += word
+            }
+        }
+    }
+
+    println("Presentes en str1 => " + out1)
+    println("Presentes en str2 => " + out2)
+}
