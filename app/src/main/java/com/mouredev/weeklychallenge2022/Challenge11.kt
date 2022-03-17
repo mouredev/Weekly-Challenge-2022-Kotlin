@@ -18,3 +18,30 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    RemoveCharacterInOtherString("Listos para un nuevo reto de MoureDev", "Este parece que es facil pero siemrpe hay sorpresas")
+    RemoveCharacterInOtherString("Mi mama me mima", "Pablito clavo un clavito")
+    RemoveCharacterInOtherString("C#, Java, PHP, Kotlin", "Modula2, Basic, Fortran, Cobol")
+}
+
+private fun RemoveCharacterInOtherString(str1: String, str2: String) {
+
+    var out1 = ""
+    var out2 = ""
+    val clearStr1 = str1.lowercase().replace(" ","").toSet()
+    val clearStr2 = str2.lowercase().replace(" ","").toSet()
+
+    clearStr1.forEach {
+        if (!clearStr2.contains(it))
+            out1 += it.toString()
+    }
+
+    clearStr2.forEach {
+        if (!clearStr1.contains(it))
+            out2 += it.toString()
+    }
+
+    println("La cadena --> '$str1' se queda reducida a --> '$out1'")
+    println("La cadena --> '$str2' se queda reducida a --> '$out2'")
+}
