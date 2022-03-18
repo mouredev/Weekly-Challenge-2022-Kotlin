@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.math.BigInteger
-
 /*
  * Reto #2
  * LA SUCESIÓN DE FIBONACCI
@@ -14,7 +12,7 @@ import java.math.BigInteger
  * 0, 1, 1, 2, 3, 5, 8, 13...
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda a la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.

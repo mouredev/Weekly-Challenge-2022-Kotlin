@@ -15,7 +15,7 @@ import kotlin.collections.HashMap
  * - No se pueden utilizar funciones propias del lenguaje que lo resuelvan automáticamente.
  *
  * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda la acomunidad.
+ * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda a la acomunidad.
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
@@ -98,7 +98,7 @@ fun normalizar(palabra: String):String{
     var caracter = palabraMod.get(palabra.length - 1)
 
     // recorre el abecedario comparando en el último elemento
-    var seEncontroSigno : Boolean = true
+    var seEncontroSigno = true
     do {
         for (letra in abc.abecedario){
             if (letra.equals(caracter)){
