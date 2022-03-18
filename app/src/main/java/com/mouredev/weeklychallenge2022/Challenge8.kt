@@ -12,13 +12,14 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(decimalToBinary(77))
+    println(decimalToBinaryMartinez(77))
+    println(decimalToBinaryMoure(77))
 }
 
 /*
 FUNCION DE MARTINEZ
  */
-fun decimalToBinary(number : Int) : String{
+fun decimalToBinaryMartinez(number : Int) : String{
 
     var quotient = number
     var binaryNumberString = " "
@@ -33,4 +34,23 @@ fun decimalToBinary(number : Int) : String{
         }
     }
     return binaryNumberString.reversed()
+}
+
+/*
+FUNCION DE MOURE
+ */
+fun decimalToBinaryMoure(decimal: Int): String {
+
+    var number = decimal
+    var binary = ""
+
+    while (number != 0) {
+
+        val reminder = number % 2
+        number /= 2
+
+        binary = "$reminder$binary"
+    }
+
+    return binary.ifEmpty { "0" }
 }
