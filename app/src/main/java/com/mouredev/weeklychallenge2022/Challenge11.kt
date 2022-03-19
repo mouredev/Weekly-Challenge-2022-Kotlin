@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #11
  * ELIMINANDO CARACTERES
@@ -18,3 +20,79 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    val a = "Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación"
+    val b = "Subiré una posible solución al ejercicio el lunes siguiente al de su publicación"
+
+    println("Example strings\nString1: $a\nString2: $b")
+    aSinB_bSinA(a , b)
+}
+
+/** ----- My solution to the challenge ----- **/
+
+fun aSinB_bSinA(a : String, b : String){
+
+    println("\nClassification by words")
+    wordsSegregation(a,b)
+
+    println("\nClassification by letters")
+    characterSegregation(a,b)
+}
+
+fun separationInLetters(phrase: String): CharArray {
+    val step1 = phrase.toLowerCase(Locale.ROOT).split(" ")
+
+    var step2 = ""
+    step1.forEach {
+        step2 += it
+    }
+
+    return step2.toCharArray()
+}
+
+fun characterSegregation(a: String, b: String){
+    val componentsOfA = separationInLetters(a)
+    val componentsOfB = separationInLetters(b)
+
+    val aSinB = componentsOfA.filter {
+        !componentsOfB.contains(it)
+    }
+
+    val bSinA = componentsOfB.filter {
+        !componentsOfA.contains(it)
+    }
+
+    println("$aSinB\n$bSinA")
+}
+
+private fun wordsSegregation(a: String, b: String){
+    val step1A = a.toLowerCase(Locale.ROOT).split(" ")
+    val step1B = b.toLowerCase(Locale.ROOT).split(" ")
+
+    val step2A = makeOfMap(step1A)
+    val step2B = makeOfMap(step1B)
+
+    val aSinB :String = step1A.filter {
+        !step2B.containsKey(it)
+    }.toString()
+
+    val bSinA :String = step1B.filter {
+        !step2A.containsKey(it)
+    }.toString()
+
+    println("$aSinB\n$bSinA")
+}
+
+
+private fun makeOfMap(words : List<String>) : MutableMap<String,Int>{
+    val resultMap = mutableMapOf<String,Int>()
+    words.forEach{
+        if(!resultMap.containsKey(it)){
+            resultMap[it] = 1
+        }else{
+            resultMap[it] = resultMap[it]!!+1
+        }
+    }
+    return  resultMap
+}
