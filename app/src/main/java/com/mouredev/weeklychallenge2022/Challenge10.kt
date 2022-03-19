@@ -22,31 +22,62 @@ package com.mouredev.weeklychallenge2022
  */
 
 
-fun main() {
+// fun main() {
 
-    val str = "{ [ a * ( c + d ) ] - 5 }"
-    isBalancedExpression(str)
-}
+//     val str = "{ [ a * ( c + d ) ] - 5 }"
+//     isBalancedExpression(str)
+// }
 
-fun isBalancedExpression(expression : String){
+fun isBalancedExpression(expression : String) {
     val filteredExpression = expression.filter { !it.isWhitespace() }
 
     var totalItems = 0
-    filteredExpression.forEach {value ->
+    filteredExpression.forEach { value ->
 
-        if((value == '{' )||(value == '}')){
+        if ((value == '{') || (value == '}')) {
             totalItems++
         }
 
-        if((value == '[' )||(value == ']')){
+        if ((value == '[') || (value == ']')) {
             totalItems++
 
         }
-        if((value == '(' )||(value == ')')){
+        if ((value == '(') || (value == ')')) {
             totalItems++
         }
     }
 
 
-    if(totalItems % 2 == 0) println("La expresión esta balanceada") else println("La expresión no esta balanceada")
+    if (totalItems % 2 == 0) println("La expresión esta balanceada") else println("La expresión no esta balanceada")
+}
+fun main() {
+    println(isBalanced("{a + b [c] * (2x2)}}}}"))
+    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{a^4 + (((ax4)}"))
+    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
+        println(isBalanced("{{{{{{(}}}}}}"))
+    println(isBalanced("(a"))
+}
+
+private fun isBalanced(expression: String): Boolean {
+
+    val symbols = mapOf("{" to "}", "[" to "]", "(" to ")")
+    val stack = arrayListOf<String>()
+
+    expression.forEach {
+
+        val symbol = it.toString()
+        val containsKey = symbols.containsKey(symbol)
+
+        if (containsKey || symbols.containsValue(symbol)) {
+            if (containsKey) {
+                stack.add(symbol)
+            } else if (stack.isEmpty() || symbol != symbols[stack.removeLast()]) {
+                return false
+            }
+        }
+    }
+
+    return stack.isEmpty()
 }
