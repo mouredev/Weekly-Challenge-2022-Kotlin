@@ -18,3 +18,25 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val str1 = "Se necesita mucha valentía para enfrentar a nuestros enemigos, pero también para enfrentar a nuestros amigos."
+    val str2 = "Las palabras son, en mi opinión no tan humilde, nuestra fuente de magia más inagotable. Capaz de infligir daño y de remediarlo."
+    removeChars(str1,str2)
+}
+
+fun removeChars(str1: String, str2: String) {
+    var out1 = str1
+    var out2 = str2
+
+    str1.forEach { character ->
+        out2 = out2.replace(character.toString(), "")
+    }
+
+    str2.forEach { character ->
+        out1 = out1.replace(character.toString(), "")
+    }
+
+    println(out1)
+    println(out2)
+}
