@@ -29,7 +29,8 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#8** - 18/02/22 - `DECIMAL A BINARIO`
 * **#9** - 02/03/22 - `CÓDIGO MORSE`
 * **#10** - 07/03/22 - `EXPRESIONES EQUILIBRADAS`
-* **#11** - 14/03/22 - `Publicación nuevo reto...`
+* **#11** - 14/03/22 - `ELIMINANDO CARACTERES`
+* **#12** - 21/03/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 

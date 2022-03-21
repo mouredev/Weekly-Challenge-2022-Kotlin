@@ -21,30 +21,34 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun isBalanced(expression: String): Boolean {
-    val couples = arrayOf("{}","()","[]")
-    val onlyBrackets = expression.filter{ char -> couples.map{ it[0] }.contains(char) || couples.map{ it[1] }.contains(char) }
-    val firstCloseBracketIndex = onlyBrackets.indexOfAny(couples.map{ it[1].toString() })
-
-    return if(firstCloseBracketIndex < 1) {
-        false
-    } else if(onlyBrackets.length == 2) {
-        couples.contains(onlyBrackets)
-    } else {
-        val prevExpression = onlyBrackets.substring(firstCloseBracketIndex-1,firstCloseBracketIndex+1)
-        val restExpression = onlyBrackets.substring(0, firstCloseBracketIndex-1) + onlyBrackets.substring(firstCloseBracketIndex+1)
-        isBalanced(prevExpression) && isBalanced(restExpression)
-    }
+fun main() {
+    println(isBalanced("{a + b [c] * (2x2)}}}}"))
+    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{a^4 + (((ax4)}"))
+    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
+        println(isBalanced("{{{{{{(}}}}}}"))
+    println(isBalanced("(a"))
 }
 
-fun main() {
-    val balancedExpressions = arrayOf("{ [ a * ( c + d ) ] - 5 }", "[()]{}{[()()]()}", "{[{}{}]}[()]", "{{}{}}", "[]{}()", "a+2")
-    balancedExpressions.forEach { expression ->
-        println("$expression ${if(!isBalanced("($expression)")) "NO " else ""}está balanceada")
+private fun isBalanced(expression: String): Boolean {
+
+    val symbols = mapOf("{" to "}", "[" to "]", "(" to ")")
+    val stack = arrayListOf<String>()
+
+    expression.forEach {
+
+        val symbol = it.toString()
+        val containsKey = symbols.containsKey(symbol)
+
+        if (containsKey || symbols.containsValue(symbol)) {
+            if (containsKey) {
+                stack.add(symbol)
+            } else if (stack.isEmpty() || symbol != symbols[stack.removeLast()]) {
+                return false
+            }
+        }
     }
-    println()
-    val notBalancedExpressions = arrayOf( "{ a * ( c + d ) ] - 5 }", "[(])", "{()}[)", "{(})", "{")
-    notBalancedExpressions.forEach { expression ->
-        println("$expression ${if(!isBalanced(expression)) "NO " else ""}está balanceada")
-    }
+
+    return stack.isEmpty()
 }
