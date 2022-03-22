@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #12
  * ¿ES UN PALÍNDROMO?
@@ -19,3 +21,34 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    beOrNotToBePalindromo("Dragon")
+    beOrNotToBePalindromo("Ana!")
+    beOrNotToBePalindromo("reconocer")
+    beOrNotToBePalindromo("Ana lleva al oso la avellana")
+    beOrNotToBePalindromo("Ella te dará detalle")
+}
+
+fun beOrNotToBePalindromo(word : String) : Boolean{
+    // Separate and recompose without spaces or any other thing that isn't a letter and all in lowercase
+    val step1 = word.toLowerCase(Locale.ROOT).filter { !it.toString().contains("[ !',.:;?_]".toRegex()) }
+
+    // Replace the special characters á é í ó ú
+    var step2 : String = ""
+    step1.forEach {
+        step2 += when(it){
+            'á' -> "a"
+            'é' -> "e"
+            'í' -> "i"
+            'ó' -> "o"
+            'ú' -> "u"
+            else -> it.toString()
+        }
+    }
+
+    val beOrNotToBe = step2 == step2.reversed()
+
+    println("The phrase or word: \"$word\" is a palíndromo? [$beOrNotToBe]")
+    return beOrNotToBe
+}
