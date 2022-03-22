@@ -20,7 +20,6 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-
 fun main() {
     countWords("Hola, mi nombre es brais. Mi nombre completo es Brais Moure (MoureDev).")
 }
@@ -44,3 +43,4 @@ fun countWords(text: String) {
         println("${word.key} se ha repetido ${word.value} ${if(word.value == 1) "vez" else "veces"}")
     }
 }
+
