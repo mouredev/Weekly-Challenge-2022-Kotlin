@@ -16,19 +16,23 @@ package com.mouredev.weeklychallenge2022
  */
 
 
-/*
-FUNCION DE MARTINEZ
- */
 fun main() {
 
-    if(isBalanced("{ [ a * ( c + d ) ] - 5 }")){
-        println("Balanceada")
+    println(isBalanced("{a + b [c] * (2x2)}}}}"))
+    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
+    println(isBalanced("{a^4 + (((ax4)}"))
+    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
+    println(isBalanced("{{{{{{(}}}}}}"))
+    println(isBalanced("(a"))
 
-    }else{
-        println("NO balanceada")
-    }
 }
 
+/*
+FUNCION DE MARTINEZ
+-Esta función tiene en cuenta que haya el mismo número de simbolos de cierre que de apertura
+-Esta función NO tiene en cuenta que los simbolos se abran y se cierren como deberían.
+ */
 fun isBalanced (expression : String) : Boolean{
 
     val openedParenthesisOccurrences  = expression.count {it == '('}
@@ -41,6 +45,31 @@ fun isBalanced (expression : String) : Boolean{
     return openedParenthesisOccurrences == closedParenthesisOccurrences &&
             openedKeysOccurrences == closedKeysOccurrences &&
             openedBracketOccurrences == closedBracketOccurrences
-
 }
 
+/*
+FUNCION DE MOURE
+-Esta función tiene en cuenta que haya el mismo número de simbolos de cierre que de apertura
+-Esta función tiene en cuenta que los simbolos se abran y se cierren como deberían.
+ */
+private fun isBalancedAux (expression: String): Boolean {
+
+    val symbols = mapOf("{" to "}", "[" to "]", "(" to ")")
+    val stack = arrayListOf<String>()
+
+    expression.forEach {
+
+        val symbol = it.toString()
+        val containsKey = symbols.containsKey(symbol)
+
+        if (containsKey || symbols.containsValue(symbol)) {
+            if (containsKey) {
+                stack.add(symbol)
+            } else if (stack.isEmpty() || symbol != symbols[stack.removeLast()]) {
+                return false
+            }
+        }
+    }
+
+    return stack.isEmpty()
+}
