@@ -22,33 +22,27 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isBalanced("{a + b [c] * (2x2)}}}}"))
-    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
-    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
-    println(isBalanced("{a^4 + (((ax4)}"))
-    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
-        println(isBalanced("{{{{{{(}}}}}}"))
-    println(isBalanced("(a"))
+    println(equilibrada( "{ [ a * ( c + d ) ] - 5 }"))
+    println(equilibrada( "{ a * ( c + d ) ] - 5 }"))
 }
 
-private fun isBalanced(expression: String): Boolean {
+private fun equilibrada(word: String) : Boolean {
 
-    val symbols = mapOf("{" to "}", "[" to "]", "(" to ")")
-    val stack = arrayListOf<String>()
+    val listaCaracters: MutableList<Char> = ArrayList()
+    val delimitadores = listOf<Char>('{', '[', '(')
+    val delimitadoresContrarios = listOf<Char>('}', ']', ')')
 
-    expression.forEach {
-
-        val symbol = it.toString()
-        val containsKey = symbols.containsKey(symbol)
-
-        if (containsKey || symbols.containsValue(symbol)) {
-            if (containsKey) {
-                stack.add(symbol)
-            } else if (stack.isEmpty() || symbol != symbols[stack.removeLast()]) {
+    for (char in word) {
+        if (delimitadores.contains(char)){
+            listaCaracters += char
+        }
+        else if (delimitadoresContrarios.contains(char)){
+            if (delimitadores.indexOf(listaCaracters.last()) == delimitadoresContrarios.indexOf(char)){
+                listaCaracters.removeLast()
+            } else {
                 return false
             }
         }
     }
-
-    return stack.isEmpty()
+    return listaCaracters.isEmpty()
 }
