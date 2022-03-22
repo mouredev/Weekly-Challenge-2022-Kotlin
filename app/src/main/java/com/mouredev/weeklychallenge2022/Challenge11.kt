@@ -21,12 +21,22 @@ import java.util.*
  *
  */
 
-fun main(){
+fun main() {
     val a = "Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación"
     val b = "Subiré una posible solución al ejercicio el lunes siguiente al de su publicación"
 
     println("Example strings\nString1: $a\nString2: $b")
     aSinB_bSinA(a , b)
+
+    // for the Brais moure solution
+    printNonCommon("brais","moure")
+    printNonCommon("Me gusta Java","Me gusta Kotlin")
+    printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
+        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+
+    // Otra solución utilizando funciones de orden superior
+    printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
+        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
 }
 
 /** ----- My solution to the challenge ----- **/
@@ -95,4 +105,30 @@ private fun makeOfMap(words : List<String>) : MutableMap<String,Int>{
         }
     }
     return  resultMap
+}
+
+/** ----- Propouse solution given by Brais moure ----- **/
+
+
+private fun printNonCommon(str1: String, str2: String) {
+    println("out1: ${findNonCommon(str1, str2)}")
+    println("out2: ${findNonCommon(str2, str1)}")
+}
+
+private fun findNonCommon(str1: String, str2: String): String {
+
+    var out = ""
+
+    str1.toLowerCase(Locale.ROOT).forEach {
+        if (!str2.toLowerCase(Locale.ROOT).contains(it)) {
+            out += it
+        }
+    }
+
+    return out
+}
+
+private fun printNonCommonWithFilter(str1: String, str2: String) {
+    println("out1: ${str1.toLowerCase(Locale.ROOT).filter { !str2.toLowerCase(Locale.ROOT).contains(it) }}")
+    println("out2: ${str2.toLowerCase(Locale.ROOT).filter { !str1.toLowerCase(Locale.ROOT).contains(it) }}")
 }
