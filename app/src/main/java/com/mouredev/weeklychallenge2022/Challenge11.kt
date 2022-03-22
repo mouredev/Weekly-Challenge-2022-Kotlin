@@ -19,8 +19,6 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-
-
 fun main() {
     val str1 = "Hola Mundo"
     val str2 = "Mundo."
