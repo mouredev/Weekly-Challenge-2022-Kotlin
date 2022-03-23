@@ -19,3 +19,59 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val str = "Ana lleva al oso la avellana"
+    println("¿Es palindroma la frase '$str'?: ${isPalindrome(str.lowercase())} ")
+    val str2 = "Esta casa huele a nueva"
+    println("¿Es palindroma la frase '$str2'?: ${isPalindrome(str2.lowercase())} ")
+    val str3 = "Café y cigarro, muñequito de barro"
+    println("¿Es palindroma la frase '$str3'?: ${isPalindrome(str3.lowercase())} ")
+    val str4 = "11811"
+    println("¿Es palindroma la frase '$str4'?: ${isPalindrome(str4.lowercase())} ")
+    val str5 = "Amor azul\n" +
+            "\n" +
+            "Ramera, de todo te di.\n" +
+            "\n" +
+            "Mariposa colosal, sí,\n" +
+            "\n" +
+            "yo de todo te di.\n" +
+            "\n" +
+            "Poda la rosa, Venus.\n" +
+            "\n" +
+            "El átomo como tal\n" +
+            "\n" +
+            "es un evasor alado.\n" +
+            "\n" +
+            "Pide, todo te doy: isla,\n" +
+            "\n" +
+            "sol, ocaso, pirámide.\n" +
+            "\n" +
+            "Todo te daré: mar, luz, aroma"
+    println("¿Es palindroma la frase '$str5'?: ${isPalindrome(str5.lowercase())} ")
+}
+
+private fun isPalindrome(str: String): Boolean {
+
+    var clearString = ""
+    var clearReverseString = ""
+
+    val specialsChar = hashMapOf ("á" to "a", "é" to "e", "í" to "i", "ó" to "o", "ú" to "u",
+                                  "ä" to "a", "ë" to "e", "ï" to "i", "ö" to "o", "ü" to "u")
+
+    str.forEach{
+        if (it.isLetterOrDigit()) {
+            if (specialsChar.containsKey(it.toString())){
+                clearString += specialsChar.getValue(it.toString())
+                clearReverseString = specialsChar.getValue(it.toString()) + clearReverseString
+            }
+            else {
+                clearString += it.toString()
+                clearReverseString = it.toString() + clearReverseString
+            }
+
+        }
+    }
+
+    return clearString == clearReverseString
+}
