@@ -1,5 +1,4 @@
 package com.mouredev.weeklychallenge2022
-import java.text.Normalizer
 
 /*
  * Reto #12
@@ -20,28 +19,3 @@ import java.text.Normalizer
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
-fun main() {
-    println(isPalindrome("Ana lleva al oso la avellana."))  // true
-    println(isPalindrome("La ruta nos aportó otro paso natural."))  // true
-    println(isPalindrome("¡Rápido, di par!")) // true
-    println(isPalindrome("No, no soy palíndromo")) // false
-}
-
-// https://loquemeinteresadelared.wordpress.com/tag/incombiningdiacriticalmarks/
-private val REGEX_UNACCENT = "\\p{InCombiningDiacriticalMarks}+".toRegex()
-
-fun CharSequence.unaccent(): String {
-    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
-    return REGEX_UNACCENT.replace(temp, "")
-}
-
-fun isPalindrome(input: String): Boolean {
-    var normalized = input.unaccent().lowercase()
-    normalized = normalized.replace("""[?¿!¡,.; ]""".toRegex(), "")
-    var isPalindrome = true
-    for (i in 0..normalized.length/2){
-        if (normalized[i] != normalized[normalized.lastIndex-i]) isPalindrome = false
-    }
-    return isPalindrome
-}
