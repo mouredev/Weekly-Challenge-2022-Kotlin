@@ -44,3 +44,26 @@ fun printCharactersReply(str1: String, str2: String) {
     println("Presentes en str1 => " + out1)
     println("Presentes en str2 => " + out2)
 }
+
+private fun printNonCommon(str1: String, str2: String) {
+    println("out1: ${findNonCommon(str1, str2)}")
+    println("out2: ${findNonCommon(str2, str1)}")
+}
+
+private fun findNonCommon(str1: String, str2: String): String {
+
+    var out = ""
+
+    str1.lowercase().forEach {
+        if (!str2.lowercase().contains(it)) {
+            out += it
+        }
+    }
+
+    return out
+}
+
+private fun printNonCommonWithFilter(str1: String, str2: String) {
+    println("out1: ${str1.lowercase().filter { !str2.lowercase().contains(it) }}")
+    println("out2: ${str2.lowercase().filter { !str1.lowercase().contains(it) }}")
+}
