@@ -19,3 +19,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    if(palindromo("Ana lleva al oso la avellana."))
+        println("Es un palindromo" )
+    else
+        println("No es un palindromo")
+}
+
+fun palindromo(text: String): Boolean {
+    val cleanText: String = text.lowercase()
+        .replace("[,.:;()\\-\\n\\t]".toRegex()," ")
+        .replace("\\s+".toRegex(), "")
+
+    val reversed = cleanText.reversed()
+    return cleanText == reversed
+}
