@@ -19,3 +19,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main () {
+    val phrase = "Ana lleva al oso la avellana."
+    println("la frase -> $phrase es un palindromo? R:/ ${isPalindrome(phrase)}")
+}
+
+fun isPalindrome(text: String) : Boolean {
+    return text.normalize().toList() == text.normalize().toList().asReversed()
+}
+
+fun String.clearPunctuationMarks() = this.replace("\\p{Punct}".toRegex(),"")
+
+fun String.normalize() = this.replace(" ", "")
+    .clearAccent()
+    .clearPunctuationMarks()
+    .lowercase()
