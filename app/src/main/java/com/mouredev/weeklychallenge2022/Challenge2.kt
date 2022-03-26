@@ -25,8 +25,7 @@ fun main() {
 
     var n0: Long = 0
     var n1: Long = 1
-
-    (1..50).forEach { _ ->
+    (1..4).forEach { _ ->
 
         println(n0)
 
@@ -34,4 +33,18 @@ fun main() {
         n0 = n1
         n1 = fib
     }
+
+    println(fibonacci(2))
+}
+
+fun fibonacci(n :Int): Int{
+
+    var n0 = 0
+    var n1 = 1
+    (1..n).forEach { _ ->
+        val fib = n0 + n1
+        n0 = n1
+        n1 = fib
+    }
+    return n0
 }

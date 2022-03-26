@@ -22,6 +22,14 @@ package com.mouredev.weeklychallenge2022
 fun main() {
 
     deleteCharacters("hola", "lase")
+    printNonCommon("brais","moure")
+    printNonCommon("Me gusta Java","Me gusta Kotlin")
+    printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
+        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+
+    // Otra solución utilizando funciones de orden superior
+    printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
+        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
 }
 
 fun deleteCharacters(str1: String, str2:String){
@@ -47,3 +55,28 @@ fun deleteCharacters(str1: String, str2:String){
     println("out1: $out1 out2: $out2")
 }
 
+  
+
+
+private fun printNonCommon(str1: String, str2: String) {
+    println("out1: ${findNonCommon(str1, str2)}")
+    println("out2: ${findNonCommon(str2, str1)}")
+}
+
+private fun findNonCommon(str1: String, str2: String): String {
+
+    var out = ""
+
+    str1.lowercase().forEach {
+        if (!str2.lowercase().contains(it)) {
+            out += it
+        }
+    }
+
+    return out
+}
+
+private fun printNonCommonWithFilter(str1: String, str2: String) {
+    println("out1: ${str1.lowercase().filter { !str2.lowercase().contains(it) }}")
+    println("out2: ${str2.lowercase().filter { !str1.lowercase().contains(it) }}")
+}
