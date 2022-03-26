@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.text.Normalizer
-
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -23,20 +21,5 @@ import java.text.Normalizer
  */
 
 fun main() {
-    println(isAnagram("RAIL! SAFETY!", "fairy tales"))
-}
 
-fun isAnagram(word1: String, word2: String): Boolean {
-    val sequence1 = frequencyChar(word1)
-    val sequence2 = frequencyChar(word2)
-    return sequence1 == sequence2
-}
-
-fun frequencyChar(string: String) : Map<Char, List<Char>> =
-    string.uppercase().clearAccent().filter { it.isLetter() }.groupBy { it }
-
-fun String.clearAccent(): String {
-    //source: https://stackoverflow.com/questions/3322152/is-there-a-way-to-get-rid-of-accents-and-convert-a-whole-string-to-regular-lette/3322174#3322174
-    val stringNormalizer = Normalizer.normalize(this, Normalizer.Form.NFD)
-    return stringNormalizer.replace("[^\\p{ASCII}]".toRegex(), "")
 }
