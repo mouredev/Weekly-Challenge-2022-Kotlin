@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #12
  * ¿ES UN PALÍNDROMO?
@@ -19,3 +21,38 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("Welcome to is palindrome.")
+    println("Enter text to check if is palindrome: ")
+    val text = readLine()
+    text?.let {
+        println("Is \"$it\" palindrome? -> ${it.isPalindrome()}")
+    }
+}
+
+private fun String.isPalindrome(): Boolean {
+    val formattedText: String = this.formatString()
+    val lastIndex = formattedText.length -1
+    var isPalindrome = true
+    var index = 0
+    while(index <= lastIndex-index && isPalindrome){
+        isPalindrome = formattedText[index] == formattedText[lastIndex-index]
+        index++
+    }
+    return isPalindrome
+}
+
+private fun String.formatString(): String = this.lowercase(Locale.getDefault()).map {
+    it.removeAccent()
+}.toString().replace("[^a-z0-9]".toRegex(), "")
+
+private fun Char.removeAccent(): Char =
+    when {
+        this == 'á' -> 'a'
+        this == 'é' -> 'e'
+        this == 'í' -> 'i'
+        this == 'ó' -> 'o'
+        this == 'ú' -> 'u'
+        else -> this
+    }
