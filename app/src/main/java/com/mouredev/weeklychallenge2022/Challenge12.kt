@@ -19,3 +19,22 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+fun main() {
+    println(isPalindrome("A cavar a Caravaca"))
+}
+
+fun isPalindrome(text : String) : Boolean{
+
+
+    val newText= text.lowercase().filterNot { it.isWhitespace()}
+    val textSize = newText.length - 1
+
+    newText.forEachIndexed { i, letter ->
+        if (letter != newText[textSize - i]){
+            return  false
+        }
+    }
+    return true
+}

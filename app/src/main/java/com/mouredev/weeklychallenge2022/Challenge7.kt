@@ -20,6 +20,30 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main1(){
+
+    wordsCount( "so we created this collection of online text tools. Unlike many other tools, we made our tools free")
+}
+
+fun wordsCount(text: String){
+    val re = "[^A-Za-z0-9 ]".toRegex()
+    val splitText = re.replace(text, "").lowercase().split(" ")
+
+    for (i in splitText.indices){
+        var countWord = 0
+        val actualWord = splitText[i]
+        for (j  in splitText.indices){
+            val word = splitText[j]
+            if ((word == actualWord)){
+                countWord +=1
+            }
+        }
+
+        println("la palabra $actualWord sale $countWord")
+        countWord = 0
+    }
+}
 fun main() {
     countWords("Hola, mi nombre es brais. Mi nombre completo es Brais Moure (MoureDev).")
 }

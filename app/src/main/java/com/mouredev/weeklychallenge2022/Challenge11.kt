@@ -20,6 +20,8 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+
+    deleteCharacters("hola", "lase")
     printNonCommon("brais","moure")
     printNonCommon("Me gusta Java","Me gusta Kotlin")
     printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
@@ -29,6 +31,32 @@ fun main() {
     printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
         "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
 }
+
+fun deleteCharacters(str1: String, str2:String){
+
+
+    var out1 = ""
+    var out2 = ""
+
+    str1.forEach { item ->
+
+        if(!str2.contains(item)){
+            out1+=item
+        }
+    }
+
+    str2.forEach { item ->
+
+        if(!str1.contains(item)){
+            out2+=item
+        }
+    }
+
+    println("out1: $out1 out2: $out2")
+}
+
+  
+
 
 private fun printNonCommon(str1: String, str2: String) {
     println("out1: ${findNonCommon(str1, str2)}")

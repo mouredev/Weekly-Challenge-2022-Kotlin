@@ -21,6 +21,35 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+// fun main() {
+
+//     val str = "{ [ a * ( c + d ) ] - 5 }"
+//     isBalancedExpression(str)
+// }
+
+fun isBalancedExpression(expression : String) {
+    val filteredExpression = expression.filter { !it.isWhitespace() }
+
+    var totalItems = 0
+    filteredExpression.forEach { value ->
+
+        if ((value == '{') || (value == '}')) {
+            totalItems++
+        }
+
+        if ((value == '[') || (value == ']')) {
+            totalItems++
+
+        }
+        if ((value == '(') || (value == ')')) {
+            totalItems++
+        }
+    }
+
+
+    if (totalItems % 2 == 0) println("La expresión esta balanceada") else println("La expresión no esta balanceada")
+}
 fun main() {
     println(isBalanced("{a + b [c] * (2x2)}}}}"))
     println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
