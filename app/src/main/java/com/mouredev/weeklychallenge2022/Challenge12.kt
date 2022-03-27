@@ -21,14 +21,27 @@ package com.mouredev.weeklychallenge2022
  */
 
 
+
 fun main() {
-    println(isPalindrome("A cavar a Caravaca"))
+    println(isPalindrome("Á cavar a Caravaca"))
 }
 
+
+fun String.removeAccent() : String{
+    val strRegex ="áéíóú"
+    val normal = "aeiou"
+
+    return this.map {
+        if (strRegex.contains(it)){
+            val index = strRegex.indexOf(it)
+            normal[index]
+        }else it
+    }.joinToString("")
+}
 fun isPalindrome(text : String) : Boolean{
 
 
-    val newText= text.lowercase().filterNot { it.isWhitespace()}
+    val newText= text.lowercase().filterNot { it.isWhitespace()}.removeAccent()
     val textSize = newText.length - 1
 
     newText.forEachIndexed { i, letter ->
