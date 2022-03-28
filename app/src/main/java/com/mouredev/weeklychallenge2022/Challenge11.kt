@@ -20,16 +20,35 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    printExclusiveChars("Enunciado: Crea una función que reciba dos cadenas como parámetro (str1, str2) e imprima otras dos cadenas como salida (out1, out2).",
-        "- out1 contendrá todos los caracteres presentes en la str1 pero NO estén presentes en str2.")
-    printExclusiveChars("Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.",
-        "Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.")
-    printExclusiveChars("- out1 contendrá todos los caracteres presentes en la str1 pero NO estén presentes en str2.",
-        "- out2 contendrá todos los caracteres presentes en la str2 pero NO estén presentes en str1.")
+    printNonCommon("brais","moure")
+    printNonCommon("Me gusta Java","Me gusta Kotlin")
+    printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
+        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+
+    // Otra solución utilizando funciones de orden superior
+    printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
+        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
 }
 
-fun printExclusiveChars(str1: String, str2: String) {
-    println("out1: ${str1.filter{ !str2.contains(it) }}")
-    println("out2: ${str2.filter{ !str1.contains(it) }}")
-    println()
+private fun printNonCommon(str1: String, str2: String) {
+    println("out1: ${findNonCommon(str1, str2)}")
+    println("out2: ${findNonCommon(str2, str1)}")
+}
+
+private fun findNonCommon(str1: String, str2: String): String {
+
+    var out = ""
+
+    str1.lowercase().forEach {
+        if (!str2.lowercase().contains(it)) {
+            out += it
+        }
+    }
+
+    return out
+}
+
+private fun printNonCommonWithFilter(str1: String, str2: String) {
+    println("out1: ${str1.lowercase().filter { !str2.lowercase().contains(it) }}")
+    println("out2: ${str2.lowercase().filter { !str1.lowercase().contains(it) }}")
 }
