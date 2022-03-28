@@ -16,3 +16,15 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    var number = 13
+    println(String.format("El factorial de $number es %.0f", factorial(number)))
+}
+
+private fun factorial(number: Int): Float {
+    return if (number == 0) {
+        1f
+    } else {
+        number * factorial(number - 1)
+    }
+}
