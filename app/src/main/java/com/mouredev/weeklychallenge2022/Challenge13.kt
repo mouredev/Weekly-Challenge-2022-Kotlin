@@ -21,9 +21,9 @@ fun main() {
     println(String.format("El factorial de $number es %.0f", factorial(number)))
 }
 
-private fun factorial(number: Int): Float {
+private fun factorial(number: Int): Double {
     return if (number == 0) {
-        1f
+        "1".toDouble()
     } else {
         number * factorial(number - 1)
     }
