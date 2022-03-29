@@ -9,5 +9,4 @@ def calFactorial(numero):
 #Llamada función principal
 if __name__ == '__main__':
     numero = int(input('Introduce un número: '))
-    calFactorial(numero)
     print(f'El factorial de {numero} es:',calFactorial(numero))
