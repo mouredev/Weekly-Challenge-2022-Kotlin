@@ -16,3 +16,17 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("2! = " + factorial(2))
+    println("5! = " + factorial(5))
+    println("10! = " + factorial(10))
+    println("15! = " + factorial(15))
+}
+
+fun factorial(factorial: Int): Int {
+    if (factorial == 1) {
+        return factorial
+    }
+    return factorial * factorial(factorial - 1)
+}
