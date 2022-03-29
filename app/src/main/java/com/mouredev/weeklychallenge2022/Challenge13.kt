@@ -16,3 +16,25 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+/*
+ * Solución Reto #13
+ * By Rodolfo Rojas
+ * Github: @jrodolforojas
+ * Twitch: fofocr
+ * Lenguaje: Go (Golang)
+ */
+
+//func FactorialRecursive(num int) int {
+//    if num == 1 {
+//        return num
+//    } else {
+//        return num * FactorialRecursive(num-1)
+//    }
+//}
+//
+//func main() {
+//    fmt.Println(FactorialRecursive(3)) // 6
+//    fmt.Println(FactorialRecursive(5)) // 120
+//    fmt.Println(FactorialRecursive(6)) // 720
+//}
