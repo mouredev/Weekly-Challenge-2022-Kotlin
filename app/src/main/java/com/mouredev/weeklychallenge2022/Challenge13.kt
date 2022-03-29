@@ -16,3 +16,14 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("El factorial de 0 (caso especial) es = ${Factorial(0)}")
+    println("El factorial de 1 (caso extremo) es = ${Factorial(1)}")
+    println("El factorial de 5 es = ${Factorial(5)}")
+    println("El factorial de 100 es = ${Factorial(100)}")
+}
+
+private fun Factorial(number: Int): Double{
+    return if (number < 2) 1.toDouble() else number * (Factorial(number - 1))
+}
