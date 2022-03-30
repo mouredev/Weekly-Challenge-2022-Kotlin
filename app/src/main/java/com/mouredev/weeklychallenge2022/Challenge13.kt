@@ -16,3 +16,36 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+/**
+ * Funcion main
+ */
+fun main() {
+
+    /* Calcula el factoral de los 10 primeros números */
+    for(i in 0..10){
+        println("$i!: ${factorial(i)}")
+    }
+}
+
+/**
+ * Función que recibe un entero y devuelve el factorial de forma recursiva
+ * El factorial de un numero se refiere a los numero naturales positivos n>0.
+ * En el caso que sea 0 su factorial es 1 por definicion
+ * Si el numero fuera negativo devuelve -1
+ * @param num entero
+ * @return factorial de num
+ */
+fun factorial(num: Int): Int {
+    return if(num>=0){
+        if (num == 1 || num == 0) {
+            1
+        } else {
+            factorial(num - 1) * num
+        }
+    }else{
+        -1
+    }
+
+}
+
