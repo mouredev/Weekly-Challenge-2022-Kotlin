@@ -16,3 +16,15 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    for (i in 1..5) { println(factorial(i)) }
+}
+
+private fun factorial(input: Int): Int {
+    return if (input > 1) {
+        input * factorial(input - 1)  
+    } else {
+        input
+    }
+}
