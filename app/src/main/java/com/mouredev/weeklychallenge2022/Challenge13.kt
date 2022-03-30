@@ -16,3 +16,14 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    println(recursiveFactorial(4))
+    println(recursiveFactorial(0))
+    println(recursiveFactorial(25))
+}
+
+fun recursiveFactorial(n: Int): Int {
+    if (n<2) return 1
+    return n * recursiveFactorial(n-1)
+}
