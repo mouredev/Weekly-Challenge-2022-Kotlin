@@ -1,6 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
 import java.text.Normalizer
+import java.util.*
 
 /*
  * Reto #12
@@ -22,18 +23,35 @@ import java.text.Normalizer
  *
  */
 
-fun main() {
-    println(isPalindrome("Ana lleva al oso la avellana."))
-    println(isPalindrome("Adivina ya te opina, ya ni miles origina, ya ni cetro me domina, ya ni monarcas, a repaso ni mulato carreta, acaso nicotina, ya ni cita vecino, anima cocina, pedazo gallina, cedazo terso nos retoza de canilla goza, de pánico camina, ónice vaticina, ya ni tocino saca, a terracota luminosa pera, sacra nómina y ánimo de mortecina, ya ni giros elimina, ya ni poeta, ya ni vida"))
-    println(isPalindrome("¿Qué os ha parecido el reto?"))
+fun main (){
+    println(palindroma("arozzora"))
+    println(palindroma("ada"))
+    println(palindroma("hola como estas satse omoc aloh"))
+    println(palindroma("hola"))
+    println(palindroma("àna lleva al oso la avellana"))
 }
 
-private fun isPalindrome(text: String): Boolean {
+fun palindroma(text: String) : Boolean {
+    var limpio: String?
+    val valor: String = text.lowercase()
+    limpio = Normalizer.normalize(valor, Normalizer.Form.NFD)
 
-    val normalizedText = Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD)
-        .replace("[^\\p{ASCII}]".toRegex(), "")
-        .replace("[^a-z0-9]".toRegex(), "")
-        return normalizedText == normalizedText.reversed()
+    limpio = limpio.replace("[^\\p{ASCII}(N\u0303)(n\u0303)(\u00A1)(\u00BF)(\u00B0)(U\u0308)]".toRegex(), "")
+
+    limpio = Normalizer.normalize(limpio, Normalizer.Form.NFC)
+    limpio = limpio.lowercase()
+
+    val charArray = limpio.replace(" ", "").toCharArray()
+
+    var i = 0
+    var j = charArray.size - 1
+
+    while (i != charArray.size){
+        if (charArray[i] != charArray[j]){
+            return false
+        }
+        i++
+        j--
     }
-
-
+    return true
+}
