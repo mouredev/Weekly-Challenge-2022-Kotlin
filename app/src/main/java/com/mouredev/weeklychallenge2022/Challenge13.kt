@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package com.example.weeklychallenge2022
 
 /*
  * Reto #13
@@ -16,3 +16,20 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+
+    var num: Long = 25
+    println("El factorial de $num es : " + factorial(num))
+    num = 0
+    println("El factorial de $num es : " + factorial(num))
+    num = 10
+    println("El factorial de $num es : " + factorial(num))
+}
+
+fun factorial(num: Long): Long {
+    return if (num == 0L) {
+        1
+    } else {
+        num * factorial(num - 1)
+    }
+}
