@@ -16,3 +16,23 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+  //Check factorials 1 to 10 using wikipedia:
+  //https://en.wikipedia.org/wiki/Factorial
+  for (i in 1..10) {
+    println(factorial(i))
+  }
+  for (i in 1..10) {
+    println(i.getFactorial())
+  }
+}
+
+private fun factorial(number: Int): Int {
+  return if (number == 1) number else number * factorial(number - 1)
+}
+
+/*
+ * Bonus: using extensions
+ */
+private fun Int.getFactorial(): Int = if (this == 1) this else this * (this - 1).getFactorial()
