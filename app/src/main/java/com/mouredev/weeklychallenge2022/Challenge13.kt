@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.math.BigInteger
+
 /*
  * Reto #13
  * FACTORIAL RECURSIVO
@@ -16,3 +18,15 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val num = 5
+    println("Factorial de $num es ${factorial(num)}")
+}
+
+fun factorial(number: Int): BigInteger {
+    if(number == 0) {
+        return BigInteger.valueOf(1)
+    }
+    return factorial(number - 1).multiply(number.toBigInteger())
+}
