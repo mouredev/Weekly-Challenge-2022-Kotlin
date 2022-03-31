@@ -20,11 +20,11 @@ import java.math.BigInteger
  */
 
 fun main() {
-    val num = 10
+    val num = 5
     println("Factorial de $num es ${factorial(num)}")
 }
 
-private fun factorial(number: Int): BigInteger {
+fun factorial(number: Int): BigInteger {
     if(number == 0) {
         return BigInteger.valueOf(1)
     }
