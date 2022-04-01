@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.math.BigInteger
+
 /*
  * Reto #13
  * FACTORIAL RECURSIVO
@@ -17,22 +19,47 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-  //Check factorials 1 to 10 using wikipedia:
-  //https://en.wikipedia.org/wiki/Factorial
-  for (i in 1..10) {
-    println(factorial(i))
-  }
-  for (i in 1..10) {
-    println(i.getFactorial())
-  }
-}
-
-private fun factorial(number: Int): Int {
-  return if (number == 1) number else number * factorial(number - 1)
-}
-
 /*
- * Bonus: using extensions
+ * Factorial: Producto de números enteros positivos.
+ * El 0 está aceptado en la secuencia.
+ *
+ * NOTA: Al solo admitir números naturales usamos Long por ser la clase con más tamaño de números naturales.
+ *
+ * Como bonus lo he hecho con una extension y dejo también la forma de hacerlo con BigInteger
+ * para aceptar números muy altos.
+ *
+ * Comprobar factoriales de 0 a 10 usando la wikipedia:
+ * https://es.wikipedia.org/wiki/Factorial
  */
-private fun Int.getFactorial(): Int = if (this == 1) this else this * (this - 1).getFactorial()
+fun main() {
+  println("factorial")
+  for (i in 0L..10L) {
+    println("$i! = ${factorial(i)}")
+  }
+  println("getFactorial")
+  for (i in 0L..10L) {
+    println("$i! = ${i.getFactorial()}")
+  }
+  println("bigFactorial")
+  for (i in 0L..100L) {
+    //10 para pasarlo a formato decimal. Se puede usar 2 para pasarlo a binario
+    println("$i! = ${bigFactorial(i).toString(10)}")
+  }
+}
+
+private fun factorial(number: Long): Long {
+  if (number < 0) throw IllegalArgumentException("negatives values not allowed")
+  return if (number <= 1) 1 else number * factorial(number - 1)
+}
+
+private fun Long.getFactorial(): Long {
+  if (this < 0) throw IllegalArgumentException("negatives values not allowed")
+  return if (this <= 1) 1 else this * (this - 1).getFactorial()
+}
+
+private fun bigFactorial(number: Long): BigInteger {
+  if (number < 0) throw IllegalArgumentException("negatives values not allowed")
+  val validValue = if (number == 0L) 1 else number
+  val bigNumber = BigInteger.valueOf(validValue)
+  return if (number <= 1) bigNumber else bigNumber.multiply(bigFactorial(number - 1))
+}
