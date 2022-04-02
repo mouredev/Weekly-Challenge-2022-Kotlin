@@ -16,3 +16,8 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+ Func<int, int> fact = null;
+            fact = x => (x < 2) ? 1 : x * fact(x - 1);
+
+Enumerable.Range(0, 10).ToList().ForEach(item => Console.WriteLine(fact(item)));
