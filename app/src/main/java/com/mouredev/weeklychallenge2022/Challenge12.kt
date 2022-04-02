@@ -1,6 +1,10 @@
 package com.mouredev.weeklychallenge2022
 
+
 import java.util.*
+
+import java.text.Normalizer
+
 
 /*
  * Reto #12
@@ -23,6 +27,7 @@ import java.util.*
  */
 
 fun main() {
+
     beOrNotToBePalindromo("Dragon")
     beOrNotToBePalindromo("Ana!")
     beOrNotToBePalindromo("reconocer")
@@ -51,4 +56,19 @@ fun beOrNotToBePalindromo(word : String) : Boolean{
 
     println("The phrase or word: \"$word\" is a palíndromo? [$beOrNotToBe]")
     return beOrNotToBe
+
+    // For the solution given by moure dev
+    println(isPalindrome("Ana lleva al oso la avellana."))
+    println(isPalindrome("Adivina ya te opina, ya ni miles origina, ya ni cetro me domina, ya ni monarcas, a repaso ni mulato carreta, acaso nicotina, ya ni cita vecino, anima cocina, pedazo gallina, cedazo terso nos retoza de canilla goza, de pánico camina, ónice vaticina, ya ni tocino saca, a terracota luminosa pera, sacra nómina y ánimo de mortecina, ya ni giros elimina, ya ni poeta, ya ni vida"))
+    println(isPalindrome("¿Qué os ha parecido el reto?"))
 }
+
+// Solution given by moure dev
+private fun isPalindrome(text: String): Boolean {
+
+    val normalizedText = Normalizer.normalize(text.toLowerCase(Locale.ROOT), Normalizer.Form.NFD)
+        .replace("[^\\p{ASCII}]".toRegex(), "")
+        .replace("[^a-z0-9]".toRegex(), "")
+        return normalizedText == normalizedText.reversed()
+    }
+
