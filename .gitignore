@@ -235,3 +235,7 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,kotlin
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/MoureDev/v17/.suo
+Marcelo/Reto13.cs
