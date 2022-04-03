@@ -1,10 +1,6 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
-    }
-}
-rootProject.name = "Weekly Challenge 2022"
-include ':app'
+rootProject.name = 'Moure_Weekly-Challenge'
+include 'src:main'
+findProject(':src:main')?.name = 'main'
+include 'src:test'
+findProject(':src:test')?.name = 'test'
+
