@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.abs
+
 /*
  * Reto #13
  * FACTORIAL RECURSIVO
@@ -16,3 +18,15 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    var number = 18
+    println(String.format("El factorial de ${abs(number)} es %.0f", factorial(abs(number))))
+}
+
+private fun factorial(number: Int): Double {
+    return if (number == 0) {
+        1.00
+    } else {
+        number * factorial(number - 1)
+    }
+}
