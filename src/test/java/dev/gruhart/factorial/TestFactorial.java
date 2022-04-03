@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
-la idea es resolverlo primero siguiendo un enfoque tdd y llegar asi a la recursividad
+la idea es resolverlo primero siguiendo un enfoque tdd
  */
 
 public class TestFactorial {
