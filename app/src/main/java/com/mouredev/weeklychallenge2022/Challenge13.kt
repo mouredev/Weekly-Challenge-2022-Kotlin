@@ -16,3 +16,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    println("Welcome to factorial.")
+    println("Introduce the number to calculate factorial: ")
+    val text = readLine()
+    text?.let {
+        try {
+            println("$text factorial is -> ${factorial(number = text.toInt())}")
+        }catch (e: Exception){
+            println("The text introduced is not a number")
+        }
+    }
+}
+
+private fun factorial(number: Int, result: Int = 1): Int{
+    return if(number <= 1 ){
+        result
+    }else{
+        factorial(number-1, result * number)
+    }
+}
