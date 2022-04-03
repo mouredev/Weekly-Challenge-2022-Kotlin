@@ -20,5 +20,10 @@ public class TestFactorial {
 
     }
 
+    @Test
+    public void testCasoMas1(){
+        CalculaFactorial calculaFactorial = new CalculaFactorial();
+        assertEquals(2,calculaFactorial.calcula(2));
+    }
 
 }

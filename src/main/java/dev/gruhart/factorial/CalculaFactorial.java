@@ -4,6 +4,16 @@ public class CalculaFactorial {
 
     public int calcula(int i) {
 
+        if(i<=1)
+            return 1;
+        else {
+            int cursor = i;
+            while(cursor > 1){
+                return cursor * calcula(cursor-1);
+            }
+        }
+        //pongo este por que el compilador me p[ide un return
+        //TODO refactorizar
         return 1;
     }
 }
