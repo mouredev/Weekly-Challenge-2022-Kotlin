@@ -26,4 +26,11 @@ public class TestFactorial {
         assertEquals(2,calculaFactorial.calcula(2));
     }
 
+    @Test
+    public void testCasosGenericos(){
+        CalculaFactorial calculaFactorial = new CalculaFactorial();
+        assertEquals(120,calculaFactorial.calcula(5));
+        assertEquals(3628800,calculaFactorial.calcula(10));
+    }
+
 }

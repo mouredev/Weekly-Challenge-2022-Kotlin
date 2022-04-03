@@ -12,7 +12,7 @@ public class CalculaFactorial {
                 return cursor * calcula(cursor-1);
             }
         }
-        //pongo este por que el compilador me p[ide un return
+        //pongo este por que el compilador me pide un return
         //TODO refactorizar
         return 1;
     }
