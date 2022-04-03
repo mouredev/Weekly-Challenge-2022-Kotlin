@@ -25,7 +25,7 @@ fun main() {
 
 private fun factorial(number: Int): Double {
     return if (number == 0) {
-        "1".toDouble()
+        1.00
     } else {
         number * factorial(number - 1)
     }
