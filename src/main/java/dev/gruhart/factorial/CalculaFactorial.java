@@ -4,9 +4,8 @@ public class CalculaFactorial {
 
     public int calcula(int i) {
         if (i>1) {
-            int cursor = i;
-            while(cursor > 1){
-                return cursor * calcula(cursor-1);
+            while(i > 1){
+                return i * calcula(i-1);
             }
         }
         return 1;
