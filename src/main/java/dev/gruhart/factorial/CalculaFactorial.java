@@ -2,9 +2,12 @@ package dev.gruhart.factorial;
 
 public class CalculaFactorial {
 
-    public long calcula(long i) {
+    public Integer calcula(Integer i) {
 
-        while(i > 1){
+        if(i<0)
+            return null; // manejando negativos
+
+        if(i > 1){
             return i * calcula(i-1);
         }
         return 1;
