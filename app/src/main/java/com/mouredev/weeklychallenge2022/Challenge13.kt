@@ -15,16 +15,25 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
+ * fun main() {
+ *     for (i in 0..5) { println(factorial(i)) }
+ * }
+ * 
+ * private fun factorial(input: Int): Int {
+ *     return if (input > 1) {
+ *         input * factorial(input - 1)  
+ *     } else {
+ *         input
+ *     }
+ * }
  */
-
+ 
 fun main() {
-    for (i in 1..5) { println(factorial(i)) }
+    for (i in 1..5) { println(factorial(i) ?:run { "No tiene factorial" }) }
+    
+    println(factorial(-1)?:run { "No tiene factorial" })
 }
 
-private fun factorial(input: Int): Int {
-    return if (input > 1) {
-        input * factorial(input - 1)  
-    } else {
-        input
-    }
+private fun factorial(input: Int): Int? {
+    return if (input <= 0) null else if (input > 1) input * factorial(input - 1)!! else input
 }
