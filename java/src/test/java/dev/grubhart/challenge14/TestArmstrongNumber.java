@@ -10,6 +10,7 @@ public class TestArmstrongNumber {
     @Test
     public void testUnDigito(){
 
+        assertTrue(new MyMath().isArmstrongNumbber(0));
         assertTrue(new MyMath().isArmstrongNumbber(1));
         assertTrue(new MyMath().isArmstrongNumbber(2));
         assertTrue(new MyMath().isArmstrongNumbber(7));
@@ -23,5 +24,24 @@ public class TestArmstrongNumber {
         assertFalse(new MyMath().isArmstrongNumbber(15));
         assertFalse(new MyMath().isArmstrongNumbber(45));
         assertFalse(new MyMath().isArmstrongNumbber(61));
+    }
+
+    @Test
+    public void testTresDigitosCasoNegativo(){
+        assertFalse(new MyMath().isArmstrongNumbber(101));
+    }
+
+    @Test
+    public void testTresDigitosCasoPositivo(){
+        assertTrue(new MyMath().isArmstrongNumbber(153));
+    }
+
+    @Test
+    public void testCasoGeneral(){
+        assertTrue(new MyMath().isArmstrongNumbber(370));
+        assertTrue(new MyMath().isArmstrongNumbber(371));
+        assertTrue(new MyMath().isArmstrongNumbber(9474));
+        assertFalse(new MyMath().isArmstrongNumbber(9475));
+        assertFalse(new MyMath().isArmstrongNumbber(8424));
     }
 }
