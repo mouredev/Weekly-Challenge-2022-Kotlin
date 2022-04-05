@@ -42,9 +42,9 @@ public class MyMath {
             return (int) Math.pow(number,numberOfDigits);
         }
         else{// separado por legibilidad
-            int unidades = number%10;
-            int decenas = (int) Math.ceil(number/10);
-            return (int) (Math.pow(unidades,numberOfDigits) + getSumOfArmDigitsRecursive(decenas,numberOfDigits));
+            int units = number%10;
+            int tens = (int) Math.ceil(number/10);
+            return (int) (Math.pow(units,numberOfDigits) + getSumOfArmDigitsRecursive(tens,numberOfDigits));
         }
 
     }
