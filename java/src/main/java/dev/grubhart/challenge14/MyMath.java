@@ -44,7 +44,7 @@ public class MyMath {
         else{// separado por legibilidad
             int unidades = number%10;
             int decenas = (int) Math.ceil(number/10);
-            return (int) (Math.pow(unidades,numberOfDigits) + getSumOfArmDigitsIterative(decenas,numberOfDigits));
+            return (int) (Math.pow(unidades,numberOfDigits) + getSumOfArmDigitsRecursive(decenas,numberOfDigits));
         }
 
     }
