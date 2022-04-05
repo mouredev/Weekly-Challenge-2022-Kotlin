@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,3 +19,20 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(isArmstrong(1))
+    println(isArmstrong(153))
+    println(isArmstrong(54748))
+    println(isArmstrong(1741725))
+    println(isArmstrong(534494836))
+}
+
+fun isArmstrong(number: Int): Boolean {
+    var total = 0
+    for (currentNum in number.toString().toCharArray()) {
+        val num = currentNum.toString().toDouble().pow(number.toString().length).toInt()
+        total += num
+    }
+    return number == total
+}
