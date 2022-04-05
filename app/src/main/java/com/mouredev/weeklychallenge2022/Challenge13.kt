@@ -18,15 +18,14 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println("2! = " + factorial(2))
-    println("5! = " + factorial(5))
-    println("10! = " + factorial(10))
-    println("15! = " + factorial(15))
+    println(factorial(0) ?:run { "No tiene factorial" })
+    println(factorial(7) ?:run { "No tiene factorial" })
+    println(factorial(10) ?:run { "No tiene factorial" })
+    println(factorial(1) ?:run { "No tiene factorial" })
+    println(factorial(-1) ?:run { "No tiene factorial" })
 }
 
-fun factorial(factorial: Int): Int {
-    if (factorial == 1) {
-        return factorial
-    }
-    return factorial * factorial(factorial - 1)
+private fun factorial(n: Int): Int? {
+    return if (n < 0) null else if (n <= 1)  1 else n * (factorial(n - 1)!!)
 }
+
