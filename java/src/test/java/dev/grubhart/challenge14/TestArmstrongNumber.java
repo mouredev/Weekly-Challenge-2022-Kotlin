@@ -15,4 +15,13 @@ public class TestArmstrongNumber {
         assertTrue(new MyMath().isArmstrongNumbber(7));
         assertTrue(new MyMath().isArmstrongNumbber(8));
     }
+
+    @Test
+    public void testDosDigitos(){
+        assertFalse(new MyMath().isArmstrongNumbber(10));
+        assertFalse(new MyMath().isArmstrongNumbber(13));
+        assertFalse(new MyMath().isArmstrongNumbber(15));
+        assertFalse(new MyMath().isArmstrongNumbber(45));
+        assertFalse(new MyMath().isArmstrongNumbber(61));
+    }
 }
