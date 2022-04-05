@@ -9,8 +9,8 @@ public class MyMath {
         // para obtener el numero de digitos
         //
         // una alternativa seria usar divisiones consecutivas entre 10 pero lleva
-        // a un incremento de operaciones de forma lineal de este modo es solo una llamada
-        // para esta parte
+        // a un incremento de operaciones de forma lineal, de este modo es solo una llamada
+        // para obtener este valor
         int numberOfDigits = (int) Math.floor(Math.log10(number))+1;
 
         if (numberOfDigits>1){
