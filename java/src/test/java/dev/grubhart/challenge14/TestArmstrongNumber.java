@@ -2,8 +2,7 @@ package dev.grubhart.challenge14;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestArmstrongNumber {
 
@@ -43,5 +42,10 @@ public class TestArmstrongNumber {
         assertTrue(new MyMath().isArmstrongNumbber(9474));
         assertFalse(new MyMath().isArmstrongNumbber(9475));
         assertFalse(new MyMath().isArmstrongNumbber(8424));
+    }
+
+    @Test
+    public void testCasoNegativo(){
+        assertNull(new MyMath().isArmstrongNumbber(-370));
     }
 }
