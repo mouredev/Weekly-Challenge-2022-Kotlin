@@ -4,7 +4,10 @@ public class MyMath {
 
 
     public boolean isArmstrongNumbber(int number) {
-        
+
+        if(number<0)
+            return null;
+
         //usamos la parte entera del logaritmo en base 10 y a ese valor le sumamos 1
         // para obtener el numero de digitos
         //
