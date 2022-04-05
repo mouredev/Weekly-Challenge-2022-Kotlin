@@ -3,7 +3,7 @@ package dev.grubhart.challenge14;
 public class MyMath {
 
 
-    public boolean isArmstrongNumbber(int number) {
+    public Boolean isArmstrongNumbber(int number) {
 
         if(number<0)
             return null;
