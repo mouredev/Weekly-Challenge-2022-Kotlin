@@ -14,13 +14,14 @@ public class MyMath {
         int numberOfDigits = (int) Math.floor(Math.log10(number))+1;
 
         if (numberOfDigits>1){
-            return number== getSumOfArmDigits(number, numberOfDigits);
+           // return number== getSumOfArmDigitsIterative(number, numberOfDigits);
+            return number== getSumOfArmDigitsRecursive(number, numberOfDigits);
         }else
             return true;
 
     }
 
-    private int getSumOfArmDigits(int number, int numberOfDigits) {
+    private int getSumOfArmDigitsIterative(int number, int numberOfDigits) {
         int sumOfArmDigits = 0;
         int tempNumber = number;
 
@@ -30,5 +31,18 @@ public class MyMath {
             sumOfArmDigits= sumOfArmDigits+(int) Math.pow(mod, numberOfDigits);
         }
         return sumOfArmDigits;
+    }
+
+    private int getSumOfArmDigitsRecursive(int number, int numberOfDigits) {
+
+        if (number<10){
+            return (int) Math.pow(number,numberOfDigits);
+        }
+        else{// separado por legibilidad
+            int unidades = number%10;
+            int decenas = (int) Math.ceil(number/10);
+            return (int) (Math.pow(unidades,numberOfDigits) + getSumOfArmDigitsIterative(decenas,numberOfDigits));
+        }
+
     }
 }
