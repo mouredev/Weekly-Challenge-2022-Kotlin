@@ -10,3 +10,4 @@ def calFactorial(numero):
 if __name__ == '__main__':
     numero = int(input('Introduce un número: '))
     print(f'El factorial de {numero} es:',calFactorial(numero))
+    aa
