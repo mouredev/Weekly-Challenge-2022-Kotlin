@@ -31,7 +31,9 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#10** - 07/03/22 - `EXPRESIONES EQUILIBRADAS`
 * **#11** - 14/03/22 - `ELIMINANDO CARACTERES`
 * **#12** - 21/03/22 - `¿ES UN PALÍNDROMO?`
-* **#13** - 28/03/22 - `Publicación nuevo reto...`
+* **#13** - 28/03/22 - `FACTORIAL RECURSIVO`
+* **#14** - 04/04/22 - `¿ES UN NÚMERO DE ARMSTRONG?`
+* **#15** - 11/04/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 
@@ -45,11 +47,11 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * Comenzará de nuevo el proceso.
 
 	*Si no dispones de un editor de código como Android Studio, puedes usar un playground online ([https://play.kotlinlang.org/](https://play.kotlinlang.org/)) para probar tu código.*
-	
+
 	*Si utilizas un editor como Android Studio o semejante, puedes ejecutar el código creando un bloque `fun main() { }` y pulsando el símbolo "play ►" en el lateral.*
-	
+
 	> 	fun main() {
-	>     
+	>
 	> 	}
 
 Si quieres unirte a nuestra comunidad de desarrollo, aprender programación de Apps, mejorar tus habilidades y ayudar a la continuidad del proyecto, puedes encontrarnos en:
@@ -67,7 +69,7 @@ Todo esto se puede hacer desde línea de comandos, pero si prefieres puedes usar
 * Si te resulta más fácil, puedes crear una `branch`(rama) para resolver cada reto y así simplificar la `pull request`. También puedes ignorar ciertos ficheros.
 * Resuelve el ejercicio y realiza `commit` y `push` del mismo a tu proyecto.
 * Desde GitHub, una vez hecho el `fork` verás opciones como "Contribute" o "Fetch upstream":
-	* `Contribute` permite abrir una `pull request`(deberás seleccionar el mío como repositorio base contra el que comparar tu proyecto). Así yo podré ver los ficheros modificados de tu proyecto con la solución a los retos. Intenta que el título de la `pull request` siga esta convención: **"Solución Reto #[número del reto]" (Solución Reto #0)**. 
+	* `Contribute` permite abrir una `pull request`(deberás seleccionar el mío como repositorio base contra el que comparar tu proyecto). Así yo podré ver los ficheros modificados de tu proyecto con la solución a los retos. Intenta que el título de la `pull request` siga esta convención: **"Solución Reto #[número del reto]" (Solución Reto #0)**.
 	* `Fetch upstream` permite sincronizar tu proyecto con el original en caso de que se haya actualizado.
 * Para sincronizar tu proyecto con el original y mantenerlo actualizado también puedes hacer un `merge commit`, `squash merge` o `rebase`(ten en cuenta que cada uno se comporta de una manera, conservando o no tus propios cambios).
 * Una vez se publique el nuevo reto, la solución del anterior, y comente las soluciones, cerraré las pasadas `pull request` para dejar paso a las que se hagan para el nuevo reto.
