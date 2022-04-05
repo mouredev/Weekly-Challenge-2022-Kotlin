@@ -20,14 +20,29 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    printNonCommon("brais","moure")
-    printNonCommon("Me gusta Java","Me gusta Kotlin")
-    printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
-        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+    printCharactersReply("hola", "adios")
+}
 
-    // Otra solución utilizando funciones de orden superior
-    printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
-        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+fun printCharactersReply(str1: String, str2: String) {
+    var out1 = ""
+    var out2 = ""
+    str1.toCharArray().forEach { word ->
+        run {
+            if (!str2.contains(word)) {
+                out1 += word
+            }
+        }
+    }
+    str2.toCharArray().forEach { word ->
+        run {
+            if (!str1.contains(word)) {
+                out2 += word
+            }
+        }
+    }
+
+    println("Presentes en str1 => " + out1)
+    println("Presentes en str2 => " + out2)
 }
 
 private fun printNonCommon(str1: String, str2: String) {

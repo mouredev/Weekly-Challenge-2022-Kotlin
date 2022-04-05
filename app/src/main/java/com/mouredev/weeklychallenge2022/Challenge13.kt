@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.math.BigInteger
+
 /*
  * Reto #13
  * FACTORIAL RECURSIVO
@@ -18,14 +20,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(factorial(0) ?:run { "No tiene factorial" })
-    println(factorial(7) ?:run { "No tiene factorial" })
-    println(factorial(10) ?:run { "No tiene factorial" })
-    println(factorial(1) ?:run { "No tiene factorial" })
-    println(factorial(-1) ?:run { "No tiene factorial" })
+    val num = 10
+    println("Factorial de $num es ${factorial(num)}")
 }
 
-private fun factorial(n: Int): Int? {
-    return if (n < 0) null else if (n <= 1)  1 else n * (factorial(n - 1)!!)
+private fun factorial(number: Int): BigInteger {
+    if(number == 0) {
+        return BigInteger.valueOf(1)
+    }
+    return factorial(number - 1).multiply(number.toBigInteger())
 }
-
