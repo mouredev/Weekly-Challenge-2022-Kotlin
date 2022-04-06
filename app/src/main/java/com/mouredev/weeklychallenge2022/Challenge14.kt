@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,3 +19,43 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+/**
+ * Funcion principal
+ */
+fun main(){
+
+    printArmstrongNumber(153)
+    printArmstrongNumber(370)
+    printArmstrongNumber(8208)
+    printArmstrongNumber(4210818)
+
+}
+
+/**
+ * Funcion que imprime si un numero es armstrong o no
+ * @param number numero a comprobar si es armstrong
+ */
+fun printArmstrongNumber(number:Int){
+    if(number.isArmstrong()){
+        println("$number Es un número de Armstrong")}
+    else{
+        println("$number No es un número de Armstrong")
+    }
+}
+
+/**
+ * Funcion de extension sobre Int que calcula si un numero es armstrong o no.
+ * @return true si es armstrong, false si no lo es
+ */
+fun Int.isArmstrong():Boolean{
+    var value=0
+    this.toString().forEach {
+        value += it.toString().toDouble().pow(this.toString().length.toDouble()).toInt()
+    }
+
+    return value==this
+}
+
+
