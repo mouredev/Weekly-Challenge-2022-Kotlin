@@ -16,3 +16,16 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(factorial(0) ?:run { "No tiene factorial" })
+    println(factorial(7) ?:run { "No tiene factorial" })
+    println(factorial(10) ?:run { "No tiene factorial" })
+    println(factorial(1) ?:run { "No tiene factorial" })
+    println(factorial(-1) ?:run { "No tiene factorial" })
+}
+
+private fun factorial(n: Int): Int? {
+    return if (n < 0) null else if (n <= 1)  1 else n * (factorial(n - 1)!!)
+}
+
