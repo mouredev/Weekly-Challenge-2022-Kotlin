@@ -17,3 +17,39 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+numero = input('Introduce un número: ')
+listaNumero = []
+listaPotencias = []
+suma = 0
+
+if numero.isdigit() == True:
+    
+    # Aquí necesito que 'numero' sea una cadena de texto para medirla
+    digitos = len(numero)
+
+    # Paso cada caracter de 'numero' a una lista que pueda iterar
+    for i in numero:
+        listaNumero.append(i)
+
+    # Convierto cada caracter de la lista en un entero con el que pueda calcular
+    # y realizo el cálculo de las potencias
+    
+    for j in listaNumero:
+        jInt = int(j)
+        potencia = jInt ** digitos
+        listaPotencias.append(potencia)
+    
+    for n in listaPotencias:
+        suma = suma + n
+
+    numeroInt = int(numero)
+
+    if numeroInt == suma:
+      print(f'El número {numero} es un número de Armstrong')
+
+    else:
+      print(f'El número {numero} no es un número de Armstrong')
+
+else:
+    print(f'El número {numero} no es válido o no es un número')
