@@ -30,10 +30,9 @@ fun main() {
 fun armstrong(x: Int) {
     var sum = 0
     var number = x
-    val length = x.toString().length
 
     while (number > 0) {
-        sum += (number % 10).toDouble().pow(length.toDouble()).toInt()
+        sum += (number % 10).toDouble().pow(x.toString().length.toDouble()).toInt()
         number /= 10
     }
 
