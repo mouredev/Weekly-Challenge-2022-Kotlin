@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.Int
+import kotlin.math.pow
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,3 +20,22 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    for (index in 1..9999) { // aprovechando que aquí si podemos hacer el for con rango XD
+        armstrong(index)
+    }
+}
+
+fun armstrong(x: Int) {
+    var sum = 0
+    var number = x
+    val length = x.toString().length
+
+    while (number > 0) {
+        sum += (number % 10).toDouble().pow(length.toDouble()).toInt()
+        number /= 10
+    }
+
+    if (sum == x) println("R: $x is an Armstrong number")
+}
