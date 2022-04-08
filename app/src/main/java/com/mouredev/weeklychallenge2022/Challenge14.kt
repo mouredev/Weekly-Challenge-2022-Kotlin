@@ -17,3 +17,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+import kotlin.math.pow
+
+fun main() {
+    // [1,2,3,4,5,6,7,8,9,153,370,371,407,1634,8208,9474,54748,92727,...]
+    println(armstrong(153))
+}
+
+private fun armstrong(input: Int): Boolean {
+    if (input < 1) return false
+
+    val inputStr = input.toString()
+    val size = inputStr.length.toDouble()
+
+    var result = 0.0
+
+    inputStr.forEach {
+        result += it.toString().toDouble().pow(size)
+    }
+    return (result == input.toDouble())
+}
