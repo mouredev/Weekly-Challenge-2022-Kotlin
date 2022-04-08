@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.Scanner;
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,3 +19,34 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+public class EsArmstrong {
+
+    public static boolean esArmstrong(int num) {
+
+        boolean esArmstrong = false;
+
+        String number = String.valueOf(num);
+        char[] secNum = number.toCharArray();
+        int suma = 0;
+
+        for (int i = 0; i < secNum.length; i++) {
+            char digito = secNum[i];
+            int digito2 = Character.getNumericValue(digito);
+            suma += Math.pow(digito2, 3);
+        }
+        if (suma == num) {
+            esArmstrong = true;
+        }
+        return esArmstrong;
+    }
+
+    public static void main(String[] args) {
+
+        // Opcion 1
+        Scanner input = new Scanner(System.in);
+        int num = input.nextInt();
+        System.out.println("¿Es " + num + " un número de Armstron?\n" + esArmstrong(num));
+    }
+}
+
