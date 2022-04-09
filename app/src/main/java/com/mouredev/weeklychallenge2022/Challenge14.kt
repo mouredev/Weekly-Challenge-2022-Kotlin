@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -7,7 +9,7 @@ package com.mouredev.weeklychallenge2022
  * Fecha publicación resolución: 11/04/22
  * Dificultad: FÁCIL
  *
- * Enunciado: Escribe una función que calcule si un número dado es un número de Amstrong (o también llamado narcisista).
+ * Enunciado: Escribe una función que calcule si un número dado es un número de Armstrong  (o también llamado narcisista).
  * Si no conoces qué es un número de Armstrong, debes buscar información al respecto.
  *
  * Información adicional:
@@ -17,3 +19,30 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    isArmstrong(0) // Número de Armstrong
+    isArmstrong(1) // Número de Armstrong
+    isArmstrong(153) // Número de Armstrong
+    isArmstrong(256) // No es Número de Armstrong
+    isArmstrong(-153) // Error
+    isArmstrong(8208) // Número de Armstrong
+}
+
+private fun isArmstrong(number: Int) {
+    if (number < 0) {
+        println("Error. El número ingresado es negativo")
+    } else {
+
+        var sum = 0
+
+        number.toString().forEach {
+            sum += it.toString().toDouble().pow(number.toString().length).toInt()
+        }
+
+        if (sum == number) {
+            println("$number es un número de Armstrong")
+        } else {
+            println("$number no es un número de Armstrong ")
+        }
+    }
+}
