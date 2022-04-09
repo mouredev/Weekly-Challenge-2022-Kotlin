@@ -17,3 +17,34 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val t1: Long = 153
+    val t2: Long = 54748
+    val t3: Long = 9926315
+    val f1: Long = 815
+    val f2: Long = 65423115
+    println("El número $t1 ${if(! isArmstrong(t1)) "no " else ""}es Armstrong.")
+    println("El número $t2 ${if(! isArmstrong(t2)) "no " else ""}es Armstrong.")
+    println("El número $t3 ${if(! isArmstrong(t3)) "no " else ""}es Armstrong.")
+    println("El número $f1 ${if(! isArmstrong(f1)) "no " else ""}es Armstrong.")
+    println("El número $f2 ${if(! isArmstrong(f2)) "no " else ""}es Armstrong.")
+}
+
+fun Long.positivePow(n: Int): Long {
+    var counter = 1L
+    for (i in 1..n) counter *= this
+    return counter
+}
+
+fun isArmstrong(n: Long): Boolean {
+    var number = n
+    var counter: Long = 0
+    val length = n.toString().length
+    for (i in 0 until length){
+        counter += (number % 10).positivePow(length)
+        number /= 10
+    }
+
+    return counter == n
+}
