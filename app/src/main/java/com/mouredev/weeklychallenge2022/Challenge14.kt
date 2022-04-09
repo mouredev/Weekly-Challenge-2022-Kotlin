@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,3 +19,23 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val numero = 407
+    println("¿Es $numero un número de Amstrong? " + isAmstrong(numero))
+    println("¿Es ${numero+1} un número de Amstrong? " + isAmstrong(numero+1))
+}
+
+fun isAmstrong(numero: Int):Boolean{
+    val exponente = numero.toString().length
+    val resultado = getSuma(numero, exponente)
+
+    if(resultado == numero) return true
+    return false
+}
+
+fun getSuma(numero: Int, exponente: Int):Int {
+    if(numero == 0) return 0
+    return ((numero % 10).toDouble().pow(exponente.toDouble()) + getSuma(
+        numero / 10, exponente)).toInt()
+}
