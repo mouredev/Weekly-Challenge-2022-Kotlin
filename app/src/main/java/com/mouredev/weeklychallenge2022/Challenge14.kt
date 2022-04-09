@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,3 +19,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("El numero 153 es numero de Armstrong?: ${isArmstrongNumber(153)}"); //True
+    println("El numero 371 es numero de Armstrong?: ${isArmstrongNumber(371)}"); //True
+    println("El numero 2015 es numero de Armstrong?: ${isArmstrongNumber(2015)}"); //False
+    println("El numero 24678051 es numero de Armstrong?: ${isArmstrongNumber(24678051)}"); //True
+    println("El numero 24678052 es numero de Armstrong?: ${isArmstrongNumber(24678052)}"); //False
+}
+
+private fun isArmstrongNumber(number: Int): Boolean {
+
+    var numberToString = number.toString();
+    var exp = numberToString.length;
+    var calculateNumber = 0;
+
+    numberToString.forEach {
+        calculateNumber += it.toString().toDouble().pow(exp.toDouble()).toInt()
+    }
+
+    return number == calculateNumber
+}
