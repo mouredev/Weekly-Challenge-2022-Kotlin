@@ -22,11 +22,11 @@ import kotlin.math.pow
 
 fun main() {
     val numero = 407
-    println("¿Es $numero un número de Amstrong? " + isAmstrong(numero))
-    println("¿Es ${numero+1} un número de Amstrong? " + isAmstrong(numero+1))
+    println("¿Es $numero un número de Armstrong? " + isArmstrong(numero))
+    println("¿Es ${numero+1} un número de Armstrong? " + isArmstrong(numero+1))
 }
 
-fun isAmstrong(numero: Int):Boolean{
+fun isArmstrong(numero: Int):Boolean{
     val exponente = numero.toString().length
     val resultado = getSuma(numero, exponente)
 
