@@ -1,3 +1,5 @@
+package com.yts.tymodoro
+
 /*
  * Reto #14
  * ¿ES UN NÚMERO DE ARMSTRONG?
@@ -17,12 +19,21 @@
  */
 
 fun main(){
-    val nums = arrayOf(371, 51, 8208, 609)
+    val nums = arrayOf(371, 51, 8208, 609, -609, -371, -51)
     for (i in nums){
-        if(isArmstrongNum(i)) println("¡$i es un número Armstrong!")
-        else println("¡$i no es un número Armstrong!")
+        if(isArmstrongNum(i)) println("¡$i es un número de Armstrong!")
+        else println("¡$i no es un número de Armstrong!")
     }
 }
+/*Resultados:
+¡371 es un número de Armstrong!
+¡51 no es un número de Armstrong!
+¡8208 es un número de Armstrong!
+¡609 no es un número de Armstrong!
+¡-609 no es un número de Armstrong!
+¡-371 es un número de Armstrong!
+¡-51 no es un número de Armstrong!
+* */
 
 private fun isArmstrongNum(n: Int): Boolean {
     val splitted = n.split()
@@ -30,13 +41,20 @@ private fun isArmstrongNum(n: Int): Boolean {
     for (digit in splitted){
         result += digit.powerOf(splitted.size)
     }
+    if(n < 0) result = "-$result".toInt() //Esto es para recuperar el negativo que se perdió en la función split
     return result == n
 }
 
 private fun Int.split(): Array<Int> {
     val stringNumber = this.toString()
-    return Array(stringNumber.length){
-        stringNumber[it].digitToInt()
+    return if(this >= 0)
+        Array(stringNumber.length) {
+            stringNumber[it].digitToInt()
+    } else { //Si es un negativo, se quita el símbolo "-"
+        val nonNegativeStringNum = this.toString().replace("-", "")
+        Array(nonNegativeStringNum.length) {
+            nonNegativeStringNum[it].digitToInt()
+        }
     }
 }
 
