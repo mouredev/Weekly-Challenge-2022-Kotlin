@@ -25,8 +25,14 @@ fun main() {
 }
 
 private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
+
+    val word1 = wordOne.lowercase()
+    val word2 = wordTwo.lowercase()
+
+    // Primero de todo -> si son la misma palabra o tienen diferente longitud
+    // NO LO SON y ya no hago nada
+    if ((word1 == word2) || (word1.length != word2.length)) {
         return false
     }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+    return word1.toCharArray().sortedArray().contentEquals(word2.toCharArray().sortedArray())
 }
