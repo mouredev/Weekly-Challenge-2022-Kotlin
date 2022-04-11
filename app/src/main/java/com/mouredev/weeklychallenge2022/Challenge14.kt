@@ -17,3 +17,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main (){
+    // Los primeros números narcisistas: 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634, 8208, 9474 y 54748.
+    isNarcissist("1")
+    isNarcissist("5")
+    isNarcissist("20")
+    isNarcissist("100")
+    isNarcissist("153")
+    isNarcissist("8208")
+}
+
+private fun isNarcissist(n:String){
+    val result = n.toList().map { it.toString().toInt() }.sumOf {
+        var x : Int = 1
+        if (n.length>1){
+            for(i in 1..n.length){x*=it}
+        } else x = it
+        x
+    }
+    println("If $n is equal to $result then $n is narcissist : ${n.toInt()==result}")
+}
