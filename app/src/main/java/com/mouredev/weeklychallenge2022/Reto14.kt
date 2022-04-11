@@ -52,7 +52,7 @@ private fun Int.split(): Array<Int> {
 	Array(stringNumber.length) {
             stringNumber[it].digitToInt()
            }
-
+}
 
 
 
