@@ -1,6 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlin.math.absoluteValue
 import kotlin.math.pow
 
 /*
@@ -28,10 +27,12 @@ fun main() {
 }
 
 fun isArmstrong(numero: Int):Boolean{
-    val exponente = numero.absoluteValue.toString().length
-    val resultado = getSuma(numero, exponente)
+    if(numero > 0) {
+        val exponente = numero.toString().length
+        val resultado = getSuma(numero, exponente)
 
-    if(resultado == numero) return true
+        if(resultado == numero) return true
+    }
     return false
 }
 
