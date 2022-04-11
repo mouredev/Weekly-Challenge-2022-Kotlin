@@ -31,32 +31,33 @@ fun main(){
 ¡8208 es un número de Armstrong!
 ¡609 no es un número de Armstrong!
 ¡-609 no es un número de Armstrong!
-¡-371 es un número de Armstrong!
+¡-371 no es un número de Armstrong!
 ¡-51 no es un número de Armstrong!
 * */
 
 private fun isArmstrongNum(n: Int): Boolean {
+    if (n < 0) return false
     val splitted = n.split()
     var result = 0
     for (digit in splitted){
         result += digit.powerOf(splitted.size)
     }
-    if(n < 0) result = "-$result".toInt() //Esto es para recuperar el negativo que se perdió en la función split
+    
     return result == n
 }
 
 private fun Int.split(): Array<Int> {
     val stringNumber = this.toString()
-    return if(this >= 0)
-        Array(stringNumber.length) {
+    return
+	Array(stringNumber.length) {
             stringNumber[it].digitToInt()
-    } else { //Si es un negativo, se quita el símbolo "-"
-        val nonNegativeStringNum = this.toString().replace("-", "")
-        Array(nonNegativeStringNum.length) {
-            nonNegativeStringNum[it].digitToInt()
-        }
-    }
-}
+           }
+
+
+
+
+
+
 
 private fun Int.powerOf(exponent: Int): Int{
     var result = this
