@@ -92,3 +92,8 @@ fun String.diffDays(other: String): Int{
     return -1
 }
 
+/*
+    Ejemplo de uso:
+    println("23/02/2001".diffDays("25/03/2002"))
+*/
+
