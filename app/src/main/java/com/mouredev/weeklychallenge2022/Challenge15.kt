@@ -1,9 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.concurrent.TimeUnit
-import kotlin.math.absoluteValue
+import java.io.IOException
+
 
 /*
  * Reto #15
@@ -26,43 +24,71 @@ import kotlin.math.absoluteValue
  *
  */
 
-fun main() {
+fun Int.isLeapYear(): Boolean = this % 4 == 0 && ((this % 100 == 0 && this % 400 == 0) || this % 100 != 0)
 
-    printDaysBetween("18/05/2022", "29/05/2022")
-    printDaysBetween("mouredev", "29/04/2022")
-    printDaysBetween("18/5/2022", "29/04/2022")
+fun Int.daysInYear() = if (this.isLeapYear()) 366 else 365
+
+fun Int.monthDays(year: Int): Int = when (this) {
+    2 -> if(year.isLeapYear()) 29 else 28
+    1,3,5,7,8,10,12 -> 31
+    else -> 30
 }
 
-private fun printDaysBetween(firstDate: String, secondDate: String) {
-    try {
-        println(daysBetween(firstDate, secondDate))
-    } catch (e: DaysBetweenError) {
-        println("Error en el formato de alguna fecha")
-    } catch (e: Exception) {
-            println("Error en el parse de alguna fecha")
+fun Int.between(from:Int, to:Int): Boolean = this in from..to
+
+@Throws(IOException::class)
+fun String.isDate(): Boolean{
+    val thisParts = this.split("/")
+
+    if(thisParts.size == 3){
+        val day = thisParts[0].toInt()
+        val month = thisParts[1].toInt()
+        val year = thisParts[2].toInt()
+        val returnValue = year >= 0 && month.between(1,12) && day.between(1, month.monthDays(year))
+        if (returnValue)
+            return  returnValue
+        else
+            throw  IOException("$this NO es una fecha válida (No cumple alguno de los criterios: rangos de días por mes, mes por año, año positivo)")
+    }else {
+        throw IOException("$this NO es una fecha válida (Formato incorrecto)")
     }
 }
 
-class DaysBetweenError: Exception()
+fun String.daysFromZero(): Int{
+    if (this.isDate()){
+        val dateParts = this.split("/")
+        val year = dateParts[2].toInt()
+        val month = dateParts[1].toInt()
+        val days = dateParts[0].toInt()
 
-private fun daysBetween(firstDate: String, secondDate: String): Int {
+        val yearRange = IntRange(0, year)
+        val monthRange = IntRange(1, month)
 
-    val formatter = SimpleDateFormat("dd/MM/yyyy")
-    val firstParsedDate = formatter.parse(firstDate)
-    val secondParsedDate = formatter.parse(secondDate)
+        // Se establece toInt en sumOf para evitar ambigüedad
+        var totalDays: Int = yearRange.sumOf { y -> y.daysInYear() }
 
-    val regex = "^([0-9]){2}[/]([0-9]){2}[/]([0-9]){4}$".toRegex()
+        // tenemos el total de días entre el año 0 y el año de la fecha...
+        // ahora, hay que restar los días que llevamos consumidos del año...
+        totalDays -= (year.daysInYear () - monthRange.sumOf { m -> m.monthDays(year) } +
+                (month.monthDays(year) - days) + 1)
 
-    if (firstParsedDate != null
-        && secondParsedDate != null
-        && firstDate.contains(regex)
-        && secondDate.contains(regex)
-    ) {
-
-        return TimeUnit.DAYS.convert(
-            firstParsedDate.time - secondParsedDate.time,
-            TimeUnit.MILLISECONDS
-        ).toInt().absoluteValue
+        return totalDays
     }
-    throw DaysBetweenError()
+
+    return 0
 }
+
+@Throws(IOException::class)
+fun String.diffDays(other: String): Int{
+    if (this.isDate() && other.isDate()){
+        val returnValue = other.daysFromZero() - this.daysFromZero()
+
+        if (returnValue > 0)
+            return returnValue
+        else
+            throw IOException("La fecha superior ($other) NO puede ser menor que la inferior ($this)")
+    }
+
+    return -1
+}
+
