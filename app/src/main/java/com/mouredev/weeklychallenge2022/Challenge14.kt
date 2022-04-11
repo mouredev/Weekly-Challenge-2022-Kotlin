@@ -23,11 +23,15 @@ import kotlin.math.pow
 
 fun main() {
     for (index in 1..9999) { // aprovechando que aquí si podemos hacer el for con rango XD
-        armstrong(index)
+        if (armstrong(index))
+            println("R: $index is an Armstrong number")
     }
 }
 
-fun armstrong(x: Int) {
+fun armstrong(x: Int): Boolean {
+
+    if (x < 0) return false
+
     var sum = 0
     var number = x
 
@@ -36,5 +40,5 @@ fun armstrong(x: Int) {
         number /= 10
     }
 
-    if (sum == x) println("R: $x is an Armstrong number")
+    return sum == x
 }
