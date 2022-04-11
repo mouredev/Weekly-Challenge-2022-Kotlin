@@ -22,7 +22,7 @@ import kotlin.math.pow
  */
 
 fun main() {
-    for (index in 1..9999) { // aprovechando que aquí si podemos hacer el for con rango XD
+    for (index in -100..9999) { // aprovechando que aquí si podemos hacer el for con rango XD
         if (armstrong(index))
             println("R: $index is an Armstrong number")
     }
