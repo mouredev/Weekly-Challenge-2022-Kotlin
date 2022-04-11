@@ -22,13 +22,13 @@ import kotlin.math.pow
  */
 
 fun main() {
-    val numero = 407
-    println("¿Es $numero un número de Armstrong? " + isArmstrong(numero))
-    println("¿Es ${numero+1} un número de Armstrong? " + isArmstrong(numero+1))
+    println("¿Es 407 un número de Armstrong? " + isArmstrong(407))
+    println("¿Es -407 un número de Armstrong? " + isArmstrong(-407))
+    println("¿Es 408 un número de Armstrong? " + isArmstrong(408))
 }
 
 fun isArmstrong(numero: Int):Boolean{
-    val exponente = numero.toString().length
+    val exponente = numero.absoluteValue.toString().length
     val resultado = getSuma(numero, exponente)
 
     if(resultado == numero) return true
