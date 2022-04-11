@@ -22,6 +22,13 @@ fun main(){
     println("\nThe factorial of $number is: ${getFactorial(number)}")
     number = -5
     println("\nThe factorial of $number is: ${getFactorial(number)}")
+
+    // for the moure dev solution
+    println(factorial(0) ?:run { "No tiene factorial" })
+    println(factorial(7) ?:run { "No tiene factorial" })
+    println(factorial(10) ?:run { "No tiene factorial" })
+    println(factorial(1) ?:run { "No tiene factorial" })
+    println(factorial(-1) ?:run { "No tiene factorial" })
 }
 
 private fun getFactorial(number : Int): Int{
@@ -37,4 +44,9 @@ private fun getFactorial(number : Int): Int{
         print("|$number|")
         number
     }
+}
+
+// for the moure dev solution
+private fun factorial(n: Int): Int? {
+    return if (n < 0) null else if (n <= 1)  1 else n * (factorial(n - 1)!!)
 }
