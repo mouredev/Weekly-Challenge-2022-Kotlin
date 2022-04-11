@@ -21,7 +21,7 @@ import kotlin.math.pow
  */
 
 fun main() {
-	val number = 269
+	val number = -371
 	if (amstrongNumber(number)) {
 		println("El número $number es un número de Amstrong")
 	} else {
