@@ -1,5 +1,4 @@
-package com.mouredev.weeklychallenge2022
-
+package com.example.weeklychallenge2022
 /*
  * Reto #10
  * EXPRESIONES EQUILIBRADAS
@@ -21,23 +20,32 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+/*
+* Lo he hecho implementado una pila con un array y la funcion devuelve un boolean, la pila se va llenando con los carateres de apertura
+*  y en el momento que encuentra uno de cierre comprueba se es el que esta en lo alto de la pila. Si lo es lo borra
+*  y si no pone al boolean a false y se sale del bucle.
+*  También compruebo que si lo primero que encuentra es un caracter de cierre y la pila esta vacia el boolean es falso
+ */
+
 fun main() {
-    println(isBalanced("{a + b [c] * (2x2)}}}}"))
-    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
-    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
-    println(isBalanced("{a^4 + (((ax4)}"))
-    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
-        println(isBalanced("{{{{{{(}}}}}}"))
-    println(isBalanced("(a"))
+    var expression = "{ [ a * ( c + d ) ] - 5 }"
+    println(expression +": "+ verification(expression))
+    expression = "{ a * ( c + d ) ] - 5 }"
+    println(expression +": "+ verification(expression))
+    expression = "{ [ a * ( c + d ) ] - 5"
+    println(expression +": "+ verification(expression))
+    expression = "} a * ( c + d ) ] - 5 }"
+    println(expression +": "+ verification(expression))
+    expression = "{a + b [c]* (2x2)}}}}"
+    println(expression +": "+ verification(expression))
 }
 
-private fun isBalanced(expression: String): Boolean {
 
-    val symbols = mapOf("{" to "}", "[" to "]", "(" to ")")
+private fun verification (input: String): Boolean {
+    val symbols = mapOf("{" to "}" , "(" to ")", "[" to "]")
     val stack = arrayListOf<String>()
 
-    expression.forEach {
-
+    input.forEach {
         val symbol = it.toString()
         val containsKey = symbols.containsKey(symbol)
 
@@ -49,6 +57,60 @@ private fun isBalanced(expression: String): Boolean {
             }
         }
     }
-
     return stack.isEmpty()
 }
+/*
+    var balanced = true
+
+    val pile = arrayListOf<String>()
+
+    for (character in input){
+        when (character.toString()) {
+            "{","(","[" ->{
+                pile.add(character.toString())
+            }
+            "]" ->{
+                if (pile.size !=0){
+                    if (pile[pile.lastIndex] == "["){
+                        pile.removeLast()
+                    } else {
+                        balanced=false
+                        break
+                    }
+                }else{
+                    balanced=false
+                    break
+                }
+            }
+            "}" ->{
+                if (pile.size !=0){
+                    if (pile[pile.lastIndex] == "{"){
+                        pile.removeLast()
+                    } else {
+                        balanced=false
+                        break
+                    }
+                }else{
+                    balanced=false
+                    break
+                }
+            }
+            ")" ->{
+                if (pile.size !=0){
+                    if ( pile[pile.lastIndex] == "("){
+                        pile.removeLast()
+                    } else {
+                        balanced=false
+                        break
+                    }
+                }else{
+                    balanced=false
+                    break
+                }
+            }
+        }
+    }
+    if (pile.size != 0){
+        balanced = false
+    }
+    return balanced*/

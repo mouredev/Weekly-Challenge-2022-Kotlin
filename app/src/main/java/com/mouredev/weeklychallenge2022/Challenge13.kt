@@ -19,17 +19,19 @@ package com.example.weeklychallenge2022
 fun main() {
 
     var num: Long = 25
-    println("El factorial de $num es : " + factorial(num))
+    println("El factorial de $num es : " + esFactorial(num))
     num = 0
-    println("El factorial de $num es : " + factorial(num))
+    println("El factorial de $num es : " + esFactorial(num))
     num = 10
-    println("El factorial de $num es : " + factorial(num))
+    println("El factorial de $num es : " + esFactorial(num))
+    num = -1
+    println("El factorial de $num es : " + esFactorial(num))
 }
 
-fun factorial(num: Long): Long {
+fun esFactorial(num: Long): Long {
     return if (num == 0L) {
         1
     } else {
-        num * factorial(num - 1)
+        num * esFactorial(num - 1)
     }
 }
