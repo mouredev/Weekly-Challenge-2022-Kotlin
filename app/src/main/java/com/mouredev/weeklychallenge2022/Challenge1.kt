@@ -30,3 +30,25 @@ private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
     }
     return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
+
+//fun main() {
+//    println("amor , roma :" +  isAnagram("amor", "roma"))
+//    println("roma , roma :" +  isAnagram("roma", "roma"))
+//    println("amorf , roma :" +  isAnagram("amorf", "roma"))
+//    println("amo , roma :" +  isAnagram("amo", "roma"))
+//    println("casimiro , mirocasi :" +  isAnagram("casimiro", "mirocasi"))
+//}
+//
+//fun isAnagram(firstWord: String, secondWord: String): Boolean {
+//    var anagram = true
+//    if (firstWord == secondWord || firstWord.length != secondWord.length) {
+//        anagram = false
+//    }
+//
+//    secondWord.filterNot { firstWord.indexOf(it) > -1 }
+//    if (secondWord == "") {
+//        anagram = true
+//    }
+//
+//    return anagram
+//}
