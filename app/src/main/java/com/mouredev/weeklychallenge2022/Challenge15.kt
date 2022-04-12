@@ -1,5 +1,10 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.abs
+
 /*
  * Reto #15
  * ¿CUÁNTOS DÍAS?
@@ -21,3 +26,25 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+const val DATE_PATTERN = "dd/MM/yyyy"
+
+fun main() {
+    val date1 = "23/04/2022"
+    val date2 = "12/04/2022"
+    try {
+        val daysBetween = calculateDayBetweenDates(date1, date2)
+        println("La diferencia entre la fecha $date1 y la fecha $date2 es de $daysBetween dias")
+    } catch (e: ParseException) {
+        println("Error en el formato de las fechas => ${e.message}")
+    }
+}
+
+fun calculateDayBetweenDates(dateString1: String, dateString2: String): Int {
+    val simpleFormatter = SimpleDateFormat(DATE_PATTERN, Locale("ES_es"))
+    val date1 = simpleFormatter.parse(dateString1)
+    val date2 = simpleFormatter.parse(dateString2)
+    val difference: Long = abs((date1?.time ?: 0) - (date2?.time ?: 0))
+    val dayDifference = (difference / (24 * 60 * 60 * 1000))
+
+    return dayDifference.toInt()
+}
