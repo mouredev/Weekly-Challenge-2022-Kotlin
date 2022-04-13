@@ -1,5 +1,10 @@
 package com.mouredev.weeklychallenge2022
 
+import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
+import kotlin.math.abs
 /*
  * Reto #15
  * ¿CUÁNTOS DÍAS?
@@ -20,4 +25,54 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun main() {
+
+    var num1 = "12/04/2022"
+    var num2 = "14/11/1968"
+
+    println("Entre $num1 y $num2 hay " + diferenciaDias (num1, num2) + " días")
+
+    num1= "12-04/2022"
+    num2= "14/11/1968"
+
+    println("Entre $num1 y $num2 hay " + diferenciaDias (num1, num2) + " días")
+
+    num1= ""
+    num2= "14/11/1968"
+
+    println("Entre $num1 y $num2 hay " + diferenciaDias (num1, num2) + " días")
+
+    num1 = "20/04/1969"
+    num2 = "14/11/1968"
+
+    println("Entre $num1 y $num2 hay " + diferenciaDias (num1, num2) + " días")
+
+}
+
+@SuppressLint("SimpleDateFormat")
+@RequiresApi(Build.VERSION_CODES.O)
+fun diferenciaDias (num1: String, num2: String): Int? {
+    val magic = 86400000L // millisec * sec * min * hours
+    val formatter = SimpleDateFormat("dd/MM/yyyy")
+    try {
+        val date1 = formatter.parse(num1)!!.time
+        val date2 = formatter.parse(num2)!!.time
+
+        val days = if ((date1<=0 && date2>0) ||
+                        (date2<=0 && date1>0) ) {// para corregir si alguno es menor del 01/01/1970 que es el 0
+            1 + (abs(date1 - date2)) / magic  // y no si lo son los dos
+        }else{
+            (abs(date1 - date2)) / magic
+        }
+
+        return days.toInt()
+
+    } catch (e: Exception){
+        print(e)
+    }
+    return null
+}
+
 

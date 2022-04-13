@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package com.example.weeklychallenge2022
 
 /*
  * Reto #13
@@ -16,16 +16,22 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
 fun main() {
-    println(factorial(0) ?:run { "No tiene factorial" })
-    println(factorial(7) ?:run { "No tiene factorial" })
-    println(factorial(10) ?:run { "No tiene factorial" })
-    println(factorial(1) ?:run { "No tiene factorial" })
-    println(factorial(-1) ?:run { "No tiene factorial" })
+
+    var num: Long = 25
+    println("El factorial de $num es : " + esFactorial(num))
+    num = 0
+    println("El factorial de $num es : " + esFactorial(num))
+    num = 10
+    println("El factorial de $num es : " + esFactorial(num))
+    num = -1
+    println("El factorial de $num es : " + esFactorial(num))
 }
 
-private fun factorial(n: Int): Int? {
-    return if (n < 0) null else if (n <= 1)  1 else n * (factorial(n - 1)!!)
+fun esFactorial(num: Long): Long {
+    return if (num == 0L) {
+        1
+    } else {
+        num * esFactorial(num - 1)
+    }
 }
-

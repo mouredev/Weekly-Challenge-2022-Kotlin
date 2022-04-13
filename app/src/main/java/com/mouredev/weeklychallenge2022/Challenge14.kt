@@ -1,6 +1,5 @@
-package com.mouredev.weeklychallenge2022
+package com.example.weeklychallenge2022
 
-import kotlin.math.absoluteValue
 import kotlin.math.pow
 
 /*
@@ -20,26 +19,31 @@ import kotlin.math.pow
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
 fun main() {
-    println(isArmstrong(371))
-    println(isArmstrong(-371))
-    println(isArmstrong(372))
-    println(isArmstrong(0))
+
+    var num: Int = 153
+    println("Es número de Armstrong el $num : " + esArmstrong(num))
+    num = 15
+    println("Es número de Armstrong el $num : " + esArmstrong(num))
+    num = 370
+    println("Es número de Armstrong el $num : " + esArmstrong(num))
+    num = 93084
+    println("Es número de Armstrong el $num : " + esArmstrong(num))
 }
 
-private fun isArmstrong(number: Int): Boolean {
+fun esArmstrong (num: Int): Boolean{
 
-    return if (number < 0) {
-        false
-    } else {
+    for (i in 1..num.toString().length){
         var sum = 0
-        val powValue = number.toString().length
-
-        number.toString().forEach { character ->
-            sum += character.toString().toDouble().pow(powValue).toInt()
+        val number = num.toString()
+        for (i in number.indices){
+            val digit = number.subSequence(i, i+1).toString().toInt()
+            val potency = Math.pow(digit.toDouble(), number.length.toDouble())
+            sum += potency.toInt()
         }
-
-        number == sum
+        if (sum != num){
+            return false
+        }
     }
+    return true
 }
