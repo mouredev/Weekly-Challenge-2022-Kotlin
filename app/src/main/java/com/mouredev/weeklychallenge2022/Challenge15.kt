@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.regex.Pattern
+import kotlin.math.abs
+
 /*
  * Reto #15
  * ¿CUÁNTOS DÍAS?
@@ -21,3 +24,55 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main (){
+    daysBetween("10/4/2022","20/05/2022")
+    daysBetween("-10/4/2022","50/5/2022")
+    daysBetween("10/04/2022","20/4/2022")
+    daysBetween("10/19/2022","20/4/2022")
+}
+
+val monthDays = listOf<Int>(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+
+private fun daysBetween(date1: String , date2: String) : Int{
+
+    if (validateDate(date1) && validateDate(date2)){
+        val splitDate1 = date1.split("/").map { it.toInt() }
+        val splitDate2 = date2.split("/").map { it.toInt() }
+
+        val difDaysInYears = abs(splitDate1[2]-splitDate2[2])*365
+        val difDaysInMonths = abs(daysPassedThisYear(splitDate1[1]) - daysPassedThisYear(splitDate2[1]))
+        val difDaysInDays = abs(splitDate1[0]-splitDate2[0])
+
+        val sum = difDaysInDays+difDaysInMonths+difDaysInYears
+        println("Between $date1 and $date2 have passed $sum days in total.")
+
+        return sum
+    } else {
+        println("Wrong date")
+    }
+    return 0
+}
+
+private fun validateDate(date : String) : Boolean{
+
+    val datePattern = Pattern.compile("([0-9]{2}|[0-9])/([0-9]{2}|[0-9])/([0-9]{4})")
+
+    if (date.matches(datePattern.toRegex())){
+        val splitDate = date.split("/").map { it.toInt() }
+        if (splitDate[1] in 1..12) {
+            if (splitDate[0]<= monthDays[splitDate[1]] && splitDate[0]>0){
+                return true
+            }
+        }
+    }
+
+    return false
+}
+
+private fun daysPassedThisYear(actualMonth : Int) : Int{
+    var accumulatedDays = 0
+    for (i in 0 until actualMonth){
+        accumulatedDays += monthDays[i]
+    }
+    return accumulatedDays
+}
