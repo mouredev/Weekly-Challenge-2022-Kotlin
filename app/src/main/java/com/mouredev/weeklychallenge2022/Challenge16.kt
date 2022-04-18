@@ -22,8 +22,8 @@ fun main() {
     val texto = "texto que ñoquis Tal y cuAL"
     println(texto.split("\\s+".toRegex()).map{ w ->
         "${(
-                if (w[0].toInt() in 97..122)
-                    (w[0].toInt() - 32).toChar()
+                if (w[0].code in 97..122)
+                    (w[0].code - 32).toChar()
                 else if(w[0] == 'ñ')
                     'Ñ'
                 else
