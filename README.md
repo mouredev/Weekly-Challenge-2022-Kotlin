@@ -28,7 +28,14 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#7** - 14/02/22 - `CONTANDO PALABRAS`
 * **#8** - 18/02/22 - `DECIMAL A BINARIO`
 * **#9** - 02/03/22 - `CÓDIGO MORSE`
-* **#10** - 07/03/22 - `Publicación nuevo reto...`
+* **#10** - 07/03/22 - `EXPRESIONES EQUILIBRADAS`
+* **#11** - 14/03/22 - `ELIMINANDO CARACTERES`
+* **#12** - 21/03/22 - `¿ES UN PALÍNDROMO?`
+* **#13** - 28/03/22 - `FACTORIAL RECURSIVO`
+* **#14** - 04/04/22 - `¿ES UN NÚMERO DE ARMSTRONG?`
+* **#15** - 11/04/22 - `¿CUÁNTOS DÍAS?`
+* **#16** - 18/04/22 - `EN MAYÚSCULA`
+* **#17** - 25/04/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 

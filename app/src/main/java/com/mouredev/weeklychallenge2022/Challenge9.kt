@@ -21,167 +21,77 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
-    val morse = Morse()
-
-    val inputTextoNatural = "Hola soy \"goku\". Eres goku? si, lo soy."
-    println("Texto natural a código Morse")
-    println("Traduciendo: $inputTextoNatural")
-    println("Código Morse: ${morse.translate(inputTextoNatural)}")
-
-    val inputMorse = ".... --- .-.. .-  ... --- -.--  .-..-. --. --- -.- ..- .-..-. .-.-.-  . .-. . ...  --. --- -.- ..- ..--..  ... .. --..--  .-.. ---  ... --- -.-- .-.-.-"
-    morse.mode = morse.translateModeFromCodeToText
-    println("Código Morse a texto natural")
-    println("Traduciendo: $inputMorse")
-    println("Texto natural: ${morse.translate(inputMorse)}")
-
+    val naturalText = "Chocapic. Es una marca de cereales?"
+    val morseText = decoder(naturalText)
+    println(morseText)
+    println(decoder(morseText))
 }
 
-class Morse {
+private fun decoder(input: String): String {
 
-    private val alphabet: Alphabet = Alphabet()
-    val translateModeFromTextToCode: Int = 0
-    val translateModeFromCodeToText: Int = 1
+    var decodedInput = ""
 
-    private var characterSeparator: String = " "
-    private var currentAlphabet: Map<String, String> = alphabet.map
+    val naturalDict = mapOf("A" to ".—", "N" to "—.", "0" to "—————",
+        "B" to "—...", "Ñ" to "——.——", "1" to ".————",
+        "C" to "—.—.", "O" to "———", "2" to "..———",
+        "CH" to "————", "P" to ".——.", "3" to "...——",
+        "D" to "—..", "Q" to "——.—", "4" to "....—",
+        "E" to ".", "R" to ".—.", "5" to ".....",
+        "F" to "..—.", "S" to "...", "6" to "—....",
+        "G" to "——.", "T" to "—", "7" to "——...",
+        "H" to "....", "U" to "..—", "8" to "———..",
+        "I" to "..", "V" to "...—", "9" to "————.",
+        "J" to ".———", "W" to ".——", "." to ".—.—.—",
+        "K" to "—.—", "X" to "—..—", "," to "——..——",
+        "L" to ".—..", "Y" to "—.——", "?" to "..——..",
+        "M" to "——", "Z" to "——..", "\"" to ".—..—.", "/" to "—..—.")
 
-    var mode: Int = translateModeFromTextToCode
-        set(mode) {
-            if(validateMode()) {
-                println("Error!: An unknown mode has setted")
-            }
-            field = mode
-            when (mode) {
-                translateModeFromTextToCode -> {
-                    currentAlphabet = alphabet.map
-                    characterSeparator = " "
+    val morseDict = mutableMapOf<String, String>()
+    naturalDict.forEach {
+        morseDict[it.value] = it.key
+    }
+
+    if (input.contains("[a-zA-Z0-9]".toRegex())) {
+
+        // Natural
+
+        var index = 0
+        var ch = false
+
+        input.uppercase().forEach { character ->
+            if (!ch && character.toString() != " ") {
+                val nextIndex = index + 1
+                if (character.toString() == "C" && nextIndex < input.length && input.uppercase()[nextIndex].toString() == "H") {
+                    decodedInput += naturalDict["CH"]
+                    ch = true
+                } else {
+                    decodedInput += naturalDict[character.toString()]
                 }
-                translateModeFromCodeToText -> {
-                    currentAlphabet = alphabet.reverseMap
-                    characterSeparator = ""
+
+                decodedInput += " "
+            } else {
+                if (!ch) {
+                    decodedInput += " "
                 }
-                else -> currentAlphabet = alphabet.emptyMap
+                ch = false
             }
+
+            index++
         }
 
-    fun translate(input: String): String {
-        var translated = ""
-        val preprocessedInput: List<String> = preprocessInput(input)
-        for (character in preprocessedInput) {
-            translated += currentAlphabet[character] + characterSeparator
-        }
-        return translated
-    }
+    } else if (input.contains(".") || input.contains("—")) {
 
-    private fun validateMode(): Boolean {
-        return mode != translateModeFromTextToCode && mode != translateModeFromCodeToText
-    }
+        // Morse
 
-    private fun preprocessInput(input: String): List<String> {
-        return when(mode) {
-            translateModeFromTextToCode -> input.uppercase().toCharArray().map { character -> character.toString() }
-            translateModeFromCodeToText -> input.split(" ")
-            else -> arrayListOf()
+        input.split("  ").forEach { word ->
+            word.split(" ").forEach { symbols ->
+                if (symbols.isNotEmpty()) {
+                    decodedInput += morseDict[symbols]
+                }
+            }
+            decodedInput += " "
         }
     }
+
+    return decodedInput
 }
-
-class Alphabet {
-    val map: Map<String, String> = mapOf(
-        Pair("A", ".-"),
-        Pair("B", "-..."),
-        Pair("C", "-.-."),
-        Pair("CH", "----"),
-        Pair("D", "-.."),
-        Pair("E", "."),
-        Pair("F", "..-."),
-        Pair("G", "--."),
-        Pair("H", "...."),
-        Pair("I", ".."),
-        Pair("J", ".---"),
-        Pair("K", "-.-"),
-        Pair("L", ".-.."),
-        Pair("M", "--"),
-        Pair("N", "-."),
-        Pair("Ñ", "--.--"),
-        Pair("O", "---"),
-        Pair("P", ".--."),
-        Pair("Q", "--.-"),
-        Pair("R", ".-."),
-        Pair("S", "..."),
-        Pair("T", "-"),
-        Pair("U", "..-"),
-        Pair("V", "...-"),
-        Pair("W", ".--"),
-        Pair("X", "-..-"),
-        Pair("Y", "-.--"),
-        Pair("Z", "--.."),
-        Pair("0", "-----"),
-        Pair("1", ".----"),
-        Pair("2", "..---"),
-        Pair("3", "...--"),
-        Pair("4", "....-"),
-        Pair("5", "....."),
-        Pair("6", "-...."),
-        Pair("7", "--..."),
-        Pair("8", "---.."),
-        Pair("9", "----."),
-        Pair(".", ".-.-.-"),
-        Pair(",", "--..--"),
-        Pair("?", "..--.."),
-        Pair("\"", ".-..-."),
-        Pair("/", "-..-."),
-        Pair(" ", "")
-    )
-
-    val reverseMap: Map<String, String> = mapOf(
-        Pair(".-", "A"),
-        Pair("-...", "B"),
-        Pair("-.-.", "C"),
-        Pair("----", "CH"),
-        Pair("-..", "D"),
-        Pair(".", "E"),
-        Pair("..-.", "F"),
-        Pair("--.", "G"),
-        Pair("....", "H"),
-        Pair("..", "I"),
-        Pair(".---", "J"),
-        Pair( "-.-", "K"),
-        Pair(".-..", "L"),
-        Pair("--", "M"),
-        Pair("-.", "N"),
-        Pair("--.--", "Ñ"),
-        Pair("---", "O"),
-        Pair(".--.", "P"),
-        Pair("--.-", "Q"),
-        Pair(".-.", "R"),
-        Pair("...", "S"),
-        Pair("-", "T"),
-        Pair("..-", "U"),
-        Pair("...-", "V"),
-        Pair(".--", "W"),
-        Pair("-..-", "X"),
-        Pair("-.--", "Y"),
-        Pair("--..", "Z"),
-        Pair("-----", "0"),
-        Pair(".----", "1"),
-        Pair("..---", "2"),
-        Pair("...--", "3"),
-        Pair("....-", "4"),
-        Pair(".....", "5"),
-        Pair("-....", "6"),
-        Pair("--...", "7"),
-        Pair("---..", "8"),
-        Pair("----.", "9"),
-        Pair(".-.-.-", "."),
-        Pair("--..--", ","),
-        Pair("..--..", "?"),
-        Pair(".-..-.", "\""),
-        Pair("-..-.", "/"),
-        Pair("", " ")
-    )
-
-    val emptyMap: Map<String, String> = mapOf()
-}
-
