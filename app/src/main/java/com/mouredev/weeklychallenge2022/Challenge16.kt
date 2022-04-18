@@ -18,3 +18,17 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    val texto = "texto que ñoquis Tal y cuAL"
+    println(texto.split("\\s+".toRegex()).map{ w ->
+        "${(
+                if (w[0].code in 97..122)
+                    (w[0].code - 32).toChar()
+                else if(w[0] == 'ñ')
+                    'Ñ'
+                else
+                    w[0].toChar())
+        }${(w.substring(1))}"
+    }.joinToString(" ")
+    )
+}
