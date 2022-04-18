@@ -48,20 +48,13 @@ private fun firstToUpperCase(text: String): String{
         if(text[pos] == ' '){
             pendingUppercase = true
             upperedText += text[pos].toString() //Lo pongo porque si no se carga los espacios
-        } else if(text[pos] in 'a'..'z'
+        } else if((text[pos] in 'a'..'z' || text[pos] in 'á'..'ú' || text[pos] == 'ñ') //el codigo de la ñ no esta ni en a-z ni en á-ú
             && pendingUppercase){ //La diferencia de bytecode entre una letra minuscula y mayuscula es de 32
             upperedText += ((text[pos].code - byteCodeDifference).toChar()).toString()
             pendingUppercase = false
         } else if(text[pos] in 'A'..'Z' || text[pos] == 'Ñ' || text[pos] in 'Á'..'Ú') {
             upperedText += text[pos].toString()
-            pendingUppercase = false //Para que si la primera letra ya esta en mayuscula, no haga mayuscula la 2da.
-        } else if(text[pos] in 'á'..'ú' && pendingUppercase){ //El bytecode de la ñ no esta en el rango de la a-z asi que hay que especificarla
-            upperedText += ((text[pos].code - byteCodeDifference).toChar()).toString()
-            pendingUppercase = false
-        } else if(text[pos] == 'ñ'
-            && pendingUppercase) {
-            upperedText += ((text[pos].code - byteCodeDifference).toChar()).toString()
-            pendingUppercase = false
+            pendingUppercase = false //Si la primera letra ya esta en mayuscula, no hacer mayuscula la 2da.
         } else upperedText += text[pos].toString()
     }
     return upperedText
