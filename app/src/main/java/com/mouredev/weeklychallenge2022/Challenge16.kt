@@ -18,3 +18,29 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(capitalizeEveryWord("hola soy eric."))
+    println(capitalizeEveryWord("hoy hace 18 grados, y está nublado."))
+    println(capitalizeEveryWord(" ola ,soi josepo , Y no se escrivir . "))
+}
+
+fun capitalizeEveryWord(phrase: String): String {
+    var charIsSpace = true
+    var newString = ""
+    phrase.forEach {
+        if (it.isWhitespace()) {
+            charIsSpace = true
+            newString += it
+            return@forEach
+        }
+        if (charIsSpace) {
+            newString += it.uppercase()
+            if (Regex("\\p{Punct}").matches(it.toString())) return@forEach
+            charIsSpace = false
+            return@forEach
+        }
+        newString += it
+    }
+    return newString
+}
