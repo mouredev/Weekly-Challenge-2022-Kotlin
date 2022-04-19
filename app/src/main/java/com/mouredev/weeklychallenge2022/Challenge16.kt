@@ -18,3 +18,23 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+  val frase="Hola mundo"
+  println(UpperCase(frase))
+}
+
+fun UpperCase(frase:String):String{
+  val minus="abcdefghijklmnñopqrstuvwxyz"
+  val mayus="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+	var frase2=""
+  for (i in 0..frase.length-1){
+    if (minus.contains(frase[i])){
+     frase2+=mayus[minus.indexOf(frase[i])]
+    }
+    else{
+      frase2+=frase[i].toString()
+    }
+  }
+  return frase2
+}
