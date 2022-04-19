@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+
+import java.util.*
+
 /*
  * Reto #16
  * EN MAYÚSCULA
@@ -18,3 +21,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+
+fun main() {
+     println(" hóla user1235, viva él    ".firstLettersUpperCase())
+     println("tengo 80 años ya".firstLettersUpperCase())
+     println("árboles verdes".firstLettersUpperCase())
+     println("Óscar a will Smith; por ñoño ".firstLettersUpperCase())
+}
+
+fun String.firstLettersUpperCase() =
+     this.trim().split("\\s".toRegex()).joinToString(" ") { it.capitalFirstLetter() }
+
+fun String.capitalFirstLetter(): String {
+     if (this.isLowerCase()) {
+          return (this[0].code - 32).toChar() + this.substring(1)
+     }
+     return this
+}
+
+fun String.isLowerCase() = this[0].isLetter() && this[0].isLowerCase()
