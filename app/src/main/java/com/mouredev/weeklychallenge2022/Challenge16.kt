@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #16
  * EN MAYÚSCULA
@@ -18,3 +20,41 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+/**
+ * Metodo Principal
+ */
+fun main(){
+
+    val input = "En un lugar de la mancha,de cuyo nombre.no quiero acordarme....".firstLetterToUpper()
+    println((input))
+
+}
+
+/**
+ * Funcion de extension que convierte la primera letra de una cadena de texto a mayuscula
+ * @return String con la primera letra en mayuscula de la cadena de texto
+ */
+fun String.firstLetterToUpper():String{
+    val result=this.toCharArray()
+
+    this.indexesOf("[ .,;]").forEach {
+        if(it<this.length-1){
+            result[it+1] = result[it+1].uppercaseChar()
+        }
+    }
+    return String(result)
+}
+
+/**
+ * Funcion de extension que devuelve todos los indices donde se encuentra un patron pasado por parametro
+ * @param pattern patron a buscar
+ * @return Lista de indices donde se encuentra el patron
+ */
+fun String?.indexesOf(pattern: String): List<Int> =
+    pattern.toRegex()
+        .findAll(this?: "")
+        .map { it.range.first }
+        .toList()
+
