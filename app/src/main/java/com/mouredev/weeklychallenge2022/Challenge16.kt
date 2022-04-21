@@ -1,6 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.util.*
 
 /*
  * Reto #16
