@@ -18,3 +18,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("Welcome to format text with first word upp case")
+    println("Introduce text: ")
+    val text = readLine()
+    text?.let {
+        val formattedText = it.split(" ").map { word ->
+            formatWordWithFirstCharUpCase(word)
+        }.joinToString(" ")
+        println(formattedText)
+    }
+}
+
+private fun formatWordWithFirstCharUpCase(word: String): String =
+    word.mapIndexed { index, c ->
+        if (index == 0){
+            c.uppercase()
+        }else{
+            c.lowercase()
+        }
+    }.joinToString("")
