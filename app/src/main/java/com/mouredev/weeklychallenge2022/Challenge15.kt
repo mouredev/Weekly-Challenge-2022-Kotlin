@@ -1,9 +1,9 @@
 package com.mouredev.weeklychallenge2022
 
-import java.io.IOException
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import kotlin.math.abs
+import java.util.concurrent.TimeUnit
+import kotlin.math.absoluteValue
+import kotlin.time.DurationUnit
 
 /*
  * Reto #15
@@ -27,25 +27,41 @@ import kotlin.math.abs
  */
 
 fun main() {
-    println(daysInterval("16/04/2022", "16-04-2022"))
-    println(daysInterval("16/04/2022", "16/13/2022"))
-    println(daysInterval("16/04/2022", "32/04/2022"))
-    println(daysInterval("16/04/2022", "17/04/2022"))
-    println(daysInterval("17/04/2022", "16/04/2022"))
-    println(daysInterval("17/04/2022", "16/04/2023"))
+
+    printDaysBetween("18/05/2022", "29/05/2022")
+    printDaysBetween("mouredev", "29/04/2022")
+    printDaysBetween("18/5/2022", "29/04/2022")
 }
 
-private fun daysInterval(dateText1: String, dateText2: String): Int {
-    val dayMillis = 1000 * 60 * 60 * 24
-    var days = -1
-    val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-    dateFormat.isLenient = false
+private fun printDaysBetween(firstDate: String, secondDate: String) {
     try {
-        val date1 = dateFormat.parse(dateText1)
-        val date2 = dateFormat.parse(dateText2)
-        days = abs((date1.time - date2.time) / dayMillis).toInt()
-    } catch (pe: ParseException) {
-        println(pe)
+        println(daysBetween(firstDate, secondDate))
+    } catch (e: DaysBetweenError) {
+        println("Error en el formato de alguna fecha")
+    } catch (e: Exception) {
+            println("Error en el parse de alguna fecha")
     }
-    return days
+}
+
+class DaysBetweenError: Exception()
+
+private fun daysBetween(firstDate: String, secondDate: String): Int {
+
+    val formatter = SimpleDateFormat("dd/MM/yyyy")
+    val firstParsedDate = formatter.parse(firstDate)
+    val secondParsedDate = formatter.parse(secondDate)
+
+    val regex = "^([0-9]){2}[/]([0-9]){2}[/]([0-9]){4}$".toRegex()
+
+    if (firstParsedDate != null
+        && secondParsedDate != null
+        && firstDate.contains(regex)
+        && secondDate.contains(regex)
+    ) {
+
+        return TimeUnit.DAYS.convert(firstParsedDate.time - secondParsedDate.time,
+            TimeUnit.MILLISECONDS
+        ).toInt().absoluteValue
+    }
+    throw DaysBetweenError()
 }
