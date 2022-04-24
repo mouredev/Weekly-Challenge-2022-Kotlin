@@ -25,7 +25,7 @@ fun main() {
     println(capitalizeWords("varias palabras"))
     println(capitalizeWords("varias palabras, con puntuación."))
     println(capitalizeWords("varias palabras, con puntuación y MAYÚSCULAS."))
-    println(capitalizeWords("varias palabras, con puntuación y MAYÚSCULAS\nen varias líneas."))
+    println(capitalizeWords("varias palabras, con puntuación, MAYÚSCULAS\n y cambio de líneas."))
 }
 
 fun capitalizeWords(text: String): String {
