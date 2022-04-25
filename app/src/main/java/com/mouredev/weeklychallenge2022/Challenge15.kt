@@ -31,22 +31,43 @@ import java.time.format.ResolverStyle
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun main() {
-    println("Hay ${daysBetween("15/09/1997", "26/09/1997")} días entre el 15/09/1997 y el 26/09/1997.") // 11
-    println("Hay ${daysBetween("14/01/1933", "31/12/2021")} días entre el 14/01/1933 y el 31/12/2021.") // 32493
-    println("Hay ${daysBetween("26/09/1997", "15/09/1997")} días entre el 26/09/1997 y el 15/09/1997.") // 11
-    println("Hay ${daysBetween("14/02/2022", "30/02/2022")} días entre el 14/02/2022 y el 30/02/2022.") // exception
-    //println("Hay ${daysBetween("14/01/1933", "33/12/2021")} días entre el 14/01/1933 y el 33/12/2021.") // exception
-    //println("Hay ${daysBetween("14/01/1933", "3.3/12/2021")} días entre el 14/01/1933 y el 33/12/2021.") // exception
+    printDaysBetween("15/09/1997", "26/09/1997") // 11
+    printDaysBetween("14/01/1933", "31/12/2021") // 32493
+    printDaysBetween("26/09/1997", "15/09/1997") // 11
+    printDaysBetween("14/02/2022", "30/02/2022") // exception
+    printDaysBetween("14/01/1933", "33/12/2021") // exception
+    printDaysBetween("14/01/1933", "3.3/12/2021") // exception
 }
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun printDaysBetween(firstDate: String, secondDate: String){
+    try {
+        println("Hay ${daysBetween(firstDate, secondDate)} días entre el $firstDate y el $secondDate.")
+    } catch (e: DaysBetweenError){
+        println("Error en alguna fecha")
+    }
+}
+
+class DaysBetweenError: Exception()
 
 @RequiresApi(Build.VERSION_CODES.O)
 private fun daysBetween(date_1: String, date_2: String): Int {
     // https://howtodoinjava.com/java/date-time/resolverstyle-strict-date-parsing/
     // Java 8 uses 'uuuu' for year, not 'yyyy'. In Java 8, ‘yyyy’ means “year of era” (BC or AD).
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT)
-    val date1 = LocalDate.parse(date_1, formatter)
-    val date2 = LocalDate.parse(date_2, formatter)
+    var date1: LocalDate? = null
+    var date2: LocalDate? = null
 
-    val daysBetween = ChronoUnit.DAYS.between(date1, date2)
-    return kotlin.math.abs(daysBetween.toInt())
+    try {
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT)
+        date1 = LocalDate.parse(date_1, formatter)
+        date2 = LocalDate.parse(date_2, formatter)
+    } catch (e: Exception){
+        throw DaysBetweenError()
+    }
+
+    if (date1 != null && date2 != null) {
+        val daysBetween = ChronoUnit.DAYS.between(date1, date2)
+        return kotlin.math.abs(daysBetween.toInt())
+    }
+    throw DaysBetweenError()
 }
