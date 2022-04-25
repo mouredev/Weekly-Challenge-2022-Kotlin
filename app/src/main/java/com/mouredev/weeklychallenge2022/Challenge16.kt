@@ -31,5 +31,4 @@ fun main() {
         }${(w.substring(1))}"
     }.joinToString(" ")
     )
-
 }
