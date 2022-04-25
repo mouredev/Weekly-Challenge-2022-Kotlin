@@ -30,20 +30,17 @@ fun main() {
 
     printDaysBetween("18/05/2022", "29/05/2022")
     printDaysBetween("mouredev", "29/04/2022")
-    printDaysBetween("18/5/2022", "29/04/2022")
+    printDaysBetween("18/05/2022", "29/04/2022")
 }
 
 private fun printDaysBetween(firstDate: String, secondDate: String) {
     try {
-        println(daysBetween(firstDate, secondDate))
-    } catch (e: DaysBetweenError) {
-        println("Error en el formato de alguna fecha")
-    } catch (e: Exception) {
-            println("Error en el parse de alguna fecha")
+        val days = daysBetween(firstDate, secondDate)
+        println("$days días")
+    } catch (e: ParseException) {
+        println("Error: ${e.message}")
     }
 }
-
-class DaysBetweenError: Exception()
 
 private fun daysBetween(firstDate: String, secondDate: String): Int {
 
@@ -53,16 +50,10 @@ private fun daysBetween(firstDate: String, secondDate: String): Int {
 
     val regex = "^([0-9]){2}[/]([0-9]){2}[/]([0-9]){4}$".toRegex()
 
-    if (firstParsedDate != null
-        && secondParsedDate != null
-        && firstDate.contains(regex)
-        && secondDate.contains(regex)
-    ) {
-
-        return TimeUnit.DAYS.convert(
-            firstParsedDate.time - secondParsedDate.time,
-            TimeUnit.MILLISECONDS
-        ).toInt().absoluteValue
+    if (!regex.matches(firstDate) || !regex.matches(secondDate)) {
+        throw ParseException("Fecha incorrecta", 0)
     }
-    throw DaysBetweenError()
+
+    val days = TimeUnit.DAYS.convert(secondParsedDate.time - firstParsedDate.time, TimeUnit.MILLISECONDS)
+    return days.absoluteValue.toInt()
 }
