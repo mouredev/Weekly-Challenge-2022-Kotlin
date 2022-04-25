@@ -40,10 +40,13 @@ fun String.carreraCorredor(pasosCorredor: Array<String>): ResultadoCarrera{
 
         // Si la longitud de la carrera teórica no es igual a la real...
         if (carreraTeorica.size > pasosCarrera.size){
+            // Si la carrera teórica es más larga que la real, cargaremos la real con lo negado de la teórica
+            // para provocar el fallo
             val subCarrera = carreraTeorica.slice(pasosCarrera.size until carreraTeorica.size)
                 .map { x -> if (x == "run") "|" else "_" }
             pasosCarrera.addAll(subCarrera)
         }else{
+            // en cambio, si la carrera real es más larga que la teórica... lo contrario
             val subCarreraCorredor = pasosCarrera.slice(carreraTeorica.size until pasosCarrera.size)
                 .map { x -> if (x == "_") "jump" else "run" }
             carreraTeorica.addAll(subCarreraCorredor)
