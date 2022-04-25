@@ -29,7 +29,7 @@ package com.mouredev.weeklychallenge2022
  */
 data class ResultadoCarrera(val resultado: Boolean, val carrera: String)
 
-fun String.CarreraCorredor(pasosCorredor: Array<String>): ResultadoCarrera{
+fun String.carreraCorredor(pasosCorredor: Array<String>): ResultadoCarrera{
     // Sacamos los pasos de la carrera a un array
     val pasosCarrera = this.asIterable().map{ c -> c.toString() }.toMutableList()
     // Preparamos la carrera teórica del corredor
@@ -62,7 +62,7 @@ fun String.CarreraCorredor(pasosCorredor: Array<String>): ResultadoCarrera{
 }
 
 fun main() {
-    val resultado1 = "__|_|__||__".CarreraCorredor(arrayOf("run",
+    val resultado1 = "__|_|__||__".carreraCorredor(arrayOf("run",
         "run",
         "jump",
         "run",
@@ -75,7 +75,7 @@ fun main() {
 
     println("Resultado corredor 1: ${resultado1.resultado} -> ${resultado1.carrera}")
 
-    val resultado2 = "__|_|__||__".CarreraCorredor(arrayOf("run",
+    val resultado2 = "__|_|__||__".carreraCorredor(arrayOf("run",
         "run",
         "run",
         "run",
@@ -88,7 +88,7 @@ fun main() {
 
     println("Resultado corredor 2: ${resultado2.resultado} -> ${resultado2.carrera}")
 
-    val resultado3 = "__|_|__||__".CarreraCorredor(arrayOf("run",
+    val resultado3 = "__|_|__||__".carreraCorredor(arrayOf("run",
         "jump",
         "run",
         "run",
@@ -101,7 +101,7 @@ fun main() {
 
     println("Resultado corredor 3: ${resultado3.resultado} -> ${resultado3.carrera}")
 
-    val resultado4 = "__|_|__||__".CarreraCorredor(arrayOf("run",
+    val resultado4 = "__|_|__||__".carreraCorredor(arrayOf("run",
         "run",
         "jump",
         "run",
