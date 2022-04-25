@@ -18,3 +18,17 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(capitalizeAllWord("¿había una vez una vaca?lola"))
+}
+
+fun capitalizeAllWord(s: String): String {
+
+    val regex = "[^A-zÀ-ú]".toRegex()   // Every character that doesn't match a letter.
+    var capitalizedText = s
+    s.replace(regex, " ").split(" ").forEach { word ->
+        capitalizedText = capitalizedText.replace(word,  word.replaceFirstChar { it.uppercase()})
+    }
+    return capitalizedText
+}
