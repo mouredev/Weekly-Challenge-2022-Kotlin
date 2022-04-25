@@ -27,3 +27,33 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    printRace(arrayOf("jump", "run", "run", "jump", "run"), "|__|_")
+    printRace(arrayOf("jump", "run", "run", "jump", "run"), "|_|__")
+}
+
+fun printRace(actions: Array<String>, runningTrack: String){
+    println("Las acciones que realizó el atleta son: ${actions.contentToString()}")
+    println("El estado inicial de la pista era: $runningTrack")
+    println("El Atleta ${if(passTheRace(actions, runningTrack)) "" else "no "}pasó la carrera")
+    println()
+}
+
+// Suponemos que los parámatros pasados por parámetro son correctos.
+private fun passTheRace(actions: Array<String>, runningTrack: String): Boolean {
+    var raceStatus = ""
+    for (i in actions.indices){
+        raceStatus += (
+                when {
+                    actions[i] == "run" && runningTrack[i] == '_' -> "_"
+                    actions[i] == "run" && runningTrack[i] == '|' -> "/"
+                    actions[i] == "jump" && runningTrack[i] == '_' -> "x"
+                    actions[i] == "jump" && runningTrack[i] == '|' -> "|"
+                    else -> {}
+                }
+                )
+    }
+    println("Fin de la carrera: $raceStatus")
+    return !('x' in raceStatus || '/' in raceStatus)
+}
