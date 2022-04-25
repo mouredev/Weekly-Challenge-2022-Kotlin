@@ -32,8 +32,7 @@ fun main() {
     println(toUpCase(string1))
     string1 = ""
     println(toUpCase(string1))
-    string1 = "454654 adfdf 6465 "
-    println(toUpCase(string1))
+
 
 }
 
