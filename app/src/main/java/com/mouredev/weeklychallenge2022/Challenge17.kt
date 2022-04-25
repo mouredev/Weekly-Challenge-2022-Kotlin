@@ -29,45 +29,27 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(checkRace(listOf(AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
-    println(checkRace(listOf(AthleteState.RUN, AthleteState.RUN, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
-    println(checkRace(listOf(AthleteState.RUN, AthleteState.RUN, AthleteState.JUMP, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
-    println(checkRace(listOf(AthleteState.RUN, AthleteState.RUN, AthleteState.JUMP, AthleteState.JUMP, AthleteState.RUN), "_|_|_|_"))
-    println(checkRace(listOf(AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP), "_|_|_"))
-    println(checkRace(listOf(AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
-    println(checkRace(listOf(AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP), "|||||"))
-    println(checkRace(listOf(AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP), "||?||"))
+    val runner = arrayOf("run", "run", "jump", "run", "run", "run", "run", "jump", "run", "run")
+    val pista = "__|____|__"
+    if (sprint(runner, pista)) println("Carrera superada") else println("Carrera no superada")
 }
 
-
-private enum class AthleteState(val segment: String) {
-    RUN("_"),
-    JUMP("|")
-}
-
-private fun checkRace(athlete: List<AthleteState>, track: String) : Boolean {
-
-    val totalActions = if (athlete.count() > track.count())  athlete.count() else track.count()
-    val minActions = if (athlete.count() > track.count()) track.count() else athlete.count()
-
-    val trackSegments = track.toList()
-
-    var athleteTrack = ""
-
-    for (index in (0 until totalActions)) {
-        athleteTrack += if (index >= minActions) {
-            "?"
-        } else {
-            val segment = trackSegments[index]
-            when(val state = athlete[index]) {
-                AthleteState.RUN -> if (segment.toString() == state.segment) state.segment else "/"
-                AthleteState.JUMP -> if (segment.toString() == state.segment) state.segment else "x"
-            }
+fun sprint(runner: Array<String>, pista: String): Boolean {
+    val pistaArray = pista.toCharArray()
+    var result = true
+    if (runner.size != pista.length) {
+        return false
+    }
+    for (i in runner.indices) {
+        if (pistaArray[i] == '_' && runner[i] == "jump") {
+            pistaArray[i] = 'x'
+            result = false
+        } else if (pistaArray[i] == '|' && runner[i] == "run") {
+            pistaArray[i] = '/'
+            result = false
         }
     }
-
-    println(athleteTrack)
-
-    return track == athleteTrack
+    println("Resultado ${String(pistaArray)}")
+    return result
 }
 
