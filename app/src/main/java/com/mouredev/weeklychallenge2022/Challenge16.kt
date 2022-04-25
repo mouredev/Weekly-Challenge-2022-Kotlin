@@ -26,7 +26,7 @@ package com.mouredev.weeklychallenge2022
  */
 fun main(){
 
-    val input = "En un lugar de la mancha,de cuyo nombre.no quiero acordarme....".firstLetterToUpper()
+    val input = "...¿en un lugar de la mancha,de cuyo nombre.no quiero acordarme..¿?..".firstLetterToUpper()
     println((input))
 
 }
@@ -38,7 +38,7 @@ fun main(){
 fun String.firstLetterToUpper():String{
     val result=this.toCharArray()
 
-    this.indexesOf("[ .,;]").forEach {
+    this.indexesOf("[ .,;¿?!¡]").forEach {
         if(it<this.length-1){
             result[it+1] = result[it+1].uppercaseChar()
         }
