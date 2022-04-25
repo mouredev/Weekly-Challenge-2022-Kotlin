@@ -5,6 +5,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
 import kotlin.math.abs
+
+
 /*
  * Reto #15
  * ¿CUÁNTOS DÍAS?
@@ -25,6 +27,7 @@ import kotlin.math.abs
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun main() {
@@ -74,5 +77,3 @@ fun diferenciaDias (num1: String, num2: String): Int? {
     }
     return null
 }
-
-
