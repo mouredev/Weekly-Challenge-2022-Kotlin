@@ -27,3 +27,29 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val runner = arrayOf("run", "run", "jump", "run", "run", "run", "run", "jump", "run", "run")
+    val pista = "__|____|__"
+    if (sprint(runner, pista)) println("Carrera superada") else println("Carrera no superada")
+}
+
+fun sprint(runner: Array<String>, pista: String): Boolean {
+    val pistaArray = pista.toCharArray()
+    var result = true
+    if (runner.size != pista.length) {
+        return false
+    }
+    for (i in runner.indices) {
+        if (pistaArray[i] == '_' && runner[i] == "jump") {
+            pistaArray[i] = 'x'
+            result = false
+        } else if (pistaArray[i] == '|' && runner[i] == "run") {
+            pistaArray[i] = '/'
+            result = false
+        }
+    }
+    println("Resultado ${String(pistaArray)}")
+    return result
+}
+
