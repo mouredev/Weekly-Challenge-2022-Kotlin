@@ -18,20 +18,17 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
 fun main() {
-    println(capitalize("¿hola qué tal estás?"))
-    println(capitalize("¿hola      qué tal estás?"))
-    println(capitalize("El niño ñoño"))
-}
-
-private fun capitalize(text: String): String {
-
-    var capitalizedText = text
-
-    text.replace("[^A-zÀ-ú]".toRegex(), " ").split(" ").forEach { word ->
-        capitalizedText = capitalizedText.replace(word, word.replaceFirstChar { it.uppercase() })
-    }
-
-    return capitalizedText
+    val texto = "texto que ñoquis Tal y cuAL"
+    println(texto.split("\\s+".toRegex()).map{ w ->
+        "${(
+                if (w[0].code in 97..122)
+                    (w[0].code - 32).toChar()
+                else if(w[0] == 'ñ')
+                    'Ñ'
+                else
+                    w[0].toChar())
+        }${(w.substring(1))}"
+    }.joinToString(" ")
+    )
 }
