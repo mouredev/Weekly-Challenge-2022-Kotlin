@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #16
  * EN MAYÚSCULA
@@ -18,3 +20,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(mayusculas("hola mundo"))
+    println(mayusculas("Como estais todos hoy"))
+}
+
+private fun mayusculas(texto: String) : String{
+    val textoArray = texto.split(" ")
+    val textoFinal = textoArray.map { palabra ->
+        palabra.replaceFirstChar {
+            if (it.isLowerCase())
+                it.titlecase(Locale.getDefault())
+            else
+                it.toString()
+        }
+    }.joinToString(" ")
+    return textoFinal
+}
