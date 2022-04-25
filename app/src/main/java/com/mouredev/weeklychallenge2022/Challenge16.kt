@@ -27,8 +27,9 @@ fun main() {
                 else if(w[0] == 'ñ')
                     'Ñ'
                 else
-                    w[0])
+                    w[0].toChar())
         }${(w.substring(1))}"
     }.joinToString(" ")
     )
+
 }
