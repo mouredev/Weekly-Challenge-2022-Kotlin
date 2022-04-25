@@ -27,3 +27,94 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+private var runnersNumber = 1
+
+private enum class Runner(){
+    RUN,JUMP
+}
+
+fun main(){
+    println("First Race\n")
+    startRace(5)
+    runnersNumber = 1
+    println("\nSecond Race\n")
+    startRace(10)
+
+}
+
+private fun wins(athleteActions : Array<Runner>, route : String): Boolean{
+
+    val segmentedRoute = route.toCharArray()
+    var finishTheRun = true
+    for (x in athleteActions.indices) {
+        when(athleteActions[x]){
+            Runner.RUN ->
+                if (segmentedRoute[x] == '_') {
+                    segmentedRoute[x] = 'x'
+                    finishTheRun = false
+                }
+            Runner.JUMP ->
+                if (segmentedRoute[x] == '|') {
+                    segmentedRoute[x] = '/'
+                    finishTheRun = false
+                }
+        }
+    }
+    var resultRout = ""
+    segmentedRoute.forEach {
+        resultRout += it
+    }
+    print("Runner #${runnersNumber++}: $resultRout ")
+    return finishTheRun
+}
+
+private fun competition(route: String, vararg runners : Array<Runner>){
+
+    runners.forEach {
+        println(" ${if (wins(it,route)) "Finish" else "Lose"}")
+    }
+
+}
+
+private fun randomMoves(raceLength: Int) : Array<Runner>{
+    val moves = arrayListOf<Runner>()
+    for (x in 1..raceLength){
+        val runJump = (0..10).random()
+        if ( runJump >5 ){
+            moves.add(Runner.RUN)
+        } else
+            moves.add(Runner.JUMP)
+    }
+    var movesArray = Array(raceLength-1 ){ Runner.RUN }
+        movesArray = moves.toArray(movesArray)
+    return movesArray
+}
+
+private fun randomRoute(raceLength: Int) : String{
+    var route = ""
+    for (x in 1..raceLength){
+        val runJump = (0..10).random()
+        route += if ( runJump >5 ){ "_" } else "|"
+    }
+    return route
+}
+
+private fun startRace(raceLength: Int){
+    val raceRunner1 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner2 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner3 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner4 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner5 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner6 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner7 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner8 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner9 : Array<Runner> = randomMoves(raceLength)
+    val raceRunner10 : Array<Runner> = randomMoves(raceLength)
+
+    val route = randomRoute(raceLength)
+    println(route)
+    competition(route, raceRunner1,raceRunner2,raceRunner3,raceRunner4,raceRunner5,
+        raceRunner6,raceRunner7,raceRunner8,raceRunner9,raceRunner10)
+
+}
+
