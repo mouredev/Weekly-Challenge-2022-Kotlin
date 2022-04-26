@@ -15,6 +15,7 @@ package com.mouredev.weeklychallenge2022
 
 fun main() {
     println(invertirCadena("Hola mundo"))
+    decimalToBinary(28)
 }
 
 fun invertirCadena(cadena : String) : String{
@@ -24,4 +25,20 @@ fun invertirCadena(cadena : String) : String{
         cadenaInvertida += cadena[index]
     }
     return cadenaInvertida
+}
+
+fun decimalToBinary(number : Int){
+
+    var quotient = number
+    var binaryNumber = arrayListOf<Int>()
+
+    while(quotient != 1){
+        binaryNumber.add(quotient % 2)
+        quotient /= 2
+
+        if(quotient == 1){
+            binaryNumber.add(1)
+        }
+    }
+    println(binaryNumber)
 }
