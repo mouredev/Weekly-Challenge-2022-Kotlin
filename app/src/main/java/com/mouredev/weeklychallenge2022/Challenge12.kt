@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.Normalizer
+
 /*
  * Reto #12
  * ¿ES UN PALÍNDROMO?
@@ -22,6 +24,9 @@ fun main(){
     println(isPalindrome("Roma ni se conoce sin oro, ni se conoce sin amor."))
 }
 
+/*
+BLOQUE MARTINEZ
+ */
 fun isPalindrome(sentence : String) : Boolean{
     val formatSentence = formatSentence(sentence)
     val reverseFormatSentence= formatSentence.reversed()
@@ -45,3 +50,15 @@ fun formatSentence(sentence: String): String {
         .filter { it != ' ' }
         .filter { dictionary.contains(it) }
 }
+
+/*
+BLOQUE MOURE
+ */
+private fun isPalindromeAux(text: String): Boolean {
+
+    val normalizedText = Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD)
+        .replace("[^\\p{ASCII}]".toRegex(), "")
+        .replace("[^a-z0-9]".toRegex(), "")
+    return normalizedText == normalizedText.reversed()
+}
+

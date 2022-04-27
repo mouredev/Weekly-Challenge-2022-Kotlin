@@ -1,5 +1,9 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.SimpleDateFormat
+import java.util.concurrent.TimeUnit
+import kotlin.math.absoluteValue
+
 /*
  * Reto #11
  * ELIMINANDO CARACTERES
@@ -25,6 +29,9 @@ fun filter(cadenaUno : String, cadenaDos : String ) {
     println(cadenaDos.filter { !cadenaUno.contains(it) } )
 }
 
+/*
+BLOQUE MARTINEZ
+ */
 fun filterAux(cadenaUno : String, cadenaDos : String ) {
     var cadenaUnoAux = ""
     var cadenaDosAux = ""
@@ -66,4 +73,30 @@ fun filterAuxAux(cadenaUno : String, cadenaDos : String ) {
         }
     }
     println(cadenaUnoAux)
+}
+
+/*
+BLOQUE MOURE
+ */
+private fun printNonCommon(str1: String, str2: String) {
+    println("out1: ${findNonCommon(str1, str2)}")
+    println("out2: ${findNonCommon(str2, str1)}")
+}
+
+private fun findNonCommon(str1: String, str2: String): String {
+
+    var out = ""
+
+    str1.lowercase().forEach {
+        if (!str2.lowercase().contains(it)) {
+            out += it
+        }
+    }
+
+    return out
+}
+
+private fun printNonCommonWithFilter(str1: String, str2: String) {
+    println("out1: ${str1.lowercase().filter { !str2.lowercase().contains(it) }}")
+    println("out2: ${str2.lowercase().filter { !str1.lowercase().contains(it) }}")
 }

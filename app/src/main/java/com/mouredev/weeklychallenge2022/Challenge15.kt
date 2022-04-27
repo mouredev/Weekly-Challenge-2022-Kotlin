@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.math.absoluteValue
 
 /*
  * Reto #15
@@ -24,17 +26,12 @@ fun main(){
     getDateDays("10/09/2021","21/04/2022")
 }
 
+/*
+BLOQUE MARTINEZ
+ */
 fun getDateDays(initialDate : String, finalDate : String) : Int{
 
-    val formatter = SimpleDateFormat("dd/MM/yyyy")
-    val firstParsedDate = formatter.parse(initialDate)
-    val secondParsedDate = formatter.parse(finalDate)
-    println(firstParsedDate)
-    println(secondParsedDate)
-    println(firstParsedDate.time)
-    println(secondParsedDate.time)
-
-  /*  val initialDateSplit = initialDate.split("/")
+    val initialDateSplit = initialDate.split("/")
     val initialDateYear = initialDateSplit[2].toInt()
 
     val finalDateSplit = finalDate.split("/")
@@ -42,7 +39,7 @@ fun getDateDays(initialDate : String, finalDate : String) : Int{
 
     if(initialDateYear != finalDateYear){
         println(getDaysToFinishYear(initialDate) + getDaysFromBeginningOfYear(finalDate) + ((finalDateYear) - (initialDateYear+1)) * 365)
-    }*/
+    }
     return 1
 }
 
@@ -78,4 +75,41 @@ fun getDaysFromBeginningOfYear(date: String): Int {
         daysOfFullMonthsFromBeginningOfYear += monthWithDays.getValue(i)
     }
     return daysOfFullMonthsFromBeginningOfYear + dateDay
+}
+
+/*
+BLOQUE MOURE
+ */
+private fun printDaysBetween(firstDate: String, secondDate: String) {
+    try {
+        println(daysBetween(firstDate, secondDate))
+    } catch (e: DaysBetweenError) {
+        println("Error en el formato de alguna fecha")
+    } catch (e: Exception) {
+        println("Error en el parse de alguna fecha")
+    }
+}
+
+class DaysBetweenError: Exception()
+
+private fun daysBetween(firstDate: String, secondDate: String): Int {
+
+    val formatter = SimpleDateFormat("dd/MM/yyyy")
+    val firstParsedDate = formatter.parse(firstDate)
+    val secondParsedDate = formatter.parse(secondDate)
+
+    val regex = "^([0-9]){2}[/]([0-9]){2}[/]([0-9]){4}$".toRegex()
+
+    if (firstParsedDate != null
+        && secondParsedDate != null
+        && firstDate.contains(regex)
+        && secondDate.contains(regex)
+    ) {
+
+        return TimeUnit.DAYS.convert(
+            firstParsedDate.time - secondParsedDate.time,
+            TimeUnit.MILLISECONDS
+        ).toInt().absoluteValue
+    }
+    throw DaysBetweenError()
 }
