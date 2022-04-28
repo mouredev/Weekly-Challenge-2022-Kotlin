@@ -20,21 +20,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-  val frase="Hola mundo"
-  println(UpperCase(frase))
+    println(capitalize("¿hola qué tal estás?"))
+    println(capitalize("¿hola      qué tal estás?"))
+    println(capitalize("El niño ñoño"))
 }
 
-fun UpperCase(frase:String):String{
-  val minus="abcdefghijklmnñopqrstuvwxyz"
-  val mayus="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-	var frase2=""
-  for (i in 0..frase.length-1){
-    if (minus.contains(frase[i])){
-     frase2+=mayus[minus.indexOf(frase[i])]
+private fun capitalize(text: String): String {
+
+    var capitalizedText = text
+
+    text.replace("[^A-zÀ-ú]".toRegex(), " ").split(" ").forEach { word ->
+        capitalizedText = capitalizedText.replace(word, word.replaceFirstChar { it.uppercase() })
     }
-    else{
-      frase2+=frase[i].toString()
-    }
-  }
-  return frase2
+
+    return capitalizedText
 }
