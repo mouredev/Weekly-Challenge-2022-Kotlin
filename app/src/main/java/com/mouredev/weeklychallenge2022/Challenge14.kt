@@ -17,20 +17,20 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-fun main(){
-  val num = 371
-  println(armstrong(num))
+fun main() {
+    val num = 371
+    println(armstrong(num))
 }
 
-fun armstrong(num:Int):Boolean{
-  var s = num.toString()
-  var len = s.length
-  var sum = 0.0
+fun armstrong(num: Int): Boolean {
+    var s = num.toString()
+    var len = s.length
+    var sum = 0.0
 
-  for (i in 0 until len){
-    var x = s[i].toString().toDouble()
-    sum += Math.pow(x, len.toDouble())
-  }
+    for (i in 0 until len) {
+        var x = s[i].toString().toDouble()
+        sum += Math.pow(x, len.toDouble())
+    }
 
-  return sum.toInt() == num
+    return sum.toInt() == num
 }

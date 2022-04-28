@@ -17,13 +17,13 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main(){
-  print(factorial(6))
+fun main() {
+    print(factorial(6))
 }
 
-fun factorial(n:int){
-  if(n == 0){
-    return 1
-  }
-  return n * factorial(n-1)
+fun factorial(n: Int): Int {
+    if (n == 0) {
+        return 1
+    }
+    return n * factorial(n - 1)
 }

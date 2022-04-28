@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #1
  * ¿ES UN ANAGRAMA?
@@ -27,8 +29,8 @@ fun main() {
 
 fun is_anagramable(word1: String, word2: String): Boolean {
 
-    val w1_sorted = word1.toLowerCase().toCharArray().sorted().joinToString("")
-    val w2_sorted = word2.toLowerCase().toCharArray().sorted().joinToString("")
+    val w1_sorted = word1.lowercase(Locale.getDefault()).toCharArray().sorted().joinToString("")
+    val w2_sorted = word2.lowercase(Locale.getDefault()).toCharArray().sorted().joinToString("")
 
     if (w1_sorted == w2_sorted) return true
     return false

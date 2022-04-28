@@ -1,6 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
 import kotlin.math.absoluteValue
@@ -39,11 +38,11 @@ private fun printDaysBetween(firstDate: String, secondDate: String) {
     } catch (e: DaysBetweenError) {
         println("Error en el formato de alguna fecha")
     } catch (e: Exception) {
-            println("Error en el parse de alguna fecha")
+        println("Error en el parse de alguna fecha")
     }
 }
 
-class DaysBetweenError: Exception()
+class DaysBetweenError : Exception()
 
 private fun daysBetween(firstDate: String, secondDate: String): Int {
 

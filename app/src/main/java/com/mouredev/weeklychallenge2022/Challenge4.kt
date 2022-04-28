@@ -33,7 +33,7 @@ interface Polygon {
     fun printArea()
 }
 
-data class Triangle(val base: Double, val height: Double): Polygon {
+data class Triangle(val base: Double, val height: Double) : Polygon {
 
     override fun area(): Double {
         return (base * height) / 2
@@ -44,7 +44,7 @@ data class Triangle(val base: Double, val height: Double): Polygon {
     }
 }
 
-data class Rectangle(val length: Double, val width: Double): Polygon {
+data class Rectangle(val length: Double, val width: Double) : Polygon {
 
     override fun area(): Double {
         return length * width
@@ -55,7 +55,7 @@ data class Rectangle(val length: Double, val width: Double): Polygon {
     }
 }
 
-data class Square(val side: Double): Polygon {
+data class Square(val side: Double) : Polygon {
 
     override fun area(): Double {
         return side * side

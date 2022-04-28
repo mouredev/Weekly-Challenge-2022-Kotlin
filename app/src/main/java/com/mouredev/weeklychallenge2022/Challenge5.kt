@@ -24,7 +24,7 @@ import kotlin.math.roundToInt
  *
  */
 
-class Challenge5() {
+class Challenge5 {
 
     fun aspectRatio(url: String) {
 
@@ -39,7 +39,7 @@ class Challenge5() {
             val aspectRatio = rationalAspectRatio(height.toDouble() / width.toDouble())
             aspectRationStr = "${aspectRatio.second}:${aspectRatio.first}"
 
-            aspectRationStr?.let { ratio ->
+            aspectRationStr.let { ratio ->
                 println("El aspect ratio es ${ratio}")
             } ?: run {
                 println("No se ha podido calcular el aspect ratio")

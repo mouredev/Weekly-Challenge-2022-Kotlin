@@ -18,16 +18,17 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-  for (i in 1..10) {
-    println("$i: ${toBinary(i)}")
-  }
+    for (i in 1..10) {
+        println("$i: ${toBinary(i)}")
+    }
 }
 
-fun toBinary(decimal: Int):String {
-  var binary = ""
-  var resto = decimal
-  while (resto > 0) {
-    binary = (resto % 2).toString() + binary
-    resto /= 2
-  }
-  return binary
+fun toBinary(decimal: Int): String {
+    var binary = ""
+    var resto = decimal
+    while (resto > 0) {
+        binary = (resto % 2).toString() + binary
+        resto /= 2
+    }
+    return binary
+}

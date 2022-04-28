@@ -28,54 +28,53 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main(){
+fun main() {
     val corredor = arrayOf("run", "jump")
-    val circuito="_|"
+    val circuito = "_|"
 
     carrera(corredor, circuito)
 }
 
 fun carrera(corredor: Array<String>, circuito: String): Boolean {
-
     if (!comprobar_estado(corredor, circuito)) {
         return false
     }
 
+    var estado = true
     var pista = circuito
     //crea un bucle for que recorre pista y comprueba cada caracter
-    for (i in pista.indices){
-        if (pista[i] == '|'){
-            if (corredor[i]== "run") {
+    for (i in pista.indices) {
+        if (pista[i] == '|') {
+            if (corredor[i] == "run") {
                 pista = pista.replaceRange(i, i + 1, "/")
             } else {
-                return false
+                estado = false
             }
-        }
-        else if (pista[i] == '_'){
-            if (corredor[i]== "jump") {
+        } else if (pista[i] == '_') {
+            if (corredor[i] == "jump") {
                 pista = pista.replaceRange(i, i + 1, "x")
             } else {
-                return false
+                estado = false
             }
         }
     }
     print("Pista: {$pista}")
-    return true
+    return estado
 }
 
-fun comprobar_estado(corredor: Array<String>, circuito: String): Boolean{
-    if (corredor.size != circuito.length){
+fun comprobar_estado(corredor: Array<String>, circuito: String): Boolean {
+    if (corredor.size != circuito.length) {
         return false
     }
 
     corredor.forEach {
-        if ((it != "run") && ( it != "jump")){
+        if ((it != "run") && (it != "jump")) {
             return false
         }
     }
 
-    circuito.forEach{
-        if ((it != '_') && (it != '|')){
+    circuito.forEach {
+        if ((it != '_') && (it != '|')) {
             return false
         }
     }

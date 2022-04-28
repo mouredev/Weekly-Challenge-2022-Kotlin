@@ -21,19 +21,20 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var frase = "* - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación. * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación."
+    var frase =
+        "* - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación. * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación."
     println(contar(frase))
 }
 
 fun normalize(palabra: String): String {
     return palabra.replace(".", "")
-            .replace(".", "")
-            .replace(",", "")
-            .replace("¿", "")
-            .replace("?", "")
-            .replace("!", "")
-            .replace("¡", "")
-            .lowercase()
+        .replace(".", "")
+        .replace(",", "")
+        .replace("¿", "")
+        .replace("?", "")
+        .replace("!", "")
+        .replace("¡", "")
+        .lowercase()
 }
 
 fun contar(frase: String): HashMap<String, Int> {

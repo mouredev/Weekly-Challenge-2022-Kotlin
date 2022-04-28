@@ -21,27 +21,26 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main(){
+fun main() {
     val expresion = "{ [ a * ( c + d ) ] - 5 }"
     println(validate(expresion))
 }
 
-fun validate(text:String):Boolean{
+fun validate(text: String): Boolean {
     val stack = mutableListOf<Char>()
     var textArray = ""
     text.forEach {
-        if ("{}[]()".contains(it)) textArray+=it
+        if ("{}[]()".contains(it)) textArray += it
     }
     if (textArray.isEmpty()) return false
     if (textArray.length % 2 != 0) return false
 
-    for (character in textArray){
-        if(isOpen(character)){
+    for (character in textArray) {
+        if (isOpen(character)) {
             stack.add(character)
-        }
-        else{
+        } else {
             val topChar = stack.removeAt(stack.lastIndex)
-            if(!closed(topChar, character)){
+            if (!closed(topChar, character)) {
                 return false
             }
         }
@@ -50,10 +49,10 @@ fun validate(text:String):Boolean{
 }
 
 fun closed(characterA: Char, characterB: Char): Boolean {
-    val pairs = hashMapOf( '{' to '}', '[' to ']', '(' to ')')
+    val pairs = hashMapOf('{' to '}', '[' to ']', '(' to ')')
     return pairs[characterA] == characterB
 }
 
 fun isOpen(character: Char): Boolean {
-     return "{[(".contains(character)
+    return "{[(".contains(character)
 }
