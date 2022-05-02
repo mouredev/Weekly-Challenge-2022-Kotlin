@@ -27,3 +27,38 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val athlete1 = listOf("run", "run", "run", "jump", "run", "jump", "run", "jump", "jump", "run")
+    val athlete2 = listOf("run", "run", "jump", "run", "run", "jump", "run", "run", "jump", "run")
+    val athlete3 = listOf("run", "run", "jump", "run", "jump", "jump", "run", "run", "run", "run")
+    val course = listOf("_", "_", "|", "_", "_", "|", "_", "_", "|", "_")
+
+    println("Athlete 1:")
+    println("Succeeded: ${athleteSucceeded(athlete1, course)}")
+    println("\nAthlete 2:")
+    println("Succeeded: ${athleteSucceeded(athlete2, course)}")
+    println("\nAthlete 3:")
+    println("Succeeded: ${athleteSucceeded(athlete3, course)}")
+}
+
+fun athleteSucceeded(athlete: List<String>, course: List<String>): Boolean {
+    val courseResult = mutableListOf<String>()
+    for ((index, athleteStep) in athlete.withIndex()) {
+        if (athleteStep == "run") {
+            if (course[index] == "_") {
+                courseResult.add("_")
+            } else {
+                courseResult.add("/")
+            }
+        } else {
+            if (course[index] == "|") {
+                courseResult.add("|")
+            } else {
+                courseResult.add("x")
+            }
+        }
+    }
+    println(courseResult)
+    return !(courseResult.contains("/") or courseResult.contains("x"))
+}
