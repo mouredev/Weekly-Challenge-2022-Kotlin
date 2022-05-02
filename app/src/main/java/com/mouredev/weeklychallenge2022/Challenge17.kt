@@ -27,3 +27,46 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val runner = arrayOf<String>("run", "run", "jump", "run");
+    val stadium = charArrayOf('_','_','|','_');
+
+    if (runner.size == stadium.size){
+        println("El resultado de la carrera es: ${RaceResult(runner, stadium)}");
+    }
+    else {
+        println("Faltan datos");
+    }
+}
+
+private fun RaceResult(athlete: Array<String>, track: CharArray): Boolean{
+
+    var result = "";
+
+    val athleteBadActions = athlete.filter{
+        it != "run" && it != "jump"
+    }
+
+    val trackBadStatus = track.filter{
+        it.toString() != "_" && it.toString() != "|"
+    }
+
+    if (athleteBadActions.isNotEmpty() or trackBadStatus.isNotEmpty()){
+        println("Hay acciones incorrectas o la pista no está bien")
+        return false;
+    }
+
+    athlete.forEachIndexed{index, action ->
+        when {
+            action == "run" && track[index] == '_' -> result += '_';
+            action == "run" && track[index] == '|' -> result += '/';
+            action == "jump" && track[index] == '|' -> result += '|';
+            action == "jump" && track[index] == '_' -> result += 'x';
+        }
+
+    }
+
+    println ("La traza de la carrera es: $result")
+    return !result.contains("x") or !result.contains("/") ;
+}
