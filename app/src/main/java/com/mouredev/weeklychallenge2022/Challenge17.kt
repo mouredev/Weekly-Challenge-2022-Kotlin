@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.util.*
-
 /*
  * Reto #17
  * LA CARRERA DE OBSTÁCULOS
@@ -34,20 +32,20 @@ import java.util.*
 fun main() {
     var acctions = arrayOf("run" , "run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"jump" , "jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump")
     var course = "___|__|_||__|__|__|__|"
-    println(runIsOk(acctions, course))
+    println(raceIsOk(acctions, course))
     acctions = arrayOf("run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"jump" , "jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump")
     course = "___|__|_||__|__|__|__|"
-    println(runIsOk(acctions, course))
+    println(raceIsOk(acctions, course))
     acctions = arrayOf("jump" , "run" ,"run" ,"run","run" ,"run" ,"jump","run" ,"jump" , "jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump")
     course = "___|__|_||__|__|__|__|"
-    println(runIsOk(acctions, course))
+    println(raceIsOk(acctions, course))
     acctions = arrayOf("jump" , "jump" ,"run" ,"run","run" ,"run" ,"jump","run" ,"jump" , "jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump","run" ,"run" ,"jump")
     course = "___|__|_||__|__|__|__|"
-    println(runIsOk(acctions, course))
+    println(raceIsOk(acctions, course))
 }
 
 
-fun runIsOk (athlete : Array<String>, track : String): Boolean {
+fun raceIsOk (athlete : Array<String>, track : String): Boolean {
     var trackTemp = ""
     var allOk = true
     if (athlete.size != track.length) {
