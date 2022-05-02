@@ -27,3 +27,30 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+     print(
+          isForrestGump(
+               arrayOf("run", "run", "jump", "run", "run", "jump", "run", "jump", "jump"),
+               arrayOf("_", "_", "|", "_", "|", "|", "_", "|", "|")
+          )
+     )
+}
+
+fun isForrestGump(runner: Array<String>, track: Array<String>): Boolean {
+     return if (runner.size != track.size) {
+          print("los parámetros recibidos tienen diferente tamaño, la carrera no será correcta.")
+          false
+     } else {
+          var race = ""
+          (runner zip track).forEach { stretch ->
+               race += when (stretch.second) {
+                    "_" -> if (stretch.first == "run") "_" else "X"
+                    "|" -> if (stretch.first == "jump") "|" else "/"
+                    else -> ""
+               }
+          }
+          println(race)
+          !race.contains("[^_|]".toRegex())
+     }
+}
