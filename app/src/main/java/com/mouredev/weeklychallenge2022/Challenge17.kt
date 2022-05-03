@@ -29,54 +29,45 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    val corredor = arrayOf("run", "jump")
-    val circuito = "_|"
-
-    carrera(corredor, circuito)
+    println(checkRace(listOf(AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
+    println(checkRace(listOf(AthleteState.RUN, AthleteState.RUN, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
+    println(checkRace(listOf(AthleteState.RUN, AthleteState.RUN, AthleteState.JUMP, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
+    println(checkRace(listOf(AthleteState.RUN, AthleteState.RUN, AthleteState.JUMP, AthleteState.JUMP, AthleteState.RUN), "_|_|_|_"))
+    println(checkRace(listOf(AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP), "_|_|_"))
+    println(checkRace(listOf(AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN, AthleteState.JUMP, AthleteState.RUN), "_|_|_"))
+    println(checkRace(listOf(AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP), "|||||"))
+    println(checkRace(listOf(AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP, AthleteState.JUMP), "||?||"))
 }
 
-fun carrera(corredor: Array<String>, circuito: String): Boolean {
-    if (!comprobar_estado(corredor, circuito)) {
-        return false
-    }
 
-    var estado = true
-    var pista = circuito
-    //crea un bucle for que recorre pista y comprueba cada caracter
-    for (i in pista.indices) {
-        if (pista[i] == '|') {
-            if (corredor[i] == "run") {
-                pista = pista.replaceRange(i, i + 1, "/")
-            } else {
-                estado = false
+private enum class AthleteState(val segment: String) {
+    RUN("_"),
+    JUMP("|")
+}
+
+private fun checkRace(athlete: List<AthleteState>, track: String) : Boolean {
+
+    val totalActions = if (athlete.count() > track.count())  athlete.count() else track.count()
+    val minActions = if (athlete.count() > track.count()) track.count() else athlete.count()
+
+    val trackSegments = track.toList()
+
+    var athleteTrack = ""
+
+    for (index in (0 until totalActions)) {
+        athleteTrack += if (index >= minActions) {
+            "?"
+        } else {
+            val segment = trackSegments[index]
+            when(val state = athlete[index]) {
+                AthleteState.RUN -> if (segment.toString() == state.segment) state.segment else "/"
+                AthleteState.JUMP -> if (segment.toString() == state.segment) state.segment else "x"
             }
-        } else if (pista[i] == '_') {
-            if (corredor[i] == "jump") {
-                pista = pista.replaceRange(i, i + 1, "x")
-            } else {
-                estado = false
-            }
         }
     }
-    print("Pista: {$pista}")
-    return estado
+
+    println(athleteTrack)
+
+    return track == athleteTrack
 }
 
-fun comprobar_estado(corredor: Array<String>, circuito: String): Boolean {
-    if (corredor.size != circuito.length) {
-        return false
-    }
-
-    corredor.forEach {
-        if ((it != "run") && (it != "jump")) {
-            return false
-        }
-    }
-
-    circuito.forEach {
-        if ((it != '_') && (it != '|')) {
-            return false
-        }
-    }
-    return true
-}
