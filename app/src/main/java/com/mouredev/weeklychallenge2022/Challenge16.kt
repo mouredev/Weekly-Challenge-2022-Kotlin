@@ -20,20 +20,18 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(capitalizeWords(""))
-    println(capitalizeWords("palabra"))
-    println(capitalizeWords("varias palabras"))
-    println(capitalizeWords("varias palabras, con puntuación."))
-    println(capitalizeWords("varias palabras, con puntuación y MAYÚSCULAS."))
-    println(capitalizeWords("varias palabras, con puntuación, MAYÚSCULAS\n y cambio de líneas."))
-    println(capitalizeWords("¡última hora! ¿hay novedades?"))
+    println(capitalize("¿hola qué tal estás?"))
+    println(capitalize("¿hola      qué tal estás?"))
+    println(capitalize("El niño ñoño"))
 }
 
-fun capitalizeWords(text: String): String {
-    val wordSeparators = text.filter{ !it.isLetter() }
-    var result = ""
-    text.forEachIndexed { index, c ->
-        result += if(index == 0 || wordSeparators.contains(text[index-1])) c.uppercase() else c
+private fun capitalize(text: String): String {
+
+    var capitalizedText = text
+
+    text.replace("[^A-zÀ-ú]".toRegex(), " ").split(" ").forEach { word ->
+        capitalizedText = capitalizedText.replace(word, word.replaceFirstChar { it.uppercase() })
     }
-    return result
+
+    return capitalizedText
 }
