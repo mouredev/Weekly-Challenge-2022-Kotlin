@@ -25,16 +25,16 @@ fun main() {
         var multiThree = index % 3 == 0
         var multiFive = index % 5 == 0
 
-        if(multiThree){
-            println("fizz")
+        if(multiThree && multiFive){
+            println("fizzbuzz")
         }
 
         else if(multiFive){
-            println("buzz")
+            println("fizz")
         }
 
-        else if(multiThree && multiFive){
-            println("fizzbuzz")
+        else if(multiThree){
+            println("buzz")
         }
         else {
             println(index)
