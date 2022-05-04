@@ -21,9 +21,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main(){
-    isAnagram("colinas","nicolas")
+    println(isAnagram("colis","nicolas"))
 }
 
-fun isAnagram(word1: String, word2: String){
+private fun isAnagram(word1: String, word2: String): Boolean {
+    if(word1.lowercase() == word2.lowercase()){
+        return false
+    }
+    return word1.lowercase().toCharArray().sortedArray().contentEquals(word2.lowercase().toCharArray().sortedArray())
 
 }
