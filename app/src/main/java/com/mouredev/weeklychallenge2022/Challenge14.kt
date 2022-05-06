@@ -21,8 +21,7 @@ import kotlin.math.pow
  *
  */
 
-<<<<<<< HEAD
-=======
+
 fun main() {
     println(isArmstrong(371))
     println(isArmstrong(-371))
@@ -45,4 +44,4 @@ private fun isArmstrong(number: Int): Boolean {
         number == sum
     }
 }
->>>>>>> 64c4c697af1b5bd0b4ada000786aff5ca29cbf2a
+
