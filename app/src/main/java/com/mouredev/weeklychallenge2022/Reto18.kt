@@ -40,6 +40,13 @@ fun main() {
         "x", "o", "o",
         "o", "o", "o"
     ))) //null
+    println(play(arrayOf(
+        "x", "x", "x",
+        "x", "o", "o",
+        "o", "o", ""
+    ))) //X
+    //Si alguna de las cadenas esta vacía, la variable fullBoard será false
+    //Y tomará otros criterios
 }
 
 /*
@@ -51,17 +58,15 @@ private fun play(board: Array<String>): String?{
     val size = board.size
     if (size != 9) return null
     var (xCount, oCount) = arrayOf(0, 0)
-    var fullBoard = true
     for(i in board.indices) {
         board[i] = board[i].toLowerCase()
         if(board[i] == "x") xCount++
         else if(board[i] == "o") oCount++
-        else if(board[i].isEmpty() || board[i].isBlank()){
-            fullBoard == false
-        }
     }
+    val fullBoard = (xCount == 5 && oCount == 4) || (xCount == 4 && oCount == 5)
     val xWins = checkPlays(board, "x")
     val oWins = checkPlays(board, "o")
+    //println("X: $xWins - $xCount, O: $oWins - $oCount, fullBoard: $fullBoard")
     if(!xWins && !oWins){
         return "Empate"
     } else if(xWins && oWins) {
@@ -81,6 +86,7 @@ private fun play(board: Array<String>): String?{
     return null
 }
 
+//Checa las posibles jugadas con las que se puede ganar
 private fun checkPlays(board: Array<String>, symbol: String): Boolean{
     val horizontalStartPos = intArrayOf(0, 3, 6)
     val verticalStartPos = intArrayOf(0, 1, 2)
