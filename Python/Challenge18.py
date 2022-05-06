@@ -59,7 +59,6 @@ def count_chars(matrix: list[list[str]]):
     return is_char_accepted, count_O, count_X
 
 
-
 def row_check(matrix: list[list[str]]):
     """
     Función que chequea las respuestas de una fila en una matriz.
