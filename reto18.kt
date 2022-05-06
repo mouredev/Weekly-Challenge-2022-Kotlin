@@ -11,18 +11,46 @@ fun main() {
     
     //llenar con x, o, ""
     val gameBoard = arrayOf(
+        arrayOf("o", "o", "o"),
+        arrayOf("o", "x", "x"),
+        arrayOf("o", "x", "x"),
+    )
+    println(validateGameBoard(gameBoard))
+    
+    //empate
+    val gameBoard2 = arrayOf(
         arrayOf("o", "x", "o"),
         arrayOf("o", "x", "o"),
         arrayOf("x", "o", "x"),
     )   
+    println(validateGameBoard(gameBoard2))
+
+    // Gana X
+    val gameBoard3 = arrayOf(
+        arrayOf("x", "o", "o"),
+        arrayOf("o", "x", "o"),
+        arrayOf("x", "o", "x"),
+    )   
+    println(validateGameBoard(gameBoard3))
+
+    // dos ganadores, nulo
+    val gameBoard4 = arrayOf(
+        arrayOf("x", "x", "o"),
+        arrayOf("x", "o", "o"),
+        arrayOf("x", "o", "o"),
+    )   
+    println(validateGameBoard(gameBoard4))   
+
     
-    //println(getCellsCount(gameBoard))
-    //println(isValidRatioPattern(gameBoard))
-	//println("player 1 win? " + hasWon(gameBoard, "x"))
-	//println("player 2 win? " + hasWon(gameBoard, "o"))
-
-    println(validateGameBoard(gameBoard))
-
+    // tablero incorrecto, nulo
+    val gameBoard5 = arrayOf(
+        arrayOf("x", "x", ""),
+        arrayOf("o", "", ""),
+        arrayOf("x", "", ""),
+    )   
+    
+    println(validateGameBoard(gameBoard5))   
+    
 }
 
 fun getCellsCount(gameBoard: Array<Array<String>>) : Pair<Int,Int> {
@@ -54,9 +82,8 @@ fun isValidRatioPattern(gameBoard: Array<Array<String>>) : Boolean {
  *  Solución original de @Andres Mariscal
  *  https://medium.com/@andresmariscal/unbeatable-tic-tac-toe-an-android-app-using-kotlin-4f4d2576e6fd
  * 
- *  Modificada por mi, para computar las veces que un jugador a ganado para devolver tablero nulo
  */
-fun hasWon(gameBoard: Array<Array<String>>, thePlayer: String): Boolean? {
+fun hasWon(gameBoard: Array<Array<String>>, thePlayer: String): Boolean {
     
     val winningPatterns: Array<Int> = arrayOf(
         0b111000000, 0b000111000, 0b000000111, // rows
@@ -71,20 +98,12 @@ fun hasWon(gameBoard: Array<Array<String>>, thePlayer: String): Boolean? {
                 .filter { gameBoard[row][it] == thePlayer }
                 .forEach { pattern = pattern or (1 shl (row * COL_MAX + it)) }
     }
-    
-   var winCount = 0
-    
+        
    winningPatterns
             .asSequence()
             .filter { (pattern and it) == it }
-            .forEach { 
-                winCount++
-                //return true 
-                }
-    //si se ha encontrado ganador más de una vez devolver nulo
-    if (winCount == 1) {
-        return true
-    } else if (winCount > 1) return null
+            .forEach { return true }
+
     return false
 }
 
@@ -98,9 +117,6 @@ fun validateGameBoard(gameBoard: Array<Array<String>>) : String? {
     //detectar ganadores
     val isWinX = hasWon(gameBoard, "x")
     val isWinO = hasWon(gameBoard, "o")
-
-    //detectar si se ha ganado más de una vez
-    if (isWinX == null || isWinO == null) return null
 
     return if (isWinX && isWinO) {
         null
