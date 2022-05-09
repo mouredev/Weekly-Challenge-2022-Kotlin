@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.absoluteValue
+
 /*
  * Reto #18
  * TRES EN RAYA
@@ -23,47 +25,93 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var resultado = ""
-    val tablero = arrayOf(
-        arrayOf("X", "X", "X"),
-        arrayOf("O", "O", "O"),
-        arrayOf("X", "O", "X")
-    )
 
-    if (checkBoard(tablero) == "Nulo") {
-        println("Nulo")
-    } else {
-        resultado += "${checkWinner(tablero[0])}${checkWinner(tablero[1])}${checkWinner(tablero[2])}" //Horizontal
-        resultado += "${checkWinner(arrayOf(tablero[0][0], tablero[1][0], tablero[2][0]))}${checkWinner(arrayOf(tablero[0][1], tablero[1][1], tablero[2][1]))}${checkWinner(arrayOf(tablero[0][2], tablero[1][2], tablero[2][2]))}"
-        //vertical
-        resultado += "${checkWinner(arrayOf(tablero[0][0], tablero[1][1], tablero[2][2]))}${checkWinner(arrayOf(tablero[0][2], tablero[1][1], tablero[2][0]))}"//diagonal
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.X))))
 
-        val x = resultado.count { it == 'X' }
-        val o = resultado.count { it == 'O' }
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X))))
 
-        if (x > o){
-            println("X")
-        } else if (o > x){
-            println("O")
-        } else {
-            println("Empate")
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.X))))
+}
+
+private enum class TicTacToeValue {
+    X, O, EMPTY
+}
+
+private enum class TicTacToeResult {
+    X, O, DRAW, NULL
+}
+
+private fun checkTicTacToe(board: Array<Array<TicTacToeValue>>): TicTacToeResult {
+
+    // Null
+
+    if (board.count() != 3) {
+        return TicTacToeResult.NULL
+    }
+
+    var xCount = 0
+    var oCount = 0
+
+    var flatBoard: Array<TicTacToeValue> = emptyArray()
+    for (row in board) {
+        flatBoard += row
+
+        if (row.count() != 3) {
+            return TicTacToeResult.NULL
+        }
+
+        for (col in row) {
+            if (col == TicTacToeValue.X) {
+                xCount += 1
+            } else if (col == TicTacToeValue.O) {
+                oCount += 1
+            }
         }
     }
+
+    if ((xCount - oCount).absoluteValue > 1) {
+        return TicTacToeResult.NULL
+    }
+
+    // Win or Draw
+
+    val winCombinations = arrayOf(
+        arrayOf(0, 1, 2), arrayOf(3, 4, 5), arrayOf(6, 7, 8), arrayOf(0, 3, 6),
+        arrayOf(1, 4, 7), arrayOf(2, 5, 8), arrayOf(0, 4, 8), arrayOf(2, 4, 6))
+
+    var result = TicTacToeResult.DRAW
+
+    for (winCombination in winCombinations) {
+
+        if (flatBoard[winCombination[0]] != TicTacToeValue.EMPTY
+                && flatBoard[winCombination[0]] == flatBoard[winCombination[1]]
+                && flatBoard[winCombination[0]] == flatBoard[winCombination[2]]) {
+
+            val winner = flatBoard[winCombination[0]]
+
+            if (result != TicTacToeResult.DRAW
+                    && (if (result == TicTacToeResult.O) TicTacToeValue.O else TicTacToeValue.X) != winner) {
+                return TicTacToeResult.NULL
+            }
+
+            result = if (winner == TicTacToeValue.X) TicTacToeResult.X else TicTacToeResult.O
+        }
+    }
+
+    return result
 }
 
-fun checkBoard(board: Array<Array<String>>): String {
-    if (board.size != 3 || board[0].size != 3 || board[1].size != 3 || board[2].size != 3) {
-        return "Nulo"
-    }
-    return ""
-}
-
-fun checkWinner(array: Array<String>): String {
-    val x = array.filter { it == "X" }.size
-    val o = array.filter { it == "O" }.size
-    return when {
-        x == 3 -> "X"
-        o == 3 -> "O"
-        else -> "E"
-    }
-}
