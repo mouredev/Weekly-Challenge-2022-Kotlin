@@ -20,4 +20,43 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
+ *
  */
+fun main() {
+
+    println("${Enraya(23, 67)}")
+}
+
+private fun Enraya(x: Int, O: Int): String? {
+
+    val playGround = arrayListOf<String>(
+        "O", "x", "O",
+        "x", "O", "x",
+        "O", "x", "O"
+    )
+    var S1: Int = x
+    var S2: Int = O
+    var index: Int = 0
+    var index2: Int = 0
+
+    for (S1 in playGround) {
+        index++
+    }
+    for (S2 in playGround) {
+        index2++
+    }
+
+    if (index > index2 && index2 + index <= 9) {
+        return "Han ganado las X"
+    } else if (index2 > index && index2 + index <= 9) {
+        return "Han ganado las O"
+    } else if (index == index2 && index2 + index <= 9) {
+        return "Han empatado"
+    } else if (index + index2 < 9) {
+        return ""
+    } else {
+        return null
+    }
+
+
+}

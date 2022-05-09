@@ -17,7 +17,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun main(){
     println(decimalToBinary(387))
     println(decimalToBinary(0))
 }

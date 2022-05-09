@@ -35,3 +35,4 @@ private fun capitalize(text: String): String {
 
     return capitalizedText
 }
+
