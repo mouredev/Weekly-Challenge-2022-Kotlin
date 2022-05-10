@@ -33,12 +33,20 @@ val hoursToMilliseconds =
 val daysToMilliseconds =
     (hoursToMilliseconds compose daysToHours)
 
-fun timeToMilliseconds(days: Int, hours: Int, minutes: Int, seconds: Int): Long =
-    daysToMilliseconds(days.toLong()) +
-            hoursToMilliseconds(hours.toLong()) +
-            minutesToMilliseconds(minutes.toLong()) +
-            secondsToMilliseconds(seconds.toLong())
+val timeToMilliseconds: (Int) -> (Int) -> (Int) -> (Int) -> Long =
+    { days ->
+        { hours ->
+            { minutes ->
+                { seconds ->
+                    daysToMilliseconds(days.toLong()) +
+                            hoursToMilliseconds(hours.toLong()) +
+                            minutesToMilliseconds(minutes.toLong()) +
+                            secondsToMilliseconds(seconds.toLong())
+                }
+            }
+        }
+    }
 
 fun main() {
-    println(timeToMilliseconds(345, 237, 2387, 8273))
+    println(timeToMilliseconds(345)(237)(2387)(8273))
 }
