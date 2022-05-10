@@ -16,3 +16,29 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+infix fun <P1, R, P2> ((P1) -> R).compose(f: (P2) -> P1): (P2) -> R = { p1: P2 -> this(f(p1)) }
+
+val secondsToMilliseconds: (Int) -> Int = { it * 1000 }
+val minutesToSeconds: (Int) -> Int = { it * 60 }
+val hoursToMinutes: (Int) -> Int = minutesToSeconds
+val daysToHours: (Int) -> Int = { it * 24 }
+
+val minutesToMilliseconds =
+    (secondsToMilliseconds compose minutesToSeconds)
+
+val hoursToMilliseconds =
+    (minutesToMilliseconds compose hoursToMinutes)
+
+val daysToMilliseconds =
+    (hoursToMilliseconds compose daysToHours)
+
+fun timeToMilliseconds(days: Int, hours: Int, minutes: Int, seconds: Int): Int =
+    daysToMilliseconds(days) +
+            hoursToMilliseconds(hours) +
+            minutesToMilliseconds(minutes) +
+            secondsToMilliseconds(seconds)
+
+fun main() {
+    println(timeToMilliseconds(3, 2, 45, 30))
+}
