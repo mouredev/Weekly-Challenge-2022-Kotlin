@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #19
  * CONVERSOR TIEMPO
@@ -16,3 +18,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("${convertToMillis(1, 2, 3, 4)} millis")
+    println("${convertToMillis(5, 6, 43, 27)} millis")
+    println("${convertToMillis(17, 10, 6, 47)} millis")
+    println("${convertToMillis(458, 22, 52, 14)} millis")
+
+}
+
+private fun convertToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
+    return Calendar.getInstance().apply {
+        timeInMillis = 0
+        add(Calendar.DAY_OF_YEAR, days)
+        add(Calendar.HOUR_OF_DAY, hours)
+        add(Calendar.MINUTE, minutes)
+        add(Calendar.SECOND, seconds)
+    }.timeInMillis
+}
