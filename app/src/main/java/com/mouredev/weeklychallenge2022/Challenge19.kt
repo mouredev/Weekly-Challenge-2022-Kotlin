@@ -17,6 +17,15 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+/*
+ * DISCLAIMER:
+ * He usado el ejercicio como campo de pruebas para dejar fluir mis aprendizajes
+ * con la programación funcional.
+ * En ella se aplican conceptos cómo la composición, funciones de primera clase y de orden superior
+ * evaluación de expresiones y currificación.
+ *
+ */
+
 infix fun <P1, R, P2> ((P1) -> R).compose(f: (P2) -> P1): (P2) -> R = { p1: P2 -> this(f(p1)) }
 
 val secondsToMilliseconds: (Long) -> Long = { it * 1000L }
