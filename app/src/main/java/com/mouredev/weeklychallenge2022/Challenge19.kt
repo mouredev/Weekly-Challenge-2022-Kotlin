@@ -19,10 +19,10 @@ package com.mouredev.weeklychallenge2022
 
 infix fun <P1, R, P2> ((P1) -> R).compose(f: (P2) -> P1): (P2) -> R = { p1: P2 -> this(f(p1)) }
 
-val secondsToMilliseconds: (Int) -> Int = { it * 1000 }
-val minutesToSeconds: (Int) -> Int = { it * 60 }
-val hoursToMinutes: (Int) -> Int = minutesToSeconds
-val daysToHours: (Int) -> Int = { it * 24 }
+val secondsToMilliseconds: (Long) -> Long = { it * 1000L }
+val minutesToSeconds: (Long) -> Long = { it * 60L }
+val hoursToMinutes: (Long) -> Long = minutesToSeconds
+val daysToHours: (Long) -> Long = { it * 24L }
 
 val minutesToMilliseconds =
     (secondsToMilliseconds compose minutesToSeconds)
@@ -33,12 +33,12 @@ val hoursToMilliseconds =
 val daysToMilliseconds =
     (hoursToMilliseconds compose daysToHours)
 
-fun timeToMilliseconds(days: Int, hours: Int, minutes: Int, seconds: Int): Int =
-    daysToMilliseconds(days) +
-            hoursToMilliseconds(hours) +
-            minutesToMilliseconds(minutes) +
-            secondsToMilliseconds(seconds)
+fun timeToMilliseconds(days: Int, hours: Int, minutes: Int, seconds: Int): Long =
+    daysToMilliseconds(days.toLong()) +
+            hoursToMilliseconds(hours.toLong()) +
+            minutesToMilliseconds(minutes.toLong()) +
+            secondsToMilliseconds(seconds.toLong())
 
 fun main() {
-    println(timeToMilliseconds(3, 2, 45, 30))
+    println(timeToMilliseconds(345, 237, 2387, 8273))
 }
