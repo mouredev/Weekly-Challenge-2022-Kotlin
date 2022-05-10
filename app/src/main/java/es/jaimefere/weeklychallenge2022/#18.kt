@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package es.jaimefere.weeklychallenge2022
 
 import kotlin.math.abs
 
@@ -35,7 +35,7 @@ private enum class Player {
 
 private fun checkThreeInARow(board: Array<Array<String>>): String {
     var result = "Nulo"
-    if((board.flatMap { it.asIterable() }.size == 9) && (board.filter{ it.size == 3 }.size == 3) && (abs(Player.getTries(Player.X, board) - Player.getTries(Player.O, board)) < 2)) {
+    if((board.filter{ it.size == 3 }.size == 3) && (abs(Player.getTries(Player.X, board) - Player.getTries(Player.O, board)) < 2)) {
         result = "Empate"
         if(Player.getTries(Player.X, board) != Player.getTries(Player.O, board)) {
             Player.values().forEach { player ->
