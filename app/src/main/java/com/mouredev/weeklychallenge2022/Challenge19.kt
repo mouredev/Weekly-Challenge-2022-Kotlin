@@ -26,6 +26,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+// Based on https://arrow-kt.io/docs/apidocs/arrow-core/arrow.core/compose.html
 infix fun <P1, R, P2> ((P1) -> R).compose(f: (P2) -> P1): (P2) -> R = { p1: P2 -> this(f(p1)) }
 
 val secondsToMilliseconds: (Long) -> Long = { it * 1000L }
