@@ -1,6 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
-import java.util.ArrayList
+import kotlin.math.absoluteValue
 
 /*
  * Reto #18
@@ -24,141 +24,94 @@ import java.util.ArrayList
  *
  */
 
-
-// Cambio! La celda vacía la represento con " "
 fun main() {
-    val matrix1 = arrayListOf(
-        arrayListOf("O", "X", "X"),
-        arrayListOf("X", "X", "O"),
-        arrayListOf("O", "X", "O")
-    )
-    val matrix2 = arrayListOf(
-        arrayListOf("X", "O", "X"),
-        arrayListOf("X", "X", "O"),
-        arrayListOf("O", "O", "O")
-    )
-    val matrix3 = arrayListOf(
-        arrayListOf("X", "X", "X"),
-        arrayListOf("X", "X", "O"),
-        arrayListOf("O", "O", "O")
-    )
-    val matrix4 = arrayListOf(
-        arrayListOf("X", "X", " "),
-        arrayListOf("X", "O", "O"),
-        arrayListOf("O", "X", "O")
-    )
-    val matrix5 = arrayListOf(
-        arrayListOf("X", "X", " "),
-        arrayListOf("X", "O", "O"),
-        arrayListOf("O", "O", "O")
-    )
-    val matrix6 = arrayListOf(
-        arrayListOf("X", "X", "X", "X"),
-        arrayListOf("X", "X", "O", "O"),
-        arrayListOf("O", "O", "O", "X")
-    )
-    val matrix7 = arrayListOf(
-        arrayListOf("X", "X", "X"),
-        arrayListOf("X", "X", "O"),
-        arrayListOf("O", "O", "O"),
-        arrayListOf("O", "O", "O")
-    )
-    val matrix8 = arrayListOf(
-        arrayListOf("X", "X", "T"),
-        arrayListOf("X", "X", "O"),
-        arrayListOf("O", "O", "O")
-    )
 
-    println("Matrix 1: ${analyzeMatrix(matrix1)}")
-    println("Matrix 2: ${analyzeMatrix(matrix2)}")
-    println("Matrix 3: ${analyzeMatrix(matrix3)}")
-    println("Matrix 4: ${analyzeMatrix(matrix4)}")
-    println("Matrix 5: ${analyzeMatrix(matrix5)}")
-    println("Matrix 6: ${analyzeMatrix(matrix6)}")
-    println("Matrix 7: ${analyzeMatrix(matrix7)}")
-    println("Matrix 8: ${analyzeMatrix(matrix8)}")
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.X))))
 }
 
-fun analyzeMatrix(matrix: ArrayList<ArrayList<String>>): String {
+private enum class TicTacToeValue {
+    X, O, EMPTY
+}
+
+private enum class TicTacToeResult {
+    X, O, DRAW, NULL
+}
+
+private fun checkTicTacToe(board: Array<Array<TicTacToeValue>>): TicTacToeResult {
+
+    // Null
+
+    if (board.count() != 3) {
+        return TicTacToeResult.NULL
+    }
+
     var xCount = 0
     var oCount = 0
-    var items = ""
-    val availableOptions = listOf("X", "O", " ")
-    /*
-    Iterate through each row and check:
-    - If matrix has either more than 3 columns or more than 3 rows.
-    - If item is either "X", "O" or " ", count them, and save them.
-    */
-    for ((i, row) in matrix.withIndex()) {
-        if (i > 2) return "Null! More than 3 rows!"
-        for ((j, item) in row.withIndex()) {
-            when {
-                j > 2 -> {
-                    return "Null! More than 3 columns!"
-                }
-                availableOptions.contains(item) -> {
-                    items += when (item) {
-                        availableOptions[0] -> {
-                            xCount++
-                            item
-                        }
-                        availableOptions[1] -> {
-                            oCount++
-                            item
-                        }
-                        else -> " "
-                    }
-                }
-                else -> {
-                    return "Null! Wrong item in matrix!"
-                }
+
+    var flatBoard: Array<TicTacToeValue> = emptyArray()
+    for (row in board) {
+        flatBoard += row
+
+        if (row.count() != 3) {
+            return TicTacToeResult.NULL
+        }
+
+        for (col in row) {
+            if (col == TicTacToeValue.X) {
+                xCount += 1
+            } else if (col == TicTacToeValue.O) {
+                oCount += 1
             }
         }
     }
-    // If the "X" and "O" ratio is correct
-    if (xCount == oCount || ((xCount == 5 && oCount == 4) || (xCount == 4 && oCount == 5))
-    ) {
-        val patterns = listOf("123", "147", "159", "258", "357", "369", "456", "789")
-        var winners = ""
-        var hasWon = false
-        /*
-        Loop 2 times (One for "X" and another for "O")
-        Then iterate each possible winning pattern
-        And check if each pattern position has the desired item in it
-         */
-        for (i in 0..1) {
-            run loop@{
-                patterns.forEach pattern@{ pattern ->
-                    hasWon = false
-                    pattern.forEach { pos ->
-                        if (items[pos.digitToInt() - 1] != availableOptions[i].single()) {
-                            return@pattern
-                        }
-                    }
-                    hasWon = true
-                    return@loop
-                }
-            }
-            if (hasWon) {
-                winners += i
-            }
-        }
-        return when (winners.length) {
-            0 -> {
-                "Tie! No one won!"
-            }
-            1 -> {
-                if (winners == "0") {
-                    "X won!"
-                } else {
-                    "O won!"
-                }
-            }
-            else -> {
-                return "Null! Both players won!"
-            }
-        }
-    } else {
-        return "Null! The ratio of X and O is not correct!"
+
+    if ((xCount - oCount).absoluteValue > 1) {
+        return TicTacToeResult.NULL
     }
+
+    // Win or Draw
+
+    val winCombinations = arrayOf(
+        arrayOf(0, 1, 2), arrayOf(3, 4, 5), arrayOf(6, 7, 8), arrayOf(0, 3, 6),
+        arrayOf(1, 4, 7), arrayOf(2, 5, 8), arrayOf(0, 4, 8), arrayOf(2, 4, 6))
+
+    var result = TicTacToeResult.DRAW
+
+    for (winCombination in winCombinations) {
+
+        if (flatBoard[winCombination[0]] != TicTacToeValue.EMPTY
+                && flatBoard[winCombination[0]] == flatBoard[winCombination[1]]
+                && flatBoard[winCombination[0]] == flatBoard[winCombination[2]]) {
+
+            val winner = flatBoard[winCombination[0]]
+
+            if (result != TicTacToeResult.DRAW
+                    && (if (result == TicTacToeResult.O) TicTacToeValue.O else TicTacToeValue.X) != winner) {
+                return TicTacToeResult.NULL
+            }
+
+            result = if (winner == TicTacToeValue.X) TicTacToeResult.X else TicTacToeResult.O
+        }
+    }
+
+    return result
 }
+
