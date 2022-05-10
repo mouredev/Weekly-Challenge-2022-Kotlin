@@ -19,11 +19,9 @@ package com.mouredev.weeklychallenge2022
 
 /*
  * DISCLAIMER:
- * He usado el ejercicio como campo de pruebas para dejar fluir mis aprendizajes
- * con la programación funcional.
- * En ella se aplican conceptos cómo la composición, funciones de primera clase y de orden superior
- * evaluación de expresiones y currificación.
- *
+ * He usado el ejercicio como campo de pruebas para dejar fluir mis conocimientos de programación funcional.
+ * En ella se aplican conceptos cómo la composición, funciones de primera clase y de orden superior,
+ * funciones y expresiones puras (excepto main ;) ) y currificación.
  */
 
 // Based on https://arrow-kt.io/docs/apidocs/arrow-core/arrow.core/compose.html
