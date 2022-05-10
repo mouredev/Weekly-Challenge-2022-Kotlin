@@ -33,14 +33,11 @@ val minutesToSeconds: (Long) -> Long = { it * 60L }
 val hoursToMinutes: (Long) -> Long = minutesToSeconds
 val daysToHours: (Long) -> Long = { it * 24L }
 
-val minutesToMilliseconds =
-    (secondsToMilliseconds compose minutesToSeconds)
+val minutesToMilliseconds = secondsToMilliseconds compose minutesToSeconds
 
-val hoursToMilliseconds =
-    (minutesToMilliseconds compose hoursToMinutes)
+val hoursToMilliseconds = minutesToMilliseconds compose hoursToMinutes
 
-val daysToMilliseconds =
-    (hoursToMilliseconds compose daysToHours)
+val daysToMilliseconds = hoursToMilliseconds compose daysToHours
 
 val timeToMilliseconds: (Int) -> (Int) -> (Int) -> (Int) -> Long =
     { days ->
