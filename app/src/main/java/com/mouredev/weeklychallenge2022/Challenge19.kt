@@ -16,3 +16,20 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    TimeToMiliseconds(1,0,0,0)
+    TimeToMiliseconds(0,1,0,0)
+    TimeToMiliseconds(0,0,1,0)
+    TimeToMiliseconds(0,0,0,1)
+    TimeToMiliseconds(5,25,70,140)
+}
+
+private fun TimeToMiliseconds(days: Int, hours: Int, minutes: Int, seconds: Int){
+
+    println ("$days dias, $hours horas, $minutes minutos y $seconds segundos equivalen a un total de " +
+            "${((days * 24 * 60 * 60 * 1000) + 
+                    (hours * 60 * 60 * 1000) + 
+                    (minutes * 60 *1000) + 
+                    (seconds * 1000))
+                .toLong()} milisegundos")
+}
