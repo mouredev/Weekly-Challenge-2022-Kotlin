@@ -59,7 +59,7 @@ fun <T> fromMaybe(maybe: Maybe<T>, fallbackValue: T): T = when (maybe) {
     is Maybe.Just -> maybe.value
 }
 
-// Compone 2 funciones en el sentido matemático de la palabra -> f(x)=z, g(y)=x => f.g => f(g(y))=z
+// Compone 2 funciones, en el sentido matemático de la palabra -> f(x)=z, g(y)=x => f.g => f(g(y))=z
 infix fun <P1, R, P2> ((P1) -> Maybe<R>).composeMaybe(f: (P2) -> Maybe<P1>): (P2) -> Maybe<R> =
     { p1: P2 -> f(p1).flatMap { this(it) } }
 
