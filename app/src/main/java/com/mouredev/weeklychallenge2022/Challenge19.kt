@@ -24,34 +24,79 @@ package com.mouredev.weeklychallenge2022
  * funciones y expresiones puras (excepto main ;) ) y currificación.
  */
 
-// Based on https://arrow-kt.io/docs/apidocs/arrow-core/arrow.core/compose.html
-infix fun <P1, R, P2> ((P1) -> R).compose(f: (P2) -> P1): (P2) -> R = { p1: P2 -> this(f(p1)) }
+// region Maybe mini-library
 
-val secondsToMilliseconds: (Long) -> Long = { it * 1000L }
-val minutesToSeconds: (Long) -> Long = { it * 60L }
-val hoursToMinutes: (Long) -> Long = minutesToSeconds
-val daysToHours: (Long) -> Long = { it * 24L }
+sealed class Maybe<out T> {
+    class Just<T>(val value: T) : Maybe<T>()
+    object Nothing : Maybe<kotlin.Nothing>()
+}
 
-val minutesToMilliseconds = secondsToMilliseconds compose minutesToSeconds
+// Mete un valor dentro del contexto de un Maybe
+fun <T> just(value: T): Maybe<T> = Maybe.Just(value)
 
-val hoursToMilliseconds = minutesToMilliseconds compose hoursToMinutes
+// Esa función hace que Maybe sea un FUNCTOR
+// Eleva una función al contexto de Maybe
+// Sin usar, por ahora
+// map :: (a -> b) -> m a -> m b
+fun <P, R> Maybe<P>.map(f: (P) -> R): Maybe<R> = when (this) {
+    is Maybe.Nothing -> this
+    is Maybe.Just -> Maybe.Just(f(value))
+}
 
-val daysToMilliseconds = hoursToMilliseconds compose daysToHours
+// Esa función hace que Maybe sea una MÓNADA
+// Habilita la posibilidad de encadenar funciones monádicas (entre otras cosas)
+// flatMap :: m a -> (a -> m b) -> m b
+fun <P, R> Maybe<P>.flatMap(f: (P) -> Maybe<R>) = when (this) {
+    is Maybe.Nothing -> this
+    is Maybe.Just -> f(value)
+}
 
-val timeToMilliseconds: (Int) -> (Int) -> (Int) -> (Int) -> Long =
-    { days ->
-        { hours ->
-            { minutes ->
-                { seconds ->
-                    daysToMilliseconds(days.toLong()) +
-                            hoursToMilliseconds(hours.toLong()) +
-                            minutesToMilliseconds(minutes.toLong()) +
-                            secondsToMilliseconds(seconds.toLong())
+// Devuelve el valor que hay en Maybe, si no existe devuelve el valor fallback.
+fun <T> fromMaybe(maybe: Maybe<T>, fallbackValue: T): T = when (maybe) {
+    is Maybe.Nothing -> fallbackValue
+    is Maybe.Just -> maybe.value
+}
+
+// Compone 2 funciones en el sentido matemático de la palabra -> f(x)=z, g(y)=x => f.g => f(g(y))=z
+infix fun <P1, R, P2> ((P1) -> Maybe<R>).composeMaybe(f: (P2) -> Maybe<P1>): (P2) -> Maybe<R> =
+    { p1: P2 -> f(p1).flatMap { this(it) } }
+
+// endregion
+
+// Gets a value and a callback, if value is below zero returns Nothing else passes value to callback
+// and wrap the result inside a Maybe
+fun applyIfPositive(number: Long, callback: (Long) -> Long): Maybe<Long> =
+    if (number < 0) Maybe.Nothing
+    else just(callback(number))
+
+val secondsToMilliseconds: (Long) -> Maybe<Long> =
+    { sec -> applyIfPositive(sec) { it * 1000 } }
+
+val minutesToSeconds: (Long) -> Maybe<Long> =
+    { min -> applyIfPositive(min) { it * 60 } }
+
+val hoursToMinutes: (Long) -> Maybe<Long> = minutesToSeconds
+
+val daysToHours: (Long) -> Maybe<Long> =
+    { day -> applyIfPositive(day) { it * 24 } }
+
+val minutesToMilliseconds = secondsToMilliseconds composeMaybe minutesToSeconds
+val hoursToMilliseconds = minutesToMilliseconds composeMaybe hoursToMinutes
+val daysToMilliseconds = hoursToMilliseconds composeMaybe daysToHours
+
+val timeToMilliseconds: (Int, Int, Int, Int) -> Maybe<Long> = { days, hours, minutes, seconds ->
+    just(days.toLong()).flatMap(daysToMilliseconds).flatMap { daysinMs ->
+        just(hours.toLong()).flatMap(hoursToMilliseconds).flatMap { hoursInMs ->
+            just(minutes.toLong()).flatMap(minutesToMilliseconds).flatMap { minutesInMs ->
+                just(seconds.toLong()).flatMap(secondsToMilliseconds).flatMap { secondsInMs ->
+                    just(daysinMs + hoursInMs + minutesInMs + secondsInMs)
                 }
             }
         }
     }
+}
 
 fun main() {
-    println(timeToMilliseconds(345)(237)(2387)(8273))
+    println(fromMaybe(timeToMilliseconds(345, 237, 89, 8273), 0))
+    println(fromMaybe(timeToMilliseconds(5, -7, 34, 1), 0))
 }
