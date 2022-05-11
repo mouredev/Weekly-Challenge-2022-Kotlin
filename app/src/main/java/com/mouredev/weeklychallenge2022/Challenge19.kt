@@ -65,8 +65,8 @@ infix fun <P1, R, P2> ((P1) -> Maybe<R>).composeMaybe(f: (P2) -> Maybe<P1>): (P2
 
 // endregion
 
-// Gets a value and a callback, if value is below zero returns Nothing else passes value to callback
-// and wrap the result inside a Maybe
+// Recibe un valor y un callback, si el valor es inferior a cero, devuelve Nothing, si no, pasa el
+// valor al callback y lo envuelve en un Maybe.
 fun applyIfPositive(number: Long, callback: (Long) -> Long): Maybe<Long> =
     if (number < 0) Maybe.Nothing
     else just(callback(number))
