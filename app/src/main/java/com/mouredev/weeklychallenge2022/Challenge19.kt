@@ -21,7 +21,9 @@ package com.mouredev.weeklychallenge2022
  * DISCLAIMER:
  * He usado el ejercicio como campo de pruebas para dejar fluir mis conocimientos de programación funcional.
  * En ella se aplican conceptos cómo la composición, funciones de primera clase y de orden superior,
- * funciones y expresiones puras (excepto main ;) ) y currificación.
+ * funciones y expresiones puras (excepto main ;) ) y mónadas.
+ * No pretende ser un how-to de como resolver el reto de forma funcional, es más un showroom de diferentes técnicas
+ * y bastante over-engineering
  */
 
 // region Maybe mini-library
