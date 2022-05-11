@@ -87,11 +87,11 @@ val hoursToMilliseconds = minutesToMilliseconds composeMaybe hoursToMinutes
 val daysToMilliseconds = hoursToMilliseconds composeMaybe daysToHours
 
 val timeToMilliseconds: (Int, Int, Int, Int) -> Maybe<Long> = { days, hours, minutes, seconds ->
-    just(days.toLong()).flatMap(daysToMilliseconds).flatMap { daysinMs ->
+    just(days.toLong()).flatMap(daysToMilliseconds).flatMap { daysInMs ->
         just(hours.toLong()).flatMap(hoursToMilliseconds).flatMap { hoursInMs ->
             just(minutes.toLong()).flatMap(minutesToMilliseconds).flatMap { minutesInMs ->
                 just(seconds.toLong()).flatMap(secondsToMilliseconds).flatMap { secondsInMs ->
-                    just(daysinMs + hoursInMs + minutesInMs + secondsInMs)
+                    just(daysInMs + hoursInMs + minutesInMs + secondsInMs)
                 }
             }
         }
