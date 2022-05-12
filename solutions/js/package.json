@@ -1,0 +1,20 @@
+{
+  "name": "arialdev-mouredev-weekly-challenge-2022",
+  "version": "1.0.0",
+  "description": "Proyecto de retos semanales de la comunidad MoureDev para practicar Kotlin y Android.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arialdev/Mouredev-Weekly-Challenge-2022.git"
+  },
+  "author": "arialdev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022/issues"
+  },
+  "homepage": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022#readme",
+  "type": "module"
+}
