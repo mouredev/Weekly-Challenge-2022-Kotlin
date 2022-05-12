@@ -38,7 +38,6 @@ fun <T> just(value: T): Maybe<T> = Maybe.Just(value)
 
 // Esa función hace que Maybe sea un FUNCTOR
 // Eleva una función al contexto de Maybe
-// Sin usar, por ahora
 // map :: (a -> b) -> m a -> m b
 fun <P, R> Maybe<P>.map(f: (P) -> R): Maybe<R> = when (this) {
     is Maybe.Nothing -> this
@@ -69,7 +68,7 @@ infix fun <P1, R, P2> ((P1) -> Maybe<R>).composeMaybe(f: (P2) -> Maybe<P1>): (P2
 // valor al callback y lo envuelve en un Maybe.
 fun applyIfPositive(number: Long, callback: (Long) -> Long): Maybe<Long> =
     if (number < 0) Maybe.Nothing
-    else just(callback(number))
+    else just(number).map(callback)
 
 val secondsToMilliseconds: (Long) -> Maybe<Long> =
     { sec -> applyIfPositive(sec) { it * 1000 } }
