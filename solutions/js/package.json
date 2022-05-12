@@ -4,7 +4,7 @@
   "description": "Proyecto de retos semanales de la comunidad MoureDev para practicar Kotlin y Android.",
   "main": "index.js",
   "scripts": {
-    "test": "node --test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
     "url": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022/issues"
   },
   "homepage": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022#readme",
-  "type": "module"
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
 }

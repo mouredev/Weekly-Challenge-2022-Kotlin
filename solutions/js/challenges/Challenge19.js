@@ -15,6 +15,13 @@
  *
  */
 
-export const getMiliseconds = (days, hours, minutes, seconds) => {
+const getMiliseconds = (days = 0, hours = 0, minutes = 0, seconds = 0) => {
+    validateDate(days, hours, minutes, seconds);
     return days * 24 * 60 * 60 * 1000 + hours * 60 * 60 * 1000 + minutes * 60 * 1000 + seconds * 1000;
 }
+
+const validateDate = (days, hours, minutes, seconds) => {
+    if (days < 0 || hours < 0 || minutes < 0 || seconds < 0) throw new Error('Bad date');
+}
+
+module.exports = getMiliseconds;
