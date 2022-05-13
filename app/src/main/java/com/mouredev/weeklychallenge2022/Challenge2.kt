@@ -23,15 +23,23 @@ import java.math.BigInteger
 
 fun main() {
 
-    var n0: Long = 0
-    var n1: Long = 1
+    var valor:Long
+    var list = mutableListOf<Long>()
 
-    (1..50).forEach { _ ->
-
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
+    for(i in 0..49) {
+        when (i) {
+            0 -> {
+                list.add(i.toLong())
+            }
+            1 -> {
+                list.add(i.toLong())
+            }
+            else -> {
+                valor = list[i - 2] + list[i - 1]
+                list.add(valor)
+            }
+        }
     }
+
+    list.mapIndexed { index, number -> println("F. de $index = $number") }
 }
