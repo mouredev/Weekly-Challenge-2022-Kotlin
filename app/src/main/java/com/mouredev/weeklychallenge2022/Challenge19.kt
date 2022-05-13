@@ -16,3 +16,16 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    println(toMilis(1, 20, 1, 21))
+}
+
+private fun toMilis(days: Int, hours: Int, minutes: Int, seconds: Int): Long{
+    var milis = days.toLong() * 86400000L
+    
+    milis += hours.toLong() * 3600000L
+    milis += minutes.toLong() * 60000L
+    milis += seconds.toLong() * 1000L
+    
+    return milis
+}
