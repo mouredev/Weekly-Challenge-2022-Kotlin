@@ -16,3 +16,41 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+	val tm = calculateMilliseconds(3, 10, 14, 22)
+	println("Milisegundos totales $tm")
+}
+
+fun calculateMilliseconds(days: Int?, hours: Int?, minutes: Int?, seconds: Int?): Int {
+	var millisecondsTotal = 0
+
+	if (days != null) {
+		millisecondsTotal = daysToMilliseconds(days)
+	}
+	if (hours != null) {
+		millisecondsTotal += hoursToMilliseconds(hours)
+	}
+	if (minutes != null) {
+		millisecondsTotal += minutesToMilliseconds(minutes)
+	}
+	if (seconds != null) {
+		millisecondsTotal += secondsToMilliseconds(seconds)
+	}
+	return millisecondsTotal
+}
+
+fun daysToMilliseconds(days: Int): Int {
+	return hoursToMilliseconds(days * 24)
+}
+
+fun hoursToMilliseconds(hours: Int): Int {
+	return minutesToMilliseconds(hours * 60)
+}
+
+fun minutesToMilliseconds(minutes: Int): Int {
+	return secondsToMilliseconds(minutes * 60)
+}
+
+fun secondsToMilliseconds(seconds: Int): Int {
+	return seconds * 1000
+}
