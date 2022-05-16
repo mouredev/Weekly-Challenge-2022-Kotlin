@@ -24,6 +24,9 @@ package com.mouredev.weeklychallenge2022
  * funciones y expresiones puras (excepto main ;) ) y mónadas.
  * No pretende ser un how-to de como resolver el reto de forma funcional, es más un showroom de diferentes técnicas
  * y bastante over-engineering
+ * 
+ * PD: Probablemente no podré estar en el directo para ver cómo pones a caldo esta ida de olla. Dejad comentarios en la PR
+ *     e intentaré dar respuesta lo más pronto posible.
  */
 
 // region Maybe mini-library
