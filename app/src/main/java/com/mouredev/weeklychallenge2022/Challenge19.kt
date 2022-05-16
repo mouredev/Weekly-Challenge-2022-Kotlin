@@ -16,10 +16,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
 fun main() {
-  print(convert(1, 0, 0, 0))
+    println(timeToMillis(0, 0, 0, 10))
+    println(timeToMillis(2, 5, -45, 10))
+    println(timeToMillis(2000000000, 5, 45, 10))
 }
 
-fun convert(d: Int, h: Int, m: Int, s: Int): Long {
-  return ((d * 24 * 3600 + h * 3600 + m * 60 + s) * 1000).toLong()
+fun timeToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
+
+    val daysInMillis = days.toLong() * 24 * 60 * 60 * 1000
+    val hoursInMillis = hours.toLong() * 60 * 60 * 1000
+    val minutesInMillis = minutes.toLong() * 60 * 1000
+    val secondsToMillis = seconds.toLong() * 1000
+
+    return daysInMillis + hoursInMillis + minutesInMillis + secondsToMillis
 }
