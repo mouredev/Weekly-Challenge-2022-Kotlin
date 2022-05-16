@@ -16,3 +16,26 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+fun main() {
+    val days = 1
+    val hours= 2
+    val minutes= 3
+    val seconds= 59
+
+    println("${days} dias , ${hours}  horas , ${minutes} minutos , ${minutes} , ${seconds} segundos  : milisegundos : ${date2milliseconds(days, hours ,minutes,seconds)}")
+}
+
+
+/**
+ * Funcion que convierte una fecha en milisegundos
+ * @param days dias de la fecha
+ * @param hours horas de la fecha
+ * @param minutes minutos de la fecha
+ * @param seconds segundos de la fecha
+ * @return Long con los milisegundos de la fecha
+ */
+fun date2milliseconds(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
+    return (days * 24 * 60 * 60 * 1000) + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000).toLong()
+}
