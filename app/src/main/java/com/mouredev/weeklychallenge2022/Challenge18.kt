@@ -1,6 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 /*
  * Reto #18
@@ -24,120 +24,94 @@ import kotlin.math.abs
  *
  */
 
-private enum class Player {
-    X, O;
-    companion object {
-        fun getTries(obj: Player, board: Array<Array<String>>): Int {
-            return board.flatMap{ it.filter{ it == obj.name } }.size
-        }
-    }
+fun main() {
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X))))
+
+    println(checkTicTacToe(arrayOf(
+        arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.O),
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.X))))
 }
 
-private fun checkThreeInARow(board: Array<Array<String>>): String {
-    var result = "Nulo"
-    if((board.flatMap { it.asIterable() }.size == 9) && (board.filter{ it.size == 3 }.size == 3) && (abs(Player.getTries(Player.X, board) - Player.getTries(Player.O, board)) < 2)) {
-        result = "Empate"
-        if(Player.getTries(Player.X, board) != Player.getTries(Player.O, board)) {
-            Player.values().forEach { player ->
-                if((board[0].filter{ it == player.name }.size == 3) || (board[1].filter{ it == player.name }.size == 3) || (board[2].filter{ it == player.name }.size == 3) ||
-                    (board.filter{ it[0] == player.name }.size == 3) || (board.filter{ it[1] == player.name }.size == 3) || (board.filter{ it[2] == player.name }.size == 3) ||
-                    (board[0][0] == player.name && board[1][1] == player.name && board[2][2] == player.name) || (board[0][2] == player.name && board[1][1] == player.name && board[2][0] == player.name)) {
-                    result = player.name
-                }
+private enum class TicTacToeValue {
+    X, O, EMPTY
+}
+
+private enum class TicTacToeResult {
+    X, O, DRAW, NULL
+}
+
+private fun checkTicTacToe(board: Array<Array<TicTacToeValue>>): TicTacToeResult {
+
+    // Null
+
+    if (board.count() != 3) {
+        return TicTacToeResult.NULL
+    }
+
+    var xCount = 0
+    var oCount = 0
+
+    var flatBoard: Array<TicTacToeValue> = emptyArray()
+    for (row in board) {
+        flatBoard += row
+
+        if (row.count() != 3) {
+            return TicTacToeResult.NULL
+        }
+
+        for (col in row) {
+            if (col == TicTacToeValue.X) {
+                xCount += 1
+            } else if (col == TicTacToeValue.O) {
+                oCount += 1
             }
         }
     }
+
+    if ((xCount - oCount).absoluteValue > 1) {
+        return TicTacToeResult.NULL
+    }
+
+    // Win or Draw
+
+    val winCombinations = arrayOf(
+        arrayOf(0, 1, 2), arrayOf(3, 4, 5), arrayOf(6, 7, 8), arrayOf(0, 3, 6),
+        arrayOf(1, 4, 7), arrayOf(2, 5, 8), arrayOf(0, 4, 8), arrayOf(2, 4, 6))
+
+    var result = TicTacToeResult.DRAW
+
+    for (winCombination in winCombinations) {
+
+        if (flatBoard[winCombination[0]] != TicTacToeValue.EMPTY
+                && flatBoard[winCombination[0]] == flatBoard[winCombination[1]]
+                && flatBoard[winCombination[0]] == flatBoard[winCombination[2]]) {
+
+            val winner = flatBoard[winCombination[0]]
+
+            if (result != TicTacToeResult.DRAW
+                    && (if (result == TicTacToeResult.O) TicTacToeValue.O else TicTacToeValue.X) != winner) {
+                return TicTacToeResult.NULL
+            }
+
+            result = if (winner == TicTacToeValue.X) TicTacToeResult.X else TicTacToeResult.O
+        }
+    }
+
     return result
 }
 
-fun main() {
-    // Nulo
-    println(checkThreeInARow(arrayOf(
-        arrayOf("","",""),
-        arrayOf("","",""),
-        arrayOf("",""))))
-
-    // Nulo
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","X","X"),
-        arrayOf("O",""),
-        arrayOf("","O","",""))))
-
-    // Nulo
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","X","X"),
-        arrayOf("O","",""),
-        arrayOf("","",""))))
-
-    // Nulo
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","O","X"),
-        arrayOf("X","X","O"),
-        arrayOf("X","X","X"))))
-
-    // Empate
-    println(checkThreeInARow(arrayOf(
-        arrayOf("","",""),
-        arrayOf("","",""),
-        arrayOf("","",""))))
-
-    // Empate
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","O",""),
-        arrayOf("","",""),
-        arrayOf("","",""))))
-
-    // Empate
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","X","X"),
-        arrayOf("O","O","O"),
-        arrayOf("","",""))))
-
-    // Empate
-    println(checkThreeInARow(arrayOf(
-        arrayOf("O","O","X"),
-        arrayOf("X","X","O"),
-        arrayOf("O","X","O"))))
-
-    // Empate
-    println(checkThreeInARow(arrayOf(
-        arrayOf("","O","X"),
-        arrayOf("","X","O"),
-        arrayOf("","O","X"))))
-
-    // X
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","X","X"),
-        arrayOf("O","O",""),
-        arrayOf("","",""))))
-
-    // X
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","O",""),
-        arrayOf("X","O",""),
-        arrayOf("X","",""))))
-
-    // X
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","O",""),
-        arrayOf("O","X",""),
-        arrayOf("","","X"))))
-
-    // X
-    println(checkThreeInARow(arrayOf(
-        arrayOf("","O","X"),
-        arrayOf("","X","O"),
-        arrayOf("X","",""))))
-
-    // X
-    println(checkThreeInARow(arrayOf(
-        arrayOf("X","O","X"),
-        arrayOf("O","X","O"),
-        arrayOf("O","O","X"))))
-
-    // O
-    println(checkThreeInARow(arrayOf(
-        arrayOf("O","O","O"),
-        arrayOf("O","X","X"),
-        arrayOf("O","X","X"))))
-}
