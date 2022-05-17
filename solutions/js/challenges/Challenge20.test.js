@@ -13,7 +13,7 @@ describe('test challenge 20', () => {
         jest.restoreAllMocks();
     });
 
-    test('shold wait passed seconds and resolve addition', () => {
+    test('should wait passed seconds and resolve addition', () => {
         const result = asyncAddition(2, 9, 1, 7);
         jest.runAllTimers();
         expect(setTimeout).toHaveBeenCalledTimes(1);
