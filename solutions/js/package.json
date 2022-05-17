@@ -4,7 +4,9 @@
   "description": "Proyecto de retos semanales de la comunidad MoureDev para practicar Kotlin y Android.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint --ext .js ./challenges",
+    "lint:fix": "npx eslint --fix --ext .js ./challenges"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,8 @@
   "homepage": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022#readme",
   "type": "commonjs",
   "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-plugin-jest": "^26.2.2",
     "jest": "^28.1.0"
   }
 }
