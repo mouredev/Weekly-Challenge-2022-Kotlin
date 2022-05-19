@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlinx.coroutines.*
+
 /*
  * Reto #20
  * PARANDO EL TIEMPO
@@ -18,3 +20,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+suspend fun main() {
+    coroutineScope {
+        launch { println("Result 1 = ${stop(8, 2, 1000)}") }
+        launch { println("Result 2 = ${stop(5, 1, 3000)}") }
+        launch { println("Result 3 = ${stop(0, 7, 500)}") }
+        launch { println("Result 4 = ${stop(3, 4, 2500)}") }
+    }
+}
+
+private suspend fun stop(num1: Int, num2: Int, time: Long): Int {
+    val total = num1 + num2
+    val job = CoroutineScope(Dispatchers.IO).launch {
+        delay(time)
+    }
+    job.join()
+    return total
+}
