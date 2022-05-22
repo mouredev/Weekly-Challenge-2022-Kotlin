@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlin.math.absoluteValue
-
 /*
  * Reto #19
  * CONVERSOR TIEMPO
@@ -19,11 +17,18 @@ import kotlin.math.absoluteValue
  *
  */
 
-fun getMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
-    return (days.absoluteValue * 86400 + hours.absoluteValue * 3600 + minutes.absoluteValue * 0 + seconds.absoluteValue) * 1000L
+fun main() {
+    println(timeToMillis(0, 0, 0, 10))
+    println(timeToMillis(2, 5, -45, 10))
+    println(timeToMillis(2000000000, 5, 45, 10))
 }
 
-fun main() {
-    println(getMillis(-365, 0, 0 , 0))
-    println(getMillis(365, 0, 0 , 0))
+fun timeToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
+
+    val daysInMillis = days.toLong() * 24 * 60 * 60 * 1000
+    val hoursInMillis = hours.toLong() * 60 * 60 * 1000
+    val minutesInMillis = minutes.toLong() * 60 * 1000
+    val secondsToMillis = seconds.toLong() * 1000
+
+    return daysInMillis + hoursInMillis + minutesInMillis + secondsToMillis
 }
