@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlinx.coroutines.*
+
 /*
  * Reto #20
  * PARANDO EL TIEMPO
@@ -18,3 +20,62 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+/**
+ * Funcion principal de la aplicacion
+ */
+suspend fun main(){
+
+    coroutineScope {
+
+        launch {
+            execute(6, 2,3) { sum(3, 3) }
+        }
+        launch {
+            execute(1, 1,1) { sum(3, 3) }
+        }
+        launch {
+            execute(3, 555,345) { sum(3, 3) }
+        }
+    }
+
+}
+
+/**
+ * Funcion que devuelve la suma de dos entero
+ * @param a Primer entero
+ * @param b Segundo entero
+ * @return Int con la suma de los dos enteros
+ */
+fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+
+
+/**
+ * Funcion de suspension que ejecuta una operacion que devuelve un entero tras unos segundos de espera*
+ * @param seconds Long con los segundos que tiene que esperar
+ * @param operation Lambda con la operacion a ejecutar
+ * @return Int con el resultado de la operacion
+ */
+suspend fun executeWithDelay(seconds: Long, operation: () -> Int): Int {
+
+        delay(seconds * 1000)
+        return operation()
+
+}
+
+/**
+ * Funcion para testear la aplicacion
+ * @param seconds segundos que queremos que espere
+ * @param a primer parametro de la operacion
+ * @param b segundo parametro de la operacion
+ * @param operation lambda con la ooperacion que queremos ejecutar
+ */
+suspend fun execute(seconds: Long,a:Int,b:Int, operation : () -> Int) {
+
+    println("Lanzando la operacion $a+$b con $seconds de espera")
+    println("El resultado de $a+$b tras $seconds segundos de espera es: ${executeWithDelay(seconds) { operation() }}")
+
+
+}
