@@ -37,7 +37,10 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#16** - 18/04/22 - `EN MAYÚSCULA`
 * **#17** - 25/04/22 - `LA CARRERA DE OBSTÁCULOS`
 * **#18** - 02/05/22 - `TRES EN RAYA`
-* **#19** - 09/05/22 - `Publicación nuevo reto...`
+* **#19** - 09/05/22 - `CONVERSOR TIEMPO`
+* **#20** - 16/05/22 - `PARANDO EL TIEMPO`
+* **#21** - 23/05/22 - `CALCULADORA .TXT` 
+* **#22** - 01/06/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 
@@ -86,7 +89,7 @@ Todo esto se puede hacer desde línea de comandos, pero si prefieres puedes usar
 [![Twitter Follow](https://img.shields.io/twitter/follow/mouredev?style=social)](https://twitter.com/mouredev)
 ![GitHub Followers](https://img.shields.io/github/followers/mouredev?style=social)
 
-Soy ingeniero de software desde hace más de 11 años. Desde hace 3 años combino mi trabajo desarrollando Apps con creación de contenido formativo sobre programación y tecnología en diferentes redes sociales como **[@mouredev](https://moure.dev)**.
+Soy ingeniero de software desde hace más de 12 años. Desde hace 4 años combino mi trabajo desarrollando Apps con creación de contenido formativo sobre programación y tecnología en diferentes redes sociales como **[@mouredev](https://moure.dev)**.
 
 ### En mi perfil de GitHub tienes más información
 
