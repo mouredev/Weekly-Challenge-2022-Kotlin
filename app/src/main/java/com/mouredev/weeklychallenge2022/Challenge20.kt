@@ -23,6 +23,7 @@ import kotlin.system.measureTimeMillis
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
 fun main() = runBlocking{
     val time = measureTimeMillis {
         launch { println(matrixMath(10,20, 3000)) }
@@ -30,6 +31,15 @@ fun main() = runBlocking{
         launch { println(matrixMath(-50,200, 1000)) }
     }
     println("Time passed for launch: $time")
+
+    // For Moure Dev solution
+    asyncSum(5, 2, 10) { result ->
+        println(result)
+    }
+
+    asyncSum(1, 3, 5) { result ->
+        println(result)
+    }
 }
 
 private suspend fun matrixMath(num1 : Int, num2 : Int, time : Long) : Int {
@@ -37,3 +47,12 @@ private suspend fun matrixMath(num1 : Int, num2 : Int, time : Long) : Int {
         delay(time)
     return num1 + num2
 }
+
+// For Moure Dev solution
+private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int) -> Unit) {
+    Thread {
+        Thread.sleep((seconds * 1000).toLong())
+        result(numberOne + numberTwo)
+    }.start()
+}
+
