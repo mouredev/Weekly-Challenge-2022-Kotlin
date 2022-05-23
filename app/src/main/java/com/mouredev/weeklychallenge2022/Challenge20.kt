@@ -29,27 +29,28 @@ suspend fun main(){
     coroutineScope {
 
         launch {
-            execute(6, 2,3) { sum(3, 3) }
+            execute(6, 2,3,sum)
         }
         launch {
-            execute(1, 1,1) { sum(3, 3) }
+            execute(1, 1,1, sum)
         }
         launch {
-            execute(3, 555,345) { sum(3, 3) }
+            execute(3, 555,345,sum)
         }
+
     }
 
 }
 
 /**
- * Funcion que devuelve la suma de dos entero
+ * Expresion Lambda que devuelve la suma de dos entero
  * @param a Primer entero
  * @param b Segundo entero
  * @return Int con la suma de los dos enteros
  */
-fun sum(a: Int, b: Int): Int {
-    return a + b
-}
+val sum = { a: Int, b: Int -> a + b }
+
+
 
 
 /**
@@ -72,10 +73,10 @@ suspend fun executeWithDelay(seconds: Long, operation: () -> Int): Int {
  * @param b segundo parametro de la operacion
  * @param operation lambda con la ooperacion que queremos ejecutar
  */
-suspend fun execute(seconds: Long,a:Int,b:Int, operation : () -> Int) {
+suspend fun execute(seconds: Long,a:Int,b:Int, operation : (Int,Int) -> Int) {
 
     println("Lanzando la operacion $a+$b con $seconds de espera")
-    println("El resultado de $a+$b tras $seconds segundos de espera es: ${executeWithDelay(seconds) { operation() }}")
+    println("El resultado de $a+$b tras $seconds segundos de espera es: ${executeWithDelay(seconds) { operation(a,b) }}")
 
 
 }
