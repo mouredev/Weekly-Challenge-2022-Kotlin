@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.io.File
+
 /*
  * Reto #21
  * CALCULADORA .TXT
@@ -22,3 +24,77 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    val fileName1 = "Challenge21.txt"
+    println(getDataFromFile(fileName1))
+
+    val fileName2 = "Challenge21Wrong.txt"
+    println(getDataFromFile(fileName2))
+}
+
+private fun getDataFromFile(fileName : String) : Float?{
+    var result : Float? = null
+    try {
+        val rootFolder = "app/src/main/java/com/mouredev/weeklychallenge2022/"
+        val data = File(rootFolder,fileName).readLines()
+        data.forEach { print(it) }
+        print("\n")
+        result = compute(data)
+    } catch (e:Exception){
+        print(e)
+    }
+    return result
+}
+
+private fun compute(operationList : List<String>):Float?{
+    val result = ArrayList<String>()
+    val itIsOk = validate(operationList)
+
+    return if (!itIsOk){
+        println("Error in the file data")
+        null
+    } else{
+        var i = 1
+        var jump = false
+        try {
+            while ( i<operationList.size ){
+                jump = if (operationList[i] == "*"){
+                    result.add((operationList[i-1].toFloat()*operationList[i+1].toFloat()).toString())
+                    true
+                } else if (operationList[i] == "/"){
+                    result.add((operationList[i-1].toFloat()/operationList[i+1].toFloat()).toString())
+                    true
+                } else {
+                    if (!jump)
+                        result.add(operationList[i-1])
+                    result.add(operationList[i])
+                    false
+                }
+                i+=2
+            }
+        }catch (e : ArithmeticException){
+            println(e.message)
+            return null
+        }
+
+        i = 1
+        var resultFinal = result[0].toFloat()
+        result.forEach{ print(it)}
+        print("\n")
+        while (i<result.size){
+            if (result[i] == "+")
+                resultFinal += result[i+1].toFloat()
+            else
+                resultFinal -= result[i+1].toFloat()
+            i+=2
+        }
+        return resultFinal
+    }
+}
+
+private fun validate(operationList: List<String>) : Boolean{
+    var oneLine = ""
+    operationList.forEach { oneLine += it }
+    return oneLine.matches("""([+/*-]?[0-9*]\.?[0-9*]?)*""".toRegex())
+}
