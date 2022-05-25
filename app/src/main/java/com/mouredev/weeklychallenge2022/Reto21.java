@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class Reto21{
     
     public static void main(String[] args){
-        sum();
+        sum(); //Este programa usa la jerarquia de simbolos (PEMDAS)
         //Imprime -14 en Challenge21.txt original: 5+2-1*8-15+4/2
         //Challenge21.txt modificacion 1: 4 * 3 + 5 - 6 / 4 = 15.5
         //Challenge21.txt modificacion 2: 65 * 3 / 5 + 12 = 51
