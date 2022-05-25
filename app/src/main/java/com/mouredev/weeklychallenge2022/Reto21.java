@@ -25,7 +25,8 @@ public class Reto21{
         //Imprime -14 en Challenge21.txt original: 5+2-1*8-15+4/2
         //Challenge21.txt modificacion 1: 4 * 3 + 5 - 6 / 4 = 15.5
         //Challenge21.txt modificacion 2: 65 * 3 / 5 + 12 = 51
-        //Challenge21.txt modificacion 2: 65 * 3 / 5 + = Se encontraron caracteres invalidos o faltan numeros
+        //Challenge21.txt modificacion 2: 65 * 3 / 5 + = Error de sintaxis
+        multAndDivEval("5*5*4+12/2/2"); //Este caso es para aplicar mas de una multiplicacion o division
     }
     
     private static void sum() {
@@ -54,10 +55,11 @@ public class Reto21{
         boolean containsMult = expression.indexOf("*") > -1;
         boolean containsDiv = expression.contains("/");
         if(containsMult){
-            String[] mult = simplerExpression.split("\\*");
-            for(int i = 0; i < mult.length; i+= 2){
+            int multCount = simplerExpression.split("\\*").length - 1;
+            for(int i = 1; i <= multCount; i++){
+                String[] mult = simplerExpression.split("\\*");
                 try {
-                    String stringN1 = getFirstNum(mult[i]), stringN2 = getSecondNum(mult[i+1]);
+                    String stringN1 = getFirstNum(mult[0]), stringN2 = getSecondNum(mult[1]);
                     n1 = Double.parseDouble(stringN1);
                     n2 = Double.parseDouble(stringN2);
                     result = n1 * n2;
@@ -76,22 +78,23 @@ public class Reto21{
             }
         }
         if(containsDiv){
-            String[] div = simplerExpression.split("/");
-            for(int i = 0; i < div.length; i+= 2){
+            int divCount = simplerExpression.split("/").length - 1;
+            for(int i = 1; i <= divCount; i++){
+                String[] div = simplerExpression.split("/");
                 try {
-                    String stringN1 = getFirstNum(div[i]), stringN2 = getSecondNum(div[i+1]);
+                    String stringN1 = getFirstNum(div[0]), stringN2 = getSecondNum(div[1]);
                     n1 = Double.parseDouble(stringN1);
                     n2 = Double.parseDouble(stringN2);
                     result = n1 / n2;
                     String replace = stringN1 + "/" + stringN2;
                     int index = simplerExpression.indexOf(replace);
                     simplerExpression = simplerExpression.substring(0, index) + result + simplerExpression.substring(index + replace.length(), simplerExpression.length());
-                } catch(ArrayIndexOutOfBoundsException e){
-                    System.out.println("Hubo un error en la ejecucion: expresion incompleta");
+                } catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+                    System.out.println("Error de sintaxis");
                     System.exit(2);
                     break;
-                } catch(ArithmeticException | NumberFormatException e){
-                    System.out.println("Hubo un error en la ejecucion: " + e.getMessage());
+                } catch(ArithmeticException e){
+                    System.out.println("Error Matematico: " + e.getMessage());
                     System.exit(1);
                     break;
                 }
@@ -182,7 +185,7 @@ public class Reto21{
                 numsList.add(Double.parseDouble(operator + number));
             }
         } catch (NumberFormatException e) {
-            System.out.println("Se encontrarom caracteres invalidos o faltan numeros");
+            System.out.println("Error de sintaxis");
             System.exit(3);
         }
     }
