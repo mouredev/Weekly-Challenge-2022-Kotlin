@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.io.File
+
 /*
  * Reto #21
  * CALCULADORA .TXT
@@ -22,3 +24,50 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(calculateFileOperation("C:\\Users\\jjtom\\Documents\\AndroidStudioProjects\\Weekly-Challenge-2022-Kotlin\\app\\src\\main\\java\\com\\mouredev\\weeklychallenge2022\\Challenge21.txt"))
+}
+
+private fun calculateFileOperation(fileName: String): Double{
+    var operator = ""
+    var result: Double? = null
+    File(fileName).forEachLine {
+        println(it)
+        if (result == null){
+            if (it.isNumber()){
+                result = it.toDouble()
+            }else{
+                throw Exception("The file don't have the right format")
+            }
+        }else{
+            when{
+                isNotAllowedSymbol(it) -> throw Exception("Not allowed symbol $it")
+                it.isNumber() && operator == "" || !it.isNumber() && operator != ""-> throw Exception("The file don't have the right format")
+                !it.isNumber() && operator == "" -> operator = it
+                it.isNumber() && operator != "" -> result?.let{ res ->
+                    result = makeOperation(res, operator,  it.toDouble())
+                    operator = ""
+                }
+            }
+        }
+    }
+    result?.let{
+        return it
+    } ?: throw Exception("The file don't have the right format")
+}
+
+fun makeOperation(result: Double, operator: String, number: Double): Double =
+    when (operator) {
+        "+" -> result.plus(number)
+        "-" -> result.minus(number)
+        "*" -> result.times(number)
+        "/" -> result.div(number)
+        else -> throw Exception("The file don't have the right format")
+    }
+
+
+private fun isNotAllowedSymbol(it: String) =
+    !it.isNumber() && it != "+" && it != "-" && it != "/" && it != "*"
+
+private fun String.isNumber(): Boolean = toDoubleOrNull() != null
