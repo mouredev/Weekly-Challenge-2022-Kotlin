@@ -1,9 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-
 /*
  * Reto #20
  * PARANDO EL TIEMPO
@@ -22,33 +18,3 @@ import kotlinx.coroutines.runBlocking
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
-fun main(){
-    runBlocking{
-        launch {
-            println(sum(1,1,500L))
-        }
-        launch {
-            println(sum(1,2,1L))
-        }
-        launch {
-            println(sum(1,3,10L))
-        }
-        launch {
-            println(sum(1,4,0L))
-        }
-        launch {
-            println(sum(1,5,100L))
-        }
-        launch {
-            launch{println(sum(1,6,2L))}
-        }
-    }
-
-}
-
-private suspend fun sum(numberOne:Int, numberTwo:Int, sec:Long):Int{
-    delay(sec)
-    return numberOne + numberTwo
-}
-
