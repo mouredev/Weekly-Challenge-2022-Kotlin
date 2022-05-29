@@ -18,3 +18,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+
+    asyncSum(5, 2, 10) { result ->
+        println(result)
+    }
+
+    asyncSum(1, 3, 5) { result ->
+        println(result)
+    }
+}
+
+private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int) -> Unit) {
+    Thread {
+        Thread.sleep((seconds * 1000).toLong())
+        result(numberOne + numberTwo)
+    }.start()
+}
