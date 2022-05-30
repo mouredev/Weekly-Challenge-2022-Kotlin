@@ -37,11 +37,19 @@ const getDataFromPath = (uri) => {
  * @returns {number} Final result
  */
 const calculateData = (data) => {
-  const res = operateRPN(getRPN(data));
+  const res = operateRPN(getRPNFromInfixNotation(data));
   if (isNaN(res)) throw new Error('Invalid data');
+  return res;
 };
 
-const getRPN = (infixExp) => {
+
+/**
+ * Transforms a infix notation list to a RPN notation list
+ * @param {string[]} infixExp List of operations in infix notation
+ * @returns List of operations in Reverse Polish Notation
+ */
+const getRPNFromInfixNotation = (infixExp) => {
+  validateData(infixExp);
   let stack = [];
   let postfixExp = [];
   let operators = {
@@ -76,9 +84,25 @@ const getRPN = (infixExp) => {
     expression = expression.slice(1);
     return parse(expression);
   }
+
+  function validateData(data) {
+    const operatorsSet = new Set(['+', '-', '*', '/']);
+    for (let i = 0; i < data.length; i++) {
+      if ((i % 2 === 0 && isNaN(+data[i])) || (i % 2 === 1 && !operatorsSet.has(data[i]))) {
+        throw new Error('Invalid data');
+      }
+    }
+    return true;
+  }
+
   return parse(infixExp);
 };
 
+/**
+ * Operates a sucession of operations writen in RPN
+ * @param {string[]} rpnExp List with the operations in Reverse Poland Notation
+ * @returns {number} Final result
+ */
 const operateRPN = (rpnExp) => {
   const operations = {
     '+': (a, b) => a + b,
@@ -94,7 +118,7 @@ const operateRPN = (rpnExp) => {
       const left = stack.pop();
       stack.push(operations[element](left, right));
     } else {
-      stack.push(parseInt(element));
+      stack.push(+element);
     }
   }
   return stack[0];
