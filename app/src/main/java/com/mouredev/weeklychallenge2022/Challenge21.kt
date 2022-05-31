@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import java.io.File
+import java.lang.Character.isDigit
+
 /*
  * Reto #21
  * CALCULADORA .TXT
@@ -22,3 +25,46 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(BasicCalculator("G:\\Proyectos\\Weekly-Challenge-2022-Kotlin\\app\\src\\main\\java\\com\\mouredev\\weeklychallenge2022\\Challenge21.txt"))
+}
+
+private fun BasicCalculator(fileName: String): String {
+
+    var result = 0.0
+    var numLines = 1
+    val operationList = listOf("+", "-", "*", "/")
+    var operator = ""
+    var error = false
+
+    File(fileName).forEachLine {
+        if ((numLines == 1) and (it.toDoubleOrNull() != null)){
+            result = it.toDouble()
+            numLines ++
+        }
+        else
+            error = true
+
+        if ((numLines % 2 == 0) and (it in operationList)) {
+            operator = it
+            numLines ++
+        }
+        else if ((numLines % 2 != 0) and (it.toDoubleOrNull() != null)) {
+            when (operator) {
+                "+" -> result += it.toDouble()
+                "-" -> result -= it.toDouble()
+                "*" -> result *= it.toDouble()
+                "/" -> result /= it.toDouble()
+            }
+            numLines ++
+        }
+        else if (((numLines >= 2) and ((it !in operationList) or (it.toDoubleOrNull() != null)))){
+            error = true
+            numLines ++
+        }
+
+    }
+
+    return if (!error) "El fichero no tiene el formato correcto" else "El resultado de la operaciones es $result"
+}
