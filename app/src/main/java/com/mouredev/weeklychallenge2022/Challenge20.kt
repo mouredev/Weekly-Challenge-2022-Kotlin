@@ -20,23 +20,19 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-  val sum1 = Thread {
-    val r = suma(1, 0, 2)
-    //println("thread: ${Thread.currentThread()} - resultado: $r")
-  }
 
-  val sum2 = Thread {
-    val r = suma(2, 0, 10)
-   // println("thread: ${Thread.currentThread()} - resultado: $r")
-  }
-  sum1.start()
-  sum2.start()
-  suma(3,0,0)
+    asyncSum(5, 2, 10) { result ->
+        println(result)
+    }
+
+    asyncSum(1, 3, 5) { result ->
+        println(result)
+    }
 }
 
-fun suma(num1: Int, num2: Int, segundos: Long): Int {
-  val r = num1 + num2
-  Thread.sleep(segundos * 1000)
-  println("$num1 + $num2 = $r")
-  return r
+private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int) -> Unit) {
+    Thread {
+        Thread.sleep((seconds * 1000).toLong())
+        result(numberOne + numberTwo)
+    }.start()
 }
