@@ -11,8 +11,8 @@ describe('Challenge21', () => {
   });
 
   it('should throw error because of invalid data', () => {
-    expect(() => calculateData(['3', '+', '2', '*', '2', '-'])).toThrowError(new Error('Invalid data'));
-    expect(() => calculateData(['3', '2', '+', '*', '2', '-', '6'])).toThrowError(new Error('Invalid data'));
-    expect(() => calculateData(['3', 'hola', '+', '*', '2', '-', '3'])).toThrowError(new Error('Invalid data'));
+    expect(() => calculateData(['3', '+', '2', '*', '2', '-'])).toThrow();
+    expect(() => calculateData(['3', '2', '+', '*', '2', '-', '6'])).toThrow();
+    expect(() => calculateData(['3', 'hola', '+', '*', '2', '-', '3'])).toThrow();
   });
 });

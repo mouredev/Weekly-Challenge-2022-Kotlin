@@ -37,91 +37,85 @@ const getDataFromPath = (uri) => {
  * @returns {number} Final result
  */
 const calculateData = (data) => {
-  const res = operateRPN(getRPNFromInfixNotation(data));
-  if (isNaN(res)) throw new Error('Invalid data');
-  return res;
+  return operateTree(buildOperationsTree(data));
 };
 
-
-/**
- * Transforms a infix notation list to a RPN notation list
- * @param {string[]} infixExp List of operations in infix notation
- * @returns List of operations in Reverse Polish Notation
- */
-const getRPNFromInfixNotation = (infixExp) => {
-  validateData(infixExp);
-  let stack = [];
-  let postfixExp = [];
-  let operators = {
-    '+': 1,
-    '-': 1,
-    '*': 2,
-    '/': 2,
+const buildOperationsTree = (data) => {
+  const getPriorityCode = (element) => {
+    const priorities = {
+      '+': 1,
+      '-': 1,
+      '*': 2,
+      '/': 2,
+    };
+    return priorities[element] ?? -1;
   };
-  function parse(expression) {
-    if (expression.length === 0) {
-      if (stack.length > 0) {
-        while (stack.length > 0) {
-          postfixExp = [...postfixExp, stack.pop()];
-        }
-      }
-      return postfixExp;
-    }
-    if (/[0-9]/.test(expression[0])) {
-      postfixExp = [...postfixExp, expression[0]];
-    } else {
-      if (expression[0] in operators) {
-        while (stack.length > 0) {
-          if (operators[expression[0]] <= operators[stack[stack.length - 1]]) {
-            postfixExp = [...postfixExp, stack.pop()];
-          } else {
-            break;
-          }
-        }
-        stack.push(expression[0]);
-      }
-    }
-    expression = expression.slice(1);
-    return parse(expression);
-  }
 
-  function validateData(data) {
-    const operatorsSet = new Set(['+', '-', '*', '/']);
-    for (let i = 0; i < data.length; i++) {
-      if ((i % 2 === 0 && isNaN(+data[i])) || (i % 2 === 1 && !operatorsSet.has(data[i]))) {
-        throw new Error('Invalid data');
-      }
+  const validateElement = (element, previousElement) => {
+    if (previousElement !== null && getPriorityCode(element) * getPriorityCode(previousElement) > 0) {
+      throw new Error(`Invalid data. Element: ${element} while previousElement: ${previousElement}`);
     }
     return true;
-  }
+  };
 
-  return parse(infixExp);
+  const Node = (element, left, right) => {
+    return { element, left, right };
+  };
+
+  let root = null;
+  let previousElement = null;
+
+  for (let element of data) {
+    validateElement(element, previousElement);
+    previousElement = element;
+    const parsedElement = +element;
+    if (isNaN(parsedElement)) {
+      //element is an operator
+      const elementPriority = getPriorityCode(element);
+      if (
+        elementPriority <= getPriorityCode(root.element) ||
+        typeof root.element === 'number'
+      ) {
+        const newNode = Node(element, root, null);
+        root = newNode;
+      } else {
+        const newNode = Node(element, root.right, null);
+        root.right = newNode;
+      }
+    } else {
+      //element is a number
+      if (root === null) {
+        root = Node(parsedElement, null, null);
+      } else {
+        const newNode = Node(parsedElement, null, null);
+        let pAux = root;
+        while (pAux.right !== null) {
+          pAux = pAux.right;
+        }
+        pAux.right = newNode;
+      }
+    }
+  }
+  if (isNaN(+previousElement)) {
+    throw new Error(`Invalid data. Last element: ${previousElement}`);
+  }
+  return root;
 };
 
-/**
- * Operates a sucession of operations writen in RPN
- * @param {string[]} rpnExp List with the operations in Reverse Poland Notation
- * @returns {number} Final result
- */
-const operateRPN = (rpnExp) => {
+
+
+const operateTree = (tree) => {
   const operations = {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
     '*': (a, b) => a * b,
     '/': (a, b) => a / b,
   };
-
-  let stack = [];
-  for (let element of rpnExp) {
-    if (element === '+' || element === '-' || element === '*' || element === '/') {
-      const right = stack.pop();
-      const left = stack.pop();
-      stack.push(operations[element](left, right));
-    } else {
-      stack.push(+element);
-    }
-  }
-  return stack[0];
+  if (!tree.left && !tree.right) return tree.element;
+  return operations[tree.element](
+    operateTree(tree.left),
+    operateTree(tree.right)
+  );
 };
 
 
