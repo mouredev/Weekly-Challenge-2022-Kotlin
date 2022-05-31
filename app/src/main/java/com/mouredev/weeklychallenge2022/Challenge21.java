@@ -24,15 +24,19 @@ package com.mouredev.weeklychallenge2022
 
 public class Challenge21 {
     public static void main(String[] args) {
-        ArrayList<String> operacion = fileToArray("src/main/resources/test.txt");
-        if (checkFormat(operacion)) {
-            System.out.println(calculate(operacion));
-        } else {
-            System.out.println("No se cumple el formato del fichero");
+        try {
+            ArrayList<String> operation = fileToArray("src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt");
+            if (checkFormat(operation)) {
+                System.out.println(calculate(operation));
+            } else {
+                System.out.println("No se cumple el formato del fichero");
+            }
+        } catch (IOException e) {
+            System.out.println("No se pudo leer el fichero");
         }
     }
 
-    private static ArrayList<String> fileToArray(String fileName) {
+    private static ArrayList<String> fileToArray(String fileName) throws IOException {
         ArrayList<String> lines = new ArrayList<>();
 
         File file = new File(fileName);
@@ -42,14 +46,8 @@ public class Challenge21 {
             while ((line = br.readLine()) != null) {
                 lines.add(line);
             }
-        } catch (EOFException e) {
-            System.out.printf("End of file reached: %s%n", e.getMessage());
-        } catch (IOException ef) {
-            System.out.println("Error reading file");
-        } finally {
             return lines;
         }
-
     }
 
     private static boolean checkFormat(ArrayList<String> lines) {
@@ -85,24 +83,24 @@ public class Challenge21 {
         return str.matches("[+-/*]");
     }
 
-    private static float calculate(ArrayList<String> operacion) {
+    private static float calculate(ArrayList<String> operation) {
         float result = 0;
-        for (int i = 0; i < operacion.size(); i++) {
+        for (int i = 0; i < operation.size(); i++) {
             if (i % 2 == 0) {
-                if (i == 0) result = Float.parseFloat(operacion.get(i));
+                if (i == 0) result = Float.parseFloat(operation.get(i));
             } else {
-                switch (operacion.get(i)) {
+                switch (operation.get(i)) {
                     case "+":
-                        result += Float.parseFloat(operacion.get(++i));
+                        result += Float.parseFloat(operation.get(++i));
                         break;
                     case "-":
-                        result -= Float.parseFloat(operacion.get(++i));
+                        result -= Float.parseFloat(operation.get(++i));
                         break;
                     case "*":
-                        result *= Float.parseFloat(operacion.get(++i));
+                        result *= Float.parseFloat(operation.get(++i));
                         break;
                     case "/":
-                        result /= Float.parseFloat(operacion.get(++i));
+                        result /= Float.parseFloat(operation.get(++i));
                         break;
                 }
             }
