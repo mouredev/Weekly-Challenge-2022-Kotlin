@@ -40,7 +40,8 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#19** - 09/05/22 - `CONVERSOR TIEMPO`
 * **#20** - 16/05/22 - `PARANDO EL TIEMPO`
 * **#21** - 23/05/22 - `CALCULADORA .TXT` 
-* **#22** - 01/06/22 - `Publicación nuevo reto...`
+* **#22** - 01/06/22 - `CONJUNTOS` 
+* **#23** - 07/06/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 
@@ -86,6 +87,7 @@ Todo esto se puede hacer desde línea de comandos, pero si prefieres puedes usar
 
 [![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCxPD7bsocoAMq8Dj18kmGyQ?style=social)](https://youtube.com/mouredevapps?sub_confirmation=1)
 [![Twitch Status](https://img.shields.io/twitch/status/mouredev?style=social)](https://twitch.com/mouredev)
+[![Discord](https://img.shields.io/discord/729672926432985098?style=social&label=Discord&logo=discord)](https://mouredev.com/discord)
 [![Twitter Follow](https://img.shields.io/twitter/follow/mouredev?style=social)](https://twitter.com/mouredev)
 ![GitHub Followers](https://img.shields.io/github/followers/mouredev?style=social)
 

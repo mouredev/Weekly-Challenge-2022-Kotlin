@@ -1,7 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
 import java.io.File
-import java.nio.charset.Charset
 
 /*
  * Reto #21
@@ -25,68 +24,57 @@ import java.nio.charset.Charset
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-enum class operation(val value: String){
-    Sum("+"),
-    Substract("-"),
-    Plus("*"),
-    Divide("/"),
-    Error("");
 
-    companion object{
-        fun fromString(op: String) = when(op){
-            "+" -> Sum
-            "-" -> Substract
-            "*" -> Plus
-            "/" -> Divide
-            else -> Error
-        }
-    }
-
+fun main() {
+    println(calculate("app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt"))
 }
 
-fun readFile(path: String): List<Any> {
-    return try{
-        File(path).readLines(Charset.defaultCharset()).map { x ->
-            x.toFloatOrNull() ?: operation.fromString(x)
-        }.toList().also { x -> if (x.filterIndexed { index, value -> index % 2 == 0 && value !is Float }.any() ||
-                                   x.filterIndexed { index, value -> index % 2 != 0 && value !is operation }.any()
-                ) throw Exception("")}
-    }catch (ex: Exception){
-        listOf()
-    }
-}
+private fun calculate(filePath: String): String {
 
-fun operate(data: List<Any>): Float{
-    if (data.isEmpty())
-        return Float.MIN_VALUE
-    else if (data.size == 3 && data[0] is Float){
-        return when(data[1] as operation){
-            operation.Sum -> data[0] as Float + data[2] as Float
-            operation.Substract -> data[0] as Float - data[2] as Float
-            operation.Plus -> data[0] as Float * data[2] as Float
-            operation.Divide -> data[0] as Float / data[2] as Float
-            else -> 0f
+    var fileError = false
+    var result: Double? = null
+    var lastOperator: String? = null
+
+    try {
+        File(filePath).forEachLine { line ->
+
+            line.toDoubleOrNull()?.let { number ->
+                if (result == null) {
+                    result = number
+                } else {
+                    when(lastOperator) {
+                        "+"-> {
+                            result = result?.plus(number)
+                        }
+                        "-"-> {
+                            result = result?.minus(number)
+                        }
+                        "*"-> {
+                            result = result?.times(number)
+                        }
+                        "/"-> {
+                            result = result?.div(number)
+                        }
+                        else -> {
+                            fileError = true
+                            return@forEachLine
+                        }
+                    }
+                    lastOperator = null
+                }
+            } ?: run {
+                if (lastOperator == null) {
+                    lastOperator = line
+                } else {
+                    fileError = true
+                    return@forEachLine
+                }
+            }
         }
-    }else{
-        val leftResult = operate(data.subList(0, data.size - 2))
 
-        return when(data[data.size - 2] as operation){
-            operation.Sum -> leftResult + data[data.size - 1] as Float
-            operation.Substract -> leftResult - data[data.size - 1] as Float
-            operation.Plus -> leftResult * data[data.size - 1] as Float
-            operation.Divide -> leftResult / data[data.size - 1] as Float
-            else -> 0f
-        }
+    } catch (e: Exception) {
+        fileError = true
     }
-}
 
-fun main(){
-    //val pathToFile = "/Poner/ruta/al/Fichero/Challenge21.txt"
-    val pathToFile = "/Users/afalabarce/IdeaProjects/Weekly-Challenge-2022-Kotlin/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt"
-    val operationText = readFile(pathToFile).map { x -> if (x is Float) x.toString() else (x as operation).value }.joinToString(" ")
-    val result = operate(readFile(pathToFile))
-    if (result == Float.MIN_VALUE)
-        println("No se ha podido calcular")
-    else
-        println("Resultado Operación: $operationText = $result")
+    return if (fileError || lastOperator != null) "No se han podido resolver las operaciones" else result!!.toString()
 }
