@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlinx.coroutines.*
-
 /*
  * Reto #20
  * PARANDO EL TIEMPO
@@ -21,14 +19,20 @@ import kotlinx.coroutines.*
  *
  */
 
-suspend fun delayedAddition(num1: Int, num2: Int, seconds: Int): Int {
-    delay(seconds * 1000L)
-    return num1 + num2
+fun main() {
+
+    asyncSum(5, 2, 10) { result ->
+        println(result)
+    }
+
+    asyncSum(1, 3, 5) { result ->
+        println(result)
+    }
 }
 
-fun main() {
-    runBlocking {
-        async { println(delayedAddition(10, 30, 5)) }
-        async { println(delayedAddition(15, 35, 6)) }
-    }
+private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int) -> Unit) {
+    Thread {
+        Thread.sleep((seconds * 1000).toLong())
+        result(numberOne + numberTwo)
+    }.start()
 }
