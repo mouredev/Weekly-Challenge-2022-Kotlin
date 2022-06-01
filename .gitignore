@@ -235,3 +235,9 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,kotlin
+*.lock
+*.ide
+app/src/main/java/com/mouredev/weeklychallenge2022/MiSolucionRetoSemanales/.vs/MiSolucionRetoSemanales/v15/.suo
+*.ide-shm
+*.ide-wal
+*.user
