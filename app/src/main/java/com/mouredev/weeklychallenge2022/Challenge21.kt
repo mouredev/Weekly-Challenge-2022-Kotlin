@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.io.File
+
 /*
  * Reto #21
  * CALCULADORA .TXT
@@ -22,3 +24,75 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    try {
+        println("Result: ${readFile()}")
+    } catch (e: WrongParameterException) {
+        println(e.message)
+    }
+}
+
+fun readFile(): Float {
+    var lastChar = -1
+    val lastLines = mutableListOf<String>()
+    var total = 0F
+    val path =
+        File("").absolutePath + "\\app\\src\\main\\java\\com\\mouredev\\weeklychallenge2022\\Challenge21.txt"
+    File(path).forEachLine { line ->
+        if (lastLines.isEmpty() || lastLines.size == 1) {
+            lastChar = if (lastLines.isEmpty()) {
+                if (line.textIsDigits()) {
+                    lastLines.add(line)
+                    0
+                } else {
+                    throw WrongParameterException()
+                }
+            } else {
+                if (line.textIsMathSign() && lastChar == 0) {
+                    lastLines.add(line)
+                    1
+                } else {
+                    throw WrongParameterException()
+                }
+            }
+        } else {
+            if (line.textIsDigits()) {
+                lastLines.add(line)
+                total = calculateArray(lastLines)
+                lastLines.clear()
+                lastLines.add(total.toString())
+                lastChar = 0
+            } else {
+                throw WrongParameterException()
+            }
+        }
+    }
+    return total
+}
+
+private fun String.textIsDigits(): Boolean {
+    return when (this.toFloatOrNull()) {
+        null -> false
+        else -> true
+    }
+}
+
+private fun String.textIsMathSign(): Boolean {
+    return this == "+" || this == "-" || this == "*" || this == "/"
+}
+
+private fun calculateArray(lastLines: MutableList<String>): Float {
+    return when (lastLines[1]) {
+        "+" -> lastLines[0].toFloat().plus(lastLines[2].toFloat())
+        "-" -> lastLines[0].toFloat().minus(lastLines[2].toFloat())
+        "*" -> lastLines[0].toFloat().times(lastLines[2].toFloat())
+        "/" -> lastLines[0].toFloat().div(lastLines[2].toFloat())
+        else -> {
+            throw WrongParameterException()
+        }
+    }
+}
+
+class WrongParameterException(message: String = "ERROR: Wrong expected char when reading file!") :
+    Exception(message)
