@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import java.io.File
+import kotlin.reflect.typeOf
+
 /*
  * Reto #21
  * CALCULADORA .TXT
@@ -22,3 +25,66 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val operations = readFile("app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt")
+    if(operations[0] != "Error") {
+        print(calculator(operations))
+    } else {
+        print("No se han podido realizar las operaciones")
+    }
+}
+
+fun readFile(fileName: String): MutableList<String> {
+    val list = mutableListOf<String>()
+    var error = 0
+    var i = 0
+    File(fileName).forEachLine {
+        if (i % 2 == 0 && it != "+" && it != "-" && it != "*" && it != "/"){
+            list.add(it)
+            i++
+        } else {
+            if((i % 2 != 0) && (it == "+" || it == "-" || it == "*" || it == "/")) {
+                list.add(it)
+                i++
+            } else {
+                error = 1
+            }
+        }
+    }
+    if (error == 0){
+        return list
+    }
+    return mutableListOf("Error")
+}
+fun calculator(operations: MutableList<String>): Double {
+    val auxOperations = operations
+    var i = 0
+    while (i < auxOperations.size) {
+        if (auxOperations[i] == "*") {
+            auxOperations[i] = (auxOperations[i - 1].toDouble() * auxOperations[i + 1].toDouble()).toString()
+            auxOperations.removeAt(i - 1)
+            auxOperations.removeAt(i)
+        }
+        if (auxOperations[i] == "/") {
+            auxOperations[i] = (auxOperations[i - 1].toDouble() / auxOperations[i + 1].toDouble()).toString()
+            auxOperations.removeAt(i - 1)
+            auxOperations.removeAt(i)
+        }
+        i += 1
+    }
+    var result = auxOperations[0].toDouble()
+    i = 1
+    while (i < auxOperations.size) {
+        if (auxOperations[i] == "+") {
+            result += auxOperations[i + 1].toDouble()
+            i += 2
+        } else {
+            if (auxOperations[i] == "-") {
+                result -= auxOperations[i + 1].toDouble()
+                i += 2
+            }
+        }
+    }
+    return result
+}
