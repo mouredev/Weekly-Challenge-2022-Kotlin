@@ -22,10 +22,10 @@
  * Returns the related elements of two arrays. Depending on the common flag, it will return the common
  * elements or the different elements. This function treats duplicates as different elements.
  *
- * @param {*} arr1 First of the two arrays to compare
- * @param {*} arr2 Second of the two arrays to compare
- * @param {*} common Boolean flag to indicate if the function should return common elements or different elements
- * @returns A list of common or different elements
+ * @param {*[]} arr1 First of the two arrays to compare
+ * @param {*[]} arr2 Second of the two arrays to compare
+ * @param {boolean} common Boolean flag to indicate if the function should return common elements or different elements
+ * @returns {*[]} A list of common or different elements
  */
 const getRelatedElements = (arr1, arr2, common) => {
   const getIntersectionElements = (arr1, arr2) => {
