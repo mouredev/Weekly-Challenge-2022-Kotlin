@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.io.File
+
 /*
  * Reto #21
  * CALCULADORA .TXT
@@ -22,3 +24,57 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(calculate("app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt"))
+}
+
+private fun calculate(filePath: String): String {
+
+    var fileError = false
+    var result: Double? = null
+    var lastOperator: String? = null
+
+    try {
+        File(filePath).forEachLine { line ->
+
+            line.toDoubleOrNull()?.let { number ->
+                if (result == null) {
+                    result = number
+                } else {
+                    when(lastOperator) {
+                        "+"-> {
+                            result = result?.plus(number)
+                        }
+                        "-"-> {
+                            result = result?.minus(number)
+                        }
+                        "*"-> {
+                            result = result?.times(number)
+                        }
+                        "/"-> {
+                            result = result?.div(number)
+                        }
+                        else -> {
+                            fileError = true
+                            return@forEachLine
+                        }
+                    }
+                    lastOperator = null
+                }
+            } ?: run {
+                if (lastOperator == null) {
+                    lastOperator = line
+                } else {
+                    fileError = true
+                    return@forEachLine
+                }
+            }
+        }
+
+    } catch (e: Exception) {
+        fileError = true
+    }
+
+    return if (fileError || lastOperator != null) "No se han podido resolver las operaciones" else result!!.toString()
+}
