@@ -48,14 +48,18 @@ fun readFile(path: String): List<Any> {
     return try{
         File(path).readLines(Charset.defaultCharset()).map { x ->
             x.toFloatOrNull() ?: operation.fromString(x)
-        }.toList()
+        }.toList().also { x -> if (x.filterIndexed { index, value -> index % 2 == 0 && value !is Float }.any() ||
+                                   x.filterIndexed { index, value -> index % 2 != 0 && value !is operation }.any()
+                ) throw Exception("")}
     }catch (ex: Exception){
         listOf()
     }
 }
 
 fun operate(data: List<Any>): Float{
-    if (data.size == 3 && data[0] is Float){
+    if (data.isEmpty())
+        return Float.MIN_VALUE
+    else if (data.size == 3 && data[0] is Float){
         return when(data[1] as operation){
             operation.Sum -> data[0] as Float + data[2] as Float
             operation.Substract -> data[0] as Float - data[2] as Float
@@ -80,5 +84,9 @@ fun main(){
     //val pathToFile = "/Poner/ruta/al/Fichero/Challenge21.txt"
     val pathToFile = "/Users/afalabarce/IdeaProjects/Weekly-Challenge-2022-Kotlin/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt"
     val operationText = readFile(pathToFile).map { x -> if (x is Float) x.toString() else (x as operation).value }.joinToString(" ")
-    println("Resultado Operación: ${operationText} = ${operate(readFile(pathToFile))}")
+    val result = operate(readFile(pathToFile))
+    if (result == Float.MIN_VALUE)
+        println("No se ha podido calcular")
+    else
+        println("Resultado Operación: $operationText = $result")
 }
