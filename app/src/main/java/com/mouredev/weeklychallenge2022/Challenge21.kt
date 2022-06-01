@@ -36,6 +36,7 @@ enum class Operation(val value:String,val priority : Int) {
     Minus("-",0),
     Multiply("*",1),
     Divide("/",1),
+    None("",-1)
 
 }
 
@@ -76,7 +77,7 @@ fun readFile(fileName: String): List<String> {
  */
 fun shuntingYard(lines: List<String>): Double? {
 
-    val stack = Stack<String>()
+    val stack = Stack<Operation>()
     val output = arrayListOf<String>()
 
     lines.forEach {
@@ -86,19 +87,17 @@ fun shuntingYard(lines: List<String>): Double? {
         } else {
             if (it.isOperator()) {
                 if (stack.isNotEmpty()) {
-                       output.add(stack.pop())
-                        stack.add(it)
-
+                    output.add(stack.pop().value)
+                    stack.add(it.toOperation())
                 } else {
-                    stack.add(it)
+                    stack.add(it.toOperation())
                 }
             }
         }
-
     }
 
-    while (stack.isNotEmpty()){
-        output.add(stack.pop())
+        while (stack.isNotEmpty()){
+        output.add(stack.pop().value)
     }
 
 
@@ -151,18 +150,19 @@ fun evalExpresionInfix(expresion:List<String>): Double? {
 }
 
 
-/**
- * Funcion de extension que comprueba la prioridad de un operador
- */
-fun String.priority():Int{
 
-    return when(this){
-        Operation.Plus.value ->  Operation.Plus.priority
-        Operation.Minus.value ->  Operation.Minus.priority
-        Operation.Multiply.value ->  Operation.Multiply.priority
-        Operation.Divide.value ->  Operation.Divide.priority
-        else -> -1
-    }
+
+fun String.toOperation():Operation{
+
+        return when(this){
+            Operation.Plus.value ->  Operation.Plus
+            Operation.Minus.value ->  Operation.Minus
+            Operation.Multiply.value ->  Operation.Multiply
+            Operation.Divide.value ->  Operation.Divide
+            else -> Operation.None
+        }
+
+
 
 }
 
