@@ -19,3 +19,48 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+    val groupA = arrayOf("a", "b", "c", "a", "w", "f")
+    val groupB = arrayOf("d", "b", "f", "a")
+
+    println("${groupA.toList()} ||||| ${groupB.toList()}")
+    println("Common ones: ${commonOrDifferent(groupA, groupB, true)}")
+    println("Different ones: ${commonOrDifferent(groupA, groupB, false)}\n")
+
+    val groupC = arrayOf(1, 2, 3, 45, 10)
+    val groupD = arrayOf(10, 5, 4, 21, 0, 145, 32)
+
+    println("${groupC.toList()} ||||| ${groupD.toList()}")
+    println("Common ones: ${commonOrDifferent(groupC, groupD, true)}")
+    println("Different ones: ${commonOrDifferent(groupC, groupD, false)}\n")
+
+}
+
+private fun <T>commonOrDifferent(groupA : Array<T> , groupB : Array<T>, getCommon : Boolean) : ArrayList<T>{
+    val newGroup = arrayListOf<T>()
+    if (getCommon){
+        for (i in groupA.indices){
+            if (groupB.contains(groupA[i]) && !newGroup.contains(groupA[i])){
+                newGroup.add(groupA[i])
+            }
+        }
+        for (i in groupB.indices){
+            if (groupA.contains(groupB[i]) && !newGroup.contains(groupB[i])){
+                newGroup.add(groupB[i])
+            }
+        }
+    } else {
+        for (i in groupA.indices){
+            if (!groupB.contains(groupA[i])){
+                newGroup.add(groupA[i])
+            }
+        }
+        for (i in groupB.indices){
+            if (!groupA.contains(groupB[i])){
+                newGroup.add(groupB[i])
+            }
+        }
+    }
+    return newGroup
+}
