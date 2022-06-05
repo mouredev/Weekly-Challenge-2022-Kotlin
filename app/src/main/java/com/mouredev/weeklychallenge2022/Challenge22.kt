@@ -19,3 +19,27 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(checkOperation(isGetSameItems = true, arrayOne = arrayOf("1", "2", "3", "4"), arrayTwo = arrayOf("4", "5", "6", 7)).contentToString())
+    println(checkOperation(isGetSameItems = false, arrayOne = arrayOf("1", "2", "3", "4"), arrayTwo = arrayOf("4", "5", "6", 7)).contentToString())
+}
+
+private fun checkOperation(isGetSameItems: Boolean, arrayOne: Array<Any>, arrayTwo: Array<Any>): Array<Any> {
+    if (isGetSameItems){
+        println("Same items of ${arrayOne.contentToString()} and ${arrayTwo.contentToString()}")
+    }else{
+        println("Different items of ${arrayOne.contentToString()} and ${arrayTwo.contentToString()}")
+    }
+    return findElements(isGetSameItems, arrayOne, arrayTwo).plus(findElements(isGetSameItems, arrayTwo, arrayOne)).toTypedArray()
+}
+
+private fun findElements(isGetSameItems: Boolean, arrayOne: Array<Any>, arrayTwo: Array<Any>): MutableList<Any> {
+    val result = mutableListOf<Any>()
+    arrayOne.forEach{
+        if (arrayTwo.contains(it) == isGetSameItems){
+            result.add(it)
+        }
+    }
+    return result
+}
