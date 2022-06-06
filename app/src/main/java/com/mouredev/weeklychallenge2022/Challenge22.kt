@@ -19,3 +19,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(checkArrays(arrayListOf(1, 2, 3, 4, 5), arrayListOf(2, 4, 5, 6, 7), true))
+    println(checkArrays(arrayListOf(1, 2, 3, 4, 5), arrayListOf(2, 4, 5, 6, 7), false))
+}
+
+private fun checkArrays(
+    al1: ArrayList<Int>,
+    al2: ArrayList<Int>,
+    checkSame: Boolean
+): ArrayList<Int> {
+    al1.addAll(al2)
+    return if (checkSame) {
+        ArrayList(al1.groupingBy { it }.eachCount().filter { it.value > 1 }.keys)
+    } else {
+        ArrayList(al1.groupingBy { it }.eachCount().filter { it.value == 1 }.keys)
+    }
+}
