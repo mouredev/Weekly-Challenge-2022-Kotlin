@@ -19,3 +19,45 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+
+    // Prueba para listas de enteros
+    val listOfIntegerOne = arrayOf(2, 4, 6, 8, 10)
+    val listOfIntegerTwo = arrayOf(1, 3, 6, 9, 12)
+
+    println("Los elementos comunes de las listas ${listOfIntegerOne.toList()} y ${listOfIntegerTwo.toList()} son: ${compareLists(listOfIntegerOne, listOfIntegerTwo, true)}")
+    println("Los elementos no comunes de las listas ${listOfIntegerOne.toList()} y ${listOfIntegerTwo.toList()} son: ${compareLists(listOfIntegerOne, listOfIntegerTwo, false)}")
+
+    // Prueba para listas strings
+    val listOfStringOne = arrayOf("a", "b", "c", "d", "e")
+    val listOfStringTwo = arrayOf("c", "e", "g", "h", "i")
+
+    println("Los elementos comunes de las listas ${listOfStringOne.toList()} y ${listOfStringTwo.toList()} son: ${compareLists(listOfStringOne, listOfStringTwo, true)}")
+    println("Los elementos no comunes de las listas ${listOfStringOne.toList()} y ${listOfStringTwo.toList()} son: ${compareLists(listOfStringOne, listOfStringTwo, false)}")
+}
+
+private fun <T>compareLists(listOne: Array<T>, listTwo: Array<T>, equals: Boolean): ArrayList<T>{
+    val listResult = arrayListOf<T>()
+
+    if (equals){
+        listOne.forEach{
+            if (listTwo.contains(it)){
+                listResult.add(it)
+            }
+        }
+    }
+    else {
+        listOne.forEach{
+            if (!listTwo.contains(it)){
+                listResult.add(it)
+            }
+        }
+        listTwo.forEach{
+            if (!listOne.contains(it)){
+                listResult.add(it)
+            }
+        }
+    }
+    return listResult
+}
