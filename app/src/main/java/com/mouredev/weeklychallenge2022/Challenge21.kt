@@ -1,7 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
 import java.io.File
-import java.lang.Double.parseDouble
 
 /*
  * Reto #21
@@ -26,65 +25,56 @@ import java.lang.Double.parseDouble
  *
  */
 
-enum class Operation {
-    ADD, DIV, MUL, SUB, ERROR
+fun main() {
+    println(calculate("app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt"))
 }
 
-fun isNumber(symbol: String): Boolean {
-    return try {
-        parseDouble(symbol)
-        true
-    } catch (e: NumberFormatException) {
-        false
-    }
-}
+private fun calculate(filePath: String): String {
 
-fun getOperation(symbol: String): Operation {
-    return when(symbol) {
-        "+" -> Operation.ADD
-        "/" -> Operation.DIV
-        "*" -> Operation.MUL
-        "-" -> Operation.SUB
-        else -> Operation.ERROR
-    }
-}
+    var fileError = false
+    var result: Double? = null
+    var lastOperator: String? = null
 
-fun processOperations(fileName: String): String {
-    var index = 0
-    var result = 0.0
-    var currentOperation = Operation.ERROR
-    val projectPath = System.getProperty("user.dir")
-    val packageName = object{}.javaClass.`package`.name.replace(".","/")
-    File("$projectPath/app/src/main/java/$packageName/$fileName.txt").forEachLine { line ->
-        if((index % 2 == 0) && isNumber(line)) {
-            result = if(index == 0) {
-                currentOperation = Operation.ADD
-                line.toDouble()
-            } else {
-                when(currentOperation) {
-                    Operation.ADD -> result + line.toDouble()
-                    Operation.DIV -> result / line.toDouble()
-                    Operation.MUL -> result * line.toDouble()
-                    Operation.SUB -> result - line.toDouble()
-                    else -> return@forEachLine
+    try {
+        File(filePath).forEachLine { line ->
+
+            line.toDoubleOrNull()?.let { number ->
+                if (result == null) {
+                    result = number
+                } else {
+                    when(lastOperator) {
+                        "+"-> {
+                            result = result?.plus(number)
+                        }
+                        "-"-> {
+                            result = result?.minus(number)
+                        }
+                        "*"-> {
+                            result = result?.times(number)
+                        }
+                        "/"-> {
+                            result = result?.div(number)
+                        }
+                        else -> {
+                            fileError = true
+                            return@forEachLine
+                        }
+                    }
+                    lastOperator = null
+                }
+            } ?: run {
+                if (lastOperator == null) {
+                    lastOperator = line
+                } else {
+                    fileError = true
+                    return@forEachLine
                 }
             }
-        } else if(index % 2 == 1) {
-            currentOperation = getOperation(line)
         }
-        index++
-    }
-    return if((currentOperation == Operation.ERROR) || (index % 2 == 0)) {
-        "Las operaciones no han podido ser resueltas."
-    } else {
-        "${result}"
-    }
-}
 
-fun main() {
-    println(processOperations("Challenge21"))
-    println(processOperations("OneValue"))
-    println(processOperations("TooNumbers"))
-    println(processOperations("TooOperators"))
-    println(processOperations("WithDecimals"))
+    } catch (e: Exception) {
+        fileError = true
+    }
+
+    return if (fileError || lastOperator != null) "No se han podido resolver las operaciones" else result!!.toString()
 }
