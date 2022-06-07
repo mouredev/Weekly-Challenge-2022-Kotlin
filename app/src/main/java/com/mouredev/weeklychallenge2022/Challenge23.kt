@@ -17,3 +17,12 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun mcd (a: Int, b: Int): Int = if (b != 0) mcd(b, a % b) else a
+
+fun mcm (a: Int, b: Int) = if (a == 0 ||b == 0) 0 else a*b / mcd(a,b)
+
+fun main(){
+    println("Máximo Común Divisor: ${mcd(32,56)}")
+    println("Mínimo Común Múltiplo: ${mcm(12,112)}")
+}
