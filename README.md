@@ -41,7 +41,8 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#20** - 16/05/22 - `PARANDO EL TIEMPO`
 * **#21** - 23/05/22 - `CALCULADORA .TXT` 
 * **#22** - 01/06/22 - `CONJUNTOS` 
-* **#23** - 07/06/22 - `Publicación nuevo reto...`
+* **#23** - 07/06/22 - `MÁXIMO COMÚN DIVISOR Y MÍNIMO COMÚN MÚLTIPLO` 
+* **#24** - 13/06/22 - `Publicación nuevo reto...`
 
 ### ¿Cómo puedo participar?
 
