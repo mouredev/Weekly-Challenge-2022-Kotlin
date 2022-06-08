@@ -1,0 +1,79 @@
+
+
+import java.util.*;
+
+public class Solution {
+
+    public int  mcm(List <Integer> inputArrL){
+
+        if(!inputArrL.isEmpty()){
+            Collections.reverse(inputArrL);
+            int max=inputArrL.get(0);
+            boolean notMCM=false;
+            boolean testNext=true;
+            while (testNext==true){ 
+                for(int i=0;i<inputArrL.size() && notMCM==false;i++){
+                    if(max%inputArrL.get(i)!=0){
+                        notMCM=true;
+                    }
+                }
+                if (notMCM){
+                    max++;
+                    notMCM=false;
+                } else{
+                    
+                   testNext=false;
+                }
+            }
+            return max;
+        }
+
+
+        return 0;
+    }
+        
+    
+    public int  mcd(List <Integer> inputArrL){
+        
+        if(!inputArrL.isEmpty()){
+            Collections.sort(inputArrL);
+            int min=inputArrL.get(0);
+            boolean notMCD=false;
+            boolean testNext=true;
+            while (testNext==true){ 
+                for(int i=0;i<inputArrL.size() && notMCD==false;i++){
+                    if(inputArrL.get(i)%min!=0){
+                        notMCD=true;
+                    }
+                }
+                if (notMCD){
+                    min--;
+                    notMCD=false;
+                } else{
+                    
+                   testNext=false;
+                }
+            }
+            return min;
+        }
+        
+        return 0;
+    }  
+}
+
+class Test{
+
+    public static void main(String[] args) {
+        Solution s1=new Solution();
+        List <Integer> test=new ArrayList<>();
+        test.add(180);
+        test.add(96);
+        test.add( 240);
+        
+        System.out.println("El MCD de "+test+" es:");
+        System.out.println(s1.mcd(test));
+        System.out.println("El MCM de "+test+" es:");
+        System.out.println(s1.mcm(test));
+        
+    }
+}
