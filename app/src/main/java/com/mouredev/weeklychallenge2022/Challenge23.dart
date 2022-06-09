@@ -47,7 +47,7 @@ void main() {
     return ocurrences;
   }
 
-  //Minimo Comun Multiplo
+  //Minimo Comun Multiplo por factores primos
   int mcm(int numberA, int numberB) {
     Map<int, int> primesA = primeOcurrences(primeFactors(numberA));
     Map<int, int> primesB = primeOcurrences(primeFactors(numberB));
@@ -70,7 +70,7 @@ void main() {
     return result;
   }
 
-  //Maximo Comun Divisor
+  //Maximo Comun Divisor por factores primos
   int MCD(int numberA, int numberB) {
     Map<int, int> primesA = primeOcurrences(primeFactors(numberA));
     Map<int, int> primesB = primeOcurrences(primeFactors(numberB));
@@ -84,11 +84,35 @@ void main() {
     return result;
   }
 
+  //Maximo Comun Divisor por algoritmo de Euclides
+  int MCDEuclides(int numberA, int numberB) {
+    int numMax = max(numberA, numberB);
+    int numMin = min(numberA, numberB);
+
+    if (numMax % numMin == 0) {
+      return numMin;
+    } else {
+      return MCDEuclides(numMin, numMax % numMin);
+    }
+  }
+
+  //Minimo Comun Multiplo usando Maximo Comun Divisor
+  int mcmFromMCD(int numberA, int numberB) =>
+      numberA * numberB ~/ MCDEuclides(numberA, numberB);
+
   //MAIN
-  int first = 84;
-  int second = 72;
-  print('$first  ->\t factores primos: ${primeFactors(first)}');
-  print('$second  ->\t factores primos: ${primeFactors(second)}');
-  print('Múltiplo Común Menor de $first y $second: ${mcm(first, second)}');
-  print('Divisor Común Mayor de $first y $second: ${MCD(first, second)}');
+  int first = 48;
+  int second = 60;
+  // Deben ser Números Naturales
+  if (first <= 0 || second <= 0) {
+    print(' Deben ser Números Naturales');
+  } else {
+    print('$first  ->\t factores primos: ${primeFactors(first)}');
+    print('$second  ->\t factores primos: ${primeFactors(second)}');
+    print('\n');
+    print('mcm de $first y $second (Factores Primos): ${mcm(first, second)}');
+    print('mcm de $first y $second (usando MCD): ${mcmFromMCD(first, second)}');
+    print('MCD de $first y $second (Factores Primos): ${MCD(first, second)}');
+    print('MCD de $first y $second (Euclides): ${MCDEuclides(first, second)}');
+  }
 }
