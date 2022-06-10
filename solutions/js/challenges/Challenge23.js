@@ -20,7 +20,7 @@ const { getRelatedElements } = require('./Challenge22');
 
 const getMCD = (a, b) => {
   validateInput(a, b);
-  const commonPrimes = getRelatedElements(getPrimesLowerThan(a), getPrimesLowerThan(b), true);
+  const commonPrimes = getRelatedElements(getDivisors(a), getDivisors(b), true);
   return Math.max(...commonPrimes);
 };
 
@@ -32,7 +32,7 @@ const getMcm = (a, b) => {
     .reduce((acc, f) => acc * Math.pow(f, Math.max(factorsA[f] ?? 1, factorsB[f] ?? 1)), 1);
 };
 
-const getPrimesLowerThan = (a, predicate = () => true) => {
+const getDivisors = (a, predicate = () => true) => {
   const primes = [];
   for (let i = 1; i <= a; i++) {
     if (a % i === 0 && predicate(a, i, primes)) primes.push(i);
@@ -47,7 +47,7 @@ const factorize = (a) => {
     );
   };
 
-  const factors = getPrimesLowerThan(a, isFactorPrime).filter((e) => e > 1);
+  const factors = getDivisors(a, isFactorPrime).filter((e) => e > 1);
   return factors
     .sort((x, y) => x - y)
     .reduce((acc, f) => {
