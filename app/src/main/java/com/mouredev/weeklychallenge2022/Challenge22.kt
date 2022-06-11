@@ -35,6 +35,10 @@ fun main(){
     println("Common ones: ${commonOrDifferent(groupC, groupD, true)}")
     println("Different ones: ${commonOrDifferent(groupC, groupD, false)}\n")
 
+    // For Moure Dev solution
+    println(calculateSet(listOf(1, 2, 3, 3, 4), listOf(2, 2, 3, 3, 3, 4, 6), true))
+    println(calculateSet(listOf(1, 2, 3, 3, 4), listOf(2, 2, 3, 3, 3, 4, 6), false))
+
 }
 
 private fun <T>commonOrDifferent(groupA : Array<T> , groupB : Array<T>, getCommon : Boolean) : ArrayList<T>{
@@ -64,3 +68,37 @@ private fun <T>commonOrDifferent(groupA : Array<T> , groupB : Array<T>, getCommo
     }
     return newGroup
 }
+
+// For Moure Dev solution
+private fun calculateSet(first: List<Int>, second: List<Int>, common: Boolean): List<Int> {
+
+    val commonResult = mutableListOf<Int>()
+
+    for (firstValue in first) {
+        if (!commonResult.contains(firstValue)) {
+            for (secondValue in second) {
+                if (firstValue == secondValue && !commonResult.contains(firstValue)) {
+                    commonResult.add(firstValue)
+                    break
+                }
+            }
+        }
+    }
+
+    return if (common) {
+        commonResult
+    } else {
+        val nonCommonResult = mutableListOf<Int>()
+        nonCommonResult.addAll(first)
+        nonCommonResult.addAll(second)
+
+        commonResult.forEach { commonValue ->
+            nonCommonResult.removeAll { nonCommonValue ->
+                commonValue == nonCommonValue
+            }
+        }
+
+        nonCommonResult
+    }
+}
+
