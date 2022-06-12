@@ -17,3 +17,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("El máximo común divisor de 10 y 15 es: ${GreatestCommonFactor(10, 15)} y el mínimo común múltiplo es: ${LeastCommonMultiple(10, 15)}")
+    println("El máximo común divisor de 389 y 251 es: ${GreatestCommonFactor(389, 251)} y el mínimo común múltiplo es: ${LeastCommonMultiple(389, 251)}")
+    println("El máximo común divisor de 798 y 25 es: ${GreatestCommonFactor(798, 25)} y el mínimo común múltiplo es: ${LeastCommonMultiple(798, 25)}")
+    println("El máximo común divisor de -520 y 21 es: ${GreatestCommonFactor(-520, 21)} y el mínimo común múltiplo es: ${LeastCommonMultiple(-520, 21)}")
+}
+
+private fun GreatestCommonFactor (a: Int, b: Int): Int {
+    if (b == 0) return a
+    return GreatestCommonFactor(b, a % b)
+}
+
+private fun LeastCommonMultiple(a: Int, b: Int): Int {
+    return (a * b) / GreatestCommonFactor(a, b)
+}
