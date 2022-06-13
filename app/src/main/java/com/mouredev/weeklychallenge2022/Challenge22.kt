@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import org.omg.CORBA.Object
-
 /*
  * Reto #22
  * CONJUNTOS
@@ -22,17 +20,39 @@ import org.omg.CORBA.Object
  *
  */
 
-fun findItems(array1: Array<Any>, array2: Array<Any>, commons: Boolean): Array<Any> {
-    return if(commons) {
-        array1.filter{ array2.contains(it) }.toTypedArray()
-    } else {
-        (array1.filter{ !array2.contains(it) } + array2.filter{ !array1.contains(it) }).toTypedArray()
-    }
+fun main() {
+    println(calculateSet(listOf(1, 2, 3, 3, 4), listOf(2, 2, 3, 3, 3, 4, 6), true))
+    println(calculateSet(listOf(1, 2, 3, 3, 4), listOf(2, 2, 3, 3, 3, 4, 6), false))
 }
 
-fun main() {
-    println("Elementos comunes: ${findItems(arrayOf("manzana", "pera", "mango"), arrayOf("manzana", "melón"), true).map { "$it" }}")
-    println("Elementos distintos: ${findItems(arrayOf("manzana", "pera", "mango"), arrayOf("manzana", "melón"), false).map { "$it" }}")
-    println("Elementos comunes: ${findItems(arrayOf(4L, 2, 3.5), arrayOf("manzana", 4L), true).map { "$it" }}")
-    println("Elementos distintos: ${findItems(arrayOf(4L, 2, 3.5), arrayOf("manzana", 4L), false).map { "$it" }}")
+private fun calculateSet(first: List<Int>, second: List<Int>, common: Boolean): List<Int> {
+
+    val commonResult = mutableListOf<Int>()
+
+    for (firstValue in first) {
+        if (!commonResult.contains(firstValue)) {
+            for (secondValue in second) {
+                if (firstValue == secondValue && !commonResult.contains(firstValue)) {
+                    commonResult.add(firstValue)
+                    break
+                }
+            }
+        }
+    }
+
+    return if (common) {
+        commonResult
+    } else {
+        val nonCommonResult = mutableListOf<Int>()
+        nonCommonResult.addAll(first)
+        nonCommonResult.addAll(second)
+
+        commonResult.forEach { commonValue ->
+            nonCommonResult.removeAll { nonCommonValue ->
+                commonValue == nonCommonValue
+            }
+        }
+
+        nonCommonResult
+    }
 }
