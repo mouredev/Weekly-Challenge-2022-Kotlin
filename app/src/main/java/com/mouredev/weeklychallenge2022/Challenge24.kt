@@ -16,3 +16,31 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun withFor1() {
+	for(i in 0..100){
+		println(i)
+	}
+}
+
+fun withFor2() {
+	var arrayNumbers = arrayOf(1..100)
+	arrayNumbers.forEach {
+		println(it)
+	}
+}
+
+fun withFor3() {
+	var arrayNumbers = arrayOf(1..100)
+	for(i in arrayNumbers){
+		println(i)
+	}
+}
+
+fun withWhile(){
+	var num: Int = 1
+	while(num <= 100) {
+		println(num)
+		num++
+	}
+}
