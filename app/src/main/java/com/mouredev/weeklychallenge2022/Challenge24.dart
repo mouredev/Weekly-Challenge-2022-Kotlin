@@ -16,23 +16,30 @@
  */
 
 void main(List<String> args) {
-  //Contar con enteros y bucle for
+  //Contar con bucle FOR--------------------------------------------------------
   void countFor(int from, int to) {
     for (; from <= to; print(from++));
   }
 
-  //Contar con enteros y bucle while
+  //Contar con bucle WHILE------------------------------------------------------
   void countWhile(int from, int to) {
     while (from <= to) print(from++);
   }
 
-  //Contar con enteros y recursion
+  //Contar con RECURSION--------------------------------------------------------
   void countRecursion(int from, int to) {
     if (to > from) countRecursion(from, to - 1);
     print(to);
   }
 
-  //Contar usando operaciones de bit
+  //Contar con bucle DO..WHILE--------------------------------------------------
+  void countDoWhile(int from, int to) {
+    do {
+      print(from++);
+    } while (from <= to);
+  }
+
+  //Contar usando operaciones de BIT--------------------------------------------
   void countBitOp(int from, int to) {
     while (from <= to) {
       print(from);
@@ -48,15 +55,15 @@ void main(List<String> args) {
     }
   }
 
-//Contar usando una lista for-in
-  void countForIn(int from, int to) {
-    final List unnecessary = List.generate(to, (index) => from + index);
-    for (var element in unnecessary) {
-      print(element);
-    }
+  //Contar usando una lista con FOR-EACH----------------------------------------
+  void countForEach(int from, int to) {
+    List.generate(to, (index) => from + index)
+      ..forEach((element) {
+        print(element);
+      });
   }
 
-  //MAIN
+  //MAIN------------------------------------------------------------------------
   int from = 1;
   int to = 100;
   if (from > to) {
@@ -68,6 +75,7 @@ void main(List<String> args) {
   // countFor(from, to);
   // countWhile(from, to);
   // countRecursion(from, to);
+  // countDoWhile(from, to);
   // countBitOp(from, to);
-  // countForIn(from, to);
+  // countForEach(from, to);
 }
