@@ -17,18 +17,29 @@ package com.mouredev.weeklychallenge2022
  *
  */
 fun main() {
-    count5()
+    println("Repeat")
+    repeatCount()
+    println("For")
+    forCount()
+    println("While")
+    whileCount()
+    println("Do While")
+    doCount()
+    println("Foreach with sleep")
+    foreachSleepCount()
+    println("Recursion")
+    recursionCount(1)
 }
 
-private fun count() {
-    repeat((1..100).count()) { println(it) }
+private fun repeatCount() {
+    repeat(100) {  println(it+1) }
 }
 
-private fun count2() {
+private fun forCount() {
     for (i in 1..100) println(i)
 }
 
-private fun count3() {
+private fun whileCount() {
     var i = 1
     while (i <= 100) {
         println(i)
@@ -36,7 +47,7 @@ private fun count3() {
     }
 }
 
-private fun count4() {
+private fun doCount() {
     var i = 1
     do {
         println(i)
@@ -44,9 +55,16 @@ private fun count4() {
     } while (i <= 100)
 }
 
-private fun count5() {
-    (1..100).forEach { i ->
+private fun foreachSleepCount() {
+    IntArray(100) { it + 1 }.forEach { i ->
         Thread.sleep(300L)
         println(i)
+    }
+}
+
+private fun recursionCount(num: Int) {
+    if (num <= 100) {
+        println(num)
+        recursionCount(num+1)
     }
 }
