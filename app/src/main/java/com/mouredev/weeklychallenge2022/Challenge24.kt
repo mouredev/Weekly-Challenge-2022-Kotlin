@@ -16,3 +16,37 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    count5()
+}
+
+private fun count() {
+    repeat((1..100).count()) { println(it) }
+}
+
+private fun count2() {
+    for (i in 1..100) println(i)
+}
+
+private fun count3() {
+    var i = 1
+    while (i <= 100) {
+        println(i)
+        i++
+    }
+}
+
+private fun count4() {
+    var i = 1
+    do {
+        println(i)
+        i++
+    } while (i <= 100)
+}
+
+private fun count5() {
+    (1..100).forEach { i ->
+        Thread.sleep(300L)
+        println(i)
+    }
+}
