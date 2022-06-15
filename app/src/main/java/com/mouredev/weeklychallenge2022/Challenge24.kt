@@ -26,23 +26,27 @@ fun main() {
     println("Do While")
     doCount()
     println("Foreach with sleep")
-    foreachSleepCount()
+    foreachCount()
     println("Recursion")
     recursionCount(1)
 }
 
 private fun repeatCount() {
-    repeat(100) {  println(it+1) }
+    repeat(100) {
+        printEOL(it+1)
+    }
 }
 
 private fun forCount() {
-    for (i in 1..100) println(i)
+    for (i in 1..100) {
+        printEOL(i)
+    }
 }
 
 private fun whileCount() {
     var i = 1
     while (i <= 100) {
-        println(i)
+        printEOL(i)
         i++
     }
 }
@@ -50,21 +54,26 @@ private fun whileCount() {
 private fun doCount() {
     var i = 1
     do {
-        println(i)
+        printEOL(i)
         i++
     } while (i <= 100)
 }
 
-private fun foreachSleepCount() {
+private fun foreachCount() {
     IntArray(100) { it + 1 }.forEach { i ->
-        Thread.sleep(300L)
-        println(i)
+        printEOL(i)
     }
 }
 
-private fun recursionCount(num: Int) {
-    if (num <= 100) {
-        println(num)
-        recursionCount(num+1)
+private fun recursionCount(i: Int) {
+    if (i <= 100) {
+        printEOL(i)
+        recursionCount(i+1)
     }
+}
+
+private fun printEOL(i: Int) {
+    print("$i ")
+    if (i % 10 == 0)
+        println()
 }
