@@ -1,6 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlin.math.absoluteValue
+import kotlin.Int
 import kotlin.math.pow
 
 /*
@@ -22,24 +22,23 @@ import kotlin.math.pow
  */
 
 fun main() {
-    println(isArmstrong(371))
-    println(isArmstrong(-371))
-    println(isArmstrong(372))
-    println(isArmstrong(0))
+    for (index in -100..9999) { // aprovechando que aquí si podemos hacer el for con rango XD
+        if (armstrong(index))
+            println("R: $index is an Armstrong number")
+    }
 }
 
-private fun isArmstrong(number: Int): Boolean {
+fun armstrong(x: Int): Boolean {
 
-    return if (number < 0) {
-        false
-    } else {
-        var sum = 0
-        val powValue = number.toString().length
+    if (x < 0) return false
 
-        number.toString().forEach { character ->
-            sum += character.toString().toDouble().pow(powValue).toInt()
-        }
+    var sum = 0
+    var number = x
 
-        number == sum
+    while (number > 0) {
+        sum += (number % 10).toDouble().pow(x.toString().length.toDouble()).toInt()
+        number /= 10
     }
+
+    return sum == x
 }
