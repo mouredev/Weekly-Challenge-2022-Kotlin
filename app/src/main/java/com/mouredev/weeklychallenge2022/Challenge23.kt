@@ -17,9 +17,13 @@ import java.util.ArrayList
 
 fun main(){
     //println(mcd(53667, 25527))
-    println(mcm(625, 500))
+    //println(mcm(625, 500))
+    //println(mcmAux(625, 500))
 }
 
+/*
+FUNCION DE MARTINEZ
+*/
 fun mcd (num1 : Int, num2:Int) : Int{
     val commonDividers = getDividers(num1).filter { getDividers(num2).contains(it) }
     return commonDividers.last()
@@ -62,3 +66,26 @@ fun getDividers(num : Int) : ArrayList<Int>{
     }
    return listOfDividers
 }
+
+
+/*
+FUNCION DE MOURE
+*/
+private fun mcdAux(firstNumber: Int, secondNumber: Int): Int {
+
+    var a = firstNumber
+    var b = secondNumber
+
+    while (a != 0 && b != 0) {
+        val temp = b
+        b = a % b
+        a = temp
+    }
+
+    return a + b
+}
+
+private fun mcmAux(firstNumber: Int, secondNumber: Int): Int {
+    return (firstNumber * secondNumber) / mcd(firstNumber, secondNumber)
+}
+

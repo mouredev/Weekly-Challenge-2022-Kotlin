@@ -19,6 +19,7 @@ import java.util.ArrayList
 
 fun main() {
     //contadorDePalabras("La casa de Brais no es una casa cualquiera es una casa muy especial")
+    println(stringToArrayOfWords("      La casa        de Brais no es una casa   "))
 }
 
 /*
@@ -60,7 +61,9 @@ fun countWords(text: String) {
 
 /*Método tradicioanl para dividir una string en un array de
 palabras sin tener que usar ningún método del lenguaje que
-lo haga automaticamente*/
+lo haga automaticamente. Se están tentiendo en cuenta los
+espacios múltiples entre palabras al igual que los espacios
+al principio y al final*/
 
 fun stringToArrayOfWords (frase : String) : ArrayList<String>{
     var fraseAux = "$frase "
@@ -75,7 +78,7 @@ fun stringToArrayOfWords (frase : String) : ArrayList<String>{
             indiceInicioDePalabra = index
             posiblePalabra = true
 
-        }else if (fraseAux[index].toString() == " "){
+        }else if (fraseAux[index].toString() == " " && posiblePalabra){
             indiceFinDePalabra = index
             arrayOfWords.add(fraseAux.substring(indiceInicioDePalabra, indiceFinDePalabra))
             posiblePalabra = false
