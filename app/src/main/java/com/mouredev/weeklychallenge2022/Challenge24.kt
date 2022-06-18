@@ -88,7 +88,7 @@ private fun iteratorMethod() {
     while(iterator.hasNext()) count(iterator.next())
 }
 
-//
+// 9 - Art Method
 private fun artMethod() {
     "Ascii art Method".printTitle()
     val stream = Stream()
