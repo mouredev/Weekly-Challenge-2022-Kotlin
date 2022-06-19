@@ -18,24 +18,32 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private fun calculateMCD(n1: Int, n2: Int): Int {
-    for(i in n1.coerceAtMost(n2) downTo 1) {
-        if(n1 % i == 0 && n2 % i == 0) {
-            return i
-        }
-    }
-    return 1
-}
-
-private fun calculateMCM(n1: Int, n2: Int): Int {
-    return n1 * n2 / calculateMCD(n1, n2)
-}
-
 fun main() {
-    println(calculateMCD(24, 36))
-    println(calculateMCD(6, 9))
-    println(calculateMCD(8, 8))
-    println(calculateMCM(8, 8))
-    println(calculateMCM(51, 27))
-    println(calculateMCM(180,324))
+    println(mcd(56, 180))
+    println(mcdRecursive(56, 180))
+    println(mcm(56, 180))
 }
+
+private fun mcd(firstNumber: Int, secondNumber: Int): Int {
+
+    var a = firstNumber
+    var b = secondNumber
+
+    while (a != 0 && b != 0) {
+        val temp = b
+        b = a % b
+        a = temp
+    }
+
+    return a + b
+}
+
+private fun mcm(firstNumber: Int, secondNumber: Int): Int {
+    return (firstNumber * secondNumber) / mcd(firstNumber, secondNumber)
+}
+
+private fun mcdRecursive(firstNumber: Int, secondNumber: Int): Int {
+    return if (firstNumber == 0 || secondNumber == 0) (firstNumber + secondNumber)
+        else mcdRecursive(secondNumber, firstNumber % secondNumber)
+}
+
