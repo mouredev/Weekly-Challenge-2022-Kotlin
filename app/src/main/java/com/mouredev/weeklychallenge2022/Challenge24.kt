@@ -16,3 +16,129 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+/**
+ * constante que indica el número máximo de iteraciones
+ */
+const val MAX_NUMBER = 100
+
+/**
+ * Funcion principal
+ */
+fun main(){
+    countFor()
+    countDoWhile()
+    countWhile()
+    countInfixFunction()
+    countForEach()
+    countRepeat()
+    countArrays()
+    countRecursive(1)
+}
+
+/**
+ * función que imprime del 1 a MAX_NUMBER de uno en uno con un bucle for simple
+ */
+fun countFor(){
+    println("Bucle for")
+    for (i in 1..MAX_NUMBER){
+        printNumber(i)
+    }
+}
+
+/**
+ * función que imprime del 1 al MAX_NUMBER de uno en uno con un bucle do while
+ */
+fun countDoWhile(){
+    var i = 1
+    println("Bucle do - while")
+    do{
+        printNumber(i)
+        i++
+    }while (i <= MAX_NUMBER)
+}
+
+/**
+ * función que imprime del 1 al MAX_NUMBER de uno en uno con un bucle while simple
+ */
+fun countWhile(){
+    println("Bucle while")
+    var i = 1
+    while (i <= MAX_NUMBER){
+        printNumber(i)
+        i++
+    }
+}
+
+
+
+/**
+ * función que imprime del 1 al MAX_NUMBER de uno en uno con un bucle infix function until
+ */
+fun countInfixFunction(){
+    println("Bucle until")
+    for(i in 1..MAX_NUMBER){
+        printNumber(i)
+    }
+}
+
+/**
+ * función que imprime del 1 al MAX_NUMBER de uno en uno con un bucle forEach
+ */
+fun countForEach(){
+
+    println("Bucle forEach")
+    val range = 1..MAX_NUMBER
+    range.forEach{
+        printNumber(it)
+    }
+}
+
+/**
+ * Funcion que imprime del 1 al MAX_NUMBER de uno en uno recorriendo un array
+ */
+fun countArrays(){
+    println("Bucle arrays")
+    val array = Array(MAX_NUMBER){
+        it + 1
+    }
+    array.forEach{
+        printNumber(it)
+    }
+}
+
+/**
+ * función que imprime del 1 al MAX_NUMBER de uno en uno con un bucle recursivo
+ */
+fun countRecursive(n:Int):Int{
+
+    if(n==1){
+        println("Recursividad")
+
+    }
+
+    return if(n<=MAX_NUMBER){
+        printNumber(n)
+        countRecursive(n+1)
+    }
+    else
+        MAX_NUMBER
+
+}
+/**
+ * función que imprime un número usando la funcion repeat
+ */
+
+fun countRepeat(){
+    println("Bucle repeat")
+    repeat(MAX_NUMBER){
+        printNumber(it+1)
+    }
+}
+/**
+ * función que imprime un número por pantalla
+ */
+private fun printNumber(number: Int){
+    print("$number" + if(number == MAX_NUMBER) "\n" else ",")
+}
