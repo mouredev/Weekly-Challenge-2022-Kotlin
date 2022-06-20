@@ -21,6 +21,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+// Respuesta al Challenge25 en Kotlin
 fun main(){
 
     val game1: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"))
@@ -65,5 +66,57 @@ private fun game(games: List<Pair<String, String>>): String{
     }
 
     return "Tie"
+
+}
+
+// Respuesta al Challenge25 en Scala
+object Challenge25 {
+
+  def main(args: Array[String]): Unit = {
+
+    val game1: List[Tuple] = List(("R", "S"), ("S", "R"), ("P", "S"), ("R", "S"))
+    val game2: List[Tuple] = List(("R", "S"), ("S", "R"), ("P", "S"))
+    val game3: List[Tuple] = List(("R", "S"), ("S", "R"), ("P", "S"), ("R", "S"), ("S", "P"))
+
+    println(game(game1))
+    println(game(game2))
+    println(game(game3))
+  }
+
+  def game(games: List[Tuple]): String = {
+
+    var playerOne: Int = 0
+    var playerTwo: Int = 0
+
+    for(i <- games){
+      if(i.toString == "(R,P)" ){
+        playerTwo += 1
+      }
+      if(i.toString == "(R,S)" ){
+        playerOne += 1
+      }
+      if(i.toString == "(P,S)" ){
+        playerTwo += 1
+      }
+      if(i.toString == "(P,R)" ){
+        playerOne += 1
+      }
+      if(i.toString == "(S,R)" ){
+        playerTwo += 1
+      }
+      if(i.toString == "(S,P)" ){
+        playerOne += 1
+      }
+    }
+
+    if (playerOne > playerTwo){
+      return "Player 1"
+    }
+    if (playerOne < playerTwo){
+      return "Player 2"
+    }
+    return "Tie"
+  }
+
 
 }
