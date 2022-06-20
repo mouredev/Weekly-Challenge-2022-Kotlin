@@ -20,3 +20,45 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+
+    val games: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"))
+    println(game(games))
+}
+
+private fun game(games: List<Pair<String, String>>): String{
+    var playerOne = 0
+    var playerTwo = 0
+
+    for(i in games){
+        if(i.first == "R" && i.second == "P"){
+            playerTwo += 1
+        }
+        if(i.first == "R" && i.second == "S"){
+            playerOne += 1
+        }
+        if(i.first == "P" && i.second == "S"){
+            playerTwo += 1
+        }
+        if(i.first == "P" && i.second == "R"){
+            playerOne += 1
+        }
+        if(i.first == "S" && i.second == "R"){
+            playerTwo += 1
+        }
+        if(i.first == "S" && i.second == "P"){
+            playerOne += 1
+        }
+    }
+
+    if (playerOne > playerTwo){
+        return "Player 1"
+    }
+    if (playerOne < playerTwo){
+        return "Player 2"
+    }
+
+    return "Tie"
+
+}
