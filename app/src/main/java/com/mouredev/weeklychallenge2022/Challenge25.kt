@@ -23,8 +23,13 @@ package com.mouredev.weeklychallenge2022
 
 fun main(){
 
-    val games: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"))
-    println(game(games))
+    val game1: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"))
+    val game2: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"))
+    val game3: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"), Pair("S", "P"))
+
+    println(game(game1))
+    println(game(game2))
+    println(game(game3))
 }
 
 private fun game(games: List<Pair<String, String>>): String{
