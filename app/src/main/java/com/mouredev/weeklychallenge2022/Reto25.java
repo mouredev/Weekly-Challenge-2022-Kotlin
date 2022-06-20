@@ -54,6 +54,7 @@ public class Reto25{
     
 }
 
+//Clase Pair construida ya que en Java no existe.
 class Pair<K, V>{
     
     private K first;
