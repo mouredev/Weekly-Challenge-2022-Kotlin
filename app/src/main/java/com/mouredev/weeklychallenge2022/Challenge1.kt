@@ -30,3 +30,28 @@ private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
     }
     return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
+
+// javascript
+anagrama('amor', 'roma')
+anagrama('pepe', 'pepi')
+anagrama('Amor', 'amores')
+anagrama('Amor', 'amor')
+
+function anagrama( palabraUno, palabraDos ) {
+    if ( palabraUno.toLowerCase() === palabraDos.toLowerCase()){
+            return console.log(false , 'las palabras son iguales')
+    }   
+    let arrUno = palabraUno.toLowerCase().split('').sort()
+    let arrDos = palabraDos.toLowerCase().split('').sort()
+
+    if ( arrUno.length === arrDos.length) {
+       for ( let i = 0; i < arrUno.length; ++i ){
+            if (arrUno[i] !== arrDos[i]) {
+                return console.log(false , 'las palabras NO son anagramas')
+            }
+       } 
+        return console.log(true , 'las palabras son anagramas');
+    } else {
+            console.log(false , 'las palabras son de diff longitud')
+    }
+}
