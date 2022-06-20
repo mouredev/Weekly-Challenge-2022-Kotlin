@@ -32,7 +32,7 @@ def second():
     """
     Similar a first(), pero utilizando List Comprehension.
     """
-    numbers = [print(i) for i in range(1, 101)]
+    [print(i) for i in range(1, 101)]
 
 
 def third():
