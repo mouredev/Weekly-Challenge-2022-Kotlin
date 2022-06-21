@@ -18,217 +18,69 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    forMethod()
-    whileMethod()
-    doWhileMethod()
-    recursiveMethod(num = 1)
-    recursiveInDepthMethod(num = 100)
-    forEachMethod()
-    repeatMethod()
-    iteratorMethod()
-    artMethod()
-}
 
+    // 1
 
+    println("**** 1 ****")
 
-// 1 - For loop method
-private fun forMethod() {
-    "For Method".printTitle()
-    for (i in 1..100) count(i)
-}
-
-// 2 - While Method
-private fun whileMethod() {
-    var cont = 1
-    "While Method".printTitle()
-    while (cont <= 100) count(cont++)
-}
-
-// 3 - Do While Method
-private fun doWhileMethod() {
-    var cont = 1
-    "Do While Method".printTitle()
-    do count(cont++) while (cont <= 100)
-}
-
-// 4 - Recursive Method
-private fun recursiveMethod(num: Int, showTitle: Boolean = true) {
-    if(showTitle) "Recursive Method".printTitle()
-    count(num)
-    if(num < 100) recursiveMethod(num = num + 1, showTitle = false)
-}
-
-// 5 - Recursive in depth Method
-private fun recursiveInDepthMethod(num: Int, showTitle: Boolean = true) {
-    if(showTitle) "Recursive In Depth Method".printTitle()
-    if(num != 1) recursiveInDepthMethod(num = num - 1, showTitle = false)
-    count(num)
-}
-
-// 6 - Foreach Method
-private fun forEachMethod() {
-    "For Each Method".printTitle()
-    (1..100).forEach { i ->
-        count(i)
-    }
-}
-
-// 7 -  Repeat Method
-private fun repeatMethod() {
-    "Repeat Method".printTitle()
-    repeat(100) {
-        count(it + 1)
-    }
-}
-
-// 8 - Iterator Method
-private fun iteratorMethod() {
-    "Iterator Method".printTitle()
-    val iterator = (1..100).iterator()
-    while(iterator.hasNext()) count(iterator.next())
-}
-
-//
-private fun artMethod() {
-    "Ascii art Method".printTitle()
-    val stream = Stream()
-    (1..100).forEach { i ->
-        stream.addStream(countArt(i))
-    }
-    stream.print()
-}
-
-private fun count(num: Int) {
-    print(num)
-    if(num != 100) print(", ") else println()
-}
-
-private fun String.printTitle() {
-  println("##### $this #####")
-}
-
-private fun countArt(num: Int): Stream {
-    val text = num.toString()
-    val stream = Stream()
-    text.forEach { char ->
-        stream.addStream(digits[char.digitToInt()])
-    }
-    if(num != 100) stream.addStream(comma)
-    return stream
-}
-
-
-
-val zero = Stream(
-    " ███████ ",
-    " ██   ██ ",
-    " ██   ██ ",
-    " ██   ██ ",
-    " ███████ "
-)
-val one = Stream(
-    "     ██  ",
-    "     ██  ",
-    "     ██  ",
-    "     ██  ",
-    "     ██  "
-)
-
-val two = Stream(
-    " ███████ ",
-    "      ██ ",
-    " ███████ ",
-    " ██      ",
-    " ███████ "
-)
-
-val three = Stream(
-    " ███████ ",
-    "      ██ ",
-    " ███████ ",
-    "      ██ ",
-    " ███████ "
-)
-
-val four = Stream(
-    " ██   ██ ",
-    " ██   ██ ",
-    " ███████ ",
-    "      ██ ",
-    "      ██ "
-)
-
-val five = Stream(
-    " ██████ ",
-    " ██     ",
-    " ██████ ",
-    "     ██ ",
-    " ██████ "
-)
-
-val six = Stream(
-    " ███████ ",
-    " ██      ",
-    " ███████ ",
-    " ██   ██ ",
-    " ███████ "
-)
-
-val seven = Stream(
-    " ███████ ",
-    "      ██ ",
-    "      ██ ",
-    "      ██ ",
-    "      ██ "
-)
-
-val eighth = Stream(
-    " ███████ ",
-    " ██   ██ ",
-    " ███████ ",
-    " ██   ██ ",
-    " ███████ "
-)
-
-val nine = Stream(
-    " ███████ ",
-    " ██   ██ ",
-    " ███████ ",
-    "      ██ ",
-    " ███████ "
-)
-
-val comma = Stream(
-    "       ",
-    "       ",
-    "       ",
-    "   █   ",
-    "  █    "
-)
-
-val digits: List<Stream> = listOf(zero, one, two, three, four, five, six, seven, eighth, nine)
-
-data class Stream(
-    var str1: String = "",
-    var str2: String = "",
-    var str3: String = "",
-    var str4: String = "",
-    var str5: String = ""
-) {
-    fun print() {
-        println(str1)
-        println(str2)
-        println(str3)
-        println(str4)
-        println(str5)
+    for (index in (1..100)) {
+        println(index)
     }
 
-    fun addStream(stream: Stream) {
-        this.str1 += stream.str1
-        this.str2 += stream.str2
-        this.str3 += stream.str3
-        this.str4 += stream.str4
-        this.str5 += stream.str5
-    }
-}
+    // 2
 
+    println("**** 2 ****")
+
+    (1..100).forEach { index ->
+        println(index)
+    }
+
+    // 3
+
+    println("**** 3 ****")
+
+    var whileIndex = 1
+
+    while (whileIndex <= 100) {
+        println(whileIndex)
+        whileIndex += 1
+    }
+
+    // 4
+
+    println("**** 4 ****")
+
+    whileIndex = 1
+
+    do {
+        println(whileIndex)
+        whileIndex += 1
+    } while (whileIndex <= 100)
+
+    // 5
+
+    println("**** 5 ****")
+
+    fun print100(index: Int) {
+        if (index <= 100) {
+            println(index)
+            print100(index + 1)
+        }
+    }
+
+    print100(1)
+
+    // 6
+
+    println("**** 6 ****")
+
+    println((1..100).filter {
+        true
+    })
+
+    // 7
+
+    println("**** 7 ****")
+
+    println((1..100).map { it })
+}
