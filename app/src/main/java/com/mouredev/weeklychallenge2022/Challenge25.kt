@@ -20,3 +20,103 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+// Respuesta al Challenge25 en Kotlin
+fun main(){
+
+    val game1: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"))
+    val game2: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"))
+    val game3: List<Pair<String, String>> = listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S"), Pair("R", "S"), Pair("S", "P"))
+
+    println(game(game1))
+    println(game(game2))
+    println(game(game3))
+}
+
+private fun game(games: List<Pair<String, String>>): String{
+    var playerOne = 0
+    var playerTwo = 0
+
+    for(i in games){
+        if(i.first == "R" && i.second == "P"){
+            playerTwo += 1
+        }
+        if(i.first == "R" && i.second == "S"){
+            playerOne += 1
+        }
+        if(i.first == "P" && i.second == "S"){
+            playerTwo += 1
+        }
+        if(i.first == "P" && i.second == "R"){
+            playerOne += 1
+        }
+        if(i.first == "S" && i.second == "R"){
+            playerTwo += 1
+        }
+        if(i.first == "S" && i.second == "P"){
+            playerOne += 1
+        }
+    }
+
+    if (playerOne > playerTwo){
+        return "Player 1"
+    }
+    if (playerOne < playerTwo){
+        return "Player 2"
+    }
+
+    return "Tie"
+
+}
+
+// Respuesta al Challenge25 en Scala
+object Challenge25 {
+
+  def main(args: Array[String]): Unit = {
+
+    val game1: List[Tuple] = List(("R", "S"), ("S", "R"), ("P", "S"), ("R", "S"))
+    val game2: List[Tuple] = List(("R", "S"), ("S", "R"), ("P", "S"))
+    val game3: List[Tuple] = List(("R", "S"), ("S", "R"), ("P", "S"), ("R", "S"), ("S", "P"))
+
+    println(game(game1))
+    println(game(game2))
+    println(game(game3))
+  }
+
+  def game(games: List[Tuple]): String = {
+
+    var playerOne: Int = 0
+    var playerTwo: Int = 0
+
+    for(i <- games){
+      if(i.toString == "(R,P)" ){
+        playerTwo += 1
+      }
+      if(i.toString == "(R,S)" ){
+        playerOne += 1
+      }
+      if(i.toString == "(P,S)" ){
+        playerTwo += 1
+      }
+      if(i.toString == "(P,R)" ){
+        playerOne += 1
+      }
+      if(i.toString == "(S,R)" ){
+        playerTwo += 1
+      }
+      if(i.toString == "(S,P)" ){
+        playerOne += 1
+      }
+    }
+
+    if (playerOne > playerTwo){
+      return "Player 1"
+    }
+    if (playerOne < playerTwo){
+      return "Player 2"
+    }
+    return "Tie"
+  }
+
+
+}
