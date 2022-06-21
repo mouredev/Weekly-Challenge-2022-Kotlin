@@ -20,3 +20,44 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    println("El ganador del juego es : ${RockPaperScissors(listOf(Pair("R", "S"), Pair("S", "R"), Pair("P", "S")))}")
+    println("El ganador del juego es : ${RockPaperScissors(listOf(Pair("R", "R"), Pair("S", "S"), Pair("S", "S"), Pair("S", "P")))}")
+    println("El ganador del juego es : ${RockPaperScissors(listOf(Pair("P", "R"), Pair("S", "S"), Pair("S", "S"), Pair("R", "P")))}")
+}
+
+private fun RockPaperScissors(games: List<Pair<String, String>>): String {
+    var player1Wins = 0
+    var player2Wins = 0
+
+    for (game in games) {
+        if (game.first == game.second) {
+            continue
+        }
+
+        when (game.first) {
+            "R" -> when (game.second) {
+                "S" -> player1Wins++
+                "P" -> player2Wins++
+            }
+            "S" -> when (game.second) {
+                "R" -> player2Wins++
+                "P" -> player1Wins++
+            }
+            "P" -> when (game.second) {
+                "R" -> player1Wins++
+                "S" -> player2Wins++
+            }
+        }
+    }
+
+    return ResultGame(player1Wins, player2Wins)
+}
+
+private fun ResultGame(player1Wins: Int, player2Wins: Int): String {
+    return when {
+        player1Wins > player2Wins -> "Player 1"
+        player1Wins < player2Wins -> "Player 2"
+        else -> "Tie"
+    }
+}
