@@ -16,7 +16,7 @@ import java.util.ArrayList
  */
 
 fun main(){
-    //println(mcd(53667, 25527))
+    println(mcd(53667, 25527))
     //println(mcm(625, 500))
     //println(mcmAux(625, 500))
 }
@@ -43,9 +43,11 @@ fun mcm (num1 : Int, num2:Int) : Int{
         if (listOfMultiples.contains(actualMultipleNum1)){
             haveCommonMultiple = true
             commonMultiple = actualMultipleNum1
+
         }else if(listOfMultiples.contains(actualMultipleNum2)){
             haveCommonMultiple = true
             commonMultiple = actualMultipleNum2
+
         }else{
             listOfMultiples.add(actualMultipleNum1)
             listOfMultiples.add(actualMultipleNum2)
