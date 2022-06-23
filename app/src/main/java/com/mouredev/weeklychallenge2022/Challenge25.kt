@@ -20,3 +20,57 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+enum class PlayResult{
+    Win,
+    Lose,
+    Tie
+}
+
+enum class Movement{
+    Stone,
+    Paper,
+    Scissors;
+    fun asWin(movement: Movement): PlayResult = when(this){
+        Stone -> when(movement){
+            Scissors -> PlayResult.Win
+            Paper -> PlayResult.Lose
+            else -> PlayResult.Tie
+        }
+        Paper -> when(movement){
+            Scissors -> PlayResult.Lose
+            Stone -> PlayResult.Win
+            else -> PlayResult.Tie
+        }
+        Scissors -> when(movement){
+            Paper -> PlayResult.Win
+            Stone -> PlayResult.Lose
+            else -> PlayResult.Tie
+        }
+    }
+}
+
+fun main(){
+    val games = arrayOf(
+        arrayOf(
+            Pair(Movement.Stone, Movement.Scissors),
+            Pair(Movement.Stone, Movement.Paper),
+            Pair(Movement.Scissors, Movement.Scissors),
+            Pair(Movement.Paper, Movement.Stone),
+            Pair(Movement.Scissors, Movement.Paper),
+            Pair(Movement.Paper, Movement.Scissors)
+        ),
+        arrayOf(
+            Pair(Movement.Stone, Movement.Paper),
+            Pair(Movement.Stone, Movement.Scissors),
+            Pair(Movement.Scissors, Movement.Scissors),
+            Pair(Movement.Stone, Movement.Stone)
+        )
+    )
+
+    println(games.mapIndexed { index, pairs ->
+        "Partida ${index + 1}:\r\nGanadas Jugador 1: ${pairs.count { p -> p.first.asWin(p.second) == PlayResult.Win }}" +
+                "\r\nGanadas Jugador2: ${pairs.count { p -> p.second.asWin(p.first) == PlayResult.Win }}" +
+                "\r\nEmpates: ${pairs.count { p -> p.second.asWin(p.first) == PlayResult.Tie }}"
+    }.joinToString("\r\n-----\r\n"))
+}
