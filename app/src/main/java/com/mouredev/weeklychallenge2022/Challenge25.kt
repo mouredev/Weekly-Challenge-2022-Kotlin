@@ -22,7 +22,7 @@ import java.text.Normalizer
  *
  */
 fun main(){
-    val input = File("src","Challenge25.txt").readLines().map { it.split(",") }
+    val input = File("app/src/main/java/com/mouredev/weeklychallenge2022","Challenge25.txt").readLines().map { it.split(",") }
     val normalized = input.map { texto(it[0],it[1]) }
     val games = normalized.filter { it[0]!=it[1] }
     val wins = games.map {rockPaperScissors(it[0],it[1])}
