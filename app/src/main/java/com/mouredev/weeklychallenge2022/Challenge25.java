@@ -22,41 +22,25 @@ package com.mouredev.weeklychallenge2022
  */
 import java.util.*;
 
-public class Challenge25 {
+
+public class Challenge25_Seygel {
     public static void main(String[] args) {
-        gamesArray partidoActual =new gamesArray();
-        System.out.println(partidoActual.getMarcador());
-        System.out.println(partidoActual.gameResult());
+        partido miPartido = new partido();
+        //  System.out.println(miPartido.getMarcador());
+        System.out.println(miPartido.resultadoPartido());
     }
 }
-//La clase Game es la que contendrá el par de jugadas de player1 y player2, de cada ronda.
-class Game{
+class juego{
     private char Player1;
     private char Player2;
-    private int Advantage; //esta variable define quien gana en cada juego.
-    //Constructor de clase en blanco, insertaremos los valores con setGame, que es un setter que declara el resultado de Player1 y Player2
-    public Game(){
-        System.out.println(getPlayer1()+" "+getPlayer2());
+    public juego(){
     }
     //setters
     public void setPlayer1(char player1) {
-        this.Player1 = player1;
+        Player1 = player1;
     }
     public void setPlayer2(char player2) {
-        this.Player2 = player2;
-    }
-    public void setAdvantage() {
-        if(getPlayer1()==getPlayer2()){
-            this.Advantage = 0;
-        }
-        else if  (getPlayer1()=='r' && getPlayer2()=='s'||
-                getPlayer1()=='s' && getPlayer2()=='p'||
-                getPlayer1()=='p' && getPlayer2()=='r'){
-            this.Advantage = 1;
-        }
-        else{
-            this.Advantage = -1;
-        }
+        Player2 = player2;
     }
     //getters
     public char getPlayer1() {
@@ -65,14 +49,9 @@ class Game{
     public char getPlayer2() {
         return Player2;
     }
-    public int getAdvantage() {
-        return Advantage;
-    }
-    //Este método devuelve la elección del jugador (cualquiera), usando el random, pasándolo a base 3 y el resto define el valor.
-    // No usé el round a pelo porque me da que la matemática otorga más probabilidad a un número que a los otros.
-    // de 0 a 0,44 redondea 0, de 0,45 a 1,44 redondea 1 y de 1,45 a 2 redondea 2... saldrían muchos más 1
-    public char getJugada(){
-        int tirada = (int)(Math.round((Math.random()*2)%3));
+    //Establecemos la elección random de piedra papel o tijeras.
+    public char getJugada() {
+        int tirada = (int) (Math.round((Math.random() * 2) % 3));
         return switch (tirada) {
             case 0 -> 'r';
             case 1 -> 'p';
@@ -80,46 +59,61 @@ class Game{
             default -> 'x';
         };
     }
-    //Establecemos las jugadas del Player1 y Player2
-    public void setGame(){
-        Game HaKenBo = new Game();
-        HaKenBo.setPlayer1(getJugada());
-        HaKenBo.setPlayer2(getJugada());
-        HaKenBo.setAdvantage();
+    //Creamos un juego de Player1 vs Player2 de manera aleatoria.
+    public void setJuego(){
+        this.setPlayer1(getJugada());
+        this.setPlayer2(getJugada());
+    }
+    //Establecemos el ganador del juego, retornando un 1 si gana Player1, -1 si gana Player2 y 0 si es empate.
+    public int getVentaja(){
+        if
+        (getPlayer1()==getPlayer2()){
+            return 0;
+        }
+        else if
+        (getPlayer1()=='r' && getPlayer2()=='s'||
+                        getPlayer1()=='s' && getPlayer2()=='p'||
+                        getPlayer1()=='p' && getPlayer2()=='r'){
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
     }
 }
-// Creamos el conjunto de jugadas a petición del usuario usamos un int, así que de 1 a (2^31)-1 vamos ha establecer un máximo de 1000
-class gamesArray{
 
+class partido{
     private int Marcador;
-    //Constructor del Conjunto de juegos, con la petición de tamaño a través de Terminal.
-    public gamesArray(){
-        ArrayList <Game> Match = new ArrayList<>();
+
+    partido(){
+        ArrayList <juego> HaKenBo = new ArrayList<>();
         int MatchSize;
         this.Marcador = 0;
 
-        Scanner sc=new Scanner(System.in);
-        System.out.println("¿Cuantas veces jugarán el Player1 contra Player2?\n[Introduzca un valor entre 1 y 1000]");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuántas veces quieres que juegen el Player1 contra el Player2?\n [Inserta valores entre 1 y 10.000]");
         MatchSize=sc.nextInt();
+
         for (int i = 0; i < MatchSize; i++) {
-            Game RockPaperScisors = new Game();
-            RockPaperScisors.setGame();
-            Match.add(RockPaperScisors);
-            this.Marcador=this.Marcador+RockPaperScisors.getAdvantage();
+            juego pPT =new juego();                 //pPT = piedraPapelTijeras.
+            pPT.setJuego();
+            this.Marcador=this.Marcador+pPT.getVentaja();
+            //System.out.println("P1: "+pPT.getPlayer1()+" P2: "+pPT.getPlayer2()+" Ventaja: "+pPT.getVentaja()); //Esta linea plotea los juegos  individualmente.
+            HaKenBo.add(pPT);
         }
     }
-    //Creamos el marcador total del partido.
+
     public int getMarcador() {
         return Marcador;
     }
-    public String gameResult(){
-        if(Marcador>0){
-            return ("Player1 WINS");
-        }else
-        if(Marcador<0){
-            return ("Player2 WINS");
-        }else{
-            return ("TIE");
+    public String resultadoPartido(){
+        if (Marcador>0){
+            return "Player1";
         }
+        else if (Marcador<0){
+            return "Player2";
+        }
+        return "Tie";
     }
 }
