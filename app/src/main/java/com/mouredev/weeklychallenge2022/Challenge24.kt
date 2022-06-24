@@ -17,39 +17,70 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private fun oneHundredFor() {
-    for(i in 1..100) {
-        println(i)
-    }
-}
-
-private fun oneHundredForEach() {
-    var start = 1
-    var end = 100
-    start.rangeTo(end).forEach {
-        println(it)
-    }
-}
-
-private fun oneHundredWhile() {
-    var i = 1
-    while(i<=100) {
-        println(i)
-        i++
-    }
-}
-
-private fun oneHundredDoWhile() {
-    var i = 0
-    do {
-        i++
-        println(i)
-    } while(i<100)
-}
-
 fun main() {
-    oneHundredFor()
-    oneHundredForEach()
-    oneHundredWhile()
-    oneHundredDoWhile()
+
+    // 1
+
+    println("**** 1 ****")
+
+    for (index in (1..100)) {
+        println(index)
+    }
+
+    // 2
+
+    println("**** 2 ****")
+
+    (1..100).forEach { index ->
+        println(index)
+    }
+
+    // 3
+
+    println("**** 3 ****")
+
+    var whileIndex = 1
+
+    while (whileIndex <= 100) {
+        println(whileIndex)
+        whileIndex += 1
+    }
+
+    // 4
+
+    println("**** 4 ****")
+
+    whileIndex = 1
+
+    do {
+        println(whileIndex)
+        whileIndex += 1
+    } while (whileIndex <= 100)
+
+    // 5
+
+    println("**** 5 ****")
+
+    fun print100(index: Int) {
+        if (index <= 100) {
+            println(index)
+            print100(index + 1)
+        }
+    }
+
+    print100(1)
+
+    // 6
+
+    println("**** 6 ****")
+
+    println((1..100).filter {
+        true
+    })
+
+    // 7
+
+    println("**** 7 ****")
+
+    println((1..100).map { it })
 }
