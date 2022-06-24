@@ -22,7 +22,7 @@ package com.mouredev.weeklychallenge2022
  */
 import java.util.*;
 
-public class Portfolio25 {
+public class Challenge25 {
     public static void main(String[] args) {
         gamesArray partidoActual =new gamesArray();
         System.out.println(partidoActual.getMarcador());
