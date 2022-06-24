@@ -1,0 +1,9 @@
+R,P
+P,S
+R,R
+R,S
+P,R
+P,P
+R,           S
+R, \S
+r, [S
