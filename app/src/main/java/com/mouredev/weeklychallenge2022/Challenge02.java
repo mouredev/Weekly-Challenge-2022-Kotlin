@@ -1,6 +1,6 @@
-package com.mouredev.weeklychallenge2022
+package com.mouredev.weeklychallenge2022;
 
-import java.math.BigInteger
+import java.math.BigInteger;
 
 /*
  * Reto #2
@@ -20,7 +20,7 @@ import java.math.BigInteger
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
+/*
 fun main() {
 
     var n0: Long = 0
@@ -34,4 +34,11 @@ fun main() {
         n0 = n1
         n1 = fib
     }
+}
+*/
+public class Challenge02{
+
+	public static void main(String[] args) {
+
+	}
 }

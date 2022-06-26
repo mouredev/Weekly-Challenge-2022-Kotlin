@@ -1,4 +1,7 @@
-package com.mouredev.weeklychallenge2022
+package com.mouredev.weeklychallenge2022;
+
+import javax.swing.JOptionPane;
+import java.util.*;
 
 /*
  * Reto #1
@@ -18,7 +21,7 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
- */
+ *
 
 fun main() {
     println(isAnagram("amor", "roma"))
@@ -29,4 +32,35 @@ private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
         return false
     }
     return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+}
+*/
+public class Challenge01{
+
+	String palabraUno, palabraDos;
+	
+	public static void main(String[] args) {
+		new Challenge01();
+	}
+
+	public Challenge01() {
+		System.out.println(comparador(JOptionPane.showInputDialog("¿Cuál es la primera palabra?"), JOptionPane.showInputDialog("¿Cuál es la segunda palabra?")));
+	}
+public String comparador (String palabraUno, String palabraDos) {
+	this.palabraUno=palabraUno;
+	this.palabraDos=palabraDos;
+	
+	if(palabraUno.equalsIgnoreCase(palabraDos) || palabraUno.length() != palabraDos.length() || comparaCaracteres() == false) {
+		return "Las palabras introducidas no son un anagrama";
+	}return "Las palabras introducidas son un anagrama";
+}
+public boolean comparaCaracteres() {
+	char[] wordOne = palabraUno.toLowerCase().toCharArray();
+	char[] wordTwo = palabraDos.toLowerCase().toCharArray();
+	
+	Arrays.sort(wordOne);
+	Arrays.sort(wordTwo);
+	if (Arrays.compare(wordOne, wordTwo) == 0) {
+		return true;
+	}return false;
+}
 }

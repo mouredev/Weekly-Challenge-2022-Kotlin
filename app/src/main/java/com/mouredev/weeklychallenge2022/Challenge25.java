@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package com.mouredev.weeklychallenge2022;
 
 /*
  * Reto #25
@@ -23,7 +23,7 @@ package com.mouredev.weeklychallenge2022
 import java.util.*;
 
 
-public class Challenge25_Seygel {
+public class Challenge25 {
     public static void main(String[] args) {
         partido miPartido = new partido();
         //  System.out.println(miPartido.getMarcador());
