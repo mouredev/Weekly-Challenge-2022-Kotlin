@@ -1,5 +1,4 @@
-package com.mouredev.weeklychallenge2022
-
+package com.mouredev.weeklychallenge2022;
 /*
  * Reto #0
  * EL FAMOSO "FIZZ BUZZ"
@@ -16,22 +15,26 @@ package com.mouredev.weeklychallenge2022
  * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
- *
  */
-
-fun main() {
-
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
+public class Challenge00 {
+    public static void main(String[] args) {
+    	
+    	for (int i = 1; i < 100; i++) {
+			boolean divisiblePorTres = i%3 == 0;
+			boolean divisiblePorCinco =i%5 ==0;
+		if(divisiblePorTres && divisiblePorCinco) {
+			System.out.println("fizzbuzz");
+		}
+		else if (divisiblePorTres) {
+			System.out.println("fizz");
+		}
+		else if (divisiblePorCinco) {
+			System.out.println("buzz");
+		}
+		else{
+			System.out.println(i);
+		}
+			
+		}
     }
 }
