@@ -39,6 +39,14 @@ fun main() {
 public class Challenge02{
 
 	public static void main(String[] args) {
-
+		long n0 = 0;
+		long n1 = 1;
+		
+		for (int i = 0; i < 50; i++) {
+			System.out.println(n0);
+			long nextFib = n0+n1 ;
+			n0= n1;
+			n1= nextFib;
+		}
 	}
 }

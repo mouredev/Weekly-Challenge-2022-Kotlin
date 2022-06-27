@@ -39,23 +39,23 @@ public class Challenge01{
 	String palabraUno, palabraDos;
 	
 	public static void main(String[] args) {
-		new Challenge01();
+				new Challenge01();
 	}
 
-	public Challenge01() {
-		System.out.println(comparador(JOptionPane.showInputDialog("¿Cuál es la primera palabra?"), JOptionPane.showInputDialog("¿Cuál es la segunda palabra?")));
+public Challenge01() {
+		System.out.println(comparador(JOptionPane.showInputDialog("¿Cuál es el primer texto?"), JOptionPane.showInputDialog("¿Cuál es el segundo texto?")));
 	}
 public String comparador (String palabraUno, String palabraDos) {
 	this.palabraUno=palabraUno;
 	this.palabraDos=palabraDos;
 	
-	if(palabraUno.equalsIgnoreCase(palabraDos) || palabraUno.length() != palabraDos.length() || comparaCaracteres() == false) {
+	if(palabraUno.equalsIgnoreCase(palabraDos) || comparaCaracteres() == false) {
 		return "Las palabras introducidas no son un anagrama";
 	}return "Las palabras introducidas son un anagrama";
 }
 public boolean comparaCaracteres() {
-	char[] wordOne = palabraUno.toLowerCase().toCharArray();
-	char[] wordTwo = palabraDos.toLowerCase().toCharArray();
+	char[] wordOne = palabraUno.toLowerCase().strip().toCharArray();
+	char[] wordTwo = palabraDos.toLowerCase().strip().toCharArray();
 	
 	Arrays.sort(wordOne);
 	Arrays.sort(wordTwo);
