@@ -15,6 +15,8 @@ public class Reto26{
     public static void main(String[] args){
         Square square = new Square(5);
         square.printShape();
+        Rectangle rectangle = new Rectangle(8, 5);
+        rectangle.printShape();
         Triangle triangle = new Triangle(5);
         triangle.printShape();
         Diamond d = new Diamond(5);
@@ -28,6 +30,7 @@ class Square implements Shape {
 
     public Square(int size){
         this.size = size;
+        System.out.println("Cuadrado de tamaño " + size);
     }
 
     @Override
@@ -45,6 +48,7 @@ class Triangle implements Shape {
 
     public Triangle(int base) {
         this.base = base;
+        System.out.println("Triangulo de tamaño " + base);
     }
     
     @Override
@@ -63,14 +67,37 @@ class Diamond implements Shape {
 
     public Diamond(int size) {
         this.size = size;
+        System.out.println("Rombo de tamaño " + size);
     }
 
     @Override
     public void printShape() {
-        new Triangle(size).printShape();
+        for (int i = 1; i <= size; i++) {
+            for(int j = i; j < size; j++) System.out.print(" ");
+            for(int k = 1; k < (i*2); k++) System.out.print("*");
+            System.out.println();
+        }
         for (int i = size -1; i >= 1; i--) {
             for(int j = i; j < size; j++) System.out.print(" ");
             for(int k = 1; k < (i*2); k++) System.out.print("*");
+            System.out.println();
+        }
+    }
+}
+
+class Rectangle implements Shape {
+    private int width, height;
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+        System.out.println("Rectangulo de base " + width + " y altura " + height);
+    }
+
+    @Override
+    public void printShape() {
+        for (int i = 1; i <= height; i++){
+            for(int j = 1; j <= width; j++) System.out.print("*");
             System.out.println();
         }
     }
