@@ -18,3 +18,58 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    drawShape(width = 6, type = TypeShape.SQUARE)
+    drawShape(width = 5, type = TypeShape.TRIANGLE)
+}
+
+enum class TypeShape {
+    SQUARE, TRIANGLE
+}
+
+private fun drawShape(width: Int, type: TypeShape) {
+    when(type) {
+        TypeShape.SQUARE -> drawSquare(width)
+        TypeShape.TRIANGLE -> drawTriangle(width)
+    }
+    println()
+}
+
+private fun drawSquare(width: Int) {
+    val widthWithSpace = width * 3 - 2
+    repeat(width) {
+        when(it) {
+            0, width -1 -> fillLine(width, 3)
+            else -> {
+                println(String(CharArray(widthWithSpace) {
+                    if(it == 0 || it == widthWithSpace - 1) '*' else ' '
+                }))
+            }
+        }
+    }
+}
+
+private fun drawTriangle(width: Int) {
+    val widthWithSpace = width * 4 - 3
+    var pointerLeft = widthWithSpace / 2
+    var pointerRight = widthWithSpace / 2
+    repeat(width) { line ->
+        if(line == width - 1) {
+            fillLine(width, 4)
+        } else {
+            println(String(CharArray(widthWithSpace) {
+                if(it == pointerLeft || it == pointerRight) '*' else ' '
+            }))
+        }
+        pointerLeft -= 2
+        pointerRight += 2
+    }
+}
+
+private fun fillLine(width: Int, space: Int) {
+    val widtWithSpace = width * space - (space - 1)
+    println(String(CharArray(widtWithSpace) {
+        if(it%3 == 0) '*' else ' '
+    }))
+}
