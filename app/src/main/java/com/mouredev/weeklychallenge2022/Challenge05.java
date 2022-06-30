@@ -1,10 +1,12 @@
 package com.mouredev.weeklychallenge2022;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import java.awt.image.*;
+import java.io.*;
+import java.net.*;
+
+import javax.imageio.*;
+import javax.swing.JOptionPane;
 /*
 class Challenge5() {
 	
@@ -67,14 +69,29 @@ class Challenge5() {
  */
 public class Challenge05{
 	public static void main ( String[] args) {
+		BufferedImage miImagen = null;
 		try{
-			File imagenExterna = new File("https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_github_profile.png");
-			Image miImagen =  ImageIO.read(imagenExterna);
-			int ancho, alto;
-			ancho=miImagen.;
+			URL imagenExterna = new URL(JOptionPane.showInputDialog("Introduzca la dirección URL de la imagen que desea calcular"));
+			miImagen =  ImageIO.read(imagenExterna);			
+			System.out.println("El aspect ratio de la imagen es: "+( miImagen.getWidth() / mcd( miImagen.getWidth(), miImagen.getHeight()) )+":"+( miImagen.getHeight() / mcd( miImagen.getWidth(), miImagen.getHeight()) ));
 			
 		}catch(IOException ex) {
+			System.out.println(ex.getCause());
 			System.out.println(ex.getLocalizedMessage());
 		}
 	}
+
+	public static int mcd(int a, int b) {
+		if (b == 0) return a;
+		return mcd( b , a%b );
+	}
 }
+/*
+			do{
+				mcd = alto;
+				alto = ancho % alto;
+				ancho =mcd;
+			}while(alto != 0);
+			ancho=miImagen.getWidth();
+			alto=miImagen.getHeight();
+ */
