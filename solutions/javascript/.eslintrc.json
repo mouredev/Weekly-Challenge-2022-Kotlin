@@ -1,0 +1,22 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": ["standard"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true
+    },
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-eval": "off",
+    "spaced-comment": "warn",
+    "no-unused-vars": "warn",
+    "quotes": ["error", "single"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "author": {
+    "name": "Luis Marsiglia"
+  },
+  "name": "weekly-challenge-2022-js-solutions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "challenges": "node index.js"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.2.0"
+  },
+  "type": "module"
+}
