@@ -18,3 +18,39 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    paintFigure("cuadrado", 4)
+}
+
+fun paintFigure(figure: String, sideOneLength: Int, sideTwoLength: Int = 0) {
+    val figures = listOf("cuadrado", "triangulo", "rectangulo")
+
+    if (figure !in figures) {
+        println("Aún no se pintar la figura $figure")
+        return
+    }
+
+    if ((sideOneLength < 2) || (figure == "rectangulo" && sideTwoLength < 2)) {
+        println("Para pintar correctamente la figura los lados deben ser al menos de 2")
+        return
+    }
+
+    if (figure == "rectangulo" && sideOneLength == sideTwoLength)
+        println("Para hacer eso, mejor pinta un cuadrado")
+
+    var sideAux = 0
+
+    (1..sideOneLength).forEach {
+        when (figure.lowercase()) {
+            "cuadrado" -> sideAux = sideOneLength
+            "triangulo" -> sideAux = it
+            "rectangulo" -> sideAux = sideTwoLength
+        }
+
+        (1..sideAux).forEach {
+            print("* ")
+        }
+        println()
+    }
+}
