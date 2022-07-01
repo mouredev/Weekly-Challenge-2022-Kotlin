@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.math.BigInteger
-
 /*
  * Reto #2
  * LA SUCESIÓN DE FIBONACCI

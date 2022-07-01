@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #9
  * CÓDIGO MORSE
@@ -59,10 +61,10 @@ private fun decoder(input: String): String {
         var index = 0
         var ch = false
 
-        input.uppercase().forEach { character ->
+        input.toUpperCase(Locale.ROOT).forEach { character ->
             if (!ch && character.toString() != " ") {
                 val nextIndex = index + 1
-                if (character.toString() == "C" && nextIndex < input.length && input.uppercase()[nextIndex].toString() == "H") {
+                if (character.toString() == "C" && nextIndex < input.length && input.toUpperCase(Locale.ROOT)[nextIndex].toString() == "H") {
                     decodedInput += naturalDict["CH"]
                     ch = true
                 } else {

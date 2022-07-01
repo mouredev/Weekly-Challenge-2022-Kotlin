@@ -1,5 +1,10 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.system.measureTimeMillis
+
 /*
  * Reto #20
  * PARANDO EL TIEMPO
@@ -19,8 +24,15 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun main() = runBlocking{
+    val time = measureTimeMillis {
+        launch { println(matrixMath(10,20, 3000)) }
+        launch { println(matrixMath(15,8, 5000)) }
+        launch { println(matrixMath(-50,200, 1000)) }
+    }
+    println("Time passed for launch: $time")
 
+    // For Moure Dev solution
     asyncSum(5, 2, 10) { result ->
         println(result)
     }
@@ -30,9 +42,17 @@ fun main() {
     }
 }
 
+private suspend fun matrixMath(num1 : Int, num2 : Int, time : Long) : Int {
+    if (time >= 0)
+        delay(time)
+    return num1 + num2
+}
+
+// For Moure Dev solution
 private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int) -> Unit) {
     Thread {
         Thread.sleep((seconds * 1000).toLong())
         result(numberOne + numberTwo)
     }.start()
 }
+

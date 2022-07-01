@@ -19,12 +19,28 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun main(){
+    hiPo("Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.")
+    hiPo("Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+
+    // for the Baires dev solution
     println(capitalize("¿hola qué tal estás?"))
     println(capitalize("¿hola      qué tal estás?"))
     println(capitalize("El niño ñoño"))
 }
 
+private fun hiPo(sentence : String) : String{
+    var hiPoSentence = ""
+
+    sentence.split(" ").map {
+        it.replaceFirstChar { firstChar-> firstChar.uppercase() }
+    }.forEach{ hiPoSentence+="$it " }
+
+    println(hiPoSentence)
+    return hiPoSentence
+}
+
+// for the Baires Dev solution
 private fun capitalize(text: String): String {
 
     var capitalizedText = text

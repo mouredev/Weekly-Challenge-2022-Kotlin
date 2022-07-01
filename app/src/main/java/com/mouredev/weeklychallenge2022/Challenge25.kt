@@ -21,7 +21,12 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun main(){
+    repeat(5){
+        RPS().playGame()
+    }
+
+    // For Moure Dev solution
     println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.ROCK))))
     println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.SCISSORS))))
     println(rockScissorsPaper(arrayListOf(Pair(Move.PAPER, Move.SCISSORS))))
@@ -39,10 +44,97 @@ fun main() {
         Pair(Move.PAPER, Move.SCISSORS))))
 }
 
+private class RPS{
+    private val gameSet = mutableListOf<Pair<PlayerChoices, PlayerChoices>>()
+
+    enum class WinLoseTie(val result: String){
+        WIN("Winner"),
+        LOSE("Lose"),
+        TIE("Tie")
+    }
+
+    enum class PlayerChoices(val choice :String){
+        R("Rock") {
+            override fun versus(opponent: PlayerChoices): WinLoseTie {
+                return  when(opponent){
+                    P -> WinLoseTie.LOSE
+                    S -> WinLoseTie.WIN
+                    R -> WinLoseTie.TIE
+                }
+            } },
+        P("Paper"){
+            override fun versus(opponent: PlayerChoices): WinLoseTie {
+                return  when(opponent){
+                    S -> WinLoseTie.LOSE
+                    R -> WinLoseTie.WIN
+                    P -> WinLoseTie.TIE
+                }
+            } },
+        S("Scissor"){
+            override fun versus(opponent: PlayerChoices): WinLoseTie {
+                return  when(opponent){
+                    R -> WinLoseTie.LOSE
+                    P -> WinLoseTie.WIN
+                    S -> WinLoseTie.TIE
+                }
+            } };
+
+        abstract fun versus(opponent : PlayerChoices): WinLoseTie
+    }
+
+    private fun  getRandomChoice(): PlayerChoices {
+        return PlayerChoices.values()[(0..2).random()]
+    }
+
+    private fun getGameSet() : List<Pair<PlayerChoices,PlayerChoices>> {
+        repeat((1..10).random()) {
+            val turn = getRandomChoice() to getRandomChoice()
+            gameSet.add(turn)
+        }
+        return gameSet
+    }
+
+    private fun printGameSet(gameSet :List<Pair<PlayerChoices,PlayerChoices>>){
+        print("{ ")
+        gameSet.forEach{
+            print("[${it.first.choice}|${it.second.choice}] ")
+        }
+        print("}\n")
+    }
+
+    private fun getWinner() : String{
+        var player1 = 0
+        var player2 = 0
+        gameSet.forEach{
+            when (it.first.versus(it.second)){
+                WinLoseTie.WIN -> player1++
+                WinLoseTie.LOSE -> player2++
+                WinLoseTie.TIE -> {
+                    player1++
+                    player2++
+                }
+            }
+        }
+        return if (player1 == player2) {
+            WinLoseTie.TIE.result
+        } else if (player1 > player2) {
+            "Player1 Wins"
+        } else {
+            "Player2 Wins"
+        }
+    }
+
+    fun playGame() {
+        getGameSet()
+        printGameSet(gameSet)
+        println("${getWinner()}\n")
+    }
+}
+
+// For Moure Dev solution
 enum class Move {
     ROCK, SCISSORS, PAPER
 }
-
 private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
 
     var playerOneGames = 0
@@ -54,7 +146,6 @@ private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
         val playerTwoMove = game.second
 
         if (playerOneMove != playerTwoMove) {
-
             if (playerOneMove == Move.ROCK && playerTwoMove == Move.SCISSORS
                 || playerOneMove == Move.SCISSORS && playerTwoMove == Move.PAPER
                 || playerOneMove == Move.PAPER && playerTwoMove == Move.ROCK) {
