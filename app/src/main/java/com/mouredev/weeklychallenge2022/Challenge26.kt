@@ -18,3 +18,50 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    draw("Cuadrado", 4)
+    draw("Triangulo", 4)
+    draw("Cuadrado", 10)
+    draw("Triangulo", 7)
+    draw("Cuadrado", 7)
+    draw("Triangulo", 11)
+}
+
+fun draw(figure: String, side: Int) {
+    println()
+    if (figure.lowercase() == "cuadrado") {
+        drawSquare(side)
+    } else if (figure.lowercase() == "triangulo") {
+        drawTriangle(side)
+    }
+}
+
+private fun drawSquare(side: Int) {
+    for (i in 0 until side) {
+        for (j in 0 until side) {
+            if (i == 0 || i == side - 1) {
+                print("*")
+            } else if (j == 0 || j == side - 1) {
+                print("*")
+            } else {
+                print(" ")
+            }
+            print(" ")
+        }
+        println()
+    }
+}
+
+private fun drawTriangle(side: Int) {
+    for (row in 0 until side) {
+        for (col in 1 until (2 * side)) {
+            if (row == side - 1 || row + col == side || col - row == side) {
+                print("*")
+            } else {
+                print(" ")
+            }
+        }
+        println()
+    }
+}
