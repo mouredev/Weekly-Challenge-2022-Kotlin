@@ -21,12 +21,15 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
+	println(isAnagram("dormitory", "dirty room"))
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+fun String.removeWhitespaces() = replace(" ", "")
+
+fun isAnagram(word1:String, word2:String) : Boolean {
+    if (word1.lowercase().removeWhitespaces().split("").sorted().joinToString() ==
+        word2.lowercase().removeWhitespaces().split("").sorted().joinToString() ){
+        return true
+    } 
+    return false
 }
