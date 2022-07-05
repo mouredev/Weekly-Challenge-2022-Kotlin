@@ -21,28 +21,56 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private enum class Move {
-    ROCK, PAPER, SCISSOR
+fun main() {
+    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.ROCK))))
+    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.SCISSORS))))
+    println(rockScissorsPaper(arrayListOf(Pair(Move.PAPER, Move.SCISSORS))))
+    println(rockScissorsPaper(arrayListOf(
+        Pair(Move.ROCK, Move.ROCK),
+        Pair(Move.SCISSORS, Move.SCISSORS),
+        Pair(Move.PAPER, Move.PAPER))))
+    println(rockScissorsPaper(arrayListOf(
+        Pair(Move.ROCK, Move.SCISSORS),
+        Pair(Move.SCISSORS, Move.PAPER),
+        Pair(Move.SCISSORS, Move.ROCK))))
+    println(rockScissorsPaper(arrayListOf(
+        Pair(Move.ROCK, Move.PAPER),
+        Pair(Move.SCISSORS, Move.ROCK),
+        Pair(Move.PAPER, Move.SCISSORS))))
 }
 
-private fun playRockPaperScissor(moves: Array<Pair<Move, Move>>): String {
-    var playerOneWins = 0
-    var playerTwoWins = 0
+enum class Move {
+    ROCK, SCISSORS, PAPER
+}
 
-    moves.forEach { move ->
-        if(move.first != move.second) {
-            if ((move.first == Move.SCISSOR && move.second == Move.PAPER) || (move.first == Move.PAPER && move.second == Move.ROCK) || (move.first == Move.ROCK && move.second == Move.SCISSOR)) {
-                playerOneWins++
+private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
+
+    var playerOneGames = 0
+    var playerTwoGames = 0
+
+    games.forEach { game ->
+
+        val playerOneMove = game.first
+        val playerTwoMove = game.second
+
+        if (playerOneMove != playerTwoMove) {
+
+            if (playerOneMove == Move.ROCK && playerTwoMove == Move.SCISSORS
+                || playerOneMove == Move.SCISSORS && playerTwoMove == Move.PAPER
+                || playerOneMove == Move.PAPER && playerTwoMove == Move.ROCK) {
+
+                playerOneGames += 1
             } else {
-                playerTwoWins++
+                playerTwoGames += 1
             }
         }
     }
 
-    return if(playerOneWins == playerTwoWins) "Tie" else if(playerOneWins > playerTwoWins) "Player 1" else "Player 2"
-}
-
-fun main() {
-    println(playRockPaperScissor(arrayOf(Pair(Move.ROCK,Move.SCISSOR), Pair(Move.SCISSOR,Move.ROCK), Pair(Move.PAPER,Move.SCISSOR))))
-    println(playRockPaperScissor(arrayOf(Pair(Move.ROCK,Move.ROCK), Pair(Move.SCISSOR,Move.SCISSOR), Pair(Move.PAPER,Move.PAPER))))
+    return if (playerOneGames == playerTwoGames) {
+        "Tie"
+    } else if (playerOneGames > playerTwoGames) {
+        "Player 1"
+    } else {
+        "Player 2"
+    }
 }
