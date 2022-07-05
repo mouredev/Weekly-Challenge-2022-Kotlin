@@ -18,3 +18,69 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+fun main(){
+
+        println("------------TRIANGLE-------------")
+        createFigure(10 ,Figure.TRIANGLE)
+        println("------------SQUARE-------------")
+        createFigure(10 ,Figure.SQUARE)
+
+}
+enum class Figure(){
+        SQUARE, TRIANGLE
+}
+
+fun createFigure(sideSize: Int, figura:Figure) {
+        when(figura){
+
+                Figure.SQUARE -> makeSquare(sideSize)
+                Figure.TRIANGLE -> makeTriangle(sideSize)
+        }
+}
+
+
+fun makeSquare(sideSize: Int){
+
+
+        var yaxis = 0
+        var xaxis = 1
+        while(yaxis<sideSize)
+        {
+                if(xaxis<sideSize) {
+                        print("*")
+                        xaxis++
+                }
+                else
+                {
+                        yaxis++
+                        xaxis=1
+                        println("*")
+                }
+
+        }
+}
+
+fun makeTriangle(sideSize: Int){
+
+        var yaxis = 0
+        var pointerX = 0
+        var astCount = 1
+        while(yaxis<sideSize)
+        {
+                if(pointerX<astCount) {
+                        print("*")
+                }
+                else {
+                        print(" ")
+                }
+                pointerX++
+                if(pointerX>sideSize){
+                        println("")
+                        yaxis++
+                        astCount++
+                        pointerX =0
+                }
+        }
+}
