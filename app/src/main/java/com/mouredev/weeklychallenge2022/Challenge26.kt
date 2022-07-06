@@ -17,8 +17,7 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
- */
-
+ 
 fun main() {
     print("Enter a shape [square, rectangle, triangle, reversedTriangle]: ")
 
