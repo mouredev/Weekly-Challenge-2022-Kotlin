@@ -17,4 +17,61 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
- */
+ 
+fun main() {
+    print("Enter a shape [square, rectangle, triangle, reversedTriangle]: ")
+
+    when(val shape = readLine()?.lowercase()) {
+        "square" -> {
+            val num = readNum("Enter a square side: ") ?: return
+            drawSquare(num)
+        }
+        "rectangle" -> {
+            val width = readNum("Enter rectangle width: ") ?: return
+            val height = readNum("Enter rectangle height: ") ?: return
+            drawRectangle(width, height)
+        }
+        "triangle", "reversedtriangle" -> {
+            val side = readNum("Enter the triangle side: ") ?: return
+            if(shape == "triangle"){
+                drawTriangle(side)
+            }else {
+                drawReversedTriangle(side)
+            }
+        }
+        else -> {
+            print("Ciao")
+        }
+    }
+}
+
+fun readNum(message: String): Int? {
+    print(message)
+    return readLine()?.toIntOrNull()
+}
+
+fun drawSquare(side: Int) {
+    val string = "*  ".repeat(side)
+
+    for(i in 0 until side){
+        println(string)
+    }
+}
+
+fun drawRectangle(width: Int, height: Int) {
+    for(i in 0 until height) {
+        println("* ".repeat(width))
+    }
+}
+
+fun drawTriangle(side: Int) {
+    for(i in 1..side){
+        println("* ".repeat(i))
+    }
+}
+
+fun drawReversedTriangle(side: Int) {
+    for(i in side downTo 1){
+        println("* ".repeat(i))
+    }
+}
