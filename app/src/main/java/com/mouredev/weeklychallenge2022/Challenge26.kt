@@ -18,3 +18,57 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+const n = 4
+
+// square
+for (let i = 1; i <= n; i++) {
+  let row = ''
+  for (let j = 1; j <=n; j++) {
+  	row += ' * '
+  }
+  console.log(row)
+}
+
+' *  *  *  * '
+' *  *  *  * '
+' *  *  *  * '
+' *  *  *  * '
+
+// pyramid
+for (let i = 1; i <=n; i++) {
+  let emptyRow = ''
+  for (let empty = 1; empty <= n-i; empty++) {
+    emptyRow += ' '
+  }
+
+  let cellRow = ''
+  for (let cell = 1; cell <= i; cell++) {
+    cellRow += ' * '
+  }
+  console.log(emptyRow + cellRow + emptyRow)
+}
+
+'    *    '
+'   *  *   '
+'  *  *  *  '
+' *  *  *  * '
+
+// inverse pyramid
+for (let i = n; i >= 1; i--) {
+  let emptyRow = ''
+  for (let empty = n-i; empty >=1; empty--) {
+    emptyRow += ' '
+  }
+
+  let cellRow = ''
+  for (let cell = i; cell >=1; cell--) {
+    cellRow += ' * '
+  }
+  console.log(emptyRow + cellRow + emptyRow)
+}
+
+' *  *  *  * '
+'  *  *  *  '
+'   *  *   '
+'    *    '
