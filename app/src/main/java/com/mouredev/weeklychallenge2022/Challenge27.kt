@@ -18,3 +18,29 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(sonVectoresOrtogonales(intArrayOf(1, -3), intArrayOf(-2, 4)))
+
+    println(sonVectoresOrtogonales(intArrayOf(2, -2), intArrayOf(2, 2)))
+
+    println(sonVectoresOrtogonales(intArrayOf(2, 4, 5), intArrayOf(-2, 3, 7)))
+
+    println(sonVectoresOrtogonales(intArrayOf(1, 2, 4), intArrayOf(-2, 1)))
+}
+
+fun sonVectoresOrtogonales(vectorA: IntArray, vectorB: IntArray): String {
+    var productoEscalar = 0
+    var index = 0
+
+    while (index < vectorA.size && index < vectorB.size) {
+        productoEscalar += vectorA[index] * vectorB[index]
+        index++
+    }
+
+    val vectoresAString = vectorA.contentToString() + vectorB.contentToString()
+
+    return if (productoEscalar == 0)
+        "Los Vectores: $vectoresAString son ortogonales"
+    else "Los Vectores: $vectoresAString no son ortogonales"
+}
