@@ -19,30 +19,44 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private enum class Figure {
-    SQUARE, TRIANGLE
+fun main() {
+    drawPolygon(10,PolygonType.SQUARE)
+    drawPolygon(15,PolygonType.TRIANGLE)
+    drawPolygon(12,PolygonType.DIAMOND)
 }
 
-private fun drawPolygon(side: Int, figure: Figure) {
-    if(side < 2) {
-        println("La figura debe tener al menos 2 de lado\n")
-    } else {
-        (1..side).forEach { row ->
-            (1..side).forEach { column ->
-                if(figure == Figure.SQUARE || column <= row) {
-                    print("* ")
+private enum class PolygonType {
+    SQUARE, TRIANGLE, DIAMOND
+}
+
+private fun drawPolygon(size: Int, type: PolygonType) {
+
+    if (size < 2) {
+        println("El tamaño debe ser mayor a 1")
+    }
+
+    var totalSize = size
+    if (type == PolygonType.DIAMOND) {
+        totalSize *= 2
+    }
+
+    for (value in 1..totalSize) {
+        when (type) {
+            PolygonType.SQUARE -> {
+                println("* ".repeat(totalSize))
+            }
+            PolygonType.TRIANGLE -> {
+                println("* ".repeat(value))
+            }
+            PolygonType.DIAMOND -> {
+                if (value <= size) {
+                    println("* ".repeat(value))
+                } else {
+                    println("${"  ".repeat(value - size)}${"* ".repeat(totalSize - value)}")
                 }
             }
-            println()
         }
-        println()
     }
-}
 
-fun main() {
-    drawPolygon(1, Figure.SQUARE)
-    drawPolygon(2, Figure.SQUARE)
-    drawPolygon(2, Figure.TRIANGLE)
-    drawPolygon(5, Figure.SQUARE)
-    drawPolygon(5, Figure.TRIANGLE)
+    println("")
 }
