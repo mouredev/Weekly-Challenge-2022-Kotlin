@@ -18,3 +18,13 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println("${isOrthogonal(arrayOf(1, -2), arrayOf(3, 4)) }")
+    println("${isOrthogonal(arrayOf(1, 0, 0), arrayOf(0, 1, 0)) }")
+}
+
+private fun isOrthogonal(a: Array<Int>, b: Array<Int>): Boolean {
+    if (a.size != b.size) return false
+    return a.mapIndexed { index, i -> i * b[index] }.sum() == 0
+}
