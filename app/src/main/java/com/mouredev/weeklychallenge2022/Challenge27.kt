@@ -18,3 +18,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+ fun main() {
+    val vector1 = listOf(1, 2, 0)
+    val vector2 = listOf(2, -1, 2)
+
+    if (isOrtogonal(vector1, vector2) == 0) println("Vectores ortogonales")
+    else println("Los vectores NO son ortogonales")
+}
+
+fun isOrtogonal(v1: List<Int>, v2: List<Int>): Int {
+    var total = 0
+
+    (0..(v1.size - 1)).forEach {
+        total += v1[it] * v2[it]
+    }
+
+    return total
+}
