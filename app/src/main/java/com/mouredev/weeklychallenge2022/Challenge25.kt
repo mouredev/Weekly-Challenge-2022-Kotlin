@@ -21,52 +21,56 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-
 fun main() {
-    var ganador = 0 // 0: empate, -1 gana Player 2, 1 gana Player 1
-
-
-    val entrada = listOf(Pair("R", "R"), Pair("S", "S"), Pair("R", "S"))
-
-    for (i in entrada) {
-        var j1 = i.first
-        var j2 = i.second
-
-        ganador += enfrentamiento(j1, j2)
-
-    }
-    if (ganador == 0) {
-        print("Tie")
-    } else if (ganador < 0) {
-        print("Player 2")
-    } else {
-        print("Player 1")
-    }
-
+    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.ROCK))))
+    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.SCISSORS))))
+    println(rockScissorsPaper(arrayListOf(Pair(Move.PAPER, Move.SCISSORS))))
+    println(rockScissorsPaper(arrayListOf(
+        Pair(Move.ROCK, Move.ROCK),
+        Pair(Move.SCISSORS, Move.SCISSORS),
+        Pair(Move.PAPER, Move.PAPER))))
+    println(rockScissorsPaper(arrayListOf(
+        Pair(Move.ROCK, Move.SCISSORS),
+        Pair(Move.SCISSORS, Move.PAPER),
+        Pair(Move.SCISSORS, Move.ROCK))))
+    println(rockScissorsPaper(arrayListOf(
+        Pair(Move.ROCK, Move.PAPER),
+        Pair(Move.SCISSORS, Move.ROCK),
+        Pair(Move.PAPER, Move.SCISSORS))))
 }
 
+enum class Move {
+    ROCK, SCISSORS, PAPER
+}
 
-fun enfrentamiento(jugador1: String, jugador2: String): Int {
-    var winner = 0
-    if (jugador1 == "R") {
-        if (jugador2 == "P") {
-            winner --
-        } else if (jugador2 == "S") {
-            winner ++
-        }
-    } else if (jugador1 == "S") {
-        if (jugador2 == "P") {
-            winner ++
-        } else if (jugador2 == "R") {
-            winner --
-        }
+private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
 
-    } else if (jugador1 == "P") {
-        if (jugador2 == "R") {
-            winner ++
-        } else if (jugador2 == "S") {
-            winner --
+    var playerOneGames = 0
+    var playerTwoGames = 0
+
+    games.forEach { game ->
+
+        val playerOneMove = game.first
+        val playerTwoMove = game.second
+
+        if (playerOneMove != playerTwoMove) {
+
+            if (playerOneMove == Move.ROCK && playerTwoMove == Move.SCISSORS
+                || playerOneMove == Move.SCISSORS && playerTwoMove == Move.PAPER
+                || playerOneMove == Move.PAPER && playerTwoMove == Move.ROCK) {
+
+                playerOneGames += 1
+            } else {
+                playerTwoGames += 1
+            }
         }
     }
-    return winner
+
+    return if (playerOneGames == playerTwoGames) {
+        "Tie"
+    } else if (playerOneGames > playerTwoGames) {
+        "Player 1"
+    } else {
+        "Player 2"
+    }
 }

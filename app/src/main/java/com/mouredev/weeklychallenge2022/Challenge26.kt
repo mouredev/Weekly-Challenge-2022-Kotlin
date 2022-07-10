@@ -20,32 +20,43 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    rectangulo(4, 6)
+    drawPolygon(10,PolygonType.SQUARE)
+    drawPolygon(15,PolygonType.TRIANGLE)
+    drawPolygon(12,PolygonType.DIAMOND)
 }
 
-fun triangulo(tamano: Int) {
-    for (i in 1..tamano) {
-        for (j in 1..i) {
-            print("*")
-        }
-        println()
-    }
+private enum class PolygonType {
+    SQUARE, TRIANGLE, DIAMOND
 }
 
-fun cuadrado(tamano: Int) {
-    for (i in 1..tamano) {
-        for (j in 1..tamano) {
-            print("*")
-        }
-        println()
-    }
-}
+private fun drawPolygon(size: Int, type: PolygonType) {
 
-fun rectangulo(ancho: Int, largo: Int) {
-    for (i in 1..largo) {
-        for (j in 1..ancho) {
-            print("*")
-        }
-        println()
+    if (size < 2) {
+        println("El tamaño debe ser mayor a 1")
     }
+
+    var totalSize = size
+    if (type == PolygonType.DIAMOND) {
+        totalSize *= 2
+    }
+
+    for (value in 1..totalSize) {
+        when (type) {
+            PolygonType.SQUARE -> {
+                println("* ".repeat(totalSize))
+            }
+            PolygonType.TRIANGLE -> {
+                println("* ".repeat(value))
+            }
+            PolygonType.DIAMOND -> {
+                if (value <= size) {
+                    println("* ".repeat(value))
+                } else {
+                    println("${"  ".repeat(value - size)}${"* ".repeat(totalSize - value)}")
+                }
+            }
+        }
+    }
+
+    println("")
 }

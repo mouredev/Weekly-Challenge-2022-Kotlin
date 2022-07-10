@@ -17,44 +17,70 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun bucleFor(){
-    for (i in 1..100){
-        println(i)
-    }
-}
+fun main() {
 
-fun bucleWhile(){
-    var i = 1
-    while (i <= 100){
-        println(i)
-        i++
-    }
-}
-fun bucleDoWhile(){
-    var i = 1
-    do{
-        println(i)
-        i++
-    }while (i <= 100)
-}
+    // 1
 
-fun bucleForEach(){
-    val lista = listOf<Int>(100)
-    for (i in lista){
-        println(i)
-    }
-}
+    println("**** 1 ****")
 
-fun lista(){
-    val lista = List(100){it+1}
-    lista.forEach {
-        println(it)
+    for (index in (1..100)) {
+        println(index)
     }
-}
 
-fun lista2(){
-    val a = 1..100
-    a.forEach {
-        println(it)
+    // 2
+
+    println("**** 2 ****")
+
+    (1..100).forEach { index ->
+        println(index)
     }
+
+    // 3
+
+    println("**** 3 ****")
+
+    var whileIndex = 1
+
+    while (whileIndex <= 100) {
+        println(whileIndex)
+        whileIndex += 1
+    }
+
+    // 4
+
+    println("**** 4 ****")
+
+    whileIndex = 1
+
+    do {
+        println(whileIndex)
+        whileIndex += 1
+    } while (whileIndex <= 100)
+
+    // 5
+
+    println("**** 5 ****")
+
+    fun print100(index: Int) {
+        if (index <= 100) {
+            println(index)
+            print100(index + 1)
+        }
+    }
+
+    print100(1)
+
+    // 6
+
+    println("**** 6 ****")
+
+    println((1..100).filter {
+        true
+    })
+
+    // 7
+
+    println("**** 7 ****")
+
+    println((1..100).map { it })
 }
