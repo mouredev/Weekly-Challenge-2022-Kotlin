@@ -65,3 +65,47 @@ private fun drawTriangle(side: Int) {
         println()
     }
 }
+
+
+
+fun mainSuyo() {
+    drawPolygon(10,PolygonType.SQUARE)
+    drawPolygon(15,PolygonType.TRIANGLE)
+    drawPolygon(12,PolygonType.DIAMOND)
+}
+
+private enum class PolygonType {
+    SQUARE, TRIANGLE, DIAMOND
+}
+
+private fun drawPolygon(size: Int, type: PolygonType) {
+
+    if (size < 2) {
+        println("El tamaño debe ser mayor a 1")
+    }
+
+    var totalSize = size
+    if (type == PolygonType.DIAMOND) {
+        totalSize *= 2
+    }
+
+    for (value in 1..totalSize) {
+        when (type) {
+            PolygonType.SQUARE -> {
+                println("* ".repeat(totalSize))
+            }
+            PolygonType.TRIANGLE -> {
+                println("* ".repeat(value))
+            }
+            PolygonType.DIAMOND -> {
+                if (value <= size) {
+                    println("* ".repeat(value))
+                } else {
+                    println("${"  ".repeat(value - size)}${"* ".repeat(totalSize - value)}")
+                }
+            }
+        }
+    }
+
+    println("")
+}
