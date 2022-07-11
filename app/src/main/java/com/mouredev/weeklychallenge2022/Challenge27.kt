@@ -18,3 +18,12 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(areOrthogonal(Pair(1, 2), Pair(2, 1)))
+    println(areOrthogonal(Pair(2, 1), Pair(-1, 2)))
+}
+
+private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
+    return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
+}
