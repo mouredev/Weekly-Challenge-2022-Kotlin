@@ -18,3 +18,38 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+
+fun main(){
+
+    val firstVector = arrayOf(1,3)
+    val secondVector = arrayOf(-3,1)
+
+    println(isOrthogonal(firstVector,secondVector))
+
+
+}
+
+private fun isOrthogonal(firstVector: Array<Int>, secondVector: Array<Int>): Boolean{
+
+
+    if(firstVector.size != secondVector.size)
+        return false
+
+    var sumVectors = 0
+
+    var mulVector = 1
+
+
+    for (i in 0..firstVector.size-1){
+        mulVector = firstVector[i]*secondVector[i]
+        sumVectors += mulVector
+    }
+
+
+    if(sumVectors !=0)
+        return false
+
+    return true
+}
