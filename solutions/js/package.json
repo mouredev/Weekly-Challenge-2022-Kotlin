@@ -1,0 +1,28 @@
+{
+  "name": "arialdev-mouredev-weekly-challenge-2022",
+  "version": "1.0.0",
+  "description": "Proyecto de retos semanales de la comunidad MoureDev para practicar Kotlin y Android.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "npx eslint --ext .js ./challenges",
+    "lint:fix": "npx eslint --fix --ext .js ./challenges"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arialdev/Mouredev-Weekly-Challenge-2022.git"
+  },
+  "author": "arialdev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022/issues"
+  },
+  "homepage": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022#readme",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jest": "^28.1.4",
+    "eslint": "^8.15.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "jest": "^28.1.0"
+  }
+}
