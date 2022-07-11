@@ -19,6 +19,15 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun mainSuya() {
+    println(areOrthogonal(Pair(1, 2), Pair(2, 1)))
+    println(areOrthogonal(Pair(2, 1), Pair(-1, 2)))
+}
+
+private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
+    return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
+}
+
 fun main() {
     val a = arrayOf(-2,1)
     val b = arrayOf(1,2)
