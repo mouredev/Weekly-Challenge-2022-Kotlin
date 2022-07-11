@@ -18,3 +18,20 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val a = arrayOf(-2,1)
+    val b = arrayOf(1,2)
+    if (checkOrtogonal(a, b)) {
+        println("Los vectores son ortogonales")
+    } else {
+        println("Los vectores NO son ortogonales")
+    }
+}
+
+fun checkOrtogonal(vec1: Array<Int>, vec2: Array<Int>): Boolean {
+
+    val productoEscalar = (vec1[0] * vec2[0]) + (vec1[1] * vec2[1])
+    println(productoEscalar)
+    return productoEscalar == 0
+}
