@@ -20,6 +20,7 @@
   "homepage": "https://github.com/arialdev/Mouredev-Weekly-Challenge-2022#readme",
   "type": "commonjs",
   "devDependencies": {
+    "@types/jest": "^28.1.4",
     "eslint": "^8.15.0",
     "eslint-plugin-jest": "^26.2.2",
     "jest": "^28.1.0"
