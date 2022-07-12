@@ -86,7 +86,7 @@ class MachineExpender:
         show = "Machine: %s\n" % self.name;
 
         if not self.products:
-            return " - no have products on this machine.";
+            return show+" - no have products on this machine.";
         
         show += "Number | Name | Price\n";
 
@@ -118,13 +118,12 @@ if __name__ == "__main__":
 
     #creamos la maquina:
     machine = MachineExpender("RearlanFDX expender");
-
-    #los precios en la maquina seran random en esta "prueba"
+    
+    #anyadimos productos
+    #los precios en la maquina seran random en esta "prueba":
 
     idNum = 0;
-
     for name in products:
-
         idNum += 1;
         
         price = 0;
