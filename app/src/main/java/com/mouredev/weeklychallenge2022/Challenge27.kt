@@ -20,6 +20,7 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+<<<<<<< HEAD
     println(sonVectoresOrtogonales(intArrayOf(1, -3), intArrayOf(-2, 4)))
 
     println(sonVectoresOrtogonales(intArrayOf(2, -2), intArrayOf(2, 2)))
@@ -43,4 +44,12 @@ fun sonVectoresOrtogonales(vectorA: IntArray, vectorB: IntArray): String {
     return if (productoEscalar == 0)
         "Los Vectores: $vectoresAString son ortogonales"
     else "Los Vectores: $vectoresAString no son ortogonales"
+=======
+    println(areOrthogonal(Pair(1, 2), Pair(2, 1)))
+    println(areOrthogonal(Pair(2, 1), Pair(-1, 2)))
+}
+
+private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
+    return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
+>>>>>>> upstream/main
 }
