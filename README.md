@@ -44,7 +44,10 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#23** - 07/06/22 - `MÁXIMO COMÚN DIVISOR Y MÍNIMO COMÚN MÚLTIPLO` 
 * **#24** - 13/06/22 - `ITERATION MASTER` 
 * **#25** - 20/06/22 - `PIEDRA, PAPEL, TIJERA` 
-* **#26** - 27/06/22 - `Publicación nuevo reto...`
+* **#26** - 27/06/22 - `CUADRADO Y TRIÁNGULO 2D` 
+* **#27** - 07/07/22 - `VECTORES ORTOGONALES`
+* **#28** - 11/07/22 - `MÁQUINA EXPENDEDORA`
+* **#29** - 18/07/22 - `Publicación nuevo reto...`
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
