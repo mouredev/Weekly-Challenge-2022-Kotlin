@@ -24,3 +24,91 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    val primeraCompra = Compra(4, arrayOf(5, 10, 50, 200))
+    primeraCompra.verCompra()
+
+    val segundaCompra = Compra(1, arrayOf(5, 10, 50, 200))
+    segundaCompra.verCompra()
+
+    val terceraCompra = Compra(7, arrayOf(5, 10, 5, 100))
+    terceraCompra.verCompra()
+}
+
+class Compra(numeroDeProducto: Int, private val monedas: Array<Int>) {
+
+    private val nombreDelProducto: String? = Productos.lista[numeroDeProducto]
+
+    private val precioDelProducto: Int? = Productos.precio[numeroDeProducto]
+
+    private val monedasFinales = mutableListOf<Int>()
+
+    private lateinit var estadoDeCompra: ESTADO_DE_COMPRA
+
+    init {
+        checkearTransaccion()
+    }
+
+    private fun checkearTransaccion() {
+        if (nombreDelProducto.isNullOrBlank()) {
+            estadoDeCompra = ESTADO_DE_COMPRA.NUMERO_INCORRECTO
+            return
+        } else if (!haySuficienteDinero()) {
+            estadoDeCompra = ESTADO_DE_COMPRA.DINERO_INSUFICIENTE
+            return
+        }
+        realizaTransaccion()
+    }
+
+    private fun realizaTransaccion() {
+        monedasFinales.addAll(monedas)
+        monedasFinales.sortDescending()
+
+        var suma = 0
+        for (moneda in monedasFinales) {
+            suma += moneda
+            if (suma >= precioDelProducto!!) {
+                monedasFinales.remove(moneda)
+                break
+            }
+        }
+        estadoDeCompra = ESTADO_DE_COMPRA.HECHO
+    }
+
+    fun haySuficienteDinero(): Boolean =
+        monedas.sum() >= (precioDelProducto ?: 5000)
+
+    fun verCompra() {
+        when (estadoDeCompra) {
+            ESTADO_DE_COMPRA.HECHO ->
+                println("Producto adquirido: $nombreDelProducto, Vuelto: $monedasFinales")
+            ESTADO_DE_COMPRA.NUMERO_INCORRECTO ->
+                println("Se ha ingresado un número incorrecto.")
+            else ->
+                println("No se ha ingresado el dinero suficiente.")
+        }
+    }
+}
+
+private enum class ESTADO_DE_COMPRA { DINERO_INSUFICIENTE, NUMERO_INCORRECTO, HECHO }
+
+private object Productos {
+    val lista = mapOf(
+        1 to "Coca-Cola",
+        2 to "Pepsi",
+        3 to "Fanta",
+        4 to "Sprite",
+        5 to "Agua",
+        6 to "Agua Gasificada"
+    )
+
+    val precio = mapOf(
+        1 to 300,
+        2 to 250,
+        3 to 150,
+        4 to 200,
+        5 to 50,
+        6 to 100
+    )
+}
