@@ -103,10 +103,7 @@ fun validateInput(pay: List<Int>, product: Product): Int {
 fun calculateRefund(totalRefund: Int, validCoin: List<Int>): List<Int> {
     val refund: MutableList<Int> = mutableListOf()
 
-    if (totalRefund == 0) {
-        refund.add(0)
-        return refund
-    }
+    if (totalRefund == 0) return refund
 
     var tRefund = totalRefund
 
