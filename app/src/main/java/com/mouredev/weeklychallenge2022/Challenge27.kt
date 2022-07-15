@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.lang.Math.abs
+
 /*
  * Reto #27
  * VECTORES ORTOGONALES
@@ -23,11 +25,13 @@ package com.mouredev.weeklychallenge2022
 
 fun main(){
 
-    val firstVector = arrayOf(1,3)
-    val secondVector = arrayOf(-3,1)
+//    val firstVector = arrayOf(1,3)
+//    val secondVector = arrayOf(-3,1)
+//
+//    println(isOrthogonal(firstVector,secondVector))
 
-    println(isOrthogonal(firstVector,secondVector))
-
+    val  height = intArrayOf(1,8,6,2,5,4,8,3,7)
+    print(maxArea2(height))
 
 }
 
@@ -52,4 +56,58 @@ private fun isOrthogonal(firstVector: Array<Int>, secondVector: Array<Int>): Boo
         return false
 
     return true
+}
+
+
+fun maxArea(height: IntArray): Int {
+
+
+    var mapAreas = mutableListOf<Int>()
+
+    var area =0
+    var maxArea =0
+
+    for(i in 0..height.size-1){
+        for (j in 0..height.size-1)
+        {
+            area = abs(height[i] - height[j])*j+1
+            mapAreas.add(area)
+        }
+    }
+
+    for(i in mapAreas)
+    {
+        if(i> maxArea)
+            maxArea = i
+    }
+    return maxArea
+}
+
+
+
+fun maxArea2(height: IntArray): Int {
+
+
+    var mapAreas = mutableMapOf<Int, Int>()
+
+    var area :Int=0
+    var maxArea =0
+    
+    for(i in 0..height.size-1){
+        mapAreas[i+1] = height[i]
+    }
+
+    var posEnd = height.size
+    for(i in 0..height.size-1)
+    {
+
+      mapAreas.mapValues { (key, value) -> if(i!= key) abs(value-i)*key }
+
+    }
+
+    mapAreas.forEach{
+        entry -> if(entry.value> maxArea) maxArea= entry.value
+    }
+
+    return maxArea
 }
