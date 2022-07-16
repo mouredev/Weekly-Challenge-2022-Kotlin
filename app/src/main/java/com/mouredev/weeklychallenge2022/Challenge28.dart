@@ -32,22 +32,28 @@ class Product {
 }
 
 class VendingMachine {
-  List<int> coins = []; //tipos de moneda
-  List<Product> products = []; //productos selecionables
-  List<int> coinsPay = []; //monedas en depósito ingreso/egreso
+  List<int> _coins = []; //tipos de moneda
+  List<Product> _products = []; //productos selecionables
+  List<int> _coinsPay = []; //monedas en depósito ingreso/egreso
 
-  VendingMachine({required this.coins, required this.products});
+  VendingMachine({required coins, required products}) {
+    _coins = coins;
+    _products = products;
+  }
 
-  String getProductName(int index) => products[index].name;
+  String getProductName(int index) => _products[index].name;
 
   insertCoins(List<int> pay) {
-    coinsPay = pay;
+    _coinsPay = pay;
+    for (var coin in pay)
+      if (!_coins.contains(coin))
+        throw Exception('$coin no es una moneda válida');
   }
 
   //Calcula del valor total de las monedas en deposito
   int _totalPay() {
     int totalPay = 0;
-    for (var coin in coinsPay) {
+    for (var coin in _coinsPay) {
       totalPay += coin;
     }
     return totalPay;
@@ -55,7 +61,7 @@ class VendingMachine {
 
   //Calcula el cambio en las monedas disponibles
   List<int> _getChange(int value) {
-    List<int> typesCoin = coins;
+    List<int> typesCoin = _coins;
     typesCoin.sort((a, b) => b.compareTo(a));
     List<int> exchange = [];
     int lastIndex = 0;
@@ -74,20 +80,20 @@ class VendingMachine {
   }
 
   selectOption(int option) {
-    if (option < 0 || option >= products.length)
+    if (option < 0 || option >= _products.length)
       throw Exception('No existe la opcion $option');
-    Product product = products[option];
+    Product product = _products[option];
     int total = _totalPay();
     if (product.price > total) {
       throw Exception('Dinero ingresado insuficiente');
     }
-    coinsPay = _getChange(total - product.price);
+    _coinsPay = _getChange(total - product.price);
   }
 
 //Retona las monedas del depósito y lo vacía
   List<int> returnCoins() {
-    List<int> exchange = List<int>.from(coinsPay);
-    coinsPay.clear();
+    List<int> exchange = List<int>.from(_coinsPay);
+    _coinsPay.clear();
     return exchange;
   }
 }
@@ -110,8 +116,8 @@ void main(List<String> args) {
     products: products,
   );
 
-  List<int> insertCoins = [200, 200];
-  int productOption = 1;
+  List<int> insertCoins = [200];
+  int productOption = 0;
   try {
     machine.insertCoins(insertCoins);
     machine.selectOption(productOption);
