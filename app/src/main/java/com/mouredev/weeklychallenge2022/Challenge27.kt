@@ -20,17 +20,10 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    val u: Array<Int> = arrayOf(2,0)
-    val v: Array<Int> = arrayOf(0,50)
-    print(is_ortogonal(u, v))
+    println(areOrthogonal(Pair(1, 2), Pair(2, 1)))
+    println(areOrthogonal(Pair(2, 1), Pair(-1, 2)))
 }
 
-
-fun is_ortogonal(u: Array<Int>, v: Array<Int>): Boolean {
-    if (u.size != v.size) return false
-    var sum = 0
-    for (i in u.indices) {
-        sum += u[i] * v[i]
-    }
-    return sum == 0
+private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
+    return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
 }
