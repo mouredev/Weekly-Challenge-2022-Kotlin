@@ -19,14 +19,11 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private fun areOrthogonal(vectorA: Array<Int>, vectorB: Array<Int>): Boolean {
-    return if(vectorA.size != 2 || vectorB.size != 2) false else vectorA[0] * vectorB[0] + vectorA[1] * vectorB[1] == 0
+fun main() {
+    println(areOrthogonal(Pair(1, 2), Pair(2, 1)))
+    println(areOrthogonal(Pair(2, 1), Pair(-1, 2)))
 }
 
-
-fun main() {
-    println(areOrthogonal(arrayOf(-1, 2), arrayOf(2, 1)))
-    println(areOrthogonal(arrayOf(2, 3), arrayOf(3, 2)))
-    println(areOrthogonal(arrayOf(), arrayOf(3, 2)))
-    println(areOrthogonal(arrayOf(1, 2, 3), arrayOf(3, 2)))
+private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
+    return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
 }
