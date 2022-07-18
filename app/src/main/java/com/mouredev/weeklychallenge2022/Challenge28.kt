@@ -48,7 +48,7 @@ data class Product(val productCode:Int,val name: String, val price: Int)
  * @see Coins
  */
 
-data class Monedero(val coins: Array<Coins>) {
+data class Bucket(val coins: Array<Coins>) {
     fun sum(): Int {
         return coins.map { it.value }.sum()
     }
@@ -58,7 +58,7 @@ data class Monedero(val coins: Array<Coins>) {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Monedero
+        other as Bucket
 
         if (!coins.contentEquals(other.coins)) return false
 
@@ -114,7 +114,7 @@ val machine = ExpendMachine(
 /**
  * Variable que contiene un monedero con varias monedas
  */
-val bucket = Monedero(
+val bucket = Bucket(
     arrayOf(
         Coins.TWO_HUNDRED,
         Coins.FIVE,
@@ -177,7 +177,7 @@ private fun getRefund(price: Int,money:Int):List<Coins>{
  *
  */
 
-private fun buyProduct(bucket: Monedero, productCode: Int,expendMachine: ExpendMachine) {
+private fun buyProduct(bucket: Bucket, productCode: Int,expendMachine: ExpendMachine) {
 
 
     val product = expendMachine.products.firstOrNull { it.productCode == productCode }
