@@ -17,6 +17,7 @@ import java.util.ArrayList;
  *
  * @author Miquel Fajardo <miquel.fajardo@protonmail.com>
  */
+
 public class MaquinaExpendedora {
     final static int CINCO_CENTIMOS = 0;
     final static int DIEZ_CENTIMOS = 1;
