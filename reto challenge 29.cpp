@@ -45,7 +45,7 @@ void integers_sort(int * integers,
 	
 	for (i=istart; i < end; i++){
 	
-		for (i2=istart; i2 < end; i2++){
+		for (i2=istart; i2 < i; i2++){
 			
 			//search sub index
 			if ( (isMinToMax && integers[i] < integers[i2]) || 
