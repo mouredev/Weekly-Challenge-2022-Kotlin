@@ -21,7 +21,6 @@ Puedes ver el programa ejecutado en la imagen: https://i.ibb.co/fqxx1ZV/ggggggg.
 
 
 
-
 void print_ints(int * integers, int lenght){
 
 	int i;
@@ -64,7 +63,6 @@ void integers_sort(int * integers,
 
 
 int main(int argc, char** argv) {
-	
 	
 	int myintegers[] = {
 		100, 120, 1000, 6, -8, 90, 110, -12, 100, 232,
