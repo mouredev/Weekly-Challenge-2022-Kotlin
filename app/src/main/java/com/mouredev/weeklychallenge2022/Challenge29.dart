@@ -101,7 +101,7 @@ void main(List<String> args) {
     return ordered;
   }
 
-  //Counting Sort--------------------------------------------------------------
+//Counting Sort--------------------------------------------------------------
   List<int> countingSort(List<int> input, {bool asc = true}) {
     List<int> ordered = [];
     //Determinar maximo y minimo
@@ -138,7 +138,7 @@ void main(List<String> args) {
   List<int> mergeSort(List<int> input, {bool asc = true}) {
     List<int> ordered = List<int>.from(input);
     //Dividir en listas a la mitad hasta que sean de logitud 1
-    if (ordered.length == 1) return ordered;
+    if (ordered.length <= 1) return ordered;
     int trunk = ordered.length ~/ 2;
     List<int> left = mergeSort(ordered.sublist(0, trunk));
     List<int> right = mergeSort(ordered.sublist(trunk, ordered.length));
@@ -171,20 +171,21 @@ void main(List<String> args) {
 
   print('Input: $disordered');
 
-  // print('Bubble Sort:');
-  // printBars(bubbleSort(disordered, asc: true));
-  // print(bubbleSort(disordered, asc: true));
+  print('Bubble Sort:');
+  printBars(bubbleSort(disordered, asc: true));
+  print(bubbleSort(disordered, asc: true));
 
-  // print('Cocktail Sort:');
-  // printBars(cocktailSort(disordered, asc: false));
-  // print(cocktailSort(disordered, asc: false));
+  print('Cocktail Sort:');
+  printBars(cocktailSort(disordered, asc: false));
+  print(cocktailSort(disordered, asc: false));
 
-  // print('Insertion Sort:');
-  // printBars(insertionSort(disordered, asc: false));
-  // print(insertionSort(disordered, asc: false));
+  print('Insertion Sort:');
+  printBars(insertionSort(disordered, asc: false));
+  print(insertionSort(disordered, asc: false));
 
-  // print('Counting Sort:');
-  // printBars(countingSort(disordered, asc: true));
+  print('Counting Sort:');
+  printBars(countingSort(disordered, asc: true));
+  print(countingSort(disordered, asc: true));
 
   print('Merged Sort:');
   printBars(mergeSort(disordered, asc: false));
