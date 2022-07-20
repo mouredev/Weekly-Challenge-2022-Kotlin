@@ -140,8 +140,9 @@ void main(List<String> args) {
     //Dividir en listas a la mitad hasta que sean de logitud 1
     if (ordered.length <= 1) return ordered;
     int trunk = ordered.length ~/ 2;
-    List<int> left = mergeSort(ordered.sublist(0, trunk));
-    List<int> right = mergeSort(ordered.sublist(trunk, ordered.length));
+    List<int> left = mergeSort(ordered.sublist(0, trunk), asc: asc);
+    List<int> right =
+        mergeSort(ordered.sublist(trunk, ordered.length), asc: asc);
 
     //Mezclar las listas odenando los elementos
     List<int> merged = [];
@@ -162,6 +163,26 @@ void main(List<String> args) {
     return asc ? merged.reversed.toList() : merged;
   }
 
+//Quick Sort--------------------------------------------------------------
+  List<int> quickSort(List<int> input, {bool asc = true}) {
+    List<int> ordered = [];
+    //caso base lista de logitud 1
+    if (input.length <= 1) return input;
+    //tomo un pivot
+    int pivot = input.removeLast();
+    List<int> left = [];
+    List<int> right = [];
+    //Separo en dos listas (menores y mayores que el pivot)
+    for (var num in input) {
+      (asc ? pivot > num : pivot < num) ? left.add(num) : right.add(num);
+    }
+    ordered.addAll(quickSort(left, asc: asc));
+    ordered.add(pivot);
+    ordered.addAll(quickSort(right, asc: asc));
+
+    return ordered;
+  }
+
   //MAIN-----------------------------------------------------------------------
   Random rng = Random();
   List<int> disordered = List<int>.generate(
@@ -171,23 +192,27 @@ void main(List<String> args) {
 
   print('Input: $disordered');
 
-  print('Bubble Sort:');
-  printBars(bubbleSort(disordered, asc: true));
-  print(bubbleSort(disordered, asc: true));
+  // print('Bubble Sort:');
+  // printBars(bubbleSort(disordered, asc: true));
+  // print(bubbleSort(disordered, asc: true));
 
-  print('Cocktail Sort:');
-  printBars(cocktailSort(disordered, asc: false));
-  print(cocktailSort(disordered, asc: false));
+  // print('Cocktail Sort:');
+  // printBars(cocktailSort(disordered, asc: false));
+  // print(cocktailSort(disordered, asc: false));
 
-  print('Insertion Sort:');
-  printBars(insertionSort(disordered, asc: false));
-  print(insertionSort(disordered, asc: false));
+  // print('Insertion Sort:');
+  // printBars(insertionSort(disordered, asc: false));
+  // print(insertionSort(disordered, asc: false));
 
-  print('Counting Sort:');
-  printBars(countingSort(disordered, asc: true));
-  print(countingSort(disordered, asc: true));
+  // print('Counting Sort:');
+  // printBars(countingSort(disordered, asc: true));
+  // print(countingSort(disordered, asc: true));
 
-  print('Merged Sort:');
-  printBars(mergeSort(disordered, asc: false));
-  print(mergeSort(disordered, asc: false));
+  // print('Merged Sort:');
+  // printBars(mergeSort(disordered, asc: false));
+  // print(mergeSort(disordered, asc: false));
+
+  print('Quick Sort:');
+  printBars(quickSort(disordered, asc: true));
+  print(quickSort(disordered, asc: true));
 }
