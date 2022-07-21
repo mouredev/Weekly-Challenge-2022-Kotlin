@@ -19,3 +19,60 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(orderList(mutableListOf(1, 3, 4, 6, 2, 10, 9, 8), "Asc"))
+    println(orderList(mutableListOf(1, 3, 4, 6, 2, 10, 9, 8), "Desc"))
+    println(orderList(mutableListOf(100, 531, 69, 420, 3, 862, 591), "Asc"))
+    println(orderList(mutableListOf(100, 531, 69, 420, 3, 862, 591), "Desc"))
+}
+
+private fun orderList(list: MutableList<Int>, sortType: String): List<Int> {
+    val newList = mutableListOf<Int>()
+    list.forEachIndexed givenList@{ index, num ->
+        val clonedNewList = newList.toMutableList()
+        if (index == 0) {
+            // First index, adding to first and skipping
+            newList.add(num)
+            return@givenList
+        }
+        run breaking@{
+            if (sortType == "Asc") {
+                // Is ascending
+                clonedNewList.forEachIndexed newList@{ indexNew, numNew ->
+                    if (num > numNew) {
+                        if (indexNew == clonedNewList.lastIndex) {
+                            // Is last index, adding num to indexNew + 1
+                            newList.add(indexNew + 1, num)
+                        } else {
+                            // Not last index, going to next indexNew
+                            return@newList
+                        }
+                    } else {
+                        // num < numNew, adding $num to index $indexNew
+                        newList.add(indexNew, num)
+                        return@breaking
+                    }
+                }
+            } else if (sortType == "Desc") {
+                // Is descending
+                clonedNewList.forEachIndexed newList@{ indexNew, numNew ->
+                    if (num < numNew) {
+                        if (indexNew == clonedNewList.lastIndex) {
+                            // Is last index, adding num to indexNew + 1
+                            newList.add(indexNew + 1, num)
+                        } else {
+                            // Not last index, going to next indexNew
+                            return@newList
+                        }
+                    } else {
+                        // num < numNew, adding $num to index $indexNew
+                        newList.add(indexNew, num)
+                        return@breaking
+                    }
+                }
+            }
+        }
+    }
+    return newList
+}
