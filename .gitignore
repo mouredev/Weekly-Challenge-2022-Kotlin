@@ -235,3 +235,9 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,kotlin
+.vscode/launch.json
+/app/src/main/java/com/mouredev/weeklychallenge2022/node_modules/
+app/src/main/java/com/mouredev/weeklychallenge2022/package-lock.json
+app/src/main/java/com/mouredev/weeklychallenge2022/package.json
+src/Weekly-Challenge-2022-Kotlin.code-workspace
+.vscode/settings.json
