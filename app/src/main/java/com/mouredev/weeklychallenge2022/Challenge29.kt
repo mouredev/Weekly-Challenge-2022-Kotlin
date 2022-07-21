@@ -19,3 +19,78 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun sortList(lista:List<Int>,orden:String):List<Int>{
+    when(orden){
+        "Asc" -> return asc(lista)
+        "Desc" -> return desc(lista)
+        else ->{
+            return lista
+        }
+    }
+}
+
+fun asc(items:List<Int>):List<Int>{                 //quicksort
+    // Return if the input list is empty or only has 1 entry, since it's already sorted
+    if (items.size <= 1) {
+        return items
+    }
+
+    // Pick a pivot
+    val chosenItem: Int = items[items.size / 2]
+
+    // Partition items in three sets: smaller, equal and greater than chosen item
+    val smallerList: MutableList<Int> = mutableListOf()
+    val equalList: MutableList<Int> = mutableListOf()
+    val greaterList: MutableList<Int> = mutableListOf()
+    items.forEach {
+        when {
+            it < chosenItem -> smallerList.add(it)
+            it > chosenItem -> greaterList.add(it)
+            else -> equalList.add(it)
+        }
+    }
+
+    // Combine results and return
+    val sortedList: MutableList<Int> = mutableListOf()
+    sortedList.addAll(asc(smallerList)) // Recursive call
+    sortedList.addAll(equalList)
+    sortedList.addAll(asc(greaterList)) // Recursive call
+    return sortedList
+}
+fun desc(items:List<Int>):List<Int>{
+
+    // Return if the input list is empty or only has 1 entry, since it's already sorted
+    if (items.size <= 1) {
+        return items
+    }
+
+    // Pick a pivot
+    val chosenItem: Int = items[items.size / 2]
+
+    // Partition items in three sets: smaller, equal and greater than chosen item
+    val smallerList: MutableList<Int> = mutableListOf()
+    val equalList: MutableList<Int> = mutableListOf()
+    val greaterList: MutableList<Int> = mutableListOf()
+    items.forEach {
+        when {
+            it < chosenItem -> smallerList.add(it)
+            it > chosenItem -> greaterList.add(it)
+            else -> equalList.add(it)
+        }
+    }
+
+    // Combine results and return
+    val sortedList: MutableList<Int> = mutableListOf()
+    sortedList.addAll(desc(greaterList))
+    sortedList.addAll(equalList)
+    sortedList.addAll(desc(smallerList))
+    return sortedList
+}
+fun main(){
+   val numbers = listOf<Int>(2,4,7,3,6,9,1,0)
+    println(sortList(numbers,"Asc"))
+    println(sortList(numbers,"Desc"))
+    println(sortList(numbers,"Ascc"))
+
+}
