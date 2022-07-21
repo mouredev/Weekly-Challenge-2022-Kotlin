@@ -242,3 +242,6 @@ app/src/main/java/com/mouredev/weeklychallenge2022/package.json
 src/Weekly-Challenge-2022-Kotlin.code-workspace
 .vscode/settings.json
 node_modules/
+package-lock.json
+package.json
+
