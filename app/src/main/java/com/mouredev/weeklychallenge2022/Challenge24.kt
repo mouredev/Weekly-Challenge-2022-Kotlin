@@ -17,70 +17,30 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun withFor1() {
+	for(i in 0..100){
+		println(i)
+	}
+}
 
-    // 1
+fun withFor2() {
+	var arrayNumbers = arrayOf(1..100)
+	arrayNumbers.forEach {
+		println(it)
+	}
+}
 
-    println("**** 1 ****")
+fun withFor3() {
+	var arrayNumbers = arrayOf(1..100)
+	for(i in arrayNumbers){
+		println(i)
+	}
+}
 
-    for (index in (1..100)) {
-        println(index)
-    }
-
-    // 2
-
-    println("**** 2 ****")
-
-    (1..100).forEach { index ->
-        println(index)
-    }
-
-    // 3
-
-    println("**** 3 ****")
-
-    var whileIndex = 1
-
-    while (whileIndex <= 100) {
-        println(whileIndex)
-        whileIndex += 1
-    }
-
-    // 4
-
-    println("**** 4 ****")
-
-    whileIndex = 1
-
-    do {
-        println(whileIndex)
-        whileIndex += 1
-    } while (whileIndex <= 100)
-
-    // 5
-
-    println("**** 5 ****")
-
-    fun print100(index: Int) {
-        if (index <= 100) {
-            println(index)
-            print100(index + 1)
-        }
-    }
-
-    print100(1)
-
-    // 6
-
-    println("**** 6 ****")
-
-    println((1..100).filter {
-        true
-    })
-
-    // 7
-
-    println("**** 7 ****")
-
-    println((1..100).map { it })
+fun withWhile(){
+	var num: Int = 1
+	while(num <= 100) {
+		println(num)
+		num++
+	}
 }

@@ -19,11 +19,28 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun mainSuya() {
     println(areOrthogonal(Pair(1, 2), Pair(2, 1)))
     println(areOrthogonal(Pair(2, 1), Pair(-1, 2)))
 }
 
 private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
     return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
+}
+
+fun main() {
+    val a = arrayOf(-2,1)
+    val b = arrayOf(1,2)
+    if (checkOrtogonal(a, b)) {
+        println("Los vectores son ortogonales")
+    } else {
+        println("Los vectores NO son ortogonales")
+    }
+}
+
+fun checkOrtogonal(vec1: Array<Int>, vec2: Array<Int>): Boolean {
+
+    val productoEscalar = (vec1[0] * vec2[0]) + (vec1[1] * vec2[1])
+    println(productoEscalar)
+    return productoEscalar == 0
 }

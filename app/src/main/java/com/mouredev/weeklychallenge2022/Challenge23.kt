@@ -19,31 +19,30 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(mcd(56, 180))
-    println(mcdRecursive(56, 180))
-    println(mcm(56, 180))
+    val num1 = 10
+    val num2 = 15
+    println("MCD de $num1 y $num2 es " + mcdCalculator(num1, num2))
+    println("MCD de $num1 y $num2 recursivo es " + mcdCalculatorRecursive(num1, num2))
+    println("MCM de $num1 y $num2 es " + mcmCalculator(num1, num2))
 }
 
-private fun mcd(firstNumber: Int, secondNumber: Int): Int {
+fun mcdCalculatorRecursive(num1: Int, num2: Int): Int {
+    if (num2 == 0) return num1
+    return mcdCalculatorRecursive(num2, num1 % num2);
+}
 
-    var a = firstNumber
-    var b = secondNumber
-
-    while (a != 0 && b != 0) {
-        val temp = b
-        b = a % b
-        a = temp
+fun mcdCalculator(num1: Int, num2: Int): Int {
+    var aux1: Int = num1
+    var aux2: Int = num2
+    var temp: Int
+    while (aux2 > 0) {
+        temp = aux2
+        aux2 = aux1 % aux2
+        aux1 = temp
     }
-
-    return a + b
+    return aux1
 }
 
-private fun mcm(firstNumber: Int, secondNumber: Int): Int {
-    return (firstNumber * secondNumber) / mcd(firstNumber, secondNumber)
+fun mcmCalculator(a: Int, b: Int): Int {
+    return a * b / mcdCalculator(a, b)
 }
-
-private fun mcdRecursive(firstNumber: Int, secondNumber: Int): Int {
-    return if (firstNumber == 0 || secondNumber == 0) (firstNumber + secondNumber)
-        else mcdRecursive(secondNumber, firstNumber % secondNumber)
-}
-

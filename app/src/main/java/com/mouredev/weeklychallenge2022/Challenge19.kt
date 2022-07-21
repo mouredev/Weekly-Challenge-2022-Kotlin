@@ -16,19 +16,41 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
 fun main() {
-    println(timeToMillis(0, 0, 0, 10))
-    println(timeToMillis(2, 5, -45, 10))
-    println(timeToMillis(2000000000, 5, 45, 10))
+	val tm = calculateMilliseconds(3, 10, 14, 22)
+	println("Milisegundos totales $tm")
 }
 
-fun timeToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
+fun calculateMilliseconds(days: Int?, hours: Int?, minutes: Int?, seconds: Int?): Int {
+	var millisecondsTotal = 0
 
-    val daysInMillis = days.toLong() * 24 * 60 * 60 * 1000
-    val hoursInMillis = hours.toLong() * 60 * 60 * 1000
-    val minutesInMillis = minutes.toLong() * 60 * 1000
-    val secondsToMillis = seconds.toLong() * 1000
+	if (days != null) {
+		millisecondsTotal = daysToMilliseconds(days)
+	}
+	if (hours != null) {
+		millisecondsTotal += hoursToMilliseconds(hours)
+	}
+	if (minutes != null) {
+		millisecondsTotal += minutesToMilliseconds(minutes)
+	}
+	if (seconds != null) {
+		millisecondsTotal += secondsToMilliseconds(seconds)
+	}
+	return millisecondsTotal
+}
 
-    return daysInMillis + hoursInMillis + minutesInMillis + secondsToMillis
+fun daysToMilliseconds(days: Int): Int {
+	return hoursToMilliseconds(days * 24)
+}
+
+fun hoursToMilliseconds(hours: Int): Int {
+	return minutesToMilliseconds(hours * 60)
+}
+
+fun minutesToMilliseconds(minutes: Int): Int {
+	return secondsToMilliseconds(minutes * 60)
+}
+
+fun secondsToMilliseconds(seconds: Int): Int {
+	return seconds * 1000
 }
