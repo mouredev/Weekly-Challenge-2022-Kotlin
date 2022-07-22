@@ -22,6 +22,12 @@
 # - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
 # - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
 #
+# Solution
+# requirements: 
+# ruby 2.7.3
+#
+# run with:
+# ruby Challenge28_test.rb
 
 class Main
   def initialize(options = {})
