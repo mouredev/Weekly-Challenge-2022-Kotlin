@@ -25,70 +25,51 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun main(){
 
-    println(buy(1, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE)))
-    println(buy(3, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE)))
-    println(buy(1, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE, Money.FIFTY)))
-    println(buy(5, arrayOf(Money.TWOHUNDRED)))
-
+    val cashFromUser = listOf<Int>(5, 5, 20, 200)
+    val product = 1
+    val buy = buy(cashFromUser, product)
+    print(buy)
 }
 
-enum class Money(val money: Int) {
+fun buy(cashFromUser:List<Int>, productSelected: Int): Pair<String, MutableList<Int>> {
 
-    FIVE(5),
-    TEN(10),
-    FIFTY(50),
-    ONEHUNDRED(100),
-    TWOHUNDRED(200)
-
-}
-
-private fun buy(code: Int, money: Array<Money>): Pair<String, Array<Money>> {
-
-    val products = mapOf<Int, Pair<String, Int>>(
-        1 to Pair("Agua", 50),
-        2 to Pair("Coca-Cola", 100),
-        4 to Pair("Cerveza", 155),
-        5 to Pair("Pizza", 200),
-        10 to Pair("Donut", 75)
+    val products = mapOf(
+        1 to Pair("cookie",100),
+        2 to Pair("snack", 200),
+        3 to Pair("coffee",600),
+        4 to Pair("water",700)
     )
+    val (product, price) = products[productSelected] as Pair
 
-    products[code]?.let { product ->
+    if (cashFromUser.sum() < price) print("You don't have enough cash")
 
-        var totalMoney = 0
-        money.forEach { coin ->
-            totalMoney += coin.money
-        }
+    val cashBack = cashBack(cashFromUser, price)
 
-        if (totalMoney < product.second) {
-            return Pair("El producto con código [${code}] tiene un coste ${product.second}. Has introducido ${totalMoney}.", money)
-        }
+    return Pair(product, cashBack)
 
-        val pendingMoney = totalMoney - product.second
-
-        return Pair(product.first, returnMoney(pendingMoney))
-    }
-
-    return Pair("El producto con código [${code}] no existe.", money)
 }
 
-private  fun returnMoney(pendingMoney: Int, money: Array<Money> = arrayOf()): Array<Money> {
+fun cashBack(cashFromUser:List<Int>, price : Int): MutableList<Int> {
 
-    if (pendingMoney == 0) {
-        return money
-    }
+    var cashBackInt = cashFromUser.sum().minus(price)
+    val allowedCash = listOf(200, 100, 50, 10, 5)
+    val cashBack = mutableListOf<Int>()
 
-    var newPendingMoney = pendingMoney
-    val newMoney = money.toMutableList()
-
-    for (coin in Money.values().reversed()) {
-        if (coin.money <= pendingMoney) {
-            newPendingMoney -= coin.money
-            newMoney.add(coin)
-            break
+    if (cashBackInt in allowedCash) {
+        cashBack.add(cashBackInt)
+    } else{
+        while (cashBackInt > 0){
+            for (money in allowedCash){
+                if (cashBackInt >= money){
+                    cashBack.add(money)
+                    cashBackInt -= money
+                    break
+                }
+            }
         }
     }
 
-    return returnMoney(newPendingMoney, newMoney.toTypedArray())
+    return cashBack
 }
