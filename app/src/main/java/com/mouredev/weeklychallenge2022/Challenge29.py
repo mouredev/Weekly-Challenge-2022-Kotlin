@@ -18,11 +18,6 @@
 
 from random import randint
 
-orden = {
-    'ASC': False,
-    'DES': True
-}
-
 def bubblesort(vector, reverse=False):
     intercambio = True
     while intercambio:
