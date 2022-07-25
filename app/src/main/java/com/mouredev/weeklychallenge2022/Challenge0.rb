@@ -22,6 +22,10 @@
 #   publicación.
 #
 #
+# Solución
+# Requerimiento: Ruby 2.7.1
+#
+#
 
 def fizzbuzz
   (1..100).map do |elem|
