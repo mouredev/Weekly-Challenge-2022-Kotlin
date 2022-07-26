@@ -25,3 +25,35 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main (){
+    println(wordsFrame("¿Qué te parece el reto?"))
+    println(wordsFrame("El esternocleidomastoideo es el musculo con el nombre mas largo"))
+}
+
+private fun wordsFrame(text: String): String {
+    val words = text.split(" ")
+    var lenght = 0
+
+    for (word in words) {
+        if (word.length > lenght) {
+            lenght = word.length
+        }
+    }
+
+    return generateResult(words, lenght)
+}
+
+private fun generateResult(words: List<String>, lenght: Int): String {
+    var result = ""
+
+    result = "*".repeat(lenght + 4) +"\n"
+    for (word in words) {
+        result += "* $word"+  " ".repeat(lenght - word.length + 1) + "*\n"
+    }
+    result += "*".repeat(lenght + 4)
+
+    return result
+}
+
+
+
