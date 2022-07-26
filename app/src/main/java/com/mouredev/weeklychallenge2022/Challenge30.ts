@@ -38,4 +38,3 @@ const generateAsterisks = (quantity: number): string => {
 console.log(main("Hola"));
 console.log(main("¿Qué te parece el reto?"));
 console.log(main("Tres tristes tigres, tragaban trigo en un trigal, en tres tristes trastos, tragaban trigo tres tristes tigres"));
-console.log("");
