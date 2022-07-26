@@ -19,3 +19,34 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    println(sort(arrayListOf(4, 6, 1, 8, 2), true)) // 1, 2, 4, 6, 8
+    println(sort(arrayListOf(4, 6, 1, 8, 2), false)) // 8, 6, 4, 2, 1
+}
+
+fun sort(numbers: List<Int>, asc: Boolean): List<Int> {
+
+    val sortedNumbers = mutableListOf<Int>()
+
+    for (number in numbers) {
+
+        var added = false
+
+        for ((index, sortedNumber) in sortedNumbers.withIndex()) {
+
+            if (if(asc) number < sortedNumber else number > sortedNumber) {
+                sortedNumbers.add(index, number)
+                added = true
+                break
+            }
+        }
+
+        if (!added) {
+            sortedNumbers.add(number)
+        }
+    }
+
+    return sortedNumbers
+}
+
