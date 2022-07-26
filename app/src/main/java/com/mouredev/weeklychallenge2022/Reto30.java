@@ -66,7 +66,7 @@ public class Reto30 {
                 currentWord = getFormattedLine(currentWord, largerWord);
                 System.out.println(currentWord);
             } catch (ArrayIndexOutOfBoundsException e) {
-                continue; //Si se llega aquo es porque todas las palabras estan dentro del marco
+                continue; //Si se llega aqui es porque todas las palabras estan dentro del marco
             }
         }
         printVerticalBorders(largerWord); //Imprimir el vertical de abajo
