@@ -14,10 +14,8 @@ function main(text: string): string {
     transformedWord += "* " + word + " *\n";
   }
 
-  transformedWord =
-    generateAsterisks(longitude) +
-    transformedWord +
-    generateAsterisks(longitude);
+  const asterisks = generateAsterisks(longitude);
+  transformedWord = asterisks + transformedWord + asterisks;
 
   return transformedWord;
 }
