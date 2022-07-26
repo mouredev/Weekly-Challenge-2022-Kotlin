@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import org.omg.CORBA.ORB.init
-
 /*
  * Reto #28
  * MÁQUINA EXPENDEDORA
@@ -27,53 +25,70 @@ import org.omg.CORBA.ORB.init
  *
  */
 
-private enum class Coin(val value: Int) {
+fun main() {
+
+    println(buy(1, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE)))
+    println(buy(3, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE)))
+    println(buy(1, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE, Money.FIFTY)))
+    println(buy(5, arrayOf(Money.TWOHUNDRED)))
+
+}
+
+enum class Money(val money: Int) {
+
     FIVE(5),
     TEN(10),
     FIFTY(50),
-    ONE_HUNDRED(100),
-    TWO_HUNDRED(200)
+    ONEHUNDRED(100),
+    TWOHUNDRED(200)
+
 }
 
-private class Product(val name: String, val number: Int, val value: Int)
+private fun buy(code: Int, money: Array<Money>): Pair<String, Array<Money>> {
 
-private fun getExchange(value: Int): Array<Coin> {
-    var rest = value
-    var result: MutableList<Coin> = mutableListOf()
-    do {
-        val biggestCoin = Coin.values().filter{ it.value <= rest }.sorted().last()
-        rest -= biggestCoin.value
-        result.add(biggestCoin)
-    } while(rest > 0)
-    return result.toTypedArray()
-}
-
-private fun getProduct(productNumber: Int, money: Array<Coin>): Pair<String, Array<Coin>> {
-    val machineProducts = arrayOf(
-        Product("Estrella Galicia", 1, 120),
-        Product("Alhambra Lager Singular", 2, 120),
-        Product("Estrella Galicia 1906", 3, 180),
-        Product("Alhambra Reserva 1900", 4, 180),
-        Product("Heineken", 5, 20)
+    val products = mapOf<Int, Pair<String, Int>>(
+        1 to Pair("Agua", 50),
+        2 to Pair("Coca-Cola", 100),
+        4 to Pair("Cerveza", 155),
+        5 to Pair("Pizza", 200),
+        10 to Pair("Donut", 75)
     )
 
-    val selectedProducts = machineProducts.filter{ it.number == productNumber}
-    return if(selectedProducts.size == 0) {
-        println("Ningún producto tiene el identificador $productNumber")
-        Pair("", money)
-    } else if(selectedProducts[0].value > money.sumOf{ it.value }) {
-        println("Saldo insuficiente")
-        Pair("", money)
-    } else {
-        Pair(selectedProducts[0].name, getExchange(money.sumOf{ it.value } - selectedProducts[0].value))
+    products[code]?.let { product ->
+
+        var totalMoney = 0
+        money.forEach { coin ->
+            totalMoney += coin.money
+        }
+
+        if (totalMoney < product.second) {
+            return Pair("El producto con código [${code}] tiene un coste ${product.second}. Has introducido ${totalMoney}.", money)
+        }
+
+        val pendingMoney = totalMoney - product.second
+
+        return Pair(product.first, returnMoney(pendingMoney))
     }
+
+    return Pair("El producto con código [${code}] no existe.", money)
 }
 
-fun main() {
-    var product = getProduct(7, arrayOf(Coin.FIFTY))
-    println(if(product.first.isEmpty()) "" else "Producto: ${product.first} - monedas: ${product.second.map{ it.value }}")
-    product = getProduct(1, arrayOf(Coin.FIFTY, Coin.FIFTY))
-    println(if(product.first.isEmpty()) "" else "Producto: ${product.first} - monedas: ${product.second.map{ it.value }}")
-    product = getProduct(2, arrayOf(Coin.TWO_HUNDRED))
-    println(if(product.first.isEmpty()) "" else "Producto: ${product.first} - monedas: ${product.second.map{ it.value }}")
+private  fun returnMoney(pendingMoney: Int, money: Array<Money> = arrayOf()): Array<Money> {
+
+    if (pendingMoney == 0) {
+        return money
+    }
+
+    var newPendingMoney = pendingMoney
+    val newMoney = money.toMutableList()
+
+    for (coin in Money.values().reversed()) {
+        if (coin.money <= pendingMoney) {
+            newPendingMoney -= coin.money
+            newMoney.add(coin)
+            break
+        }
+    }
+
+    return returnMoney(newPendingMoney, newMoney.toTypedArray())
 }
