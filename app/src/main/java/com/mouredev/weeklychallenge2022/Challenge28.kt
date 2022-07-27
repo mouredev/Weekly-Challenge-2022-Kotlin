@@ -26,52 +26,69 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    val mis_monedas= arrayOf(Monedas.CIEN,Monedas.DOSCIENTOS)
-    val mi_producto:Productos=Productos.BEBIDA;
 
-    val mi_pedido:Pedido = (Pedido(mi_producto, mis_monedas))
-    mi_pedido.calcular_vuelta()
+    println(buy(1, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE)))
+    println(buy(3, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE)))
+    println(buy(1, arrayOf(Money.FIVE, Money.FIVE, Money.TEN, Money.TEN, Money.TEN, Money.FIVE, Money.FIFTY)))
+    println(buy(5, arrayOf(Money.TWOHUNDRED)))
 
 }
 
+enum class Money(val money: Int) {
 
-private enum class Monedas(val valor: Int) {
-    CINCO(5),
-    DIEZ(10),
-    CINCUENTA(50),
-    CIEN(100),
-    DOSCIENTOS(200)
+    FIVE(5),
+    TEN(10),
+    FIFTY(50),
+    ONEHUNDRED(100),
+    TWOHUNDRED(200)
+
 }
 
-private enum class Productos(val id: Int, val precio: Int) {
-    BEBIDA(1, 300),
-    GASEOSA(2, 100),
-    JUGO(3, 500),
-    REFRESCO(4, 5)
-}
+private fun buy(code: Int, money: Array<Money>): Pair<String, Array<Money>> {
 
-private class Pedido(val producto: Productos, val monedas: Array<Monedas>){
-    fun calcular_vuelta(): Array<Int>{
-        val vuelta = ArrayList<Int>()
-        val precio = producto.precio
-        var dinero = 0
-        for (moneda in monedas) {
-            dinero += moneda.valor
+    val products = mapOf<Int, Pair<String, Int>>(
+        1 to Pair("Agua", 50),
+        2 to Pair("Coca-Cola", 100),
+        4 to Pair("Cerveza", 155),
+        5 to Pair("Pizza", 200),
+        10 to Pair("Donut", 75)
+    )
+
+    products[code]?.let { product ->
+
+        var totalMoney = 0
+        money.forEach { coin ->
+            totalMoney += coin.money
         }
-        if (dinero < precio) {
-            println("Monedas insuficientes")
-            return vuelta.toTypedArray()
+
+        if (totalMoney < product.second) {
+            return Pair("El producto con código [${code}] tiene un coste ${product.second}. Has introducido ${totalMoney}.", money)
         }
-        while (dinero >= precio) {
-            for (moneda in monedas) {
-                if (dinero >= moneda.valor) {
-                    vuelta.add(moneda.valor)
-                    dinero -= moneda.valor
-                    break
-                }
-            }
-        }
-        println("Producto: $producto, Vuelta: $vuelta")
-        return vuelta.toTypedArray()
+
+        val pendingMoney = totalMoney - product.second
+
+        return Pair(product.first, returnMoney(pendingMoney))
     }
+
+    return Pair("El producto con código [${code}] no existe.", money)
+}
+
+private  fun returnMoney(pendingMoney: Int, money: Array<Money> = arrayOf()): Array<Money> {
+
+    if (pendingMoney == 0) {
+        return money
+    }
+
+    var newPendingMoney = pendingMoney
+    val newMoney = money.toMutableList()
+
+    for (coin in Money.values().reversed()) {
+        if (coin.money <= pendingMoney) {
+            newPendingMoney -= coin.money
+            newMoney.add(coin)
+            break
+        }
+    }
+
+    return returnMoney(newPendingMoney, newMoney.toTypedArray())
 }
