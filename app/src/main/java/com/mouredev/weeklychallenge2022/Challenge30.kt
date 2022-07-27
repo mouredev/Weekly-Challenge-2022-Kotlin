@@ -25,3 +25,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun  main(){
+    wordFrame("Frase de prueba: Hola Hackermen Que tal estais")
+}
+
+fun wordFrame(phrase : String){
+    val stringList = phrase.split(" ")
+    val greatestWord = stringList.sortedBy { it.length }.last()
+    println("*".repeat(greatestWord.length+4))
+    stringList.forEach{
+        print("* $it${spacing(it, greatestWord)}")
+        println(" *")
+    }
+    println("*".repeat(greatestWord.length+4))
+}
+
+fun spacing(string : String, greatestWord: String): String {
+    return if (string.length < greatestWord.length) {
+        " ".repeat(greatestWord.length - string.length)
+    } else ""
+}
