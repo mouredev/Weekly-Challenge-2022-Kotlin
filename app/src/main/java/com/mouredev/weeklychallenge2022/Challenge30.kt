@@ -25,3 +25,33 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+fun main(){
+
+    val sentence = "this is my sentence this is a word"
+    markedWords(sentence)
+
+}
+
+
+
+
+fun markedWords(sentence: String){
+
+   val arrSentence = sentence.split(" ")
+   var maxLength = 0
+   for( word in arrSentence) {
+       if(word.length>maxLength)
+           maxLength = word.length
+   }
+
+    val mapString = arrSentence.map { word -> "* "+word+" ".repeat(maxLength-word.length)+" *" }
+
+    println("*".repeat(maxLength+4))
+
+    mapString.forEach{ println(it)}
+
+    println("*".repeat(maxLength+4))
+
+}
