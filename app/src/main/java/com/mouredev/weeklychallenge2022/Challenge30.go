@@ -23,8 +23,8 @@ func imprimirPalabras(letras int, palabras []string) {
 }
 
 func imprimirAsteriscos(letras int) {
-	for i := 0; i < letras-2; i++ {
-		fmt.Print("* ")
+	for i := 0; i < letras+4; i++ {
+		fmt.Print("*")
 	}
 	fmt.Print("\n")
 }
