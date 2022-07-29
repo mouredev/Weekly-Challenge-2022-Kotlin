@@ -25,3 +25,23 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    marcoDePalabras("Hello, world!!! Test")
+}
+
+fun marcoDePalabras(frase: String){
+    var lFrase: List<String>
+    lFrase=frase.split(" ")
+    var maxLen: Int=0
+    for (word in lFrase){
+        maxLen= maxOf(word.length,maxLen)
+    }
+    
+    println("*".repeat(maxLen+4))
+    for (word in lFrase){
+        println("* " + word + " ".repeat(maxLen-word.length)+" *")
+    }
+    println("*".repeat(maxLen+4))
+    
+}
