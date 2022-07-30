@@ -51,3 +51,4 @@ fun texto(item1:String,item2:String):List<String> {
     val secondItem = Normalizer.normalize(item2.lowercase(),Normalizer.Form.NFD).replace("[^a-z0-9]".toRegex(),"")
     return listOf(firstItem,secondItem)
 }
+
