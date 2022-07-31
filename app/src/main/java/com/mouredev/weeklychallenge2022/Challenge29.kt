@@ -20,81 +20,33 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun quickSort(numbers: Array<Int>, first: Int, last: Int): Array<Int> {
-    val p = numbers[(first + last) / 2]
-    var i = first
-    var j = last
-    var result = numbers
-
-    do {
-        while(result[i] < p) { i += 1 }
-        while(p < result[j]) { j -= 1 }
-        if(i <= j) {
-            val aux = result[i]
-            result[i] = result[j]
-            result[j] = aux
-            i += 1
-            j -= 1
-        }
-    } while(i <= j)
-        if(first < j) {
-            result = quickSort(result, first, j)
-        }
-    if(i < last) {
-        result = quickSort(result, i, last)
-    }
-    return result
+fun main() {
+    println(sort(arrayListOf(4, 6, 1, 8, 2), true)) // 1, 2, 4, 6, 8
+    println(sort(arrayListOf(4, 6, 1, 8, 2), false)) // 8, 6, 4, 2, 1
 }
 
-fun bubbleSort(numbers: Array<Int>): Array<Int> {
-    var result = numbers
+fun sort(numbers: List<Int>, asc: Boolean): List<Int> {
 
-    (1 until result.size).forEach {
-        (0 until result.size-1).forEach { i ->
-            if(result[i] > result[i+1]) {
-                val aux = result[i]
-                result[i] = result[i+1]
-                result[i+1] = aux
+    val sortedNumbers = mutableListOf<Int>()
+
+    for (number in numbers) {
+
+        var added = false
+
+        for ((index, sortedNumber) in sortedNumbers.withIndex()) {
+
+            if (if(asc) number < sortedNumber else number > sortedNumber) {
+                sortedNumbers.add(index, number)
+                added = true
+                break
             }
         }
-    }
 
-    return result
-}
-
-fun insertionSort(numbers: Array<Int>): Array<Int> {
-    var result = numbers
-
-    (1 until result.size).forEach { i ->
-        val aux = result[i]
-        var j = i - 1
-        while(j >= 0 && result[j] > aux) {
-            result[j+1] = result[j]
-            j -= 1
-            result[j+1] = aux
+        if (!added) {
+            sortedNumbers.add(number)
         }
     }
 
-    return result
+    return sortedNumbers
 }
 
-fun sortNumbers(numbers: Array<Int>, order: String) {
-    if(order == "Asc") {
-        println("Quicksort: ${quickSort(numbers, 0, numbers.size - 1).toList()}")
-        println("Bubble: ${bubbleSort(numbers).toList()}")
-        println("Insertion: ${insertionSort(numbers).toList()}")
-        println()
-    } else {
-        println("Quicksort: ${quickSort(numbers, 0, numbers.size - 1).reversed()}")
-        println("Bubble: ${bubbleSort(numbers).reversed()}")
-        println("Insertion: ${insertionSort(numbers).reversed()}")
-        println()
-    }
-}
-
-
-fun main() {
-    sortNumbers(arrayOf(8, 4, 2, 9, 1), "Asc")
-    sortNumbers(arrayOf(9, 8, 0, 2, 5, 1, 3, 2, 9), "Desc")
-    sortNumbers(arrayOf(3, 10, 1, 8, 15, 5, 12, 6, 5, 4), "Asc")
-}
