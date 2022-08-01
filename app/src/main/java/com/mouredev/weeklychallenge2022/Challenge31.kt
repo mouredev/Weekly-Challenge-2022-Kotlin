@@ -17,3 +17,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    leapYear(1999)
+}
+
+private fun leapYear(year: Int) {
+    var countYear = 0;
+    var currentYear = year;
+    while (countYear <= 30){
+        if ((currentYear % 4 == 0) and (currentYear % 100 != 0) or (currentYear % 400 == 0)) {
+            println(currentYear);
+            countYear++;
+        }
+        currentYear++;
+    }
+}
