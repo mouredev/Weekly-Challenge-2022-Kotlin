@@ -25,3 +25,30 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+ fun main() {
+    val input = "que alegria, que alboroto, ¡¡¡OTRO PERRITO PILOTO!!!"
+   
+   input.toFrame()
+}
+
+fun String.toFrame(){
+    val inputList = this.split(" ")  //this en este caso se podria quitar
+    
+    var inputValueMaxSize = 0
+    
+    inputList.forEach{
+        if (it.length > inputValueMaxSize) inputValueMaxSize = it.length
+    }        
+
+    println("*".repeat(inputValueMaxSize + 4))
+    
+    inputList.forEach{
+        val spaces = " ".repeat(inputValueMaxSize - it.length + 1)
+        println("* $it$spaces*")        
+    }
+    
+    println("*".repeat(inputValueMaxSize + 4))
+}
+
+
