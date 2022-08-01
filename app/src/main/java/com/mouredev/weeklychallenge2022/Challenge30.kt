@@ -1,27 +1,72 @@
-package com.mouredev.weeklychallenge2022
+const START: &str = "* ";
+const END: &str = " *\n";
+const CHARACTER : char = '*';
 
-/*
- * Reto #30
- * MARCO DE PALABRAS
- * Fecha publicación enunciado: 26/07/22
- * Fecha publicación resolución: 01/08/22
- * Dificultad: FÁCIL
- *
- * Enunciado: Crea una función que reciba un texto y muestre cada palabra en una línea, formando
- * un marco rectangular de asteriscos.
- * - ¿Qué te parece el reto? Se vería así:
- *   **********
- *   * ¿Qué   *
- *   * te     *
- *   * parece *
- *   * el     *
- *   * reto?  *
- *   **********
- *
- * Información adicional:
- * - Usa el canal de nuestro discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda a la comunidad.
- * - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
- * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
- * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
- *
- */
+fn main() {
+    let start_sentence="Esta es mi primera toma de contacto con Rust y creo que la última";
+    println!("{}", start_sentence);
+   
+    let maxlength=get_max_length(start_sentence);
+
+    let mut sentence= String::from("");
+    sentence = add_characters(maxlength, sentence);
+
+    for item in start_sentence.split_whitespace(){
+        let mut substring;
+        substring=add_start(sentence);
+        substring=substring+item;
+
+        let spaces:u8=(maxlength-item.chars().count())as u8;
+        if spaces>0{
+            sentence = add_spaces(spaces, substring);
+            sentence = add_end(sentence);
+        }else{
+            sentence = add_end(substring);
+        }
+    }
+
+    sentence = add_characters(maxlength, sentence);
+    println!("{sentence}");
+}
+
+
+fn add_characters(mut n_asterisks:usize, mut sentence:String)-> String{
+    n_asterisks = n_asterisks + START.chars().count() + END.chars().count();
+    for _n in 0..n_asterisks-1 {
+        sentence.push(CHARACTER);
+    }
+    sentence=sentence+"\n";
+    return sentence;
+}
+
+
+fn add_start(mut sentence:String)->String{
+    sentence.push_str(START);
+    return sentence;
+}
+
+
+fn add_end(mut sentence:String)-> String{
+    sentence.push_str(END);
+    return sentence;
+}
+
+
+fn add_spaces(spaces:u8, mut sentence:String)-> String{
+    
+    for _n in 0..spaces {
+        sentence.push(' ');
+    }
+    return sentence;
+}
+
+
+fn get_max_length(sentence:&str)->usize{
+    let mut length=0;
+    for word in sentence.split_whitespace() {
+        if word.chars().count() > length {
+            length = word.chars().count();
+        }
+    }
+    return length;
+}
