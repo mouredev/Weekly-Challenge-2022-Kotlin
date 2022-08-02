@@ -17,3 +17,18 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+
+ public class Main {
+    public static void main(String[] args){
+        nextLeapYears(1221);
+    }
+    public static void nextLeapYears(int year){
+        if(year%4==0){
+            for(int i=0;i<30;i++){
+                System.out.println(i+1+"=> "+year);
+                year= year+4;
+            }
+        } else nextLeapYears(year+1);
+    }
+}
