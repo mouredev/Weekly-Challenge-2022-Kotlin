@@ -1,5 +1,6 @@
 package com.mouredev.weeklychallenge2022
-
+import java.io.File
+import java.text.Normalizer
 /*
  * Reto #25
  * PIEDRA, PAPEL, TIJERA
@@ -20,57 +21,34 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
-fun main() {
-    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.ROCK))))
-    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.SCISSORS))))
-    println(rockScissorsPaper(arrayListOf(Pair(Move.PAPER, Move.SCISSORS))))
-    println(rockScissorsPaper(arrayListOf(
-        Pair(Move.ROCK, Move.ROCK),
-        Pair(Move.SCISSORS, Move.SCISSORS),
-        Pair(Move.PAPER, Move.PAPER))))
-    println(rockScissorsPaper(arrayListOf(
-        Pair(Move.ROCK, Move.SCISSORS),
-        Pair(Move.SCISSORS, Move.PAPER),
-        Pair(Move.SCISSORS, Move.ROCK))))
-    println(rockScissorsPaper(arrayListOf(
-        Pair(Move.ROCK, Move.PAPER),
-        Pair(Move.SCISSORS, Move.ROCK),
-        Pair(Move.PAPER, Move.SCISSORS))))
+fun main(){
+    val input = File("app/src/main/java/com/mouredev/weeklychallenge2022","Challenge25.txt").readLines().map { it.split(",") }
+    val normalized = input.map { texto(it[0],it[1]) }
+    val games = normalized.filter { it[0]!=it[1] }
+    val wins = games.map {rockPaperScissors(it[0],it[1])}
+    println(winner(wins))
 }
+fun rockPaperScissors(player1:String,player2:String): String{
 
-enum class Move {
-    ROCK, SCISSORS, PAPER
+    return if((player1=="r"&& player2=="s")||(player1=="s"&&player2=="p")||(player1=="p"&&player2=="r"))
+        "1"
+    else if((player2=="r"&& player1=="s")||(player2=="s"&&player1=="p")||(player2=="p"&&player1=="r"))
+        "2"
+    else
+        throw Exception("Error text out of rock paper scissors")
 }
-
-private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
-
-    var playerOneGames = 0
-    var playerTwoGames = 0
-
-    games.forEach { game ->
-
-        val playerOneMove = game.first
-        val playerTwoMove = game.second
-
-        if (playerOneMove != playerTwoMove) {
-
-            if (playerOneMove == Move.ROCK && playerTwoMove == Move.SCISSORS
-                || playerOneMove == Move.SCISSORS && playerTwoMove == Move.PAPER
-                || playerOneMove == Move.PAPER && playerTwoMove == Move.ROCK) {
-
-                playerOneGames += 1
-            } else {
-                playerTwoGames += 1
-            }
-        }
-    }
-
-    return if (playerOneGames == playerTwoGames) {
-        "Tie"
-    } else if (playerOneGames > playerTwoGames) {
-        "Player 1"
-    } else {
-        "Player 2"
+fun winner(games:List<String>): String {
+    val player1wins = games.count { it == "1" }
+    val player2wins = games.count { it == "2" }
+    return when {
+        player1wins > player2wins -> "Player 1 Wins with $player1wins games won "
+        player2wins > player1wins -> "Player 2 Wins with $player2wins games won "
+        else -> "Player 1 and Player 2 are tied in games"
     }
 }
+fun texto(item1:String,item2:String):List<String> {
+    val firstItem = Normalizer.normalize(item1.lowercase(), Normalizer.Form.NFD).replace("[^a-z0-9]".toRegex(), "")
+    val secondItem = Normalizer.normalize(item2.lowercase(),Normalizer.Form.NFD).replace("[^a-z0-9]".toRegex(),"")
+    return listOf(firstItem,secondItem)
+}
+
