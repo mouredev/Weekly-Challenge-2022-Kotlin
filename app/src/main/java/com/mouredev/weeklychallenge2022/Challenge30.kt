@@ -70,3 +70,30 @@ fun wordMaxSize(words: List<String>): Int {
     }
     return maxSize
 }
+
+fun Suyo() {
+    drawFrame("¿Qué te parece el reto?")
+    drawFrame("¿Qué te     parece el reto?")
+    drawFrame("¿Cuántos retos de código de la comunidad has resuelto?")
+}
+
+private fun drawFrame(text: String) {
+
+    val words = text.split(" ")
+    var maxLength = 0
+    words.forEach { word ->
+        if (word.length > maxLength) {
+            maxLength = word.length
+        }
+    }
+
+    println("*".repeat(maxLength + 4))
+
+    words.forEach { word ->
+        if (word.isNotEmpty()) {
+            println("* $word${" ".repeat(maxLength - word.length)} *")
+        }
+    }
+
+    println("*".repeat(maxLength + 4))
+}
