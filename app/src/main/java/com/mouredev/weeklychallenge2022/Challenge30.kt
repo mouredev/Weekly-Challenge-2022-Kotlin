@@ -25,3 +25,48 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+private const val BORDER_CHAR = "*"
+
+
+fun main() {
+    draw("¿Qué te parece el reto?")
+    draw("Otra frase a dibujar")
+}
+
+fun draw(text: String) {
+    val aux = text.split(" ")
+    val maxWordSize = wordMaxSize(aux)
+    val boxWidth = maxWordSize + 2
+    var whiteSpaces: Int
+    for (j in 0..boxWidth) {
+        print(BORDER_CHAR)
+    }
+    println()
+
+    for(word in aux){
+        print(BORDER_CHAR)
+        print(word)
+        whiteSpaces = maxWordSize - word.length
+        while(whiteSpaces != 0){
+            print(" ")
+            whiteSpaces--
+        }
+        println(BORDER_CHAR)
+    }
+
+    for (j in 0..boxWidth) {
+        print(BORDER_CHAR)
+    }
+    println()
+}
+
+fun wordMaxSize(words: List<String>): Int {
+    var maxSize = 0
+    for (word in words) {
+        if(word.length > maxSize){
+            maxSize = word.length
+        }
+    }
+    return maxSize
+}
