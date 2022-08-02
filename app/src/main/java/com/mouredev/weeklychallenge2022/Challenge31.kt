@@ -17,3 +17,17 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    leapYear(2015, 5)
+}
+
+fun leapYear(year: Int, yearsToPrint: Int) {        
+    if (year % 4 == 0 && (year % 100 != 0 || (year % 100 == 0 && year % 400 == 0))) {
+        for(multiplier in 0 until yearsToPrint){
+            println(year + (4 * multiplier))
+        }
+    } else {
+        leapYear(year + 1, yearsToPrint)
+    }
+}
