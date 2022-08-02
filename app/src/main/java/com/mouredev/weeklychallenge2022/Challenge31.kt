@@ -17,3 +17,24 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    calculate(2022)
+}
+
+fun calculate(year: Int, nextYears: MutableList<Int> = mutableListOf()) {
+    if (year % 4 == 0) {
+        if (year % 100 == 0) {
+            if (year % 400 == 0) {
+                nextYears.add(year)
+            }
+        } else {
+            nextYears.add(year)
+        }
+    }
+    if (nextYears.size < 30) {
+        calculate(year + 1, nextYears)
+    } else {
+        println(nextYears)
+    }
+}
