@@ -17,3 +17,20 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+fun main() {
+    val leapYear = 1700
+    printLeapYears(leapYear,30)
+}
+
+fun printLeapYears(leapYear: Int,yearsToPrint: Int):Boolean{
+    var yearsToPrintMut = yearsToPrint
+    var leapYearMut: Int = if(leapYear%4==0) leapYear+4 else leapYear+(4-leapYear%4)
+    if(yearsToPrint==0) {
+        return false
+    }
+    if (leapYearMut % 4 == 0 && (leapYearMut % 100 != 0 ||(leapYearMut % 100 != 0 &&leapYearMut % 400 == 0)  )) {
+            println("${31-yearsToPrint}.- $leapYearMut")
+            yearsToPrintMut-=1
+    }
+    return  printLeapYears(leapYearMut, yearsToPrintMut)
+}
