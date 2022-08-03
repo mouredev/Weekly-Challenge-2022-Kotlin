@@ -17,3 +17,16 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main(){
+ leapYears(2104)
+}
+
+fun isLeap(year : Int) = year%400 == 0 || (year%4 == 0 && year%100 != 0)
+
+fun leapYears(year: Int){
+    if (isLeap(year)){
+        val thirtyYears = year..(year+140) step 4
+        thirtyYears.forEach { if (isLeap(it)) println(it) }
+    } else print("$year is no leap")
+}
