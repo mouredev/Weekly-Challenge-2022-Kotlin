@@ -16,14 +16,14 @@
  *
  */
 void main() {
-  leapYears(int y, int i) {
+  leapYears(int y, [int i = 30]) {
     if (i <= 0) return;
     y % 4 == 0 && (!(y % 100 == 0) || y % 400 == 0) ? print('$i\t$y') : i++;
     i--;
     leapYears(++y, i);
   }
 
-  leapYears(2090, 30);
+  leapYears(2090);
   // leapYears(2022, 0);
   // leapYears(2090, 1000);
 }
