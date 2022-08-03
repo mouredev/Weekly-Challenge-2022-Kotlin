@@ -19,17 +19,17 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    getProximos30Bisiestos(2022);
-    getProximos30Bisiestos(1850);
-    getProximos30Bisiestos(1923);
+    next30YearsBisiestos(2024);
 }
-private fun getProximos30Bisiestos(anno: Int){
-    var cont = 0
-    var a = anno+1
-    while(cont != 30){
-        if((a%4 == 0 && a%100 != 0) || a%400 == 0 ){
-            println(a);
-            cont++
+
+fun next30YearsBisiestos(year: Int){
+    var year = year+1
+    var i = 0
+    while (i < 30){
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+            println(year)
+            i++
         }
+        year++
     }
 }
