@@ -23,13 +23,11 @@ fun main() {
     getProximos30Bisiestos(1850);
     getProximos30Bisiestos(1923);
 }
-
 private fun getProximos30Bisiestos(anno: Int){
     var cont = 0
-    var a = anno
+    var a = anno+1
     while(cont != 30){
-        a++
-        if((a%4 == 0 && a%100 != 0) || (a%400 == 0 && a%100 == 0)){
+        if((a%4 == 0 && a%100 != 0) || a%400 == 0 ){
             println(a);
             cont++
         }
