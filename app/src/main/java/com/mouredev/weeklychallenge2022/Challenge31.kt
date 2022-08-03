@@ -28,10 +28,10 @@ private fun getProximos30Bisiestos(anno: Int){
     var cont = 0
     var a = anno
     while(cont != 30){
-        if(a%4 == 0){
+        a++
+        if((a%4 == 0 && a%100 != 0) || (a%400 == 0 && a%100 == 0)){
             println(a);
             cont++
         }
-        a++
     }
 }
