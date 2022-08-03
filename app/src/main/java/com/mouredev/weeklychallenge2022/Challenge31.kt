@@ -17,3 +17,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    next30YearsBisiestos(2024);
+}
+
+fun next30YearsBisiestos(year: Int){
+    var year = year+1
+    var i = 0
+    while (i < 30){
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+            println(year)
+            i++
+        }
+        year++
+    }
+}
