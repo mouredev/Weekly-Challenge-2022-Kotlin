@@ -17,3 +17,21 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+
+fun main() {
+    getProximos30Bisiestos(2022);
+    getProximos30Bisiestos(1850);
+    getProximos30Bisiestos(1923);
+}
+
+private fun getProximos30Bisiestos(anno: Int){
+    var cont = 0
+    var a = anno
+    while(cont != 30){
+        if(a%4 == 0){
+            println(a);
+            cont++
+        }
+        a++
+    }
+}
