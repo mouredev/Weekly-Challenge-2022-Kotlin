@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #31
  * AÑOS BISIESTOS
@@ -19,33 +17,30 @@ package com.mouredev.weeklychallenge2022
  */
 
 /**
- * Funcion Principal
- */
-fun main(){
-    print(leapYears(2022,30))
-}
-
-/**
- * Funcion que calcula los n proximos años bisiestos a uno dado
- * @param year a partir del cual se imprimiran los años bisiestos
+ * Funcion que imprime los N proximos años bisiestos
+ * @param year año inicial
  * @param n numero de años a imprimir
+ * @returns array con los años bisiestos
  */
-fun leapYears(year: Int,n:Int): List<Int> {
-    val leapYears = mutableListOf<Int>()
-    var currentYear = year
-    while(leapYears.size<n){
-        if (isLeapYear(currentYear)) leapYears.add(currentYear)
-        currentYear++
+function leapYears(year:number,n:number):number[]{
+    var currentYear = year;
+    var leapYears = [];
+    while(leapYears.length<n){
+        if(isLeapYear(currentYear)) leapYears.push(currentYear);
+        currentYear++;
     }
-    return leapYears
+    return leapYears;
 }
 
 /**
  * Funcion que determina si un año es bisiesto
  * Año bisiesto es el divisible entre 4, salvo que sea año secular -último de cada siglo, terminado en «00»-, en cuyo caso también ha de ser divisible entre 400.
- * @param year año a determinar si es bisiesto
- * @return true si el año es bisiesto, false en caso contrario
+ * @param year año a comprobar
+ * @returns true si es bisiesto, false si no
  */
-private fun isLeapYear(year: Int): Boolean {
-    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0
+function isLeapYear(year:number){
+    return (year%4==0 && year%100!=0 || year%400==0)
 }
+
+
+console.log(leapYears(2022,5));
