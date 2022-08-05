@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #30
  * MARCO DE PALABRAS
@@ -26,34 +24,37 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-/**
- * Funcion principal
- */
-fun main(){
-
-    "¿Qué te parece el reto?".Frame()
-    "En un lugar de la Mancha, de cuyo nombre no quiero acordarme...".Frame()
-}
 
 /**
- * Funcion de extension que formatea dentro de un marco de asteriscos
+ * Funcion que recibe un texto y muestra cada palabra en una línea, formando un marco rectangular de asteriscos.*
+ * @param text texto a mostrar en el marco
  */
+function frame(text:string){
 
-fun String.Frame() {
-    val words = this.split(" ")
-    var maxLength = 0
-
-    words.forEach {
-        if (it.length > maxLength) maxLength = it.length
+    let textArray = text.split(" ");
+    let maxLength = 0;
+    textArray.forEach(word => {
+        if(word.length > maxLength){
+            maxLength = word.length;
+        }
     }
+    );
+    console.log("*".repeat(maxLength+4));
 
-    println("*".repeat(maxLength + 4))
-    words.forEach{
-        val spaces = " ".repeat(maxLength - it.length)
-        println("* $it$spaces *")
-
+    textArray.forEach(word => {
+        let spaces = "";
+        for(let i = 0; i < maxLength - word.length; i++){
+            spaces += " ";
+        }
+        console.log("* " + word + spaces + " *");
     }
-    println("*".repeat(maxLength + 4))
-
+    );
+    console.log("*".repeat(maxLength+4));
 
 }
+
+
+
+frame("En un lugar de la mancha de cuyo nombre no quiero acordarme");
+frame("¿Qué te parece el reto?");
+
