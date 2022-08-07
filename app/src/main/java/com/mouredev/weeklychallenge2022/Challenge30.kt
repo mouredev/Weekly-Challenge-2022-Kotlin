@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import es.jaimefere.weeklychallenge2022.sortNumbers
-
 /*
  * Reto #30
  * MARCO DE PALABRAS
@@ -28,21 +26,29 @@ import es.jaimefere.weeklychallenge2022.sortNumbers
  *
  */
 
-private fun printFramedPhrase(sentence: String) {
-    val words = sentence.split(" ")
-    val largestWord = words.maxOf { it.length }
-    (1..(largestWord + 4)).forEach { _ -> print("*") }
-    println()
-    words.forEach { word ->
-        print("* ")
-        print(word)
-        (word.length..largestWord).forEach { _ -> print(" ") }
-        println("*")
-    }
-    (1..(largestWord + 4)).forEach { _ -> print("*") }
-    println()
+fun main() {
+    drawFrame("¿Qué te parece el reto?")
+    drawFrame("¿Qué te     parece el reto?")
+    drawFrame("¿Cuántos retos de código de la comunidad has resuelto?")
 }
 
-fun main() {
-    printFramedPhrase("¿Qué te parece el reto?")
+private fun drawFrame(text: String) {
+
+    val words = text.split(" ")
+    var maxLength = 0
+    words.forEach { word ->
+        if (word.length > maxLength) {
+            maxLength = word.length
+        }
+    }
+
+    println("*".repeat(maxLength + 4))
+
+    words.forEach { word ->
+        if (word.isNotEmpty()) {
+            println("* $word${" ".repeat(maxLength - word.length)} *")
+        }
+    }
+
+    println("*".repeat(maxLength + 4))
 }
