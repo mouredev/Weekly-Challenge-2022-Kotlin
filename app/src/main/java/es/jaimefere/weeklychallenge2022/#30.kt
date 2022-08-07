@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+package es.jaimefere.weeklychallenge2022
 
 import es.jaimefere.weeklychallenge2022.sortNumbers
 
