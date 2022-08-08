@@ -32,7 +32,7 @@ public class SecondHigher
         }
         Integer sec = (secondHigh.size() - 2);
         
-        System.out.println("2 " + secondHigh.get(sec));
+        System.out.println("El segundo numero mas alto es: " + secondHigh.get(sec));
 
     }
     public static void main(String[] args) {
