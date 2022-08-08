@@ -21,8 +21,9 @@
 pintar30bisiestos(2022);
 
 function pintar30bisiestos($año){
+    $año++;
     for($encontrados = 0; $encontrados < 30; $año++){
-        if (date('L', strtotime($año."-01-01"))) {
+        if ($año % 4 == 0 && ($año % 100 != 0 || $año % 400 == 0)) {
             echo $año . ' ';
             $encontrados++;
         }
