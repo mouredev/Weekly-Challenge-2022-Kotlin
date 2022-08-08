@@ -1,5 +1,4 @@
-package com.mouredev.weeklychallenge2022
-
+"""
 /*
  * Reto #32
  * EL SEGUNDO
@@ -14,3 +13,23 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+"""
+
+defmodule Challenge32 do
+  def second_largest([_ | _] = input) do
+    [_, second | _] = Enum.sort(input, :desc)
+    {:ok, second}
+  end
+  
+  def second_largest(input) do
+    {:error, :empty_list}
+  end
+end
+
+# Examples:
+ 
+# Challenge32.second_largest([1, 2, 6, 9, 3, 4, 10])
+# {:ok, 9}
+
+# Challenge32.second_largest([])
+# {:error, :empty_list}
