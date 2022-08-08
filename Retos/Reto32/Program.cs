@@ -10,7 +10,6 @@
  * Información adicional:
  * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal" para preguntas, dudas o prestar ayuda a la comunidad.
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
- *
  */
  
  List<int> numberList = new List<int>(){
