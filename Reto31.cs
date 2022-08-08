@@ -9,7 +9,7 @@ class Reto31 {
         Bisiestos(inputYear);
     }
 
-    public static void Bisiestos (int year){
+    /*public static void Bisiestos (int year){
         // Variable de control para mostrar los proximos 30 años bisiestos
         int n = 0;
         do{
@@ -33,5 +33,17 @@ class Reto31 {
         // Si el año es Bisiesto se suma la variable de control, se aumenta en 1 el año para seguir validando
         // hasta conseguir los 30 años bisiestos.
         }while (n < 30);
+    }*/
+
+    public static void Bisiestos (int year){
+        // Actualización reduciendo lineas
+        int n = 0;
+        while (n < 30){
+            if((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0)){
+                Console.WriteLine((n+1) + ".- "  + year + " es un año bisiesto");
+                n ++;
+            }
+            year ++;
+        }
     }
 }
