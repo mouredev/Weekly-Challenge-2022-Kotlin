@@ -21,7 +21,7 @@ defmodule Challenge32 do
     {:ok, second}
   end
   
-  def second_largest(input) do
+  def second_largest(_input) do
     {:error, :empty_list}
   end
 end
