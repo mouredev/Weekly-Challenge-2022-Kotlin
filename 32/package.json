@@ -1,0 +1,10 @@
+{
+  "name": "reto32",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Fran Mella",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
