@@ -1,7 +1,6 @@
 # Dado un listado de números, encuentra el SEGUNDO más grande.
 
 def segundo(array) -> int:
-    values = []
     flag = 0
     temp_flag = 1
     if len(array) == 1:
