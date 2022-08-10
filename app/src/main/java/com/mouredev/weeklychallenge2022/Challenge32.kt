@@ -22,5 +22,5 @@ fun main() {
 }
 
 fun getSecondValue(input: List<Int>): Int {
-    return input.sortedDescending()[1]
+    return input.distinct().sortedDescending()[1]
 }
