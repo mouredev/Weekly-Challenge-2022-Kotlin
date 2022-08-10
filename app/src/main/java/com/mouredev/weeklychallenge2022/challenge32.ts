@@ -18,7 +18,7 @@
  * @param numbers Listado de números
  * @returns El 2º numero mas alto
  */
-function findSecondLargest(numbers: number[]): number {
+export function findSecondLargest(numbers: number[]): number {
     if(numbers.length == 0) return 0
     else{
         if(numbers.length == 1) return numbers[0];
@@ -30,4 +30,3 @@ function findSecondLargest(numbers: number[]): number {
 
 }
 
-console.log(findSecondLargest([8,10,5,11]));

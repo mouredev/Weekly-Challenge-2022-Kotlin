@@ -1,0 +1,25 @@
+{
+  "name": "weekly-challenge-2022-kotlin",
+  "version": "1.0.0",
+  "description": "Si quieres realizar los retos de programación en Swift, utiliza el siguiente repositorio.",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
+    "mocha": "^10.0.0"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register './app/src/test/**/*.test.ts' --timeout 10000 --reporter spec --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@malopezrom.github.com:malopezrom/Weekly-Challenge-2022-Kotlin.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
