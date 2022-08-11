@@ -17,12 +17,13 @@ package com.mouredev.weeklychallenge2022
 
 <?php //Resolucion Reto 32 by @fedex6 (fGarciaDelRio) con una pequeña mejora para poder usar en otros casos.
 function mostrarMayor($lista, $cual){
+  array_unique($lista) //Elimina duplicados [Fix visto por un comentario de @Coveran  en Discord]
   rsort($lista); //Ordena Descendente
   array_unshift($lista, " "); //Las cosas que no hay que hacer... "numeros magicos" :P
   
   //Control 
   if( ($cual > count($lista)) || ($cual == 0) ){
-    $respuesta = '[ error ] El numero solicitado esta fuera del rango: 1 al '.count($lista);
+    $respuesta = '[ error ] La posicion solicitada esta fuera del rango: 1 al '.count($lista);
   } else {
     $respuesta = 'El '.$cual.'º mayor del listado es: '.$lista[$cual]; 
   }
