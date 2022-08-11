@@ -17,7 +17,7 @@ package com.mouredev.weeklychallenge2022
 
 <?php //Resolucion Reto 32 by @fedex6 (fGarciaDelRio) con una pequeña mejora para poder usar en otros casos.
 function mostrarMayor($lista, $cual){
-  array_unique($lista) //Elimina duplicados [Fix visto por un comentario de @Coveran  en Discord]
+  array_unique($lista); //Elimina duplicados [Fix visto por un comentario de @Coveran  en Discord]
   rsort($lista); //Ordena Descendente
   array_unshift($lista, " "); //Las cosas que no hay que hacer... "numeros magicos" :P
   
