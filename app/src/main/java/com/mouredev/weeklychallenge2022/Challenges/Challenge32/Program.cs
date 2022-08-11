@@ -3,6 +3,6 @@ Console.WriteLine("Hello, World!");
 
 var list = new List<int> {2,30,45,24,55,20,11};
 
-var secondNumber = list.OrderBy(c => c).Skip(1).FirstOrDefault();
+var secondLargest = list.OrderByDescending(c => c).Skip(1).FirstOrDefault();
 
-Console.WriteLine($"Second number is {secondNumber}");
+Console.WriteLine($"Second largest number is {secondLargest}");
