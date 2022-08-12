@@ -14,3 +14,36 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+Console.WriteLine(GetSecondMaxNumber(new List<int> {}));// salta excepcion
+Console.WriteLine(GetSecondMaxNumber(new List<int> {1,2})); // imprime 1
+Console.WriteLine(GetSecondMaxNumber(new List<int> {5,3,6,9,7,4,8,4,7,4,1,2,12,3,2,14})); // imprime 12
+
+ static int GetSecondMaxNumber(List<int> numbers)
+{
+
+	if (numbers.Count == 0)
+	{
+		throw new Exception("La lista esta vacia");
+	}
+
+	if (numbers.Count <= 1)
+	{
+		return numbers[0];
+	}
+	numbers.Sort();
+	return SearchSecondMaxNumber(numbers);
+}
+
+ static int SearchSecondMaxNumber(List<int> list)
+{
+	int max = list.Last();
+	int aux = max;
+	int index = list.Count() - 1;
+	while (index >= 0 && aux == max)
+	{
+		aux = list[index];
+		index--;
+	}
+	return aux;
+}
