@@ -1,6 +1,5 @@
-package com.mouredev.weeklychallenge2022
-
 /*
+package com.mouredev.weeklychallenge2022
  * Reto #32
  * EL SEGUNDO
  * Fecha publicación enunciado: 08/08/22
@@ -14,3 +13,8 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+const secondHigher = (numbers) => [...new Set(numbers)].sort((a, b) => b - a)[1];
+
+secondHigher([3, 5, 6, 7, 39, 88, 89, 20, 82, 99, 99, 99, 99]);
+secondHigher([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
