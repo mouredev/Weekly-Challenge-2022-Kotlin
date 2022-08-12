@@ -14,3 +14,35 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    println("The second biggest number is: ${getNumber(listOf(1, 2, 4, 8, 2, 0, 3, 1, 5))}")
+    println("The second biggest number is: ${getNumber(listOf(19836, 1247, 10342, 62414, 26154))}")
+}
+
+private fun getNumber(numberList: List<Int>): Int {
+    val sorted = mutableListOf<Int>()
+
+    numberList.forEach { number ->
+        if (sorted.isEmpty()) {
+            sorted.add(number)
+            return@forEach
+        }
+        val sortedClone = sorted.toMutableList()
+        run sort@{
+            sortedClone.forEachIndexed { index, sortNumber ->
+                if (sortNumber <= number) {
+                    if (sortNumber < number) {
+                        sorted.add(index, number)
+                    }
+                    return@sort
+                }
+                if (index == sorted.lastIndex) {
+                    sorted.add(number)
+                }
+            }
+        }
+    }
+
+    return sorted[1]
+}
