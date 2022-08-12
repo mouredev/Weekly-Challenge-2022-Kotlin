@@ -14,3 +14,13 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    val input = listOf(1, 2, 3, 4, 5)   
+    
+    println(getSecondValue(input))
+}
+
+fun getSecondValue(input: List<Int>): Int {
+    return input.distinct().sortedDescending()[1]
+}
