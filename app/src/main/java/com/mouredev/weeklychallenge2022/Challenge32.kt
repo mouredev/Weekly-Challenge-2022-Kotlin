@@ -14,3 +14,9 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main(){
+    secondGreater(listOf(2,33,6997,775,6))
+}
+
+fun secondGreater(list: List<Int>) = print(list.sortedDescending()[1])
