@@ -27,6 +27,9 @@ Tienes toda la información extendida sobre los retos de programación semanales
 <a href="https://youtu.be/14v4IINunvY"><img src="http://i3.ytimg.com/vi/14v4IINunvY/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
 ## Listado de retos
+
+### [Aquí](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/tree/main/app/src/main/java/com/mouredev/weeklychallenge2022) tienes un fichero con el enunciado y el código por cada reto
+
 * **#0** - 27/12/21 - `EL FAMOSO "FIZZ BUZZ"`
 * **#1** - 03/01/22 - `¿ES UN ANAGRAMA?`
 * **#2** - 10/01/22 - `LA SUCESIÓN DE FIBONACCI`
