@@ -1,3 +1,4 @@
+
 package com.mouredev.weeklychallenge2022
 
 /*
@@ -14,3 +15,11 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+fun main(){
+    val listado = listOf(1, 2, 34, 98, 25, 22, 90)
+    obtenerSegundoMasGrande(listado)
+}
+
+fun obtenerSegundoMasGrande(listado: List<Int>){
+    println(listado.sortedDescending()[1])
+}
