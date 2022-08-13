@@ -14,3 +14,24 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    get(listOf(23, 1, 2, 53, 14, 42, 14, 530, 21, 23, 345))
+    get(listOf(14, 14, -3, 532, 124, 57, 31, 435))
+}
+
+private fun get(items: List<Int>) {
+    var first = Int.MIN_VALUE
+	var second = Int.MIN_VALUE
+    
+    for (item in items) {
+        if (item > first && item > second) {
+            second = first
+            first = item
+        } else if (item > second) {
+		   second = item
+        }
+    }
+    
+    println("Result: ${second}")
+}
