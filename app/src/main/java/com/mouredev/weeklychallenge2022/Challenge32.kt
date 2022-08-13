@@ -13,7 +13,7 @@
  *
  */
 fun main(){
-    val listado = listOf(1, 2, 34, 67, 25, 22, 90)
+    val listado = listOf(1, 2, 34, 98, 25, 22, 90)
     obtenerSegundoMasGrande(listado)
 }
 
