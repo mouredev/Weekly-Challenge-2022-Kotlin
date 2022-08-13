@@ -1,3 +1,6 @@
+
+package com.mouredev.weeklychallenge2022
+
 /*
  * Reto #32
  * EL SEGUNDO
