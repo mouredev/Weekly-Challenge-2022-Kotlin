@@ -10,5 +10,4 @@ function fibonacci(num) {
     console.log(sum);
   }
 }
-
 fibonacci(50);
