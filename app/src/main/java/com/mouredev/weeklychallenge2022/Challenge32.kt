@@ -27,9 +27,9 @@ fun main() {
 }
 
 private fun getTheSecondBiggest(numbers: MutableList<Number>, bigger: Number) : Number {
-    if(numbers.size === 2) return numbers[1]
+    if(numbers.size == 2) return if (numbers[1].toDouble() < numbers[0].toDouble()) numbers[1] else numbers[0]
     var newBigger = bigger
-    var currentNumber = numbers[numbers.size - 1]
+    val currentNumber = numbers[numbers.size - 1]
     if(currentNumber.toDouble() > bigger.toDouble()) newBigger = numbers[numbers.size - 1]
     if(numbers[0].toDouble() < currentNumber.toDouble()) {
         numbers.add(0, currentNumber)
