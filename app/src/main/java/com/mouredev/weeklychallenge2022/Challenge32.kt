@@ -14,3 +14,14 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    var numeros = listOf(1, 19, 30, 3, 16, 25, 36)
+
+    println("El 2.º número más grande es: " + segundoMasGrande(numeros))
+}
+
+// función que ordena la lista y retorna el penúltimo item de la lista
+private fun segundoMasGrande(listaNumeros: List<Int>): Int {
+    return (listaNumeros.sorted()[listaNumeros.size - 2])
+}
