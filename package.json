@@ -1,0 +1,25 @@
+{
+  "name": "weekly-challenge-2022-kotlin",
+  "version": "1.0.0",
+  "description": "Si quieres realizar los retos de programación en Swift, utiliza el siguiente repositorio.",
+  "main": "main.js",
+  "type": "module",
+  "engines" : {
+    "npm" : ">=8.5.0",
+    "node" : ">=18.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diazdavid-info/Weekly-Challenge-2022-Kotlin.git"
+  },
+  "keywords": [],
+  "author": "David Diaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diazdavid-info/Weekly-Challenge-2022-Kotlin/issues"
+  },
+  "homepage": "https://github.com/diazdavid-info/Weekly-Challenge-2022-Kotlin#readme"
+}
