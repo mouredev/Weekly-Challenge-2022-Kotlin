@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #32
  * EL SEGUNDO
@@ -14,3 +12,11 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+import getSecondBiggerItem from './src/getSecondBiggerItem.js'
+
+const item = getSecondBiggerItem([1, 2, 3, 4])
+console.log(item)
+
+const item2 = getSecondBiggerItem([50, 33, 77, 44, 11])
+console.log(item2)
