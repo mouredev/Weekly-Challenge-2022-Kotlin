@@ -1,23 +1,35 @@
-# Code Weekly Challenge Kotlin/Android 2022
-## Proyecto de retos semanales de la comunidad **[MoureDev](https://moure.dev)** para practicar [Kotlin](https://github.com/JetBrains/kotlin) y Android.
+# Retos de programación semanales 2022
+## Proyecto de retos semanales de la comunidad **[MoureDev](https://moure.dev)** para practicar lógica de programación.
+### Todos nuestros retos en **[retosdeprogramacion.com/semanales2022](https://retosdeprogramacion.com/semanales2022)**
 
-![https://mouredev.com/discord](https://github.com/mouredev/mouredev/blob/master/mouredev_weekly_challenge.png)
+Si quieres realizar los retos de programación en Swift, utiliza el siguiente repositorio.
 
-Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en los que se publicarán semanalmente los mismos retos. Así podrás elegir el que mejor se adapta a tus necesidades (o practicar en ambos).
+[![GitHub Kotlin](https://img.shields.io/github/stars/mouredev/Weekly-Challenge-2022-Swift?label=Repositorio%20retos%20Semanales%20en%20Swift&style=social)](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin)
 
-[![GitHub Followers](https://img.shields.io/github/stars/mouredev/Weekly-Challenge-2022-Kotlin?label=Repositorio%20público%20retos%20Kotlin/Android&style=social)](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin)
-[![GitHub Followers](https://img.shields.io/github/stars/mouredev/Weekly-Challenge-2022-Swift?label=Repositorio%20público%20retos%20Swift/iOS&style=social)](https://github.com/mouredev/Weekly-Challenge-2022-Swift)
+También puedes unirte a nuestra actividad mensual de creación de aplicaciones.
 
-### Requisitos mínimos
+[![GitHub App](https://img.shields.io/github/stars/mouredev/Monthly-App-Challenge-2022?label=Repositorio%20retos%20Mensuales&style=social)](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin)
+
+## Información importante
+
+El proyecto principal de retos de programación semanales se ha creado utilizando Android Studio y resolviendo cada uno de los ejercicio utilizando el lenguaje de programación Kotlin (ya que lo utilizo frecuentemente, su sintáxis es simple y tenía que elegir alguno como ejemplo 😁). 
+
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.5-purple?longCache=true&style=popout-square)](https://kotlinlang.org)
 [![Android Studio](https://img.shields.io/badge/Android_Studio-4.2-blue.svg?longCache=true&style=popout-square)](https://developer.android.com/studio)
 [![Android](https://img.shields.io/badge/Android-6-green.svg?longCache=true&style=popout-square)](https://www.android.com)
+
+Puedes utilizar **cualquier lenguaje** para resolver los retos. Tienes soluciones de la comunidad usando todo tipo de lenguajes en la sección de **[Pull Requests](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/pulls)**.
+
+Tienes toda la información extendida sobre los retos de programación semanales y mensuales en **[retosdeprogramacion.com](https://retosdeprogramacion.com/)**.
 
 ## Vídeo explicación retos
 
 <a href="https://youtu.be/14v4IINunvY"><img src="http://i3.ytimg.com/vi/14v4IINunvY/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
 ## Listado de retos
+
+### [Aquí](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/tree/main/app/src/main/java/com/mouredev/weeklychallenge2022) tienes un fichero con el enunciado y el código por cada reto
+
 * **#0** - 27/12/21 - `EL FAMOSO "FIZZ BUZZ"`
 * **#1** - 03/01/22 - `¿ES UN ANAGRAMA?`
 * **#2** - 10/01/22 - `LA SUCESIÓN DE FIBONACCI`
@@ -50,7 +62,8 @@ Existen repositorios de código tanto para Kotlin/Android como para Swift/iOS en
 * **#29** - 18/07/22 - `ORDENA LA LISTA`
 * **#30** - 26/07/22 - `MARCO DE PALABRAS`
 * **#31** - 01/08/22 - `AÑOS BISIESTOS`
-* **#32** - 08/08/22 - `Publicación nuevo reto...`
+* **#32** - 08/08/22 - `EL SEGUNDO`
+* **#33** - 15/08/22 - `Publicación nuevo reto...`
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
