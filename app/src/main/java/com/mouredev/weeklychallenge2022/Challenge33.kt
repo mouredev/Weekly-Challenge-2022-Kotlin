@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #33
  * CICLO SEXAGENARIO CHINO
@@ -21,7 +19,7 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
-
+ 
 fun main() {
     println(sexagenaryCycle(1980))
     println(sexagenaryCycle(1923))    
@@ -45,8 +43,8 @@ private fun sexagenaryCycle(year: Int): Pair<String, String> {
     }
     
     val positionInCycle = year - firstYearOfCycle
-    val indexOfAnimals = (positionInCycle.toDouble() % 12).toInt()
-    val indexOfElements= ((positionInCycle.toDouble() % 10) / 2).toInt()      
+    val indexOfAnimals = (positionInCycle.toDouble() % animals.size).toInt()
+    val indexOfElements= ((positionInCycle.toDouble() % (2* elements.size)) / 2).toInt()      
     
     return Pair(animals[indexOfAnimals], elements[indexOfElements])
 }
