@@ -14,7 +14,6 @@ const fnAnagrama = (str, str2) => {
   if (arrStr.length !== arrStr2.length) return false
   if (arrStr == arrStr2) return true
   else false
-
 }
 
 fnAnagrama('bacalao', 'acabalo')
