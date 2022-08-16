@@ -135,6 +135,8 @@ namespace SolucionReto33
                         Console.WriteLine("¿Desea consultar otro año? (S/N)");
                         r = Console.ReadLine().ToUpper();
                     }
+                    
+                    respuesta = r;
                 }
             }
         }
