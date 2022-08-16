@@ -25,7 +25,7 @@ namespace SolucionReto33
                 {
                     //OBTENEMOS EL DIA DEL CALENDARIO ENTRE 1 Y 60
                     double AnioActual = anio - AnioFinUltimoCiclo;
-                    double aniooo = AnioActual / 60;
+                    
                     if ((AnioActual / 60) > 1)
                     {
                         while (AnioActual > 60 )
