@@ -14,6 +14,11 @@ namespace SolucionReto33
             int anio = 0;
             int AnioFinUltimoCiclo = 1983;
             bool esNumero = int.TryParse(anioString, out anio);
+            
+            if(anio < 1){
+            esNumero = false;
+            }
+            
             string respuesta = "N";
             while (!esNumero || respuesta == "S")
             {
