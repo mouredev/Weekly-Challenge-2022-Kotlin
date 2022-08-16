@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import androidx.core.graphics.rotationMatrix
+
+
 /*
  * Reto #33
  * CICLO SEXAGENARIO CHINO
@@ -21,3 +24,67 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+
+fun main(){
+
+
+    val year  = 2016
+
+    print(getChineseZodiacSign(year))
+}
+
+
+
+
+enum class Elements{
+
+    WOOD,
+    FIRE,
+    EARTH,
+    METAL,
+    WATER
+}
+
+enum class ZodiacSign{
+
+    RAT,
+    OX,
+    TIGER,
+    RABBIT,
+    DRAGON,
+    SNAKE,
+    HORSE,
+    SHEEP,
+    MONKEY,
+    ROOSTER,
+    DOG,
+    PIG
+}
+
+
+fun getChineseZodiacSign(year:Int):Pair<ZodiacSign,Elements>{
+
+
+    val lastYearStartOn = 1984
+
+    var calculateYearFrom = kotlin.math.abs(  year-lastYearStartOn)
+
+    if(calculateYearFrom==60 || calculateYearFrom==0){
+        return Pair(ZodiacSign.RAT,Elements.WOOD)
+    }
+    if(year<lastYearStartOn){
+        calculateYearFrom=  kotlin.math.abs(calculateYearFrom-60)
+    }
+
+    if(calculateYearFrom>60){
+        calculateYearFrom %= 60
+    }
+
+    var calculateZodiacSign = calculateYearFrom%12
+    val zodiacSign = ZodiacSign.values()[calculateZodiacSign]
+    val calculateElemet = (calculateYearFrom%10)/2
+    val element =if(calculateElemet>=0) Elements.values()[calculateElemet] else Elements.values()[4]
+
+    return Pair(zodiacSign,element)
+}
