@@ -16,20 +16,35 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    val numbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    println(secondLargest(numbers))
+    println(findSecondGreater(arrayListOf(4, 6, 1, 8, 2)))
+    println(findSecondGreater(arrayListOf(4, 6, 8, 8, 6)))
+    println(findSecondGreater(arrayListOf(4, 4)))
+    println(findSecondGreater(arrayListOf()))
 }
 
-fun secondLargest(number:List<Int>): Int {
-    var largest = number[0]
-    var secondLargest = number[0]
-    for (i in number){
-        if (i > largest){
-            secondLargest = largest
-            largest = i
-        } else if (i in (secondLargest + 1) until largest){
-            secondLargest = i
+fun findSecondGreater(numbers: List<Int>): Int? {
+
+    val sortedNumbers = mutableListOf<Int>()
+
+    for (number in numbers) {
+
+        var found = false
+
+        for ((index, sortedNumber) in sortedNumbers.withIndex()) {
+
+            if (number >= sortedNumber) {
+                if (number != sortedNumber) {
+                    sortedNumbers.add(index, number)
+                }
+                found = true
+                break
+            }
+        }
+
+        if (!found) {
+            sortedNumbers.add(number)
         }
     }
-    return secondLargest
+
+    return if(sortedNumbers.count() >= 2) sortedNumbers[1] else null
 }
