@@ -1,0 +1,94 @@
+const animal = [
+    "Rat",
+    "Ox",
+    "Tiger",
+    "Rabbit",
+    "Dragon",
+    "Snake",
+    "Horse",
+    "Sheep",
+    "Monkey",
+    "Rooster",
+    "Dog",
+    "Pig",
+  ],
+  element = [
+    "Wood",
+    "Wood",
+    "Fire",
+    "Fire",
+    "Earth",
+    "Earth",
+    "Metal",
+    "Metal",
+    "Water",
+    "Water",
+  ],
+  cycle = 60;
+
+let baseYear = 1924,
+  animalNumber = 0,
+  elementNumber = 0;
+
+const chineseZodiac = (year = undefined) => {
+  if (year === undefined) return console.warn("Year is empty");
+  if (typeof year != "number")
+    return console.error(`"${year}" is not a number`);
+  if (year < 0) return console.warn("Only positive years are accepted");
+
+  year = Math.floor(year);
+
+  if (year === baseYear)
+    return console.info(
+      `Your animal is ${animal[0]} and your element is ${element[0]}`
+    );
+
+  if (year < baseYear) {
+    while (year < baseYear) {
+      baseYear -= cycle;
+    }
+
+    baseYear -= 60;
+
+    if (year === baseYear)
+      return console.info(
+        `Your animal is ${animal[0]} and your element is ${element[0]}`
+      );
+
+    while (year != baseYear) {
+      baseYear++;
+      animalNumber++;
+      elementNumber++;
+      if (animalNumber > 11) animalNumber = 0;
+      if (elementNumber > 9) elementNumber = 0;
+    }
+    return console.info(
+      `Your animal is ${animal[animalNumber]} and your element is ${element[elementNumber]}`
+    );
+  }
+
+  if (year > baseYear) {
+    while (year > baseYear) {
+      baseYear += cycle;
+    }
+    baseYear -= 60;
+  }
+
+  if (year === baseYear)
+    return console.info(
+      `Your animal is ${animal[0]} and your element is ${element[0]}`
+    );
+
+  while (year != baseYear) {
+    baseYear++;
+    animalNumber++;
+    elementNumber++;
+    if (animalNumber > 11) animalNumber = 0;
+    if (elementNumber > 9) elementNumber = 0;
+  }
+  return console.info(
+    `Your animal is ${animal[animalNumber]} and your element is ${element[elementNumber]}`
+  );
+};
+
+chineseZodiac(1984);
