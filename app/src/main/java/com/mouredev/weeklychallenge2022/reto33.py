@@ -19,6 +19,7 @@
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  """
+
 #Ingresa el año
 year = input("Ingresa el año: ")
 
@@ -36,5 +37,4 @@ x = (year%10)//2
 y = year%12
 
 #Imprime el resultado solicitado
-print (ELEMENTO[x], ANIMAL[y])
-
+print(ELEMENTO[x], ANIMAL[y])
