@@ -33,20 +33,11 @@ def polygon():
         h = int(input("Introduce la altura del rectangulo = "))
         print(f'El área del triángulo es {b*h}')
 
-    triangulo()
-    cuadrado()
-    rectangulo()
-    
-"""
-polygon()--->
+    a = input("Elige el área del triangulo, cuadrado o rectangulo")
 
-Introduce la base del triangulo = 4
-Introduce la altura del triangulo = 6
-El área del triángulo es 12.0
-Introduce el lado del cuadrado = 5
-El área del cuadrado es 25
-Introduce la base del rectangulo = 20
-Introduce la altura del rectangulo = 5
-El área del triángulo es 100
-
-"""
+    if a == "triangulo":
+      triangulo()
+    elif a == "cuadrado":
+      cuadrado()
+    else:
+      rectangulo()
