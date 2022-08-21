@@ -4,7 +4,7 @@
 
 require_relative './Challenge33'
 
-tests = { input: [1924, 1970, 1978, 1910, 1990, 1850, 2060, 10, 60, 1750, 2160, -1, 'test'],
+tests = { input: [1924, 1970, 1978, 1910, 1990, 1850, 2060, 10, 60, 1750, 2160, -1, 'test', 0, -246, 4, 1, 2, 3],
           output: [{ animal: 'rat', element: 'wood' },
                    { animal: 'dog', element: 'metal' },
                    { animal: 'horse', element: 'earth' },
@@ -16,8 +16,14 @@ tests = { input: [1924, 1970, 1978, 1910, 1990, 1850, 2060, 10, 60, 1750, 2160, 
                    { animal: 'monkey', element: 'metal' },
                    { animal: 'horse', element: 'metal' },
                    { animal: 'monkey', element: 'metal' },
-                   { msg: '-1 no es un año válido' },
-                   { msg: 'test no es un año válido' }] }
+                   { animal: 'monkey', element: 'metal' },
+                   { msg: 'test no es un año válido' },
+                   { msg: '0 no es un año válido' },
+                   { animal: 'rabbit', element: 'wood' },
+                   { animal: 'rat', element: 'wood' },
+                   { animal: 'rooster', element: 'metal' },
+                   { animal: 'dog', element: 'water' },
+                   { animal: 'pig', element: 'water' }] }
 
 tests[:input].each_with_index do |test, index|
   chinese_year = Main.new(test)

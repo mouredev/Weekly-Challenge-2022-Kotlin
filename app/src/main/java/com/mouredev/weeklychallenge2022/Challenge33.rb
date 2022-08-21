@@ -39,7 +39,7 @@ class Main
   end
 
   def execute
-    if positive_number?
+    if real_year?
       year = Year.new(@year)
       year.chinese_element_animal
     else
@@ -49,15 +49,15 @@ class Main
 
   private
 
-  def positive_number?
-    (@year.is_a? Numeric) && @year.positive? ? true : false
+  def real_year?
+    (@year.is_a? Numeric) && !@year.zero? ? true : false
   end
 end
 
 # class that receives and returns the animal and element of an specific year
 class Year
   CYCLE_YEAR = 60
-  START_CYCLE = 1924
+  # START_CYCLE = 1924
   ANIMALS = %w[rat ox tiger rabbit dragon snake horse sheep monkey rooster dog pig].freeze
   ELEMENTS = %w[wood wood fire fire earth earth metal metal water water].freeze
 
@@ -66,8 +66,13 @@ class Year
   end
 
   def chinese_element_animal
-    years = ((START_CYCLE - @year).abs % CYCLE_YEAR)
-    years = (years - CYCLE_YEAR).abs if @year < START_CYCLE
+    # procedure that only works with positive years (AC)
+    # years = ((START_CYCLE - @year).abs % CYCLE_YEAR)
+    # years = (years - CYCLE_YEAR).abs if @year < START_CYCLE
+
+    # the following procedure is based in: https://en.wikipedia.org/wiki/Sexagenary_cycle#Examples
+    years = (@year - 4) % CYCLE_YEAR if @year.positive?
+    years = CYCLE_YEAR - ((@year.abs + 3) % CYCLE_YEAR) if @year.negative?
     { animal: return_animals(years), element: return_element(years) }
   end
 
