@@ -30,7 +30,7 @@
 
 module.exports.func = function chineseYearCycle(year) {
   const cycleYear = 60;
-  const startCycle = 1924;
+  // const startCycle = 1924;
   const animals = new Array(
     "rat",
     "ox",
@@ -59,13 +59,22 @@ module.exports.func = function chineseYearCycle(year) {
   );
 
   if (verifyYear(year)) {
-    years = Math.abs(startCycle - parseInt(year)) % cycleYear;
-    if (parseInt(year) < startCycle) {
-      years = Math.abs(years - cycleYear);
-    }
+    // procedure that only works with positive years (AC)
+    // years = Math.abs(startCycle - parseInt(year)) % cycleYear;
+    // if (parseInt(year) < startCycle) {
+    //   years = Math.abs(years - cycleYear);
+    // }
+
+    // the following procedure is based in https://en.wikipedia.org/wiki/Sexagenary_cycle#Examples
+    let years = 0;
+    if (year > 0) years = (year - 4) % cycleYear;
+    if (year < 0) years = cycleYear - ((Math.abs(year) + 3) % cycleYear);
+
     return {
-      animal: animals[years % animals.length],
-      element: elements[years % elements.length],
+      animal:
+        animals[years < 0 ? animals.length + years : years % animals.length],
+      element:
+        elements[years < 0 ? elements.length + years : years % elements.length],
     };
   } else {
     return { msg: "not valid year" };
@@ -73,7 +82,7 @@ module.exports.func = function chineseYearCycle(year) {
 };
 
 const verifyYear = (year) => {
-  if (parseInt(year) || parseInt(year) > 0) {
+  if (parseInt(year) || parseInt(year) != 0) {
     return parseInt(year);
   } else {
     return false;
