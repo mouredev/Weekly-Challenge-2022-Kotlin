@@ -29,40 +29,32 @@ private var ARRAY_ELEMENT = arrayOf("madera", "fuego", "tierra", "metal", "agua"
 
 fun main() {
     val year = 1984
-    println("${calculateElement(year)} ${calculateAnimal(year)}")
+    val sexagenaryYear = (year - 4) % 60
+    println("${ARRAY_ELEMENT[(sexagenaryYear % 10) / 2]} ${ARRAY_ANIMAL[sexagenaryYear % 12]}")
 }
 
-private fun calculateAnimal(year: Int): String {
-    val num = year - 1804
-    var aux: Int
-    if (num >= 0) {
-        aux = num
-        if(num >= 12) {
-            aux = num % 12
-        }
-    } else {
-        aux = 0
-    }
-    return ARRAY_ANIMAL[aux]
+fun otherMain() {
+    println(chineseZodiac(1924))
+    println(chineseZodiac(1946))
+    println(chineseZodiac(1984))
+    println(chineseZodiac(604))
+    println(chineseZodiac(603))
+    println(chineseZodiac(1987))
+    println(chineseZodiac(2022))
 }
 
-private fun calculateElement(year: Int): String {
-    val num = year - 1804
-    var aux = 0
-    if(num >= 0) {
-        if(num >= 5){
-            aux = num % 10
-        }
-    } else {
-        aux = 0
-    }
-    when(aux) {
-        0,1 -> aux = 0
-        2,3 -> aux = 1
-        4,5 -> aux = 2
-        6,7 -> aux = 3
-        8,9 -> aux = 4
+private fun chineseZodiac(year: Int) : String {
+
+    val elements = arrayListOf<String>("madera", "fuego", "tierra", "metal", "agua")
+    val animals = arrayListOf<String>("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+
+    if (year < 604) {
+        return "El ciclo sexagenario comenzó en el año 604."
     }
 
-    return ARRAY_ELEMENT[aux]
+    val sexagenaryYear = (year - 4) % 60
+    val element = elements[(sexagenaryYear % 10) / 2]
+    val animal = animals[sexagenaryYear % 12]
+
+    return "$year: $element $animal"
 }
