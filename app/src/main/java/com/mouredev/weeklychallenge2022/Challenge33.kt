@@ -23,22 +23,27 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
-    val annos = arrayOf(1924,1925,1959,1945)
-
-    for (anno in annos) {
-        println(getCiclo(anno))
-    }
+    println(chineseZodiac(1924))
+    println(chineseZodiac(1946))
+    println(chineseZodiac(1984))
+    println(chineseZodiac(604))
+    println(chineseZodiac(603))
+    println(chineseZodiac(1987))
+    println(chineseZodiac(2022))
 }
 
+private fun chineseZodiac(year: Int) : String {
 
-fun getCiclo(anno: Int): String {
-    val inicial = 1924
-    val diferencia = anno - inicial
+    val elements = arrayListOf<String>("madera", "fuego", "tierra", "metal", "agua")
+    val animals = arrayListOf<String>("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
 
-    val animales = arrayOf("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
-    val elemento = arrayOf("madera", "madera", "fuego", "fuego", "tierra", "tierra", "metal", "metal", "agua", "agua")
+    if (year < 604) {
+        return "El ciclo sexagenario comenzó en el año 604."
+    }
 
-    return "${animales[diferencia%animales.size]} ${elemento[diferencia % elemento.size]}"
+    val sexagenaryYear = (year - 4) % 60
+    val element = elements[(sexagenaryYear % 10) / 2]
+    val animal = animals[sexagenaryYear % 12]
 
+    return "$year: $element $animal"
 }
