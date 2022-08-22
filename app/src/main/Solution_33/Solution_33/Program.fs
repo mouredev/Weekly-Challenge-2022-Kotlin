@@ -24,6 +24,7 @@ open Solution_33.Library
 
 let year = 2022
 
-let element, animal = CalculateZodiacSigns year
+let chineseYear =
+    year |> CalculateChineseYear |> ToString
 
-printfn $"Solution for year {year}: {element},{animal}"
+printfn $"Solution for year {year}: {chineseYear}"
