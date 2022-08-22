@@ -25,3 +25,5 @@ let private animals =
         "perro"
         "cerdo"
     }
+    
+let private cycleStart = 1984
