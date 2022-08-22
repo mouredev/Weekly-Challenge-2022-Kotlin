@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horoscopo chino</title>
+    <link rel="stylesheet" src="styles.css">
+  
+    <style>
+        @font-face{
+            font-family:Odachi;
+            src: url(odachi.woff) format('woff');
+        }
+        body {
+          background-color: darkred;
+          font-family: sans-serif;
+          color: springgreen;
+          padding: 50px;
+        }
+        h1{
+            font-family: Odachi;
+            font-size: 80px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        hr {
+          height: 2px;
+          background-color: darkseagreen;
+          border-color: darkseagreen;
+        }
+        a{
+            color: darkseagreen;
+        }
+
+    </style>
+  </head>
+<!--
+ * Enunciado: Crea un función, que dado un año, indique el elemento 
+ * y animal correspondiente en el ciclo sexagenario del zodíaco chino.
+ * - Info: https://www.travelchinaguide.com/intro/astrology/60year-cycle.htm
+ * - El ciclo sexagenario se corresponde con la combinación de los elementos
+ *   madera, fuego, tierra, metal, agua y los animales rata, buey, tigre,
+ *   conejo, dragón, serpiente, caballo, oveja, mono, gallo, perro, cerdo
+ *   (en este orden).
+ * - Cada elemento se repite dos años seguidos.
+ * - El último ciclo sexagenario comenzó en 1984 (Madera Rata).
+ * -->
+<body>
+    <div class="tarjetaPrincipal">
+        <header>    
+            <h1>Ciclo sexagenario del horoscopo chino</h1>
+            <p class="subtitulo">La leyenda cuenta que Buda mandó llamar
+ ante su presencia a todos los animales de la Tierra, sin embargo, 
+únicamente doce aparecieron ante él. El primero en hacerlo fue la rata, 
+ya que al ir posada sobre el lomo de un buey, nada más ver a Buda, dio 
+un salto y corrió hacia él.</p>
+        </header>
+        <hr>
+        <main>
+            <section>
+                <p> Dame un año gregoriano y te doy la pareja del calendario Chino.</p>
+
+                <!-- Formulario para recibir el año de consulta-->
+                <form>
+                  <label for="anyoPregunta">Introduce un año (0 a 5000):</label>
+                  <input type="number" id="anyoPregunta" name="anyoPregunta" value="2022" min="0" max="3000" step="1">
+                  <input type="submit" value="¡Adelante!" onclick="ZodiacWu()">
+                </form>
+            </section>
+        </main>
+        <footer>
+            <section>
+            <h2 class="piePagina"> Ref</h2>
+            <ul>
+               <li>
+                 <a href="https://github.com/cesarAriasGarcia">Fuliski!</a> 
+               </li> 
+            </ul>
+            </section>
+        </footer>
+    </div>
+<script>
+var momentoActual=new Date();
+var anyoActual=momentoActual.getFullYear();
+document.getElementById("anyoPregunta").value = anyoActual;
+const anyoCero=1984;
+var delta=0;
+ const elementos = ["madera", "madera" ,"fuego", "fuego","tierra", "tierra","metal","metal", "agua", "agua"];
+ const animales=["rata", "buey", "tigre","conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo"];
+ 
+
+ function ZodiacWu(){
+    var anyo = document.getElementById("anyoPregunta").value;
+    var delta=(anyo-anyoCero);
+    var mod12=delta%12;
+    var mod10=delta%10;
+
+    
+    if (anyo < anyoCero) 
+        {
+        if (mod12==0) 
+            {
+                animal=animales[mod12];
+             }  
+        else
+            {
+              animal = animales[12+(mod12)];  
+            } 
+        if(mod10==0)
+            {
+                elemento=elementos[mod10]
+            }
+        else
+            {
+               elemento = elementos[10+(mod10)];  
+            }
+
+          
+        } 
+    else 
+        {
+        animal = animales[delta%12];
+        elemento = elementos[delta%10];
+        }
+    
+    
+    pareja=[animal, elemento];
+   
+   window.alert("El año "+  anyo +" pertenece a un "+pareja[0]+ " de " +pareja[1]); 
+}
+ 
+</script>
+
+
+
+</body></html>
