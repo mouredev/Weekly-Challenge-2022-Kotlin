@@ -14,26 +14,37 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
-fun getTheBigestTwo(numbers: Array<Int>): Int? {
-    return if(numbers.size < 2) {
-        print("¡El listado debe contener al menos 2 números!")
-        null
-    } else {
-        var biggest = numbers[0]
-        var result = numbers[0]
-        numbers.forEach {
-            if(it > biggest) {
-                result = biggest
-                biggest = it
-            }
-        }
-        result
-    }
-}
 
 fun main() {
-    println(getTheBigestTwo(arrayOf()) ?: "")
-    println(getTheBigestTwo(arrayOf(4)) ?: "")
-    println(getTheBigestTwo(arrayOf(4, 4)) ?: "")
-    println(getTheBigestTwo(arrayOf(4, 6, 1, 8, 2)) ?: "")
+    println(findSecondGreater(arrayListOf(4, 6, 1, 8, 2)))
+    println(findSecondGreater(arrayListOf(4, 6, 8, 8, 6)))
+    println(findSecondGreater(arrayListOf(4, 4)))
+    println(findSecondGreater(arrayListOf()))
+}
+
+fun findSecondGreater(numbers: List<Int>): Int? {
+
+    val sortedNumbers = mutableListOf<Int>()
+
+    for (number in numbers) {
+
+        var found = false
+
+        for ((index, sortedNumber) in sortedNumbers.withIndex()) {
+
+            if (number >= sortedNumber) {
+                if (number != sortedNumber) {
+                    sortedNumbers.add(index, number)
+                }
+                found = true
+                break
+            }
+        }
+
+        if (!found) {
+            sortedNumbers.add(number)
+        }
+    }
+
+    return if(sortedNumbers.count() >= 2) sortedNumbers[1] else null
 }
