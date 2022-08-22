@@ -20,7 +20,10 @@
  *
  *)
 
+open Solution_33.Library
 
+let year = 2022
 
-// For more information see https://aka.ms/fsharp-console-apps
-printfn "Hello from F#"
+let element, animal = CalculateZodiacSigns year
+
+printfn $"Solution for year {year}: {element},{animal}"

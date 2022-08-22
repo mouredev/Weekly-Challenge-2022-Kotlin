@@ -11,7 +11,6 @@ let private elements =
 
 let private animals =
     seq {
-        "animales"
         "rata"
         "buey"
         "tigre"
@@ -25,5 +24,8 @@ let private animals =
         "perro"
         "cerdo"
     }
-    
-let private cycleStart = 1984
+
+let CalculateZodiacSigns year =
+    (year % 60) - 4
+    |> fun cycleIndex -> (cycleIndex % 12, (cycleIndex % 10) / 2)
+    |> fun (animalIndex, elementIndex) -> (Seq.item animalIndex animals, Seq.item elementIndex elements)
