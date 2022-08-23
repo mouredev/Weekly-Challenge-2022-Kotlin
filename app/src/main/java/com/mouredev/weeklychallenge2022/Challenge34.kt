@@ -22,10 +22,10 @@ package com.mouredev.weeklychallenge2022
 <?php
 
 function generateMissingNumbers($values) {
-	if (empty($values)) {
-		throw new \Exception('El arreglo está vacío');
-	}
-	
+    if (empty($values)) {
+        throw new \Exception('El arreglo está vacío');
+    }
+    
     $ret = [];
     $max = max($values);
     $min = min($values);
