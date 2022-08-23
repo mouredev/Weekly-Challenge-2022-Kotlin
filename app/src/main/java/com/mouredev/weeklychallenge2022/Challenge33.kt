@@ -21,6 +21,7 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+<<<<<<< HEAD
  
 public class ChineseAstrology {
     public static final String[] MATERIALS = {"madera", "fuego", "tierra", "metal", "agua"};
@@ -43,3 +44,31 @@ public class ChineseAstrology {
         }*/
     }
 }
+=======
+
+fun main() {
+    println(chineseZodiac(1924))
+    println(chineseZodiac(1946))
+    println(chineseZodiac(1984))
+    println(chineseZodiac(604))
+    println(chineseZodiac(603))
+    println(chineseZodiac(1987))
+    println(chineseZodiac(2022))
+}
+
+private fun chineseZodiac(year: Int) : String {
+
+    val elements = arrayListOf<String>("madera", "fuego", "tierra", "metal", "agua")
+    val animals = arrayListOf<String>("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+
+    if (year < 604) {
+        return "El ciclo sexagenario comenzó en el año 604."
+    }
+
+    val sexagenaryYear = (year - 4) % 60
+    val element = elements[(sexagenaryYear % 10) / 2]
+    val animal = animals[sexagenaryYear % 12]
+
+    return "$year: $element $animal"
+}
+>>>>>>> f997096e16ce379213927a726a8c149d58e2e31e
