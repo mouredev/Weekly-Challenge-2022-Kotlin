@@ -22,6 +22,10 @@ package com.mouredev.weeklychallenge2022
 <?php
 
 function generateMissingNumbers($values) {
+	if (empty($values)) {
+		throw new \Exception('El arreglo está vacío');
+	}
+	
     $ret = [];
     $max = max($values);
     $min = min($values);
@@ -44,6 +48,7 @@ function generateMissingNumbers($values) {
     return $ret;
 }
 
+
 $arrayTests = [
     [1,2,5,8,10],
     [-3,-2,0,4,7],
@@ -53,6 +58,8 @@ $arrayTests = [
     [-1, 0,2,4,6,8,10,10],
     [9,8,7,6,5],
     [1,2,3,4,5,6,5],
+    [1],
+    []
 ];
 
 foreach ($arrayTests as $array) {
@@ -64,4 +71,3 @@ foreach ($arrayTests as $array) {
         echo " ==> {$ex->getMessage()}\n";
     }
 }
-
