@@ -39,3 +39,4 @@ private fun getTheSecondBiggest(numbers: MutableList<Number>, bigger: Number) : 
     numbers.removeLast()
     return getTheSecondBiggest(numbers, newBigger)
 }
+
