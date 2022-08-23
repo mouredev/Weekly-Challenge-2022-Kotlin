@@ -19,3 +19,47 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+
+fun main (){
+
+
+    val array = intArrayOf(1,5,20,30,32,35)
+    val array2 = intArrayOf(1,2,3)
+    val array3 = intArrayOf(1,2,4,3)
+    val array4 = intArrayOf(1,3,3,6,7,8,9,10)
+    val array5 = intArrayOf(1,4)
+
+    print(lostNumbers(array))
+}
+
+
+fun lostNumbers(array: IntArray):List<Int> {
+
+    if(array.size==1){
+        return array.toList()
+    }
+
+    val lostNumbers = mutableListOf<Int>()
+
+    var arrayCounter=1
+
+    var numCounter = array[0]
+
+
+    while(arrayCounter<array.size){
+
+        if(array[arrayCounter-1]>=array[arrayCounter])
+        {
+            throw Exception("The array is not correct")
+        }
+        if(numCounter+1<array[arrayCounter]){
+            numCounter++
+            lostNumbers.add(numCounter)
+        }else {
+            numCounter++
+            arrayCounter++
+        }
+    }
+    return lostNumbers
+}
