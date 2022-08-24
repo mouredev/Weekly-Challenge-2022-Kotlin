@@ -26,7 +26,6 @@ def arrayValido(array):
     except:
         return False
 
-
 def buscaFaltante(array):
     inicio = array[0]
     final = array[-1]
