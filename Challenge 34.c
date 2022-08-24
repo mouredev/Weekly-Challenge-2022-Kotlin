@@ -58,7 +58,6 @@ int * GetOthersNumbers(const int * numbers, int * lenght, int * err){
 	int i;
 	int nBefore = *(numbers); //first
 	int need_add=0;
-	*err = 0; //no error
 	
 	
 	// first time, validate array and calculate lenght of a new array
@@ -100,6 +99,7 @@ int * GetOthersNumbers(const int * numbers, int * lenght, int * err){
 		}
 		
 	*lenght = need_add;
+	*err = 0; //no error
 	
 	return out;
 }
