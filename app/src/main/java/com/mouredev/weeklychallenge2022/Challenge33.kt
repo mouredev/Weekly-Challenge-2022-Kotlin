@@ -21,6 +21,7 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.
  *
  */
+
 fun main() {
     println(chineseZodiac(1924))
     println(chineseZodiac(1946))
@@ -53,3 +54,6 @@ private fun getSignElement(pos: Int) : String {
     val element = elements[elementPos]
     return "$element $sodiacSign"
 }
+
+
+
