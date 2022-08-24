@@ -123,8 +123,8 @@ void print_error(int err){
 
 int main(int argc, char *argv[]) {
 	
-	int lenght = 5;
 	int numbers[] = {1, 5, 8, 20, 25};
+	int lenght = sizeof(numbers)/sizeof(int);
 	
 	int error=0;
 	
