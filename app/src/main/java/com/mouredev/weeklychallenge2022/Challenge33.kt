@@ -26,34 +26,24 @@ fun main() {
     println(chineseZodiac(1924))
     println(chineseZodiac(1946))
     println(chineseZodiac(1984))
-    println(chineseZodiac(4))
-    println(chineseZodiac(0))
-    println(chineseZodiac(1))
-    println(chineseZodiac(2022))
+    println(chineseZodiac(604))
+    println(chineseZodiac(603))
     println(chineseZodiac(1987))
-    println(chineseZodiac(1986))
+    println(chineseZodiac(2022))
 }
 
-private fun chineseZodiac(year: Int): String {
-    if(year <= 0) {
-        return "Introduce un año mayor que 0"
+private fun chineseZodiac(year: Int) : String {
+
+    val elements = arrayListOf<String>("madera", "fuego", "tierra", "metal", "agua")
+    val animals = arrayListOf<String>("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+
+    if (year < 604) {
+        return "El ciclo sexagenario comenzó en el año 604."
     }
-    val pos = if (year >= 4) {
-        if ((year - 3) % 60 > 0) ((year - 3) % 60) - 1 else 46
-    } else {
-        (56 + year)
-    }
-    return "$year: " + getSignElement(pos)
+
+    val sexagenaryYear = (year - 4) % 60
+    val element = elements[(sexagenaryYear % 10) / 2]
+    val animal = animals[sexagenaryYear % 12]
+
+    return "$year: $element $animal"
 }
-
-private fun getSignElement(pos: Int) : String {
-    val sodiacSigns = arrayOf("Rata", "Buey", "Tigre", "Conejo", "Dragón", "Serpiente", "Caballo", "Oveja", "Mono", "Gallo", "Perro", "Cerdo")
-    val elements = arrayOf("Madera", "Fuego", "Tierra", "Metal", "Agua")
-    val sodiacSign = sodiacSigns[pos % 12]
-    val elementPos = (pos % 10) / 2
-    val element = elements[elementPos]
-    return "$element $sodiacSign"
-}
-
-
-

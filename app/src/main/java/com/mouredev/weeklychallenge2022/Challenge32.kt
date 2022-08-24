@@ -16,27 +16,35 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    var numbers: MutableList<Number> = mutableListOf(1.5, 6, 2, 7, 4)
-    println("Numbers list: $numbers")
-    var secondBiggest = getTheSecondBiggest(numbers, numbers.last())
-    println("The second biggest is: $secondBiggest")
-    numbers = mutableListOf(100, 3, -2, 4.5, -10)
-    println("Numbers list: $numbers")
-    secondBiggest = getTheSecondBiggest(numbers, numbers.last())
-    println("The second biggest is: $secondBiggest")
+    println(findSecondGreater(arrayListOf(4, 6, 1, 8, 2)))
+    println(findSecondGreater(arrayListOf(4, 6, 8, 8, 6)))
+    println(findSecondGreater(arrayListOf(4, 4)))
+    println(findSecondGreater(arrayListOf()))
 }
 
-private fun getTheSecondBiggest(numbers: MutableList<Number>, bigger: Number) : Number {
-    if(numbers.size == 2) return if (numbers[1].toDouble() < numbers[0].toDouble()) numbers[1] else numbers[0]
-    var newBigger = bigger
-    val currentNumber = numbers[numbers.size - 1]
-    if(currentNumber.toDouble() > bigger.toDouble()) newBigger = numbers[numbers.size - 1]
-    if(numbers[0].toDouble() < currentNumber.toDouble()) {
-        numbers.add(0, currentNumber)
-    } else if(numbers[1].toDouble() < currentNumber.toDouble()) {
-        numbers.add(1, currentNumber)
+fun findSecondGreater(numbers: List<Int>): Int? {
+
+    val sortedNumbers = mutableListOf<Int>()
+
+    for (number in numbers) {
+
+        var found = false
+
+        for ((index, sortedNumber) in sortedNumbers.withIndex()) {
+
+            if (number >= sortedNumber) {
+                if (number != sortedNumber) {
+                    sortedNumbers.add(index, number)
+                }
+                found = true
+                break
+            }
+        }
+
+        if (!found) {
+            sortedNumbers.add(number)
+        }
     }
-    numbers.removeLast()
-    return getTheSecondBiggest(numbers, newBigger)
-}
 
+    return if(sortedNumbers.count() >= 2) sortedNumbers[1] else null
+}
