@@ -19,3 +19,28 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+ const arr = [1,4,5,6,9,12,17];
+
+const recorrer = (item, index, arr) =>{
+   if( index === (arr.length - 1) ) return;
+
+   const nextItem = arr[index + 1];
+   if( (nextItem - item) === 1 ) return;
+
+   const missingNumbersInCurrentStep = []
+   while( ++item < nextItem ){
+      missingNumbersInCurrentStep.push(item);
+   }
+
+   return missingNumbersInCurrentStep;
+}
+
+const getMissingNumber = ( arr ) => {
+    const numbers = [... arr];
+    return numbers.map( recorrer ).filter(item => item !== undefined).flat();
+}
+
+const missingNumber = getMissingNumber(arr)
+
+console.log(missingNumber)
+
