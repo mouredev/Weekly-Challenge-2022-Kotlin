@@ -19,7 +19,22 @@
 
 import random
 
+def order_array(func):
 
+    def wrapper():
+        result = func()
+        #conver list to set for delete duplicate data
+        conver_set = set(result)
+        #return set to list
+        list_r = list(conver_set)
+        #order list
+        list_r = sorted(list_r)
+
+        return list_r
+    
+    return wrapper
+
+@order_array
 def create_array():
     list_a = []
 
@@ -31,14 +46,11 @@ def create_array():
 def lost_numbers():
     #original_list = ['a','b']
     original_list = create_array()
-    convert_set = set(original_list)
-    list_s = list(convert_set)
 
-    list_s.sort()
     print('\n')
-    print(f'Array original: {list_s}'  )
-    a = list_s[0]
-    b = list_s[-1]
+    print(f'Array original: {original_list}'  )
+    a = original_list[0]
+    b = original_list[-1]
     try:
         int(a)
         int(b)
@@ -48,7 +60,7 @@ def lost_numbers():
     for i in range(a + 1,b):
         new_list.append(i)
     print('\n')
-    print(f'Números perdidos entre {a} y {b} : {new_list} ')
+    print(f'Números perdidos entre {a} y {b} : {new_list} \n')
 
 if __name__ == '__main__':
     lost_numbers()
