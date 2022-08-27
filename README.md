@@ -66,15 +66,20 @@ Tienes toda la información extendida sobre los retos de programación semanales
 * **#31** - 01/08/22 - [`AÑOS BISIESTOS`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge31.kt)
 * **#32** - 08/08/22 - [`EL SEGUNDO`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge32.kt)
 * **#33** - 15/08/22 - [`CICLO SEXAGENARIO CHINO`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge33.kt)
-* **#34** - 22/08/22 - `Publicación nuevo reto...`
+* **#34** - 22/08/22 - [`LOS NÚMEROS PERDIDOS`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge34.kt)
+* **#35** - 29/08/22 - `Publicación nuevo reto...`
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
-*Corección retos del 0 al 4 en vídeo*
+*Corrección retos del 0 al 4 en vídeo*
 
 <a href="https://youtu.be/Y_Gej0lbfD0"><img src="http://i3.ytimg.com/vi/Y_Gej0lbfD0/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
-*Corección retos del 5 al 10 en vídeo*
+*Corrección retos del 5 al 10 en vídeo*
+
+<a href="https://youtu.be/YPdhP60Tt08"><img src="http://i3.ytimg.com/vi/YPdhP60Tt08/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
+
+*Corección retos del 11 al 20 en vídeo*
 
 ### ¿Cómo puedo participar?
 
@@ -94,6 +99,10 @@ Tienes toda la información extendida sobre los retos de programación semanales
 	> 	fun main() {
 	>     
 	> 	}
+	
+#### Puedes apoyar mi trabajo haciendo "☆ Star" en el repo o nominarme a "GitHub Star". ¡Gracias!
+
+[![GitHub Star](https://img.shields.io/badge/GitHub-Nominar_a_star-yellow?style=for-the-badge&logo=github&logoColor=white&labelColor=101010)](https://stars.github.com/nominate/)
 
 Si quieres unirte a nuestra comunidad de desarrollo, aprender programación de Apps, mejorar tus habilidades y ayudar a la continuidad del proyecto, puedes encontrarnos en:
 
