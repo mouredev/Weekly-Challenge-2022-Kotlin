@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlin.math.abs
-
 /*
  * Reto #33
  * CICLO SEXAGENARIO CHINO
@@ -24,34 +22,28 @@ import kotlin.math.abs
  *
  */
 
-private enum class Animal {
-    RAT, OX, TIGER, RABBIT, DRAGON, SNAKE, HORSE, SHEEP, MONKEY, ROASTER, DOG, PIG
-}
-
-private enum class Element {
-    WOOD, FIRE, EARTH, METAL, WATER
-}
-
-private fun getAnimalBy(sexagenarianCycleIndex: Int): Animal {
-    return Animal.values().first{ it.ordinal == (sexagenarianCycleIndex % Animal.values().size) }!!
-}
-
-private fun getElementBy(sexagenarianCycleIndex: Int): Element {
-    return Element.values().first{ (it.ordinal * 2) == (sexagenarianCycleIndex % (Element.values().size * 2)) || (it.ordinal * 2 + 1) == (sexagenarianCycleIndex % (Element.values().size * 2))}!!
-}
-
-private fun getChineseZodiacSymbolsBy(year: Int): String {
-    if(year < 604) {
-        return "El zodiaco chino comenzó más tarde, en el año 604 d.c."
-    }
-    val sexagenarianCycleIndex = year - 604
-    return "Para el año $year el animal es ${getAnimalBy(sexagenarianCycleIndex)} y el elemento es ${getElementBy(sexagenarianCycleIndex)}"
-}
-
 fun main() {
-    println(getChineseZodiacSymbolsBy(603))
-    println(getChineseZodiacSymbolsBy(1924))
-    println(getChineseZodiacSymbolsBy(1940))
-    println(getChineseZodiacSymbolsBy(1969))
-    println(getChineseZodiacSymbolsBy(1983))
+    println(chineseZodiac(1924))
+    println(chineseZodiac(1946))
+    println(chineseZodiac(1984))
+    println(chineseZodiac(604))
+    println(chineseZodiac(603))
+    println(chineseZodiac(1987))
+    println(chineseZodiac(2022))
+}
+
+private fun chineseZodiac(year: Int) : String {
+
+    val elements = arrayListOf<String>("madera", "fuego", "tierra", "metal", "agua")
+    val animals = arrayListOf<String>("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+
+    if (year < 604) {
+        return "El ciclo sexagenario comenzó en el año 604."
+    }
+
+    val sexagenaryYear = (year - 4) % 60
+    val element = elements[(sexagenaryYear % 10) / 2]
+    val animal = animals[sexagenaryYear % 12]
+
+    return "$year: $element $animal"
 }
