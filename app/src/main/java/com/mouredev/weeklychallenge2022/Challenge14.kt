@@ -1,6 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlin.math.absoluteValue
 import kotlin.math.pow
 
 /*
