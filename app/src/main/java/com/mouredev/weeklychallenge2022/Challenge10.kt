@@ -27,7 +27,7 @@ fun main() {
     println(isBalanced("{ a * ( c + d ) ] - 5 }"))
     println(isBalanced("{a^4 + (((ax4)}"))
     println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
-        println(isBalanced("{{{{{{(}}}}}}"))
+    println(isBalanced("{{{{{{(}}}}}}"))
     println(isBalanced("(a"))
 }
 

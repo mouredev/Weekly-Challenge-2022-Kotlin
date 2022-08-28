@@ -48,5 +48,5 @@ private fun getFactorial(number : Int): Int{
 
 // for the moure dev solution
 private fun factorial(n: Int): Int? {
-    return if (n < 0) null else if (n <= 1)  1 else n * (factorial(n - 1)!!)
+    return if (n < 0) null else if (n <= 1) 1 else n * (factorial(n - 1)!!)
 }
