@@ -16,6 +16,6 @@ def missing(arra: list):
     print (new_arr)    
 
 def run():    
-    missing([5,15,8,3,10,9,15,3,2,10])
+    missing([5,15,8,3,10,8,6,9,15,3,2,10])
 
 if __name__ == '__main__':run()
