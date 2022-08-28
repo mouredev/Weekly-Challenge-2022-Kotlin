@@ -34,8 +34,8 @@
          IF WS-NUMBER(WS-IDX - 1) >= WS-NUMBER(WS-IDX) THEN
            DISPLAY 'Error: El Array no está ordenado ascendente / El '
       -            'número ingresado está repetido.'
-                PERFORM END-PROGRAM
-             END-IF.
+           PERFORM END-PROGRAM
+         END-IF.
 
        MISSING-NUMBERS.
          PERFORM VARYING WS-IDX FROM 1 BY 1
