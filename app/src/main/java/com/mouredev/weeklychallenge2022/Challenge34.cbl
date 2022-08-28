@@ -39,12 +39,12 @@
 
        MISSING-NUMBERS.
          PERFORM VARYING WS-IDX FROM 1 BY 1
-           UNTIL WS-IDX >= WS-COUNT-NBR
-             COMPUTE WS-AUX = WS-NUMBER(WS-IDX) + 1
-             PERFORM VARYING WS-AUX FROM WS-AUX BY 1
-                       UNTIL WS-AUX = WS-NUMBER(WS-IDX + 1)
-               DISPLAY WS-AUX
-             END-PERFORM
+                   UNTIL WS-IDX >= WS-COUNT-NBR
+           COMPUTE WS-AUX = WS-NUMBER(WS-IDX) + 1
+           PERFORM VARYING WS-AUX FROM WS-AUX BY 1
+                     UNTIL WS-AUX = WS-NUMBER(WS-IDX + 1)
+             DISPLAY WS-AUX
+           END-PERFORM
          END-PERFORM.
 
        END-PROGRAM.
