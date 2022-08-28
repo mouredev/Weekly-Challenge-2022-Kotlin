@@ -1,0 +1,24 @@
+{
+  "name": "weekly-challenge-2022-kotlin",
+  "version": "1.0.0",
+  "description": "<a href=\"https://youtu.be/8HuQXzJl_1I\"><img src=\"http://i3.ytimg.com/vi/8HuQXzJl_1I/maxresdefault.jpg\" style=\"height: 50%; width:50%;\"/></a>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon ./week_challange/solucionReto#0.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mod8124/Weekly-Challenge-2022-Kotlin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mod8124/Weekly-Challenge-2022-Kotlin/issues"
+  },
+  "homepage": "https://github.com/Mod8124/Weekly-Challenge-2022-Kotlin#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
