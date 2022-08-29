@@ -10,7 +10,7 @@ function findLostNumbers(sourceArray) {
       
     for(let i = min; i<max; i++) {
         if (!sourceArray.includes(i)) {
-          	resultArray.push(i)
+            resultArray.push(i)
         }
     }
 
@@ -19,7 +19,7 @@ function findLostNumbers(sourceArray) {
 
 function validateInputArray(sourceArray) {
     for(let i = 0; i < sourceArray.length - 1 ; i++) {
-		if (sourceArray[i] >= sourceArray[i+1]) {
+        if (sourceArray[i] >= sourceArray[i+1]) {
             throw new Error("Invalid input. Array must contain only ordered unrepeated integers.")
         }
     }
