@@ -1,4 +1,12 @@
+
 #!/usr/bin/env python3
+
+#Reto Semanal 34
+
+#Hecho por VentusXTM -- Principiante
+#Discord user Ventusx#0210
+#Twitch user VentusXTM
+
 
 def theLostNumbers(inputList):
 	#Validity Check
@@ -19,9 +27,4 @@ def theLostNumbers(inputList):
 	return missingNo
 
 
-
-
 theLostNumbers([0,1,8,10,10,14])
-
-if __name__ == '__main__':
-    main()
