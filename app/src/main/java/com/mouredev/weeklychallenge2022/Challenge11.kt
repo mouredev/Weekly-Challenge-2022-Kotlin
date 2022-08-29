@@ -26,22 +26,10 @@ fun main() {
     val b = "Subiré una posible solución al ejercicio el lunes siguiente al de su publicación"
 
     println("Example strings\nString1: $a\nString2: $b")
-    aSinB_bSinA(a , b)
-
-    // for the Brais moure solution
-    printNonCommon("brais","moure")
-    printNonCommon("Me gusta Java","Me gusta Kotlin")
-    printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
-        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
-
-    // Otra solución utilizando funciones de orden superior
-    printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
-        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+    aSinByBSinA(a , b)
 }
 
-/** ----- My solution to the challenge ----- **/
-
-fun aSinB_bSinA(a : String, b : String){
+fun aSinByBSinA(a : String, b : String){
 
     println("\nClassification by words")
     wordsSegregation(a,b)
@@ -51,7 +39,7 @@ fun aSinB_bSinA(a : String, b : String){
 }
 
 fun separationInLetters(phrase: String): CharArray {
-    val step1 = phrase.toLowerCase(Locale.ROOT).split(" ")
+    val step1 = phrase.lowercase(Locale.ROOT).split(" ")
 
     var step2 = ""
     step1.forEach {
@@ -77,8 +65,8 @@ fun characterSegregation(a: String, b: String){
 }
 
 private fun wordsSegregation(a: String, b: String){
-    val step1A = a.toLowerCase(Locale.ROOT).split(" ")
-    val step1B = b.toLowerCase(Locale.ROOT).split(" ")
+    val step1A = a.lowercase(Locale.ROOT).split(" ")
+    val step1B = b.lowercase(Locale.ROOT).split(" ")
 
     val step2A = makeOfMap(step1A)
     val step2B = makeOfMap(step1B)
@@ -94,7 +82,6 @@ private fun wordsSegregation(a: String, b: String){
     println("$aSinB\n$bSinA")
 }
 
-
 private fun makeOfMap(words : List<String>) : MutableMap<String,Int>{
     val resultMap = mutableMapOf<String,Int>()
     words.forEach{
@@ -105,30 +92,4 @@ private fun makeOfMap(words : List<String>) : MutableMap<String,Int>{
         }
     }
     return  resultMap
-}
-
-/** ----- Propouse solution given by Brais moure ----- **/
-
-
-private fun printNonCommon(str1: String, str2: String) {
-    println("out1: ${findNonCommon(str1, str2)}")
-    println("out2: ${findNonCommon(str2, str1)}")
-}
-
-private fun findNonCommon(str1: String, str2: String): String {
-
-    var out = ""
-
-    str1.toLowerCase(Locale.ROOT).forEach {
-        if (!str2.toLowerCase(Locale.ROOT).contains(it)) {
-            out += it
-        }
-    }
-
-    return out
-}
-
-private fun printNonCommonWithFilter(str1: String, str2: String) {
-    println("out1: ${str1.toLowerCase(Locale.ROOT).filter { !str2.toLowerCase(Locale.ROOT).contains(it) }}")
-    println("out2: ${str2.toLowerCase(Locale.ROOT).filter { !str1.toLowerCase(Locale.ROOT).contains(it) }}")
 }

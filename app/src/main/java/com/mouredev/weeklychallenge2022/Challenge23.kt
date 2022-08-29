@@ -26,12 +26,6 @@ fun main(){
     getMinComMul(15,20)
     getMinComMul(12,9)
     getMinComMul(27,10)
-
-    // For Moure Dev solution
-    println(mcd(56, 180))
-    println(mcdRecursive(56, 180))
-    println(mcm(56, 180))
-
 }
 
 // Gets the different divisors of the given number
@@ -113,27 +107,3 @@ private fun getMinComMul(num1 : Int, num2 : Int) : Int{
     println("Min Com Mul entre $num1 y $num2 es $minComMul \n")
     return minComMul
 }
-
-private fun mcd(firstNumber: Int, secondNumber: Int): Int {
-
-    var a = firstNumber
-    var b = secondNumber
-
-    while (a != 0 && b != 0) {
-        val temp = b
-        b = a % b
-        a = temp
-    }
-
-    return a + b
-}
-
-private fun mcm(firstNumber: Int, secondNumber: Int): Int {
-    return (firstNumber * secondNumber) / mcd(firstNumber, secondNumber)
-}
-
-private fun mcdRecursive(firstNumber: Int, secondNumber: Int): Int {
-    return if (firstNumber == 0 || secondNumber == 0) (firstNumber + secondNumber)
-        else mcdRecursive(secondNumber, firstNumber % secondNumber)
-}
-

@@ -21,10 +21,6 @@ fun main(){
     val number = 14
     val codeBinary = toCodeBinary(number)
     print("The number: $number is equal to: ${codeBinary.asReversed()} in binary")
-
-    // For mouredev resolution
-    println(decimalToBinary(387))
-    println(decimalToBinary(0))
 }
 
 // My solution
@@ -45,21 +41,4 @@ fun toCodeBinary(number: Int ): ArrayList<Byte>{
     }
 
     return codeBinary
-}
-
-// Mouredev code
-fun decimalToBinary(decimal: Int): String {
-
-    var number = decimal
-    var binary = ""
-
-    while (number != 0) {
-
-        val reminder = number % 2
-        number /= 2
-
-        binary = "$reminder$binary"
-    }
-
-    return binary.ifEmpty { "0" }
 }

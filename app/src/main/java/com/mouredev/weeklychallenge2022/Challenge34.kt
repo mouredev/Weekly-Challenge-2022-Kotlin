@@ -24,11 +24,13 @@ fun main() {
     val example2 = arrayOf(10,1)
     val example3 = arrayOf(5,7,2,1)
     val example4 = arrayOf(5)
+    val example5 = arrayOf(5,2,2,1)
 
     lookupForMissingOnes(example1)?.asList()?: println("Wrong input \n")
     lookupForMissingOnes(example2)?.asList()?: println("Wrong input \n")
     lookupForMissingOnes(example3)?.asList()?: println("Wrong input \n")
     lookupForMissingOnes(example4)?.asList()?: println("Wrong input \n")
+    lookupForMissingOnes(example5)?.asList()?: println("Wrong input \n")
 }
 
 private fun lookupForMissingOnes(numberList: Array<Int>): Array<Int>? {
@@ -42,15 +44,13 @@ private fun lookupForMissingOnes(numberList: Array<Int>): Array<Int>? {
 
     if (numberList.first() > numberList.last()) {
         // Down count
-        var nMissing = numberList.first() - numberList.size
-        while (nMissing > 0) {
+        while (completeListItemCounter < numberList.size-1) {
             val first = numberList[completeListItemCounter++]
             val second = numberList[completeListItemCounter]
             if (first - second > 1 ) {
                 var x = 1
                 repeat(first-second-1){
                     missingOnes.add(first-x++)
-                    nMissing--
                 }
             } else if (first - second != 1){
                 // Second validation filter
@@ -59,8 +59,7 @@ private fun lookupForMissingOnes(numberList: Array<Int>): Array<Int>? {
         }
     } else {
         // Up count
-        var nMissing = numberList.last() - numberList.size
-        while (nMissing > 0) {
+        while (completeListItemCounter < numberList.size-1) {
             val first = numberList[completeListItemCounter++]
             val second = numberList[completeListItemCounter]
 
@@ -68,7 +67,6 @@ private fun lookupForMissingOnes(numberList: Array<Int>): Array<Int>? {
                 var x = 1
                 repeat(second-first-1) {
                     missingOnes.add(first + x++)
-                    nMissing--
                 }
             } else if (first - second != -1){
                 // Second validation filter

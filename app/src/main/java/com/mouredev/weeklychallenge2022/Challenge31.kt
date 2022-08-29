@@ -19,22 +19,5 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    thirtyLeapYears(1999)
-    thirtyLeapYears(-500)
-}
 
-private fun thirtyLeapYears(year: Int) {
-
-    var currentYear = year + 1
-    var yearCount = 0
-
-    while (yearCount < 30) {
-
-        if (currentYear % 4 == 0 && (currentYear % 100 != 0 || currentYear % 400 == 0)) {
-            println(currentYear)
-            yearCount++
-        }
-
-        currentYear++
-    }
 }

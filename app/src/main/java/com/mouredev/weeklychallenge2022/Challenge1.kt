@@ -21,12 +21,6 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
+
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.toLowerCase() == wordTwo.toLowerCase()) {
-        return false
-    }
-    return wordOne.toLowerCase().toCharArray().sortedArray().contentEquals(wordTwo.toLowerCase().toCharArray().sortedArray())
-}

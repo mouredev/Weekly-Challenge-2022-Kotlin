@@ -28,12 +28,6 @@ fun main (){
     isNarcissist("100")
     isNarcissist("153")
     isNarcissist("8208")
-
-    // for moure dev solution
-    println(isArmstrong(371))
-    println(isArmstrong(-371))
-    println(isArmstrong(372))
-    println(isArmstrong(0))
 }
 
 private fun isNarcissist(n:String){
@@ -45,22 +39,4 @@ private fun isNarcissist(n:String){
         x
     }
     println("If $n is equal to $result then $n is narcissist : ${n.toInt()==result}")
-}
-
-// for the moure dev solution
-private fun isArmstrong(number: Int): Boolean {
-
-    return if (number < 0) {
-        false
-    } else {
-        var sum = 0
-        val powValue = number.toString().length
-
-        number.toString().forEach { character ->
-            sum += character.toString().toDouble().pow(powValue).toInt()
-        }
-
-        number == sum
-    }
-
 }

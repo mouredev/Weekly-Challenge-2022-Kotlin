@@ -23,11 +23,6 @@ fun main(){
     milisegundador(1,2,30,50)
     milisegundador()
     milisegundador(-20,70,5,10)
-    
-    // For Moure Dev solution
-    println(timeToMillis(0, 0, 0, 10))
-    println(timeToMillis(2, 5, -45, 10))
-    println(timeToMillis(2000000000, 5, 45, 10))
 }
 
 private fun milisegundador(dias : Int = 0, horas : Int = 0, minutos : Int = 0, segundos : Int = 0) : Long {
@@ -75,15 +70,3 @@ private fun milisegundador(dias : Int = 0, horas : Int = 0, minutos : Int = 0, s
 
     return totalMilli
 }
-
-// For Moure Dev solution
-fun timeToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
-
-    val daysInMillis = days.toLong() * 24 * 60 * 60 * 1000
-    val hoursInMillis = hours.toLong() * 60 * 60 * 1000
-    val minutesInMillis = minutes.toLong() * 60 * 1000
-    val secondsToMillis = seconds.toLong() * 1000
-
-    return daysInMillis + hoursInMillis + minutesInMillis + secondsToMillis
-}
-
