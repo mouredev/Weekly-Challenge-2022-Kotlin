@@ -19,3 +19,44 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main()
+{
+    lostNumbers(arrayOf(1, 3, 7, 12)) // Solucion correcta
+    lostNumbers(arrayOf(1)) // Falla porque tiene un solo elemento
+    lostNumbers(arrayOf(1, 1, 5)) // Falla porque tiene repetidos
+    lostNumbers(arrayOf(1, 3, 2, 5)) // Falla porque no está ordenado
+    lostNumbers(arrayOf(1, 5, 6, 9, 10)) // Solucion correcta
+
+}
+
+fun lostNumbers(array: Array<Int>)
+{
+    if (array.size < 2)
+        throw IllegalArgumentException("Array must have at least 2 elements")
+    if (array.size != array.toSet().size)
+        throw IllegalArgumentException("Array must not have repeated elements")
+    if (!array.isSorted())
+        throw IllegalArgumentException("Array must be sorted")
+
+    val min = array[0]
+    val max = array[array.size - 1]
+    val result = mutableListOf<Int>()
+
+    for (i in min + 1 until max)
+        if (!array.contains(i))
+            result.add(i)
+
+    result.forEach {
+        print(it)
+        print(", ")
+    }
+    println()
+}
+
+fun Array<Int>.isSorted(): Boolean
+{
+    for (i in 1 until this.size)
+        if (this[i - 1] > this[i])
+            return false
+    return true
+}
