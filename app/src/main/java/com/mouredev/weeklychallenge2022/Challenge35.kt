@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.roundToInt
+
 /*
  * Reto #35
  * BATALLA POKÉMON
@@ -24,3 +26,74 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    try {
+        println(calculateDamage(PokemonType.WATER, PokemonType.FIRE, 25.0, 69.0))
+        println(calculateDamage(PokemonType.FIRE, PokemonType.ELECTRIC, 67.0, 13.0))
+        println(calculateDamage(PokemonType.ELECTRIC, PokemonType.GRASS, 100.0, 1.0))
+        println(calculateDamage(PokemonType.GRASS, PokemonType.GRASS, 154.0, 69.0))
+    } catch (e: WrongAmountException) {
+        println(e.message)
+    }
+}
+
+enum class PokemonType {
+    FIRE, WATER, GRASS, ELECTRIC
+}
+
+class WrongAmountException : Exception() {
+    override val message: String
+        get() = "Attack and Defence amount should be a value between 1 and 100."
+}
+
+fun calculateDamage(
+    attackerType: PokemonType,
+    defenderType: PokemonType,
+    attackAmount: Double,
+    defenceAmount: Double
+): String {
+    if (attackAmount !in 1.0..100.0 || defenceAmount !in 1.0..100.0) {
+        throw WrongAmountException()
+    }
+    val effectiveness: Double
+    when (attackerType) {
+        PokemonType.WATER -> {
+            effectiveness = when (defenderType) {
+                PokemonType.FIRE -> 2.0
+                PokemonType.ELECTRIC -> 1.0
+                PokemonType.WATER, PokemonType.GRASS -> 0.5
+            }
+        }
+        PokemonType.FIRE -> {
+            effectiveness = when (defenderType) {
+                PokemonType.GRASS -> 2.0
+                PokemonType.ELECTRIC -> 1.0
+                PokemonType.FIRE, PokemonType.WATER -> 0.5
+            }
+        }
+        PokemonType.GRASS -> {
+            effectiveness = when (defenderType) {
+                PokemonType.WATER -> 2.0
+                PokemonType.ELECTRIC -> 1.0
+                PokemonType.GRASS, PokemonType.FIRE -> 0.5
+            }
+        }
+        PokemonType.ELECTRIC -> {
+            effectiveness = when (defenderType) {
+                PokemonType.WATER -> 2.0
+                PokemonType.FIRE -> 1.0
+                PokemonType.ELECTRIC, PokemonType.GRASS -> 0.5
+            }
+        }
+    }
+    val damage = ((50 * (attackAmount / defenceAmount) * effectiveness) * 100).roundToInt() / 100.0
+
+    return "Attack damage: $damage. ${
+        when (effectiveness) {
+            2.0 -> "Attack is super-effective!"
+            1.0 -> "Attack is normal"
+            else -> "Attack is not very effective"
+        }
+    }"
+}
