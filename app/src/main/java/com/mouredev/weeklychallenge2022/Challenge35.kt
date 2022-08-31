@@ -24,3 +24,78 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+enum class PokemonType {
+    FIRE, WATER, GRASS, ELECTRIC
+}
+
+fun main(){
+    CalculateDamage(PokemonType.FIRE, PokemonType.WATER, 50, 50)
+    CalculateDamage(PokemonType.WATER, PokemonType.ELECTRIC, 10, 39)
+    CalculateDamage(PokemonType.GRASS, PokemonType.GRASS, 47, 20)
+    CalculateDamage(PokemonType.ELECTRIC, PokemonType.WATER, 99, 2)
+    CalculateDamage(PokemonType.FIRE, PokemonType.ELECTRIC, 100, 50)
+    CalculateDamage(PokemonType.WATER, PokemonType.GRASS, 20, 10)
+    CalculateDamage(PokemonType.FIRE, PokemonType.FIRE, 30, 75)
+
+
+}
+
+private fun CalculateDamage(attackerType: PokemonType, defenderType: PokemonType, attack: Int, defense: Int) {
+
+    if (attack < 0 || attack > 100 || defense < 0 || defense> 100) {
+        throw WrongValues()
+    }
+    val efectivity = getEfectivity(attackerType, defenderType)
+    val damage = 50 * (attack / defense) * efectivity
+
+    println("ATACANTE: $attackerType vs DEFENSOR: $defenderType")
+    println("Efectividad del ataque: ${EvaluateEffectiveness(efectivity)}")
+    println("Para los valores indicados, el daño producido seria de: $damage")
+    println ("--------------------------------")
+}
+
+fun getEfectivity(attackerType: PokemonType, defenderType: PokemonType): Double {
+    return when (attackerType) {
+        PokemonType.FIRE -> when (defenderType) {
+            PokemonType.FIRE -> 0.5
+            PokemonType.WATER -> 0.5
+            PokemonType.GRASS -> 2.0
+            PokemonType.ELECTRIC -> 1.0
+        }
+        PokemonType.WATER -> when (defenderType) {
+            PokemonType.FIRE -> 2.0
+            PokemonType.WATER -> 0.5
+            PokemonType.GRASS -> 0.5
+            PokemonType.ELECTRIC -> 1.0
+        }
+        PokemonType.GRASS -> when (defenderType) {
+            PokemonType.FIRE -> 0.5
+            PokemonType.WATER -> 2.0
+            PokemonType.GRASS -> 0.5
+            PokemonType.ELECTRIC -> 1.0
+        }
+        PokemonType.ELECTRIC -> when (defenderType) {
+            PokemonType.FIRE -> 1.0
+            PokemonType.WATER -> 2.0
+            PokemonType.GRASS -> 0.5
+            PokemonType.ELECTRIC -> 0.5
+        }
+    }
+}
+
+private fun EvaluateEffectiveness (efectivity: Double): String
+{
+    when (efectivity){
+        2.0 -> return "Super efectivo"
+        1.0 -> return "Neutral"
+        0.5 -> return "No muy efectivo"
+        else -> return "Error"
+    }
+}
+
+class WrongValues : Exception()
+{
+    override val message: String?
+        get() = "Los valores deben estar entre 0 y 100"
+}
