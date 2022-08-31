@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8"/>
+	
+	<title> Reto35
+	</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<style>
+
+</style>
+<!--<script async src="Reto35.js"></script> -->
+
+</head>
+
+<body>
+
+<h2> Reto #35 BATALLA POKEMON</h2>
+<section>
+<p><em>
+ <ul>
+ <li>Fecha publicación enunciado: 29/08/22</li>
+ <li>Fecha publicación resolución: 06/09/22</li>
+ <li>Dificultad: MEDIA</li>
+</ul>
+ </em>
+</p>
+</section>
+<section>
+ <h3>Enunciado:</h3>
+ <ul>
+ <li>
+ Crea un programa que calcule el daño de un ataque durante
+ una batalla Pokémon.<</li>
+ <li>
+ La fórmula será la siguiente: daño = 50 * (ataque / defensa) * efectividad
+</li>
+<li>
+Efectividad: x2 (súper efectivo), x1 (neutral), x0.5 (no es muy efectivo)
+</li>
+<li>
+Sólo hay 4 tipos de Pokémon: Agua, Fuego, Planta y Eléctrico <a href= https://sites.google.com/site/pokesitescompetitive/efectividad-de-los-movimientos>(buscar su efectividad)</a>
+</li>
+<h4>El programa recibe los siguientes parámetros:</h4>
+<li>
+Tipo del Pokémon atacante.
+</li>
+<li>
+Tipo del Pokémon defensor.
+</li>
+Ataque: Entre 1 y 100.
+</li>
+<li>
+Defensa: Entre 1 y 100
+</ul>
+
+<section>
+ <h3>Información adicional:</h3>
+ <ul>
+ <li>Usa el canal de nuestro Discord (https://mouredev.com/discord) "reto-semanal" para preguntas, dudas o prestar ayuda a la comunidad.</li>
+ <li>Tienes toda la información sobre los retos semanales en https://retosdeprogramacion.com/semanales2022.</li>
+</ul>
+<hr>
+
+<Section>
+<h2>SOLUCIÓN</h2>
+<h4>Ataque: </h4>
+<form id="frmAtaque">
+<label for ="fAtacante">Atacante:</label><br>
+<input type="text" name="fAtacante" id="fAtacante" list="lPoks" required>
+    <datalist id="lPoks">
+      <option>Agua</option>
+      <option>Fuego</option>
+      <option>Planta</option>
+      <option>Eléctrico</option>
+     </datalist><br><br>
+<label for ="fDefensor">Defensor:</label><br>
+<input type="text" name ="fDefensor" id="fDefensor" list="lPoks" required>
+     <br><br>
+</form>
+<label for = "fAtaq">Potencia Ataque:</label> 
+<input type="text" id="fAtaq"name="fAtaq" required>
+<label for = "fDef">Potencia Defensa:</label> 
+<input type="text" id="fDef"name="fDef" required>
+<button onclick="azarAtaq()">¡SUERTE!</button>
+
+<br><br>
+<button onclick="calcDaño()">¡DOLOR!</button>
+
+
+
+<h4> El daño del ataque: </h4>
+<p id="resultado"></p>
+
+</Section>
+<script>
+//declaracion de las dos matrices la de efectividad y la de tipos de pokemon
+const matrizEfe=[[0.5,2,0,5,1],[0.5,0.5,2,1],[2,0.5,0.5,1],[2,1,0.5,0.5]];
+const matrizPkm=["Agua","Fuego","Planta","Eléctrico"];
+
+function calcDaño() {
+
+  //se recogen los valores del formulario html
+  var a = document.getElementById("fAtacante").value;
+  var d = document.getElementById("fDefensor").value;
+  var potAtaq = document.getElementById("fAtaq").value;
+  var potDef = document.getElementById("fDef").value;
+  //declaracion de variables para la coordenada de la matriz de efectividad
+  var i,j =null;
+  // Los bucles averiguan la columna del atacante y del defensor
+  for (z =0;z < (matrizPkm.length); z++){
+    if (matrizPkm[z] == a ) { i=z; break;}
+  }
+    for (z =0;z < (matrizPkm.length); z++){
+    if (matrizPkm[z] == d ) { j=z; break;}
+  }
+
+  // se extrae el valor del la matriz de efectividad
+  var nEfect = matrizEfe[i][j];
+
+  // calculo del daño usando la formula del enunciado
+  
+  var daño = Math.round(50 * (potAtaq/potDef) * nEfect);
+  document.getElementById("resultado").innerHTML = daño;
+
+
+/*console.log ("Potencia Ataq  = " + potAtaq);
+console.log ("Potencia Def = " + potDef);
+console.log ("i = "+i);
+console.log ("j = "+j);
+console.log ("Efectividad = "+nEfect);
+console.log ("Daño = "+ daño);*/
+
+}
+
+//esta funcion sirve para tirar los dados de la potencia de ataque y defensa
+function azarAtaq(){
+//Uso de la funcion random para obtener valores enteros entre 1 y 100
+//se presentan en el html
+document.getElementById("fAtaq").value = (Math.floor(Math.random()*100)+1);
+document.getElementById("fDef").value = (Math.floor(Math.random()*100)+1);
+}
+</script>
+	
+</body>
