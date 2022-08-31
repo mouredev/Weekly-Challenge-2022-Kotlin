@@ -25,7 +25,7 @@
 # *
 # */
 
-#!/Usr/bin/python3
+#!/usr/bin/python3
 
 from colorama import Fore
 from sys import argv
