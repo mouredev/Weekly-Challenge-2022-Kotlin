@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+
 
 /*
  * Reto #0
@@ -19,19 +19,17 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
+for(let i = 1; i < 101; i++){
+    let number = i;
+    let multipleOfThree = number % 3;
+    let multipleOfFive = number % 5;
+    
+    if(multipleOfThree == 0 && multipleOfFive == 0){
+        number = "fizzbuzz";
+    }else if(multipleOfThree == 0){
+        number = "fizz";
+    }else if(multipleOfFive == 0){
+        number = "buzz";
     }
+    console.log(number);
 }
