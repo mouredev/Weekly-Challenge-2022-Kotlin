@@ -78,7 +78,7 @@ const calculateEffectivness = (atkType, defType) =>{
   else if( attacker === 'agua' ){
     switch (defender) {
       case 'fuego':
-        return 0.5
+        return 2
         break;
       case 'planta':
         return 0.5
@@ -146,4 +146,4 @@ const calculateDamage = (atkType, defType, atk, def)=>{
   }
 }
 
-calculateDamage( 'fuego', 'planta', 45, 36 )
+calculateDamage( 'fuego', 'planta', 55, 36 )
