@@ -1,0 +1,67 @@
+/*
+ * Reto #34
+ * LOS NÚMEROS PERDIDOS
+ * Fecha publicación enunciado: 22/08/22
+ * Fecha publicación resolución: 29/08/22
+ * Dificultad: FÁCIL
+ *
+ * Enunciado: Dado un array de enteros ordenado y sin repetidos, crea una función que calcule
+ * y retorne todos los que faltan entre el mayor y el menor.
+ * - Lanza un error si el array de entrada no es correcto.
+ *
+ */
+
+//Solucion
+function lostNumbers(arr) {
+
+    //comprobamos que exista el valor
+    if(arr === undefined) {
+        return console.error('No has introducido ningun valor')
+    }
+
+    //comprobamos si la variable es una array
+    if(!Array.isArray(arr)) {
+        return console.error('El valor no es de tipo array')
+    }
+
+    //comprobamos que el array no este vacio
+    if (arr.length === 0 || arr.length === 1) {
+        return console.error('El array esta vacio o tiene menos dos valores')
+    }
+
+    //comprobamos que los valores son de tipo Number
+    for (let num of arr) {
+        if (typeof num !== "number")
+          return console.error(`${num} no es un numero`);
+    }
+    
+    //comprobamos que esten bien ordenados
+    for (let index = 0; index < arr.length; index++) {
+        if (arr[index] > arr[index + 1]){
+            return console.error('Los valores no estan ordenados correctamente')
+        }
+    }
+    
+    //comprobamos que no hayan valores repetidos
+    const arrSinDuplicados = [...new Set(arr)]
+    for (let index = 0; index < arrSinDuplicados.length; index++) {
+        if (arrSinDuplicados[index] != arr[index]) {
+            return console.error('Hay numeros duplicados en el Array')
+        }        
+    }
+
+    //devuelvo los numeros que faltan en el array entre el primero y el ultimo
+    const lastItem = arr[arr.length - 1]
+    let arrReturn = []
+    for (let index = arr[0] + 1; index < lastItem; index++) {
+        //Devolvemos solo los valores que no estan ya incluidos en el array
+        if (arr.indexOf(index) === -1 ){
+            arrReturn.push(index)
+        }
+    }
+    //retornamos el array con los valores que faltan entre el primero y el ultimo sin incluir los que ya estan
+    return console.log(arrReturn)
+}
+
+//Prueba
+lostNumbers([2, 4, 10])
