@@ -1,6 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
-import java.math.BigInteger
 
 /*
  * Reto #2
@@ -21,17 +18,11 @@ import java.math.BigInteger
  *
  */
 
-fun main() {
-
-    var n0: Long = 0
-    var n1: Long = 1
-
-    (1..50).forEach { _ ->
-
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
-    }
+let fibonacci = [0,1];
+let secondIndex = 1;
+for(let i = 0; i < 48; i++){
+    let next = fibonacci[i] + fibonacci[secondIndex];
+    fibonacci.push(next);
+    secondIndex++;
 }
+console.log(fibonacci.join());
