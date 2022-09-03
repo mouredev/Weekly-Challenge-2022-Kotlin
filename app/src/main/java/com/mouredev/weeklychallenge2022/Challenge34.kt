@@ -20,6 +20,41 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val ar = arrayOf(3, 9, 50)
+    if (hasDuplicates(ar) || isNotOrdered(ar)) {
+        println("El array de entrada no es correcto")
+        return
+    }
+    calculateNumbersBetween(ar).forEach {
+        print("$it ")
+    }
+}
+
+private fun calculateNumbersBetween(ar: Array<Int>): ArrayList<Int> {
+    val result = ArrayList<Int>()
+    val firstNumber = ar[0]
+    val lastNumber = ar[ar.size - 1]
+
+    for (i in firstNumber..lastNumber) {
+        result.add(i)
+    }
+
+    return result
+}
+
+private fun isNotOrdered(ar: Array<Int>): Boolean {
+    val orderList = ar.sorted()
+    if (orderList == ar.toCollection(ArrayList()))
+        return false
+    return true
+}
+
+fun hasDuplicates(ar: Array<Int>): Boolean {
+    return ar.size != ar.distinct().count()
+}
+
+
+fun otroMain() {
     try {
         println(lostNumbers(arrayListOf(1, 3, 5)))
         println(lostNumbers(arrayListOf(5, 3, 1)))

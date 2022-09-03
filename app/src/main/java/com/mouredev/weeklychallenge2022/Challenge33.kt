@@ -22,7 +22,18 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+private var ARRAY_ANIMAL = arrayOf("rata", "buey", "tigre", "conejo", "dragón", "serpiente",
+    "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+
+private var ARRAY_ELEMENT = arrayOf("madera", "fuego", "tierra", "metal", "agua")
+
 fun main() {
+    val year = 1984
+    val sexagenaryYear = (year - 4) % 60
+    println("${ARRAY_ELEMENT[(sexagenaryYear % 10) / 2]} ${ARRAY_ANIMAL[sexagenaryYear % 12]}")
+}
+
+fun otherMain() {
     println(chineseZodiac(1924))
     println(chineseZodiac(1946))
     println(chineseZodiac(1984))
