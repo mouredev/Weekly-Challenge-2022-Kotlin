@@ -1,0 +1,9 @@
+{
+    "cSpell.ignorePaths": [
+        "*.kt"
+    ],
+    "cSpell.ignoreRegExpList": [
+        "/\\*.*\\*/",
+        "//.*"
+    ]
+}
