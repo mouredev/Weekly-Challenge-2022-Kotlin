@@ -19,19 +19,18 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+function fizzbuzz(n) {
+	let result = '';
+	if (n % 3 === 0) {
+		result += 'fizz';
+	}
+	if (n % 5 === 0) {
+		result += 'buzz';
+	}
 
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
-    }
+	return result ? result : n;
+}
+
+for (let i = 1; i <= 100; i++) {
+	console.log(fizzbuzz(i));
 }
