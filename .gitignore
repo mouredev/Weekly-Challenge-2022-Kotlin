@@ -156,6 +156,13 @@ hs_err_pid*
 *~
 *.swp
 
+# Vs Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # Keystore files
 *.jks
 *.keystore
