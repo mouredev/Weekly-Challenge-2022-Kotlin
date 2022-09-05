@@ -23,6 +23,9 @@
  *
  */
 
+/**
+ * Tipos de Pokemon
+ */
 export enum PokemonType {
     WATER = 'water',
     FIRE = 'fire',
@@ -30,14 +33,24 @@ export enum PokemonType {
     ELECTRIC = 'electric'
 }
 
+/**
+ * Efectividad de los tipos de Pokemon
+ */
 enum EffectivenessType {
     SUPER_EFFECTIVE = 2,
     NORMAL = 1,
     NOT_VERY_EFFECTIVE = 0.5
 }
 
-const DAMAGEMODIFIER = 50
+/**
+ * Modificador de daño
+ */
+const DAMAGE_MODIFIER = 50
 
+
+/**
+ * Tabla de efectividad de los tipos de Pokemon
+ */
 const EFFECTIVENESS = {
     [PokemonType.WATER]: {
         [PokemonType.WATER]: EffectivenessType.NOT_VERY_EFFECTIVE,
@@ -65,7 +78,14 @@ const EFFECTIVENESS = {
     }
 }
 
-
+/**
+ * Funcion que calcula el daño de un ataque Pokemon contra otro en base a su tipo
+ * @param attackerType Tipo del Pokemon atacante
+ * @param defenderType Tipo del Pokemon defensor
+ * @param attack Ataque del Pokemon atacante(1-100)
+ * @param defense Defensa del Pokemon defensor (1-100)
+ * @returns Daño del ataque del pokemon atacante(0 en caso de error)
+ */
 export function calculatePokeDamage(attackerType: PokemonType, defenderType: PokemonType, attack: number, defense: number): number {
 
     if(attack < 1 || attack > 100) {
@@ -79,10 +99,7 @@ export function calculatePokeDamage(attackerType: PokemonType, defenderType: Pok
     }
 
     let effectiveness = EFFECTIVENESS[attackerType][defenderType];
-    return  DAMAGEMODIFIER * (attack / defense) * effectiveness;
+    return  DAMAGE_MODIFIER * (attack / defense) * effectiveness;
 
 }
 
-
-
-console.log(calculatePokeDamage(PokemonType.WATER, PokemonType.FIRE, 50, 50))

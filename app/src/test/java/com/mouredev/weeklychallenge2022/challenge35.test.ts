@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { calculatePokeDamage,PokemonType } from '../../../../../main/java/com/mouredev/weeklychallenge2022/challenge35';
+import { calculatePokeDamage,PokemonType } from '../../../../../main/java/com/mouredev/weeklychallenge2022/Challenge35';
 
 describe('Test Challenge Moure dev', () => {
     describe('Challenge #35', () => {
