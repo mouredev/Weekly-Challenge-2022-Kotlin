@@ -20,13 +20,28 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(isAnagram("amor", "roma"))
+function isAnagram(string1, string2) {
+	if (string1 === string2) {
+		return false;
+	}
+
+	const arrayString1 = Array.from(string1.toLowerCase()).sort();
+	const arrayString2 = Array.from(string2.toLowerCase()).sort();
+
+	let coincidencias = 0;
+
+	for (let i = 0; i < arrayString1.length; i++) {
+		for (let x = 0; x < arrayString2.length; x++) {
+			if (arrayString1[i] === arrayString2[x]) {
+				coincidencias++;
+			}
+		}
+	}
+
+	return coincidencias === arrayString1.length ? true : false;
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
-}
+const string1 = 'amor';
+const string2 = 'roma';
+
+console.log(isAnagram(string1, string2));
