@@ -84,20 +84,20 @@ def escoger_tipo():
             
 def ataqueDefensa():
     '''
-    Comprueba que el valor de ataque o defensa se encuentre entre 0 y 100
+    Comprueba que el valor de ataque o defensa se encuentre entre 1 y 100
     
     Params: None
     
     Retorna:
-        (int) : Valor del tipo de pokemon entre 0 y 100
+        (int) : Valor del tipo de pokemon entre 1 y 100
     '''
     while True:
         try:
-            valor = int(input("Introduce un numero entre el 0 y el 100: "))
-            if valor == 0 or valor < 100:
+            valor = int(input("Introduce un numero entre el 1 y el 100: "))
+            if valor >= 1 0 or valor <= 100:
                 return valor                
         except ValueError:
-            print("Debes introducir un numero entre el 0 y el 100:")  
+            print("Debes introducir un numero entre el 1 y el 100:")  
 
 
 # Tipos de pokemon
