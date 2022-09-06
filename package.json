@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon ./week_challange/solucionReto#0.js"
+    "dev":"nodemon week_challenge/js/solucionReto#3.js",
+    "build":"tsc -w"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,10 @@
     "url": "https://github.com/Mod8124/Weekly-Challenge-2022-Kotlin/issues"
   },
   "homepage": "https://github.com/Mod8124/Weekly-Challenge-2022-Kotlin#readme",
-  "devDependencies": {
+  "dependencies": {
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.2"
   }
 }

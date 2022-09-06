@@ -6,13 +6,13 @@
 //  * - Múltiplos de 5 por la palabra "buzz".
 //  * - Múltiplos de 3 y de 5 a la vez por la palabra "fizzbuzz".
 
-const main = () => {
+const main = ():void => {
     
-     let index = 0;
+    let index:number = 0;
     for (index; index <= 100; index++) {
 
-        let isDivisionbyThree = index % 3 === 0;
-        let isDivisionByFive = index % 5 === 0;
+        let isDivisionbyThree:boolean = index % 3 === 0;
+        let isDivisionByFive:boolean = index % 5 === 0;
 
         if (isDivisionbyThree && isDivisionByFive) {
             console.log('fizzbuzz', index);
@@ -30,3 +30,6 @@ const main = () => {
 };
 
 main();
+
+// big(0) time Complexity = 0(1)
+// big(0) space Complexity = 0(1)
