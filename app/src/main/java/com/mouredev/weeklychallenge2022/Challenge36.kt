@@ -3,7 +3,7 @@ package com.mouredev.weeklychallenge2022
 /*
  * Reto #36
  * LOS ANILLOS DE PODER
- * Fecha publicación enunciado: 06/08/22
+ * Fecha publicación enunciado: 06/09/22
  * Fecha publicación resolución: 14/09/22
  * Dificultad: MEDIA
  *
