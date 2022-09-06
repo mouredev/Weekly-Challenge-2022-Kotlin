@@ -94,7 +94,7 @@ def ataqueDefensa():
     while True:
         try:
             valor = int(input("Introduce un numero entre el 1 y el 100: "))
-            if valor >= 1 0 or valor <= 100:
+            if valor >= 1 or valor <= 100:
                 return valor                
         except ValueError:
             print("Debes introducir un numero entre el 1 y el 100:")  
