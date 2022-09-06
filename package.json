@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon week_challenge/js/solucionReto#3.js",
+    "dev":"nodemon week_challenge/js/solucionReto#4.js",
     "build":"tsc -w"
   },
   "repository": {
