@@ -26,8 +26,59 @@ using namespace std;
  *
  */
 
+// Matriz de efectividad (orden alfabético A, E, F, P)
+float effectMatrix[4][4] = {
+    {0.5, 1, 2, 0.5}, 
+    {2, 0.5, 1, 0.5}, 
+    {0.5, 1, 0.5, 2}, 
+    {2, 1, 0.5, 0.5}};
+
+string att_type = "";
+string def_type = "";
+int att = 0;
+int def = 0;
+
+
+float calcAttack(int att, int def, float eff){ 
+    return 50 * ((float) att / (float) def) * eff;
+}
+
+int selectorChar(string att){
+    switch(att[0]){
+        case 'A': return 0;
+        case 'E': return 1;
+        case 'F': return 2;
+        case 'P': return 3;
+    }
+    return 0;
+}
+
+float calcEff(string att, string def){
+
+    int selCharAtt = selectorChar(att);
+    int selCharDef = selectorChar(def);
+
+    return effectMatrix[selCharAtt][selCharDef];
+}
+
 int main(int argc, char const *argv[])
 {
 
+    if(argc == 5){
+        att_type = argv[1];
+        def_type = argv[2];
+        att = stoi(argv[3]);
+        def = stoi(argv[4]);
+
+        float effectivity = calcEff(att_type, def_type);
+        float hit = calcAttack(att, def, effectivity);
+        cout << "El daño calculado es de: " << hit << " PS" << endl;
+        return 0;
+    }else{
+        cout << "No se han pasado los argumentos correctamente, revisa el enunciando. Argumentos recibidos: " << argc << endl;
+        return -1;
+    }
+
     return 0;
 }
+
