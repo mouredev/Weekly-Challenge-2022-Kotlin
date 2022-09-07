@@ -45,11 +45,13 @@ def crear_pokemon(mensaje: str) -> Pokemon:
                 continue
 
 
-def ingresar_dato(atributo, mensaje: str) -> None:
+def ingresar_dato(atr, name) -> None:
     try:
-        atributo = int(input(mensaje))
-    except:
-        return None
+        dato = int(input(f"Valor de {name}: "))
+        assert 100 >= dato >= 1, "Debe ser un valor entre 1 a 100"
+        return dato
+    except ValueError:
+        return atr
 
 
 def calcular_golpe(atacante: Pokemon, defensor: Pokemon) -> int:
@@ -80,9 +82,9 @@ def batalla_pokemon():
     atacante = crear_pokemon("Tipo del Pokémon atacante: ")
     defensor = crear_pokemon("Tipo del Pokémon defensor: ")
     
-    ingresar_dato(atacante.ataque, "Ataque: ")
-    ingresar_dato(defensor.defensa, "Defensa: ")
-
+    atacante.ataque = ingresar_dato(atacante.ataque, "ataque")
+    defensor.defensa = ingresar_dato(defensor.defensa, "defensa")
+    
     narrar(atacante, defensor)
     
 
@@ -92,3 +94,4 @@ if __name__ == "__main__":
         batalla_pokemon()
         if input("¿Desea probar otros tipos? (y|n): ") == "n":
             break
+
