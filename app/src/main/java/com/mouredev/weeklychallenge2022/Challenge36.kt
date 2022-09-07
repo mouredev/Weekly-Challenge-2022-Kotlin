@@ -26,3 +26,57 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+enum class FRIENDLY_FORCES(val value: Int) {
+    PELOSOS(1),
+    SURENOS_BUENOS(2),
+    ENANOS(3),
+    NUMENOREANOS(4),
+    ELFOS(5)
+}
+
+enum class EVIL_FORCES(val value: Int) {
+    SURENOS_MALOS(2),
+    ORCOS(2),
+    GOGLINS(2),
+    HUARGOS(3),
+    TROLL(5)
+}
+
+//Ejercito buenos y cantidad de efectivos
+val mapFriendlyForce = hashMapOf(
+    FRIENDLY_FORCES.PELOSOS to 1,
+    FRIENDLY_FORCES.SURENOS_BUENOS to 0,
+    FRIENDLY_FORCES.ENANOS to 0,
+    FRIENDLY_FORCES.NUMENOREANOS to 0,
+    FRIENDLY_FORCES.ELFOS to 0
+)
+
+//Ejercito malos y cantidad de efectivos
+val mapEvilForce = hashMapOf(
+    EVIL_FORCES.SURENOS_MALOS to 0,
+    EVIL_FORCES.ORCOS to 1,
+    EVIL_FORCES.GOGLINS to 0,
+    EVIL_FORCES.HUARGOS to 0,
+    EVIL_FORCES.TROLL to 0
+)
+
+fun main() {
+    println(battle(mapFriendlyForce, mapEvilForce))
+}
+
+fun battle(
+    friendlyForces: HashMap<FRIENDLY_FORCES, Int>,
+    evilForces: HashMap<EVIL_FORCES, Int>
+): String {
+    val sumFriendlyForces = friendlyForces.map { it.key.value * it.value }.sum()
+    val sumEvilForces = evilForces.map { it.key.value * it.value }.sum()
+
+    if (sumFriendlyForces > sumEvilForces) {
+        return "Han ganado los buenos"
+    }
+    if (sumFriendlyForces < sumEvilForces) {
+        return "Han ganado los malos"
+    }
+    return "La batalla ha terminado en empate"
+}
