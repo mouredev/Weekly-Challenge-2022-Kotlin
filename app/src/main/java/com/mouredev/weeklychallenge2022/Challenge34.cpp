@@ -27,27 +27,32 @@ int main(int argc, char** argv) {
 	//std::cout<<"Typer you array list: \n";
 	//std::cin>>array;
 	
-	int number[5]={1,5,8,9,10};
+	int number[]={1,2,3,4,9};
 	int numberfin[]={};
-	int aux;
-	int pos;
-	for(int i=0;i<5;i++){
+	int aux=0;
+	int pos=0;
+	for(int i=0;i<6;i++){
 		aux=number[i+1];
 		pos=i;
-		while((number[pos]+1)<number[pos+1]){
+		while((aux-number[pos])>1){
 			number[pos+1]=number[pos]+1;
 			pos++;
-			number[pos+2]=aux;
-			
+			if(number[pos+1]==aux){
+				break
+			}
+			number[pos+1]=aux;
+		
 		}
-	numberfin[i]=number[i];
+		
+	//	number[pos+1]=aux;
+//	numberfin[i]=number[i];
 	
 		
 	}
 		
 			
-	for(int i=0;i<10;i++){
-		cout<<numberfin[i];
+	for(int i=0;i<9;i++){
+		cout<<number[i];
 	}
 	
 	return 0;
