@@ -17,30 +17,19 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+n = 100
+# Crear lista del 2 a n
+primos = list(range(2, n+1))
 
-fun main() {
+i = 0
 
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
-        }
-    }
-}
+while primos[i] ** 2 <= n:
+    for num in primos:
+        # Omitir los primos seleccionados
+        if num <= primos[i]:
+            continue
+        elif num % primos[i] == 0:
+            primos.remove(num)
+    i += 1
 
-private fun isPrime(number: Int): Boolean {
-
-    if (number < 2) {
-        return false
-    }
-
-    for (i in 2 until number) {
-        if (number % i == 0) {
-            return false
-        }
-    }
-
-    return true
-}
-
-
-
+print(f"Los primos del 1 al 100 en función de la criba de Eratóstenes son {primos}")    
