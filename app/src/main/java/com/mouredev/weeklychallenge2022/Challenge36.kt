@@ -26,3 +26,46 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+function battleRoyal(bondadosos, malvados) {
+    const razas = {
+        Pelosos: 1,
+        Sureños_buenos: 2,
+        Enanos: 3,
+        Númenóreanos: 4,
+        Elfos: 5,
+        Sureños_malos: 2,
+        Orcos: 2,
+        Goblins: 2,
+        Huargos: 3,
+        Trolls: 5
+    }
+    let guerrerosBondadosos = 0
+    for (let guerrero of bondadosos) {
+        guerrerosBondadosos += razas[guerrero]
+    }
+
+    let guerrerosMalvados = 0
+    for (let guerrero of malvados) {
+        guerrerosMalvados += razas[guerrero]
+    }
+
+    if (guerrerosBondadosos > guerrerosMalvados) {
+        console.log("El bien triunfa")
+    }
+    else if (guerrerosBondadosos < guerrerosMalvados) {
+        console.log("El mal triunfa")
+    } 
+    else {
+        console.log("Nadie gana")
+    }
+}
+
+// Test
+var primerEjercito = ["Enanos", "Númenóreanos"];
+var segundoEjercito = ["Orcos"];
+var tercerEjercito = ["Sureños_buenos", "Pelosos"];
+var cuartoEjercito = ["Orcos", "Huargos"];
+
+battleRoyal(primerEjercito, segundoEjercito)
+battleRoyal(tercerEjercito, cuartoEjercito)
