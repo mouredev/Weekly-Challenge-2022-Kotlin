@@ -26,3 +26,71 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+
+fun main(){
+
+
+    val sauronsArmy = buildSauronsArmy(1,2,0,1,4)
+    val goodArmy = buildGoodArmy(1,2,0,1,3)
+
+    middleEarthFight(sauronsArmy,goodArmy)
+
+
+}
+
+
+enum class RACES(val attackValue:Int){
+    HARFOOTS(1),
+    GOOD_SOUTHRONS(2),
+    DWARVES(3),
+    NUMENOREANS(4),
+    ELVES(5),
+    BAD_SOUTHRONS(2),
+    ORCS(2),
+    GOBLINS(2),
+    HUARGOS(3),
+    TROLLS(5),
+}
+
+
+fun buildSauronsArmy(badSouthrons:Int, orcs:Int, goblins:Int, huargos:Int, trolls:Int ):Int {
+
+var sauronsArmyAttackValue= 0
+
+    sauronsArmyAttackValue+=badSouthrons*RACES.BAD_SOUTHRONS.attackValue
+    sauronsArmyAttackValue+=orcs*RACES.ORCS.attackValue
+    sauronsArmyAttackValue+=goblins*RACES.GOBLINS.attackValue
+    sauronsArmyAttackValue+=huargos*RACES.HUARGOS.attackValue
+    sauronsArmyAttackValue+=trolls*RACES.TROLLS.attackValue
+
+return sauronsArmyAttackValue
+}
+
+fun buildGoodArmy(badSouthrons:Int, orcs:Int, goblins:Int, huargos:Int, trolls:Int ):Int {
+
+    var goodArmyAttackValue = 0
+
+    goodArmyAttackValue+=badSouthrons*RACES.HARFOOTS.attackValue
+    goodArmyAttackValue+=orcs*RACES.GOOD_SOUTHRONS.attackValue
+    goodArmyAttackValue+=goblins*RACES.DWARVES.attackValue
+    goodArmyAttackValue+=huargos*RACES.NUMENOREANS.attackValue
+    goodArmyAttackValue+=trolls*RACES.ELVES.attackValue
+
+    return goodArmyAttackValue
+}
+
+
+fun middleEarthFight(sauronsAttack:Int, goodArmyAttack:Int){
+
+    if(sauronsAttack>goodArmyAttack){
+        print("Evil wins, fatality")
+    }else if(sauronsAttack<goodArmyAttack){
+        print("Good always wins against evil, babalality")
+    }
+    else{
+        print("Tie, no one wins in war")
+    }
+
+
+}
