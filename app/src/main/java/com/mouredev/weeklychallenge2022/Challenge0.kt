@@ -19,19 +19,12 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
-    }
-}
+for i in range(1, 101):
+    if (i % 3 == 0) & (i % 5 == 0):
+        print("fizzbizz")
+    elif i % 3 == 0:
+        print("fizz")
+    elif i % 5 == 0:
+        print("bizz")
+    else:
+        print(i)
