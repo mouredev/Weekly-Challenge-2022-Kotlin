@@ -26,3 +26,66 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+
+/**
+ * Enumerado que representa las razas buenas de la Tierra Media
+ */
+enum class FreeLegion(val race:String,val value:Int) {
+    harfoots("Pelosos",1),
+    freevariags("Sureños buenos",2),
+    dwarves("Enanos",3),
+    numenoreans("Númenóreanos",4),
+    elves("Elfos",5),
+}
+
+/**
+ * Enumerado que representa las razas malas de la Tierra Media leales a Sauron
+ */
+enum class DarkLegion(val race:String,val value:Int ){
+    darkvariags("Sureños malos",2),
+    orcs("Orcos",2),
+    goblins("Goblins",2),
+    wargs("Huargos",3),
+    trolls("Trolls",5)
+
+}
+
+enum class BattleResult(val legion:String){
+    good("El bien"),
+    evil("El mal"),
+    tie("Empate")
+}
+
+
+/**
+ * Funcion Principal
+ */
+fun main() {
+
+    println("Batalla de la Tierra Media")
+    println(middleEarthBattle(listOf(FreeLegion.harfoots,FreeLegion.dwarves), listOf(DarkLegion.trolls,DarkLegion.orcs)).legion)
+    println(middleEarthBattle(listOf(FreeLegion.elves,FreeLegion.numenoreans,FreeLegion.dwarves), listOf(DarkLegion.trolls,DarkLegion.goblins)).legion)
+}
+
+
+/**
+ * Funcion que calcula el resultado de la batalla entre los ejercitos de la Tierra Media
+ * @param freeLegion ejercito de razas buenas
+ * @param darkLegion ejercito de razas malas
+ * @return resultado de la batalla BattleResult
+ */
+private fun middleEarthBattle(freeArmy : List<FreeLegion>,darkLegion: List<DarkLegion>): BattleResult{
+
+    val freeArmyValue = freeArmy.sumOf { it.value } + freeArmy.size
+    val darkLegionValue = darkLegion.sumOf { it.value } + darkLegion.size
+
+    return if(freeArmyValue > darkLegionValue){
+        BattleResult.good
+
+    } else if(freeArmyValue < darkLegionValue){
+        BattleResult.evil
+    } else {
+        BattleResult.tie
+    }
+}
