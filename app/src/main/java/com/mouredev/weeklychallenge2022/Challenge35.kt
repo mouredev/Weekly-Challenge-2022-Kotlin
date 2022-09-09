@@ -24,3 +24,48 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    println(battle(PokemonType.WATER, PokemonType.FIRE, 50, 30))
+    println(battle(PokemonType.WATER, PokemonType.FIRE, 101, -10))
+    println(battle(PokemonType.FIRE, PokemonType.WATER, 50, 30))
+    println(battle(PokemonType.FIRE, PokemonType.FIRE, 50, 30))
+    println(battle(PokemonType.GRASS, PokemonType.ELECTRIC, 30, 50))
+}
+
+enum class PokemonType(name: String) {
+    WATER("Agua"),
+    FIRE("Fuego"),
+    GRASS("Planta"),
+    ELECTRIC("Eléctrico")
+}
+
+private data class PokemonChart(val effective: PokemonType, val notEffective: PokemonType)
+
+private fun battle(attacker: PokemonType, defender: PokemonType, attack: Int, defense: Int): Double? {
+
+    if (attack <= 0 || attack > 100 || defense <= 0 || defense > 100) {
+        println("El ataque o la defensa contiene un valor incorrecto")
+        return null
+    }
+
+    val typeChart = mapOf(
+        PokemonType.WATER to PokemonChart(PokemonType.FIRE, PokemonType.GRASS),
+        PokemonType.FIRE to PokemonChart(PokemonType.GRASS, PokemonType.WATER),
+        PokemonType.GRASS to PokemonChart(PokemonType.WATER, PokemonType.FIRE),
+        PokemonType.ELECTRIC to PokemonChart(PokemonType.WATER, PokemonType.GRASS)
+    )
+
+    var effectivity = 1.0
+    if (attacker == defender || typeChart[attacker]!!.notEffective  == defender) {
+        effectivity = 0.5
+        println("No es muy efectivo")
+    } else if (typeChart[attacker]!!.effective  == defender) {
+        effectivity = 2.0
+        println("Es súper efectivo")
+    } else {
+        println("Es neutro")
+    }
+
+    return 50 * attack.toDouble() / defense.toDouble() * effectivity
+}
