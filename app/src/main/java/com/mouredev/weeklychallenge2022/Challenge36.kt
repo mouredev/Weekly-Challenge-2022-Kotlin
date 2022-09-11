@@ -26,3 +26,62 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+
+    val firstGoodSquad = Squadron(band = Good.SouthGoodOnes, 3)
+    val secondGoodSquad = Squadron(band = Good.Pelosos, 5)
+
+    val firstEvilSquad = Squadron(band = Evil.Huargos, 1)
+    val secondEvilSquad = Squadron(band = Evil.Trolls, 3)
+
+    firstEvilSquad.fightWith(firstGoodSquad)
+    firstGoodSquad.fightWith(secondEvilSquad)
+    secondGoodSquad.fightWith(secondEvilSquad)
+    secondEvilSquad.fightWith(firstGoodSquad)
+}
+
+private class Squadron(private val band: Race, private val quantity: Int) {
+
+    private val totalPower = band.racePower * quantity
+
+    fun fightWith(enemy: Squadron): Int {
+        println("$quantity ${band.raceName} fight(s) with ${enemy.quantity} ${enemy.band.raceName}")
+        return when {
+            totalPower > enemy.totalPower -> {
+                println("And Win!!")
+                1
+            }
+            totalPower < enemy.totalPower -> {
+                println("And Lose")
+                -1
+            }
+            else -> {
+                println("It was a draw")
+                0
+            }
+        }
+    }
+}
+
+private enum class Good(override val raceName: String, override val racePower: Int) : Race {
+    Pelosos("Pelosos",1),
+    SouthGoodOnes("Sureños buenos",2),
+    Enanos("Enanos",3),
+    Numenoreanos("Númenóreanos",4),
+    Elfos("Elfos",5)
+}
+
+private enum class Evil(override val raceName: String, override val racePower: Int) : Race {
+    SouthBadOnes("Sureños malos",2),
+    Orcos("Orcos",2),
+    Goblins("Goblins",2),
+    Huargos("Huargos",3),
+    Trolls("Trolls",5)
+}
+
+private interface Race {
+    val raceName : String
+    val racePower: Int
+}
+
