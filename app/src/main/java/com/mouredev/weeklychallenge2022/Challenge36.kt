@@ -26,3 +26,39 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+enum class kindly(val valor: Int) {
+    Pelosos(1),
+    Surenosbuenos(2),
+    Enanos(3),
+    Numenareanos(4),
+    Elfos(5)
+}
+
+enum class evil(val valor: Int) {
+    Surenosmalos(2),
+    Orcos(2),
+    Goblins(2),
+    Huargos(3),
+    Trolls(5)
+}
+
+fun main(){
+    BattleForMiddleEarth(arrayListOf(Pair(kindly.Pelosos, 1)), arrayListOf(Pair(evil.Orcos, 1)));
+    BattleForMiddleEarth(arrayListOf(Pair(kindly.Pelosos, 2)), arrayListOf(Pair(evil.Orcos, 1)));
+    BattleForMiddleEarth(arrayListOf(Pair(kindly.Pelosos, 3)), arrayListOf(Pair(evil.Orcos, 1)));
+}
+
+private fun BattleForMiddleEarth(kindArmy: List<Pair<kindly, Int>>,evilArmy: List<Pair<evil, Int>>){
+    var kindArmyValue = 0;
+    var evilArmyValue = 0;
+
+    kindArmy.forEach { kindArmyValue += it.first.valor * it.second }
+    evilArmy.forEach { evilArmyValue += it.first.valor * it.second }
+
+    when {
+        kindArmyValue > evilArmyValue -> println("Gana el bien")
+        kindArmyValue < evilArmyValue -> println("Gana el mal")
+        else -> println("Empate")
+    }
+}
