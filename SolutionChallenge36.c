@@ -179,7 +179,7 @@ for(iGroup=0; iGroup<maxGroups; iGroup++){
 	
 	printf("[ #%d Grupo: %s ]\n", iGroup+1, GROUP_NAMES[iGroup]);
 	
-	int countMembers = GetRandomIdRaces(raceMembersIds[iGroup], randrange(minMembers, maxMembers));
+	int countMembers = GetRandomIdRaces(raceMembersIds[iGroup], randrange(minMembers, maxMembers+1));
 	pointsBattle[iGroup] = 0;
 	for(int iRace=0; iRace<countMembers; iRace++){
 		int memberPower = 0;
