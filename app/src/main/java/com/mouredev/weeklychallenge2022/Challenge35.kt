@@ -25,51 +25,47 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-enum class PokemonType {
-    ELECTRIC, FIRE, PLANT, WATER;
-
-    companion object {
-        fun getEffectivity(obj: PokemonType, opponent: PokemonType): Double {
-            return when(obj) {
-                ELECTRIC -> when(opponent) {
-                    ELECTRIC -> 0.5
-                    FIRE -> 1.0
-                    PLANT -> 0.5
-                    WATER -> 2.0
-                }
-                FIRE -> when(opponent) {
-                    ELECTRIC -> 1.0
-                    FIRE -> 0.5
-                    PLANT -> 2.0
-                    WATER -> 0.5
-                }
-                PLANT -> when(opponent) {
-                    ELECTRIC -> 1.0
-                    FIRE -> 0.5
-                    PLANT -> 0.5
-                    WATER -> 2.0
-                }
-                WATER -> when(opponent) {
-                    ELECTRIC -> 1.0
-                    FIRE -> 2.0
-                    PLANT -> 0.5
-                    WATER -> 0.5
-                }
-            }
-        }
-    }
-}
-
-fun getAttackDamage(attacker: PokemonType, defender: PokemonType, attack: Int, defence: Int): String {
-    return if(attack < 1 || attack > 100) {
-        "El ataque no tiene un valor correcto"
-    } else if(defence < 1 || defence > 100) {
-        "La defensa no tiene un valor correcto"
-    } else {
-        "El daño de la pelea es ${50.0 * (attack.toDouble() / defence.toDouble()) * PokemonType.getEffectivity(attacker, defender)}"
-    }
-}
-
 fun main() {
-    println(getAttackDamage(PokemonType.FIRE, PokemonType.PLANT, 30, 60))
+    println(battle(PokemonType.WATER, PokemonType.FIRE, 50, 30))
+    println(battle(PokemonType.WATER, PokemonType.FIRE, 101, -10))
+    println(battle(PokemonType.FIRE, PokemonType.WATER, 50, 30))
+    println(battle(PokemonType.FIRE, PokemonType.FIRE, 50, 30))
+    println(battle(PokemonType.GRASS, PokemonType.ELECTRIC, 30, 50))
+}
+
+enum class PokemonType(name: String) {
+    WATER("Agua"),
+    FIRE("Fuego"),
+    GRASS("Planta"),
+    ELECTRIC("Eléctrico")
+}
+
+private data class PokemonChart(val effective: PokemonType, val notEffective: PokemonType)
+
+private fun battle(attacker: PokemonType, defender: PokemonType, attack: Int, defense: Int): Double? {
+
+    if (attack <= 0 || attack > 100 || defense <= 0 || defense > 100) {
+        println("El ataque o la defensa contiene un valor incorrecto")
+        return null
+    }
+
+    val typeChart = mapOf(
+        PokemonType.WATER to PokemonChart(PokemonType.FIRE, PokemonType.GRASS),
+        PokemonType.FIRE to PokemonChart(PokemonType.GRASS, PokemonType.WATER),
+        PokemonType.GRASS to PokemonChart(PokemonType.WATER, PokemonType.FIRE),
+        PokemonType.ELECTRIC to PokemonChart(PokemonType.WATER, PokemonType.GRASS)
+    )
+
+    var effectivity = 1.0
+    if (attacker == defender || typeChart[attacker]!!.notEffective  == defender) {
+        effectivity = 0.5
+        println("No es muy efectivo")
+    } else if (typeChart[attacker]!!.effective  == defender) {
+        effectivity = 2.0
+        println("Es súper efectivo")
+    } else {
+        println("Es neutro")
+    }
+
+    return 50 * attack.toDouble() / defense.toDouble() * effectivity
 }
