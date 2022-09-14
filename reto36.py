@@ -22,6 +22,8 @@
 #   - Tienes toda la información sobre los retos semanales en
 #     https://retosdeprogramacion.com/semanales2022.
 
+
+
 class Ejercito:
     def __init__(self, raza):
         self.raza = raza
