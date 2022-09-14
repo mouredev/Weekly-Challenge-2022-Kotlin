@@ -37,31 +37,20 @@ Saludos a MoureDev ! :-)
 #include <time.h>
 
 
-typedef char BOOL;
 
 #define MAX_NAMES 5
 #define MAX_GROUPS 2
 
-
-const char GOOD_NAMES[MAX_NAMES][20] = {
-"Pelosos",
-"Surenyos buenos",
-"Enanos",
-"Numenoreanos",
-"Elfos",
-};
-
-const char EVIL_NAMES[MAX_NAMES][20] = {
-"Surenyos malos",
-"Orcos",
-"Goblins",
-"Huargos",
-"Trolls",
+const char RACE_NAMES[MAX_GROUPS][MAX_NAMES][20] = {
+{"Pelosos", "Surenyos buenos", "Enanos", "Numenoreanos", "Elfos"}, //buenos - goods
+{"Surenyos malos", "Orcos", "Goblins", "Huargos", "Trolls"}, //malos - evils
 };
 
 
-const int GOOD_VALS[MAX_NAMES] = {1,2,3,4,5}; // 0
-const int EVIL_VALS[MAX_NAMES] = {2,2,2,3,5}; // 1
+const int RACE_VALS[MAX_GROUPS][MAX_NAMES] = {
+{1,2,3,4,5}, // buenos - goods	
+{2,2,2,3,5}, // malos - evils
+};
 
 //const int ID_GROUP_GOOD = 0;
 //const int ID_GROUP_EVIL = 1;
@@ -75,40 +64,6 @@ const char GROUP_NAMES[MAX_GROUPS][20] = {
 
 
 
-
-BOOL GetRaceNameAndPowerById(int iGroup, int iRace, char * race_name, int * race_power){
-	
-	/*
-	recibe el indice del grupo, indice de raza guerrera, y devuelve 1 si tuvo exito.
-	 copia el nombre del miembro raza guerrero pertenenciente al grupo
-	  copia el poder de ese miembro
-	*/
-	
-	*race_power = 0;
-	
-	if (iRace < 0 || iRace >= MAX_NAMES){
-		return 0; //error, bad args
-		}
-	
-	switch(iGroup){
-		
-		case 0:
-			strcpy(race_name, GOOD_NAMES[iRace]);
-			*race_power = GOOD_VALS[iRace];
-			return 1;
-			
-		case 1:
-			strcpy(race_name, EVIL_NAMES[iRace]);
-			*race_power = EVIL_VALS[iRace];
-			return 1;
-		
-	}
-	
-	return 0; //error, bad args
-}
-
-
-
 int randrange(int min, int to){
 	return min + rand()%(to-min);	
 }
@@ -119,7 +74,7 @@ int GetRandomIdRaces(int array_group[], int count){
 	
 	int i;
 	for(i=0; i < count; i++){
-		array_group[i] = randrange(0, MAX_NAMES);
+		array_group[i] = randrange(0, MAX_NAMES); // a new random member of group
 	}
 		
 	return i;
@@ -152,8 +107,9 @@ int countValFromArray(int array[], int lenght, int val){
 
 
 
-int main(int argc, char *argv[]) {
-
+int main(int argc, char *argv[]){
+	
+	
 //init seed random:
 srand(time(0));
 
@@ -163,30 +119,29 @@ const int maxGroups = MAX_GROUPS;
 const int minMembers = 3;
 const int maxMembers = 5;
 
-char groupName[20];
-char raceName[20];
-
 
 //races:
-int raceMembersIds[maxGroups][maxMembers];
+int resultMembersIds[maxGroups][maxMembers];
 int pointsBattle[maxGroups];
 
 
 printf("Generando resultados random :)\nSaludos a MoureDev@twitch \n\n");
 
 int iGroup;
-for(iGroup=0; iGroup<maxGroups; iGroup++){
-	
+for(iGroup=0; iGroup<maxGroups; iGroup++)
+{
 	printf("[ #%d Grupo: %s ]\n", iGroup+1, GROUP_NAMES[iGroup]);
 	
-	int countMembers = GetRandomIdRaces(raceMembersIds[iGroup], randrange(minMembers, maxMembers+1));
+	int countMembers = GetRandomIdRaces(resultMembersIds[iGroup], randrange(minMembers, maxMembers+1));
 	pointsBattle[iGroup] = 0;
-	for(int iRace=0; iRace<countMembers; iRace++){
-		int memberPower = 0;
-		if(GetRaceNameAndPowerById(iGroup, raceMembersIds[iGroup][iRace], raceName, &memberPower)){
-			pointsBattle[iGroup] += memberPower;
-			printf(" #%d Miembro: %s (power: %d)\n", iRace+1, raceName, memberPower);
-		}
+	for(int iMember=0; iMember<countMembers; iMember++)
+	{
+		int iRace = resultMembersIds[iGroup][iMember];
+		int memberPower = RACE_VALS[iGroup][iRace];
+				
+		pointsBattle[iGroup] += memberPower;
+			
+		printf(" #%d Miembro: %s (power: %d)\n", iMember+1, RACE_NAMES[iGroup][iRace], memberPower);
 	}
 	
 	printf("[Poder del grupo: %d] \n", pointsBattle[iGroup]);
