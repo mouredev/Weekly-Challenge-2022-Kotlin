@@ -1,0 +1,261 @@
+{
+  "api_used": "https://zelda.fanapis.com/api/",
+  "data": [
+    {
+      "name": "The Legend of Zelda",
+      "description": "The Legend of Zelda is the first installment of the Zelda series. It centers its plot around a boy named Link, who becomes the central protagonist throughout the series. It came out as early as 1986 for the Famicom in Japan, and was later released in the western world, including Europe and the US in 1987. It has since then been re-released several times, for the Nintendo GameCube as well as the Game Boy Advance. The Japanese version of the game on the Famicom is known as The Hyrule Fantasy: The Legend of Zelda. ",
+      "developer": "Nintendo R&D 4",
+      "publisher": "Nintendo",
+      "released_date": " February 21, 1986",
+      "id": "5f6ce9d805615a85623ec2b7"
+    },
+    {
+      "name": "The Legend of Zelda: A Link to the Past",
+      "description": "One day, a band of evil thieves managed to open the gateway to the Sacred Realm, where the mystical Triforce was hidden. Upon finding the sacred golden relic, the leader of the thieves, Ganondorf, slew his followers and claimed it as his own. Before long, dark power began to flow forth from the Sacred Realm. People were drawn into this darkness, and never heard from again. As a result, the King of Hyrule ordered the seven sages to seal the entrance to the Sacred Realm. A great battle ensued—monsters poured into the Light World from the sacred land and attacked the castle. The Knights of Hyrule defended the sages during the great battle against evil, and, though most of them perished in the struggle, the sages were able to cast their seal, stopping the flow of darkness and trapping the evil king Ganon within. This battle became known as the Imprisoning War. ",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " April 13, 1992",
+      "id": "5f6ce9d805615a85623ec2b8"
+    },
+    {
+      "name": "The Legend of Zelda: Ocarina of Time",
+      "description": "The Legend of Zelda: Ocarina of Time is the fifth main installment of The Legend of Zelda series and the first to be released for the Nintendo 64. It was one of the most highly anticipated games of its age. It is listed among the greatest video games ever created by numerous websites and magazines. Released in the United States on November 23, 1998, it was the first game in The Legend of Zelda series that was visually displayed in 3D . ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " November 23, 1998",
+      "id": "5f6ce9d805615a85623ec2ba"
+    },
+    {
+      "name": "The Legend of Zelda: Oracle of Ages",
+      "description": "The Legend of Zelda: Oracle of Ages is one of two The Legend of Zelda  titles released for the Game Boy Color, the other being Oracle of Seasons, both representing the seventh and eighth main installments of the series. Released near the end of the system's lifespan, Oracle of Ages and its counterpart were said to \"send the Game Boy Color out with a bang.\" In anticipation of the upcoming release of the Game Boy Color's successor, the Game Boy Advance, the games exhibited special features  when played on the new handheld system. ",
+      "developer": "Capcom",
+      "publisher": "Nintendo",
+      "released_date": " May 14, 2001",
+      "id": "5f6ce9d805615a85623ec2b9"
+    },
+    {
+      "name": "The Legend of Zelda: Link's Awakening DX",
+      "description": "The game was also made available on the Nintendo 3DS eShop on June 7, 2011 at the price of $5.99 US. ",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " December 15, 1998",
+      "id": "5f6ce9d805615a85623ec2bb"
+    },
+    {
+      "name": "The Legend of Zelda: Majora's Mask",
+      "description": "The Legend of Zelda: Majora's Mask is the sixth main installment of The Legend of Zelda series, first released on the Nintendo 64 in 2000. Unique among The Legend of Zelda series, the game includes a time system that spans three days, and this cycle must be reset periodically to progress through the game. Majora's Mask is one of the few Zelda games in which Ganon does not play any role whatsoever. In addition, Princess Zelda does not play a major role; she is only seen once in a flashback scene from Ocarina of Time. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " October 26, 2000",
+      "id": "5f6ce9d805615a85623ec2bc"
+    },
+    {
+      "name": "Zelda II: The Adventure of Link",
+      "description": "A few years after the defeat of Ganon and the rescue of Princess Zelda, Link, now at the age of sixteen, is disturbed by the appearance of a mark on the back of his hand. Upon seeing this mark, Impa, the nurse of Princess Zelda, tells him the story of how, ages ago, the King of Hyrule had hidden a third part of the Triforce, the Triforce of Courage, in the Great Palace to safeguard it from evil. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " January 14, 1987",
+      "id": "5f6ce9d805615a85623ec2bd"
+    },
+    {
+      "name": "The Legend of Zelda: The Wind Waker",
+      "description": "The Legend of Zelda: The Wind Waker is the tenth main installment of The Legend of Zelda series. It is the first Zelda game for the Nintendo GameCube, and was released in Japan on December 13, 2002, in Canada and the United States on March 24, 2003, in South Korea on April 16, 2003, in Europe on May 2, 2003 and in Australia on May 7, 2003. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " March 24, 2003",
+      "id": "5f6ce9d805615a85623ec2bf"
+    },
+    {
+      "name": "The Legend of Zelda: Twilight Princess",
+      "description": "The Legend of Zelda: Twilight Princess is the thirteenth main installment of The Legend of Zelda series, released for both the Nintendo GameCube and Wii. It was highly anticipated by many members of the gaming community and was regarded as finally fulfilling the dreams of those who wanted a much more realistic and mature Zelda game, as seen in the SpaceWorld 2000 GameCube Tech Demo. This is the first Zelda game to be rated T by ESRB and 12+ by PEGI. The reason is probably because of violence, blood , and signs of nudity . This game is also notable for being the first console Zelda title released in the United States before Japan, as the Wii version was released in America on November 19, 2006, whereas the Japanese versions were released on December 2. Because of this, Twilight Princess was one of the launch titles for the Wii alongside Wii Sports in the United States. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " November 19, 2006",
+      "id": "5f6ce9d805615a85623ec2be"
+    },
+    {
+      "name": "The Legend of Zelda: Oracle of Seasons",
+      "description": "The Legend of Zelda: Oracle of Seasons is one of two The Legend of Zelda  titles released for the Game Boy Color, the other being Oracle of Ages, both representing the seventh and eighth main installments of the series. Released near the end of the system's lifespan, Oracle of Seasons and its counterpart were said to \"send the Game Boy Color out with a bang.\" In anticipation of the upcoming release of the Game Boy Color's successor, the Game Boy Advance, the games exhibited special features  when played on the new handheld system. ",
+      "developer": "Capcom",
+      "publisher": "Nintendo",
+      "released_date": " May 14, 2001",
+      "id": "5f6ce9d805615a85623ec2c0"
+    },
+    {
+      "name": "The Legend of Zelda: Spirit Tracks",
+      "description": " ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " December 7, 2009",
+      "id": "5f6ce9d805615a85623ec2c5"
+    },
+    {
+      "name": "BS The Legend of Zelda: Ancient Stone Tablets",
+      "description": "BS The Legend of Zelda: Ancient Stone Tablets is a downloadable four-part episodic game that was available for the BS-X Broadcasting System add-on for the Super Famicom , and the third title in the BS Zelda series. Each episode was downloaded from St. GIGA's satellite radio service and stored on memory packs but could only be played once a week during the broadcast period. ",
+      "developer": "Nintendo",
+      "publisher": "St. GIGA",
+      "released_date": "March 30, 1997",
+      "id": "5f6ce9d805615a85623ec2ca"
+    },
+    {
+      "name": "Hyrule Warriors",
+      "description": "Hyrule Warriors is a Legend of Zelda spin-off game for the Wii U that was released on the 19th of September 2014, the 20th of September 2014, the 26th of September 2014 and the 14th of August 2014 in Europe, Australia, North America and Japan respectively. It combines the world of The Legend of Zelda  with the action of Koei Tecmo's Dynasty Warriors series and was developed by Team Ninja and Omega Force. ",
+      "developer": "Omega Force",
+      "publisher": "Nintendo",
+      "released_date": " September 26, 2014",
+      "id": "5f6ce9d805615a85623ec2cf"
+    },
+    {
+      "name": "The Legend of Zelda: Four Swords Adventures",
+      "description": "One night, an ominous cloud covers Hyrule, throwing fear into the people. Princess Zelda calls upon her most trusted childhood friend, Link. She wants to check up on the Four Sword, fearing that the seal that imprisoned the evil wind sorcerer Vaati inside of it at the end of Four Swords might have weakened. Inside the castle they meet up with the gathered six Maidens, whose purpose is to protect Hyrule as well as the Four Sword Sanctuary. With the help of the maidens Zelda summons a portal to the sanctuary.  ",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " June 7, 2004",
+      "id": "5f6ce9d805615a85623ec2c1"
+    },
+    {
+      "name": "The Legend of Zelda: Tri Force Heroes",
+      "description": "The Legend of Zelda: Tri Force Heroes is the eighteenth main installment of The Legend of Zelda series. The game was released on October 23, 2015 in North America and Europe, October 24 in Australia, and October 22 in Japan. It was revealed during E3 2015 on June 16. ",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " October 23, 2015",
+      "id": "5f6ce9d805615a85623ec2d4"
+    },
+    {
+      "name": "The Legend of Zelda: Breath of the Wild",
+      "description": "The Legend of Zelda: Breath of the Wild is the nineteenth main installment of The Legend of Zelda series. It was released simultaneously worldwide for the Wii U and Nintendo Switch on March 3, 2017",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " March 3, 2017",
+      "id": "5f6ce9d805615a85623ec2c9"
+    },
+    {
+      "name": "The Legend of Zelda: Tri Force Heroes",
+      "description": "The Legend of Zelda: Tri Force Heroes is the eighteenth main installment of The Legend of Zelda series. The game was released on October 23, 2015 in North America and Europe, October 24 in Australia, and October 22 in Japan. It was revealed during E3 2015 on June 16. ",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " October 23, 2015",
+      "id": "5f6ce9d805615a85623ec2ce"
+    },
+    {
+      "name": "Zelda: The Wand of Gamelon",
+      "description": "A product of a compromise between Nintendo and Philips due to their failure to release a CD-ROM based add-on to the Super Nintendo Entertainment System, The Wand of Gamelon, alongside the other two, are the only licensed The Legend of Zelda  games developed for and released on a non-Nintendo system. The games have been subject to much criticism, and Nintendo does not recognize them as canon to The Legend of Zelda series. ",
+      "developer": "Animation Magic",
+      "publisher": "Philips Media",
+      "released_date": " October 10, 1993",
+      "id": "5f6ce9d805615a85623ec2d3"
+    },
+    {
+      "name": "The Legend of Zelda: Four Swords",
+      "description": "As part of the 25th Anniversary of The Legend of Zelda series, an enhanced port of the game was released for the Nintendo DSi and Nintendo 3DS as a limited-time free download, Four Swords Anniversary Edition. ",
+      "developer": "Capcom",
+      "publisher": "Nintendo",
+      "released_date": " December 2, 2002",
+      "id": "5f6ce9d805615a85623ec2c4"
+    },
+    {
+      "name": "The Legend of Zelda: The Minish Cap",
+      "description": "The Legend of Zelda: The Minish Cap is the twelfth main installment of The Legend of Zelda series. It was released for the Game Boy Advance in 2004. ",
+      "developer": "Capcom",
+      "publisher": "Nintendo",
+      "released_date": " January 10, 2005",
+      "id": "5f6ce9d805615a85623ec2c6"
+    },
+    {
+      "name": "The Legend of Zelda: Four Swords Anniversary Edition",
+      "description": "Released as part of the 25th Anniversary of The Legend of Zelda series, the remaster was made available as a free download between September 28, 2011 and February 20, 2012 internationally via the DSi Shop and Nintendo eShop. It was later made available again as a free download between January 30 and February 2, 2014 in North America, exclusively via the Nintendo eShop, after the release of A Link Between Worlds to celebrate its critical acclaim, including the Game of the Year award from GameSpot. Currently, the game is not available for download. ",
+      "developer": "Nintendo",
+      "publisher": "Nintendo",
+      "released_date": " September 28, 2011",
+      "id": "5f6ce9d805615a85623ec2cb"
+    },
+    {
+      "name": "Hyrule Warriors: Age of Calamity",
+      "description": "The gameplay is seemingly similar to Hyrule Warriors's which is itself a based on Koei Tecmo's Dynasty Warriors series of video games, in which characters fight large armies of enemies and generals on a battlefield, with the the setting and characters originating from The Legend of Zelda series, specifically from Breath of the Wild. As such, it is set to be more combat-intensive that most Zelda games, with hordes of enemies on the screen at once. ",
+      "developer": "Omega Force",
+      "publisher": "Nintendo",
+      "released_date": " November 20, 2020",
+      "id": "5f6ce9d805615a85623ec2d0"
+    },
+    {
+      "name": "Link: The Faces of Evil",
+      "description": "The Faces of Evil, along with the other two titles, was the product of a compromise between Nintendo and Philips following their failure to release a CD-ROM based add-on to the Super Nintendo Entertainment System. They are the only licensed The Legend of Zelda  games developed for and released on a non-Nintendo system. The games have been subject to much criticism, and Nintendo does not recognize them as canon to The Legend of Zelda series. ",
+      "developer": "Animation Magic",
+      "publisher": "Philips Media",
+      "released_date": " October 10, 1993",
+      "id": "5f6ce9d805615a85623ec2d5"
+    },
+    {
+      "name": "The Legend of Zelda: Phantom Hourglass",
+      "description": "The Legend of Zelda: Phantom Hourglass is the fourteenth main installment of The Legend of Zelda series. It is the first The Legend of Zelda game for the Nintendo DS and a direct sequel to The Wind Waker. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " October 1, 2007",
+      "id": "5f6ce9d805615a85623ec2c2"
+    },
+    {
+      "name": "The Legend of Zelda: Link's Awakening",
+      "description": "The Legend of Zelda: Link's Awakening is the fourth main installment of The Legend of Zelda series, and the only Zelda title on the original Game Boy. A color update, titled Link's Awakening DX, is one of the three Zelda titles for the Game Boy Color. Since its release, Link's Awakening has been popular among fans and critics. By 2004, the original release had sold 3.83 million copies worldwide, while Link's Awakening DX sold 2.22 million. In 2009, Guinness World Records named it the 42nd most influential video game of all time. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " August 6, 1993",
+      "id": "5f6ce9d805615a85623ec2c3"
+    },
+    {
+      "name": "The Legend of Zelda: A Link Between Worlds",
+      "description": "The Legend of Zelda: A Link Between Worlds is the seventeenth main installment of The Legend of Zelda series. It is the first Zelda title developed specifically for the Nintendo 3DS and an indirect sequel to A Link to the Past, featuring the same version of Hyrule but new characters and gameplay elements. The title was released on November 22, 2013, in North America and Europe, November 23 in Australia, and December 26 in Japan. The Korean version was released the following year, on June 21, 2014. ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " November 22, 2013",
+      "id": "5f6ce9d805615a85623ec2c7"
+    },
+    {
+      "name": "The Legend of Zelda: Skyward Sword",
+      "description": " ",
+      "developer": "Nintendo EAD",
+      "publisher": "Nintendo",
+      "released_date": " November 20, 2011",
+      "id": "5f6ce9d805615a85623ec2c8"
+    },
+    {
+      "name": "Freshly-Picked Tingle's Rosy Rupeeland",
+      "description": "The story starts when Tingle, first appearing as an ordinary, middle-aged man, is offered a life in a paradise called Rupeeland. Tingle is guided by Uncle Rupee, who tells him to gather many Rupees and toss them into the Western Pool in order to gain access to Rupeeland. Pinkle, a Fairy that communicates to Tingle via a computer that resembles a Nintendo DS  also helps him along his journey. As Tingle explores, he will find numerous treasures, which include collecting ingredients for concoctions such as Potions and meals that can be sold to the locals in nearby Port Town. Tingle hires bodyguards throughout the game to aid him in combat. ",
+      "developer": "Vanpool",
+      "publisher": "Nintendo",
+      "released_date": "September 2, 2006",
+      "id": "5f6ce9d805615a85623ec2cd"
+    },
+    {
+      "name": "BS The Legend of Zelda",
+      "description": "BS The Legend of Zelda is different from most other The Legend of Zelda  games. The game's central heroes are the avatar characters of the BS-X, which are based on the info given during account creation, which is also true for the Ancient Stone Tablets. Both the male and female characters wear a green tunic, though others are later available. The male character wears a backwards baseball cap whereas the female character has long red hair, but is otherwise exactly the same as the male character.  ",
+      "developer": "Nintendo",
+      "publisher": "St. GIGA",
+      "released_date": "August 9, 1995",
+      "id": "5f6ce9d805615a85623ec2cc"
+    },
+    {
+      "name": "Hyrule Warriors Legends",
+      "description": "Hyrule Warriors Legends is a spin-off for the Nintendo 3DS, combining the world of The Legend of Zelda series with the action of Koei Tecmo's Dynasty Warriors series. The game is a port and a new version of Hyrule Warriors, featuring new characters and other mechanical changes. ",
+      "developer": "Omega Force",
+      "publisher": "Koei Tecmo",
+      "released_date": " March 25, 2016",
+      "id": "5f6ce9d805615a85623ec2d1"
+    },
+    {
+      "name": "Zelda's Adventure",
+      "description": "A product of a compromise between Nintendo and Philips due to their failure to release a CD-ROM based add-on to the Super Nintendo Entertainment System, Zelda's Adventure, alongside the other two, are the only licensed The Legend of Zelda games developed for and released on a non-Nintendo system. The games have been subject to much criticism, and Nintendo does not recognize them as canon to The Legend of Zelda series. ",
+      "developer": "Viridis",
+      "publisher": "Philips Media",
+      "released_date": "1995",
+      "id": "5f6ce9d805615a85623ec2d2"
+    },
+    {
+      "name": "Link's Crossbow Training",
+      "description": "With the Wii Remote and the Nunchuk inside the Wii Zapper casing, the Zapper should be aimed as it would with the Wii Remote. The trigger must be pulled to fire the Crossbow . Holding down the trigger will cause the Crossbow to charge a shot which will fire a Exploding Arrow . Pressing the A button will pause the game, allowing the player to return to the title screen, return to the Stage Select , to continue in the stage or to adjust the alignment of the motion controls. In the adjust alignment menu, the player can adjust the motion controls based on their preferences. The player can change the height of the cursor, and how fast the cursor moves when the player moves the Wii Zapper.  The Z button will zoom in, much like Twilight Princess's Hawkeye. The control stick on the Nunchuk will change function depending on the game mode: In ranger-type Stages, it will move Link. In target shooting-type Stages and defender-type Stages, the stick serves no purpose. ",
+      "developer": "EAD",
+      "publisher": "Nintendo",
+      "released_date": " November 19, 2007",
+      "id": "5f6ce9d805615a85623ec2d6"
+    }
+  ]
+}
