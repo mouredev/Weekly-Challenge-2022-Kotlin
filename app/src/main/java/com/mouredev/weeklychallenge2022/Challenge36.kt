@@ -25,6 +25,9 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en
  *   https://retosdeprogramacion.com/semanales2022.
  *
+<<<<<<< HEAD
+ */
+=======
  */
 
 fun main() {
@@ -98,3 +101,4 @@ private fun battleForTheMiddleEarth(kindArmy: List<Pair<KindArmy, Int>>, evilArm
     }
 
 }
+>>>>>>> 547c1070cb391f3a746dde1323b4b31b020e13e0
