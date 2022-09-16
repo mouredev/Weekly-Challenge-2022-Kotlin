@@ -1,5 +1,5 @@
 
-public class Reto36LosAnillosDePoder {
+public class SolucionReto36_LosAnillosDePoderJava {
 
 	/**
 	 * Atributos de clase
@@ -17,7 +17,7 @@ public class Reto36LosAnillosDePoder {
 	 * @param cantMalos
 	 * @param razaMala
 	 */
-	public Reto36LosAnillosDePoder(int cantBuenos, String razaBuena, int cantMalos, String razaMala) {
+	public SolucionReto36_LosAnillosDePoderJava(int cantBuenos, String razaBuena, int cantMalos, String razaMala) {
 		this.cantBuenos = cantBuenos;
 		this.razaBuena = razaBuena;
 		this.cantMalos = cantMalos;
@@ -158,9 +158,9 @@ public class Reto36LosAnillosDePoder {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Reto36LosAnillosDePoder Batalla1 = new Reto36LosAnillosDePoder(1, "pelosos", 1, "orcos");
-		Reto36LosAnillosDePoder Batalla2 = new Reto36LosAnillosDePoder(2, "pelosos", 1, "orcos");
-		Reto36LosAnillosDePoder Batalla3 = new Reto36LosAnillosDePoder(3, "pelosos", 1, "orcos");
+		SolucionReto36_LosAnillosDePoderJava Batalla1 = new SolucionReto36_LosAnillosDePoderJava(1, "pelosos", 1, "orcos");
+		SolucionReto36_LosAnillosDePoderJava Batalla2 = new SolucionReto36_LosAnillosDePoderJava(2, "pelosos", 1, "orcos");
+		SolucionReto36_LosAnillosDePoderJava Batalla3 = new SolucionReto36_LosAnillosDePoderJava(3, "pelosos", 1, "orcos");
 		System.out.println("\t>>>BATALLAS<<< \n");
 		System.out.println(Batalla1);
 		System.out.println(Batalla2);
