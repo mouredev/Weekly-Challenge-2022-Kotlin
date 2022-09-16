@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class LosLanzamientosTheLegendOfZelda {
+public class SolucionReto37_LanzamientosZelda {
 	public static void main(String[] args) {
 
 		Map<String, String> listaDeJuegos = new HashMap<>();
