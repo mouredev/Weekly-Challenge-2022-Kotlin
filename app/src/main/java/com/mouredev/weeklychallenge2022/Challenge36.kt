@@ -28,7 +28,6 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
     val firstGoodSquad = Squadron(band = Good.SouthGoodOnes, 3)
     val secondGoodSquad = Squadron(band = Good.Pelosos, 5)
 
