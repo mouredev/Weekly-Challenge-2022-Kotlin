@@ -24,26 +24,7 @@ using namespace std;
  *
  */
  
-// class Zeldalist{
-// 	private:
-// 		int dia;
-// 		int mes;
-// 		int year;
-// 	public:
-// 		Zeldalist(int dia,int mes,int year){
-// 			this->dia=dia;
-// 			this->mes=mes;
-// 			this->year=year;
-// 		}
-// 		string Ocarina_of_Time(int dia,int mes,int year){
-//		 
-// 			dia=21;
-// 			mes=11;
-// 			year=1998;
-// 			return dia, mes, year;
-// 	}
-// };
-// 
+
  	int Ocarina_of_Time[3]={21,11,1998};
 	int Majoras_Mask[3]={27,4,2000};
 	int A_link_to_the_past[3]={21,11,1991};	
@@ -62,8 +43,7 @@ using namespace std;
 	int Tri_Force_Heroes[3]={22,10,2015};
 	int Breath_of_the_Wild[3]={3,3,2017};
 	int Tears_of_the_Kingdom[3]={12,5,2023};
-//	int n,n2;
-//	int opt1[3],opt2[3];
+
 	 
  int copia(int opcion[], int opt1[]){
  	for(int i=0;i<3;i++){
@@ -96,7 +76,7 @@ using namespace std;
 	return n;
  }
  int seleccion(int n,int opt1[]){
- 	//int opt1[3];
+ 	
  	
  	switch(n){
 		case 1:
@@ -162,28 +142,24 @@ using namespace std;
  }
  
 int main(int argc, char** argv) {
-	int n,n2, opt1[3],opt2[3];
+	int n,n2;
 	int aux1[3],aux2[3];
+	
 	cout<<"\t Selecciona un titulo"<<endl;
 	n=menu();
 	system("cls");
 	aux1[3]=seleccion(n,aux1);
-//	opt1[3]=copia(aux1,opt1);
+
 	
 	cout<<"\t Selecciona el segundo titulo para comparar las fechas"<<endl;
 	n2=menu();
 	system("cls");
 	aux2[3]=seleccion(n2,aux2);
-//	opt2[3]=copia(aux2,opt2);
+
 	
 	
-//	int dias = (abs(Ocarina_of_Time[1]-Majoras_Mask[1])*30+abs((Ocarina_of_Time[0]-Majoras_Mask[0])));
-//	cout<<"los titulos tienen: "<<abs(Ocarina_of_Time[2]-Majoras_Mask[2])<<" anios de diferencia y "<< dias ;
-//	
-	cout<<aux1[2]<<"segunda"<<aux2[2]<<endl;
-	cout<<n<<"segunda"<<n2;
-	
-	
+	int dias = (abs(aux1[1]-aux2[1])*30+abs((aux1[0]-aux2[0])));
+	cout<<"Los dos titulos tienen: "<<abs(aux1[2]-aux2[2])<<" anios y "<< dias<<" dias de diferencia" ;
 	
 	
 	
