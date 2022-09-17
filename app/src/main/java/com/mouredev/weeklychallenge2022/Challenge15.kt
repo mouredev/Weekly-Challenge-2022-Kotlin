@@ -30,54 +30,58 @@ import kotlin.math.absoluteValue
  */
 
 fun main (){
-    myDaysBetween("10/4/2022","20/05/2022")
-    myDaysBetween("-10/4/2022","50/5/2022")
-    myDaysBetween("10/04/2022","20/4/2022")
-    myDaysBetween("10/19/2022","20/4/2022")
+    val dateTool = MyDateTools()
+
+    dateTool.myDaysBetween("10/4/2022","20/05/2022")
+    dateTool.myDaysBetween("-10/4/2022","50/5/2022")
+    dateTool.myDaysBetween("10/04/2022","20/4/2022")
+    dateTool.myDaysBetween("10/19/2022","20/4/2022")
 }
 
-val monthDays = listOf<Int>(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+class MyDateTools{
+    private val monthDays = listOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 
-private fun myDaysBetween(date1: String , date2: String) : Int{
+    fun myDaysBetween(date1: String , date2: String) : Int{
 
-    if (validateDate(date1) && validateDate(date2)){
-        val splitDate1 = date1.split("/").map { it.toInt() }
-        val splitDate2 = date2.split("/").map { it.toInt() }
+        if (validateDate(date1) && validateDate(date2)){
+            val splitDate1 = date1.split("/").map { it.toInt() }
+            val splitDate2 = date2.split("/").map { it.toInt() }
 
-        val difDaysInYears = abs(splitDate1[2]-splitDate2[2])*365
-        val difDaysInMonths = abs(daysPassedThisYear(splitDate1[1]) - daysPassedThisYear(splitDate2[1]))
-        val difDaysInDays = abs(splitDate1[0]-splitDate2[0])
+            val difDaysInYears = abs(splitDate1[2]-splitDate2[2])*365
+            val difDaysInMonths = abs(daysPassedThisYear(splitDate1[1]) - daysPassedThisYear(splitDate2[1]))
+            val difDaysInDays = abs(splitDate1[0]-splitDate2[0])
 
-        val sum = difDaysInDays+difDaysInMonths+difDaysInYears
-        println("Between $date1 and $date2 have passed $sum days in total.")
+            val sum = difDaysInDays+difDaysInMonths+difDaysInYears
+            println("Between $date1 and $date2 have passed $sum days in total.")
 
-        return sum
-    } else {
-        println("Wrong date")
+            return sum
+        } else {
+            println("Wrong date")
+        }
+        return 0
     }
-    return 0
-}
 
-private fun validateDate(date : String) : Boolean{
+    private fun validateDate(date : String) : Boolean{
 
-    val datePattern = Pattern.compile("([0-9]{2}|[0-9])/([0-9]{2}|[0-9])/([0-9]{4})")
+        val datePattern = Pattern.compile("([0-9]{2}|[0-9])/([0-9]{2}|[0-9])/([0-9]{4})")
 
-    if (date.matches(datePattern.toRegex())){
-        val splitDate = date.split("/").map { it.toInt() }
-        if (splitDate[1] in 1..12) {
-            if (splitDate[0]<= monthDays[splitDate[1]] && splitDate[0]>0){
-                return true
+        if (date.matches(datePattern.toRegex())){
+            val splitDate = date.split("/").map { it.toInt() }
+            if (splitDate[1] in 1..12) {
+                if (splitDate[0]<= monthDays[splitDate[1]] && splitDate[0]>0){
+                    return true
+                }
             }
         }
+
+        return false
     }
 
-    return false
-}
-
-private fun daysPassedThisYear(actualMonth : Int) : Int {
-    var accumulatedDays = 0
-    for (i in 0 until actualMonth) {
-        accumulatedDays += monthDays[i]
+    private fun daysPassedThisYear(actualMonth : Int) : Int {
+        var accumulatedDays = 0
+        for (i in 0 until actualMonth) {
+            accumulatedDays += monthDays[i]
+        }
+        return accumulatedDays
     }
-    return accumulatedDays
 }

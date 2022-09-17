@@ -1,8 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import android.text.format.DateUtils
-import androidx.core.util.TimeUtils
-
 /*
  * Reto #37
  * LOS LANZAMIENTOS DE "THE LEGEND OF ZELDA"
@@ -24,3 +21,20 @@ import androidx.core.util.TimeUtils
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main(){
+    daysAndYearsBetween("17/06/2000", "13/06/2020")
+}
+
+private fun daysAndYearsBetween(fistGameDate : String, secondGameDate : String){
+    val dateTool = MyDateTools()
+    val totalDays = dateTool.myDaysBetween(fistGameDate, secondGameDate)
+
+    if (totalDays>0){
+        val extractedYears = totalDays/360
+        val remainingDays = totalDays-extractedYears*360
+
+        println("The total time between is $extractedYears years and $remainingDays days")
+    }
+}
+
