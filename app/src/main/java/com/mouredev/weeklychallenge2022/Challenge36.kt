@@ -1,8 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import es.jaimefere.weeklychallenge2022.PokemonType
-import es.jaimefere.weeklychallenge2022.getAttackDamage
-
 /*
  * Reto #36
  * LOS ANILLOS DE PODER
@@ -30,36 +27,74 @@ import es.jaimefere.weeklychallenge2022.getAttackDamage
  *
  */
 
-enum class BattleResult {
-    DRAW, EVIL, GOOD
+fun main() {
+
+    battleForTheMiddleEarth(
+        listOf(Pair(KindArmy.ELF, 1)),
+        listOf(Pair(EvilArmy.TROLL, 1)))
+
+    battleForTheMiddleEarth(
+        listOf(Pair(KindArmy.ELF, 1), Pair(KindArmy.HARFOOT, 1)),
+        listOf(Pair(EvilArmy.TROLL, 1)))
+
+    battleForTheMiddleEarth(
+        listOf(Pair(KindArmy.ELF, 1), Pair(KindArmy.HARFOOT, 1)),
+        listOf(Pair(EvilArmy.TROLL, 1), Pair(EvilArmy.ORC, 1)))
+
+    battleForTheMiddleEarth(
+        listOf(Pair(KindArmy.ELF, 56), Pair(KindArmy.HARFOOT, 80), Pair(KindArmy.DWARF, 5)),
+        listOf(Pair(EvilArmy.TROLL, 17), Pair(EvilArmy.ORC, 51), Pair(EvilArmy.WARG, 10), Pair(EvilArmy.SOUTHERNER, 2)))
 }
 
-enum class GoodRace {
-    PELOSOS, SUREÑOS_BUENOS, ENANOS, NUMENORANOS, ELFOS
-}
+enum class KindArmy() {
 
-enum class EvilRace {
-    SUREÑOS_MALOS, ORCOS, GOBLINS, HUARGOS, TROLLS;
+    HARFOOT, SOUTHERNER, DWARF, NUMENOREAN, ELF;
 
-    companion object {
-        fun strength(obj: EvilRace): Int {
-            return when (obj) {
-                HUARGOS -> 3
-                TROLLS -> 5
-                else -> 2
+    var bravery: Int = 0
+        get() {
+            return when (this) {
+                HARFOOT -> 1
+                SOUTHERNER -> 2
+                DWARF -> 3
+                NUMENOREAN -> 4
+                ELF -> 5
             }
         }
+}
+
+enum class EvilArmy() {
+
+    SOUTHERNER, ORC, GOBLIN, WARG, TROLL;
+
+    var bravery: Int = 0
+        get() {
+            return when (this) {
+                SOUTHERNER, ORC, GOBLIN -> 2
+                WARG -> 3
+                TROLL -> 5
+            }
+        }
+}
+
+private fun battleForTheMiddleEarth(kindArmy: List<Pair<KindArmy, Int>>, evilArmy: List<Pair<EvilArmy, Int>>) {
+
+    var kindArmyPoints = 0
+    var evilArmyPoints = 0
+
+    kindArmy.forEach { army ->
+        kindArmyPoints += army.first.bravery * army.second
     }
-}
 
-fun battle(goodArmy: Map<GoodRace, Int>, evilArmy: Map<EvilRace, Int>): BattleResult {
-    val goodStrength = goodArmy.map{ (it.key.ordinal + 1) * it.value }.sum()
-    val evilStrength = evilArmy.map{ EvilRace.strength(it.key) * it.value }.sum()
-    return if(goodStrength == evilStrength) BattleResult.DRAW else if(goodStrength > evilStrength) BattleResult.GOOD else BattleResult.EVIL
-}
+    evilArmy.forEach { army ->
+        evilArmyPoints += army.first.bravery * army.second
+    }
 
-fun main() {
-    println(battle(mapOf(Pair(GoodRace.PELOSOS,1)), mapOf(Pair(EvilRace.ORCOS,1))))
-    println(battle(mapOf(Pair(GoodRace.PELOSOS,2)), mapOf(Pair(EvilRace.ORCOS,1))))
-    println(battle(mapOf(Pair(GoodRace.PELOSOS,3)), mapOf(Pair(EvilRace.ORCOS,1))))
+    if (kindArmyPoints > evilArmyPoints) {
+        println("Gana el bien")
+    } else if (evilArmyPoints > kindArmyPoints) {
+        println("Gana el mal")
+    } else {
+        println("Empate")
+    }
+
 }
