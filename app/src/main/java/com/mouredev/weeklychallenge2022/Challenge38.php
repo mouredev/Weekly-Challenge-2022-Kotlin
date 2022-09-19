@@ -20,17 +20,40 @@ declare(strict_types=1);
  *
  */
 
-$binary     = (string) ($argv[1] ?? 10111); // 23
-$decimal    = convertBinaryToDecimal($binary);
+$binary = (string) ($argv[1] ?? 10111); // 23
 
-echo "The decimal of \"{$binary}\" is: {$decimal}." . PHP_EOL;
+try {
+
+    $decimal = convertBinaryToDecimal($binary);
+
+    echo "The decimal of \"{$binary}\" is: {$decimal}.";
+
+} catch (Exception $e) {
+
+    echo "The number \"{$binary}\" is not binary.";
+
+}
+
+echo PHP_EOL;
 
 function convertBinaryToDecimal(string $binary): int {
 
+    if (!is_numeric($binary)) {
+        throw new Exception();
+    }
+
     $binary = str_split($binary);
+    $binary = array_map('intval', $binary);
+
+    foreach ($binary as $number) {
+        if (!in_array($number, [0, 1])) {
+            throw new Exception();
+        }
+    }
+
     $binary = array_reverse($binary);
 
-    array_walk($binary, function (string &$number, int $index) {
+    array_walk($binary, function (int &$number, int $index) {
         $number = $number * 2 ** $index;
     });
 
