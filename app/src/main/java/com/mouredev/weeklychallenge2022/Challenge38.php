@@ -20,7 +20,11 @@ declare(strict_types=1);
  *
  */
 
-$binary = (string) ($argv[1] ?? 10111); // 23
+$binary = php_sapi_name() === 'cli'
+    ? ($argv[1] ?? false)
+    : ($_GET['binary'] ?? false);
+
+$binary = (string) ($binary ?: 10111); // 23
 
 try {
 
