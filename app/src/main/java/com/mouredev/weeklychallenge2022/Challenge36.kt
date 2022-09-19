@@ -27,74 +27,56 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+enum class FRIENDLY_FORCES(val value: Int) {
+    PELOSOS(1),
+    SURENOS_BUENOS(2),
+    ENANOS(3),
+    NUMENOREANOS(4),
+    ELFOS(5)
+}
+
+enum class EVIL_FORCES(val value: Int) {
+    SURENOS_MALOS(2),
+    ORCOS(2),
+    GOGLINS(2),
+    HUARGOS(3),
+    TROLL(5)
+}
+
+//Ejercito buenos y cantidad de efectivos
+val mapFriendlyForce = hashMapOf(
+    FRIENDLY_FORCES.PELOSOS to 1,
+    FRIENDLY_FORCES.SURENOS_BUENOS to 0,
+    FRIENDLY_FORCES.ENANOS to 0,
+    FRIENDLY_FORCES.NUMENOREANOS to 0,
+    FRIENDLY_FORCES.ELFOS to 0
+)
+
+//Ejercito malos y cantidad de efectivos
+val mapEvilForce = hashMapOf(
+    EVIL_FORCES.SURENOS_MALOS to 0,
+    EVIL_FORCES.ORCOS to 1,
+    EVIL_FORCES.GOGLINS to 0,
+    EVIL_FORCES.HUARGOS to 0,
+    EVIL_FORCES.TROLL to 0
+)
+
 fun main() {
-
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 1)),
-        listOf(Pair(EvilArmy.TROLL, 1)))
-
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 1), Pair(KindArmy.HARFOOT, 1)),
-        listOf(Pair(EvilArmy.TROLL, 1)))
-
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 1), Pair(KindArmy.HARFOOT, 1)),
-        listOf(Pair(EvilArmy.TROLL, 1), Pair(EvilArmy.ORC, 1)))
-
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 56), Pair(KindArmy.HARFOOT, 80), Pair(KindArmy.DWARF, 5)),
-        listOf(Pair(EvilArmy.TROLL, 17), Pair(EvilArmy.ORC, 51), Pair(EvilArmy.WARG, 10), Pair(EvilArmy.SOUTHERNER, 2)))
+    println(battle(mapFriendlyForce, mapEvilForce))
 }
 
-enum class KindArmy() {
+fun battle(
+    friendlyForces: HashMap<FRIENDLY_FORCES, Int>,
+    evilForces: HashMap<EVIL_FORCES, Int>
+): String {
+    val sumFriendlyForces = friendlyForces.map { it.key.value * it.value }.sum()
+    val sumEvilForces = evilForces.map { it.key.value * it.value }.sum()
 
-    HARFOOT, SOUTHERNER, DWARF, NUMENOREAN, ELF;
-
-    var bravery: Int = 0
-        get() {
-            return when (this) {
-                HARFOOT -> 1
-                SOUTHERNER -> 2
-                DWARF -> 3
-                NUMENOREAN -> 4
-                ELF -> 5
-            }
-        }
-}
-
-enum class EvilArmy() {
-
-    SOUTHERNER, ORC, GOBLIN, WARG, TROLL;
-
-    var bravery: Int = 0
-        get() {
-            return when (this) {
-                SOUTHERNER, ORC, GOBLIN -> 2
-                WARG -> 3
-                TROLL -> 5
-            }
-        }
-}
-
-private fun battleForTheMiddleEarth(kindArmy: List<Pair<KindArmy, Int>>, evilArmy: List<Pair<EvilArmy, Int>>) {
-
-    var kindArmyPoints = 0
-    var evilArmyPoints = 0
-
-    kindArmy.forEach { army ->
-        kindArmyPoints += army.first.bravery * army.second
+    if (sumFriendlyForces > sumEvilForces) {
+        return "Han ganado los buenos"
     }
-
-    evilArmy.forEach { army ->
-        evilArmyPoints += army.first.bravery * army.second
+    if (sumFriendlyForces < sumEvilForces) {
+        return "Han ganado los malos"
     }
-
-    if (kindArmyPoints > evilArmyPoints) {
-        println("Gana el bien")
-    } else if (evilArmyPoints > kindArmyPoints) {
-        println("Gana el mal")
-    } else {
-        println("Empate")
-    }
-
+    return "La batalla ha terminado en empate"
 }
