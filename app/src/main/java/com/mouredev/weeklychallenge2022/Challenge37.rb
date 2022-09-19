@@ -59,29 +59,15 @@ class Game
                     '19': { name: 'The Legend of Zelda: Tears of the Kingdom', release_date: '2023-5-12' } }.freeze
 
   def calc_date(game1, game2)
-    # using date library
-    diff = (year_to_epoch(game1) - year_to_epoch(game2)).abs
-    diff_year = diff / 31_536_000
-    diff_days = (diff % 31_536_000) / 86_400
-    { years: diff_year, days: diff_days }
-
-    # using strings
-    # year_a = year_to_array(game1)
-    # year_b = year_to_array(game2)
-    # diff_year = (year_a[0] - year_b[0]).abs
-    # diff_days = (((year_a[1] * 30) + year_a[2]) - ((year_b[1] * 30) + year_b[2])).abs
-    # { years: diff_year, days: diff_days }
+    diff_days = (string_to_year(game1) - string_to_year(game2)).abs
+    years = diff_days.to_i / 365
+    days = diff_days.to_i % 365
+    { years: years, days: days }
   end
 
   private
 
-  # using date library
-  def year_to_epoch(game_data)
-    Date.parse(RELEASE_DATES[game_data.to_sym][:release_date]).to_time.to_i
-  end
-
-  # using strings
-  def year_to_array(game_data)
-    RELEASE_DATES[game_data.to_sym][:release_date].split('-').map(&:to_i)
+  def string_to_year(game_data)
+    Date.parse(RELEASE_DATES[game_data.to_sym][:release_date])
   end
 end
