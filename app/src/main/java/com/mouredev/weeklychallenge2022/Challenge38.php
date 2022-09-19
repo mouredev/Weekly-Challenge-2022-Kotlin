@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * Reto #38
  * BINARIO A DECIMAL
@@ -17,3 +19,23 @@
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+$binary     = (string) ($argv[1] ?? 10111); // 23
+$decimal    = convertBinaryToDecimal($binary);
+
+echo "The decimal of \"{$binary}\" is: {$decimal}." . PHP_EOL;
+
+function convertBinaryToDecimal(string $binary): int {
+
+    $binary = str_split($binary);
+    $binary = array_reverse($binary);
+
+    array_walk($binary, function (string &$number, int $index) {
+        $number = $number * 2 ** $index;
+    });
+
+    $decimal = (int) array_sum($binary);
+
+    return $decimal;
+
+}
