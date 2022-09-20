@@ -35,7 +35,7 @@ fun main() {
     println(daysInterval("17/04/2022", "16/04/2023"))
 }
 
-private fun daysInterval(dateText1: String, dateText2: String): Int {
+fun daysInterval(dateText1: String, dateText2: String): Int {
     val dayMillis = 1000 * 60 * 60 * 24
     var days = -1
     val dateFormat = SimpleDateFormat("dd/MM/yyyy")

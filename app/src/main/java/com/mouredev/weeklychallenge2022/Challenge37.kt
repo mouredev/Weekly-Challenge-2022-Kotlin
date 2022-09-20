@@ -1,5 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
+import es.jaimefere.weeklychallenge2022.daysInterval
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
@@ -81,23 +82,8 @@ private enum class ZeldaEdition(val releaseDate: String) {
     }
 }
 
-// From Challenge 15
-private fun daysInterval(dateText1: String, dateText2: String): Int {
-    val dayMillis = 1000 * 60 * 60 * 24
-    var days = -1
-    val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-    dateFormat.isLenient = false
-    try {
-        val date1 = dateFormat.parse(dateText1)
-        val date2 = dateFormat.parse(dateText2)
-        days = abs((date1.time - date2.time) / dayMillis).toInt()
-    } catch (pe: ParseException) {
-        println(pe)
-    }
-    return days
-}
-
 private fun timeBetweenZeldaEditions(anEdition: ZeldaEdition, otherEdition: ZeldaEdition): String {
+    // Implemented in Challenge #15
     val days = daysInterval(anEdition.releaseDate, otherEdition.releaseDate)
     val years = ceil(days / 365.0).toInt()
     return "$years años y ${days % 365} días de diferencia entre el lanzamiento de '${ZeldaEdition.name(anEdition)}' y '${ZeldaEdition.name(otherEdition)}'"
