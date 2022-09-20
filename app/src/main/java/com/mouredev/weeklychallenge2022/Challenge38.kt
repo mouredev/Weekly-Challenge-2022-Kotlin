@@ -18,7 +18,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-mport re
+import re
 
 def calcularBinario(exp, n):
     '''
