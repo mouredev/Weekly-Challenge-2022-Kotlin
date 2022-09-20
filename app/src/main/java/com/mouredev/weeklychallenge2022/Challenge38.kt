@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #38
  * BINARIO A DECIMAL
@@ -17,3 +19,19 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    println(binaryToDecimal("1010100101011"))
+    println(binaryToDecimal("10111001110101001011"))
+    println(binaryToDecimal("10130101"))
+    println(binaryToDecimal("0110f1010"))
+}
+
+fun binaryToDecimal(binary: String): String {
+    if (!Regex("^[0-1]*$").matches(binary)) return "Error! String should contain 0 and 1 only."
+    var total = 0
+    (binary.length - 1 downTo 0).forEachIndexed { index, num ->
+        total += binary[num].digitToInt().times(2.0.pow(index)).toInt()
+    }
+    return "Total: $total"
+}
