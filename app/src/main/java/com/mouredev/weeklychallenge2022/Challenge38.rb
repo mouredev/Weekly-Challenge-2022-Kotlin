@@ -28,6 +28,7 @@
 # app/src/main/java/mouredev/weeklychallenge2022/Challenge38_test.rb
 
 def binary_to_decimal(binary)
+  # binary.to_i(2)
   arr = binary.split('').map(&:to_i)
   arr_len = arr.length
   arr.each_with_index.reduce(0) { |resp, (num, i)| resp + num * (2**(arr_len - (i + 1))) }
