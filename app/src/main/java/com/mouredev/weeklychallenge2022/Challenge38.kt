@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #38
  * BINARIO A DECIMAL
@@ -17,3 +19,22 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    toDecimal("111000111")
+}
+
+fun toDecimal(number: String):Double {
+    var binario = number
+    var decimal = 0.0
+    var exponente = number.length -1
+    for (i in 0 .. number.length -1) {
+        if (binario[i] == '1'){
+            val n = 2.0;
+            decimal += n.pow(exponente)
+        }
+        exponente --
+    }
+    println(decimal.toInt())
+    return decimal
+}
