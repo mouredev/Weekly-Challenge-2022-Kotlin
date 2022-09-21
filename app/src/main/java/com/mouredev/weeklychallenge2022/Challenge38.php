@@ -49,19 +49,17 @@ function convertBinaryToDecimal(string $binary): int
     }
 
     $binary = str_split($binary);
-    $binary = array_map('intval', $binary);
+    $binary = array_reverse($binary);
 
-    foreach ($binary as $number) {
+    foreach ($binary as $index => &$number) {
+
         if (!in_array($number, [0, 1])) {
             throw new Exception("The binary `{$original}` is not a valid binary");
         }
-    }
 
-    $binary = array_reverse($binary);
-
-    array_walk($binary, function (int &$number, int $index) {
         $number = $number * 2 ** $index;
-    });
+
+    }
 
     $decimal = (int) array_sum($binary);
 
