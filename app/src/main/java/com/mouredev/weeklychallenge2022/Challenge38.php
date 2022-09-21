@@ -54,7 +54,7 @@ function convertBinaryToDecimal(string $binary): int
     foreach ($binary as $index => &$number) {
 
         if (!in_array($number, [0, 1])) {
-            throw new Exception("The binary `{$original}` is not a valid binary");
+            throw new Exception("The binary `{$original}` contains numbers other than 0 or 1");
         }
 
         $number = $number * 2 ** $index;
