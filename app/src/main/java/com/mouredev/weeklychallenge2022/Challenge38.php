@@ -34,35 +34,34 @@ try {
 
 } catch (Exception $e) {
 
-    echo "The number \"{$binary}\" is not binary.";
+    echo $e->getMessage();
 
 }
 
 echo PHP_EOL;
 
-function convertBinaryToDecimal(string $binary): int {
+function convertBinaryToDecimal(string $binary): int
+{
+    $original = $binary;
 
     if (!is_numeric($binary)) {
-        throw new Exception();
+        throw new Exception("The binary `{$original}` is not a valid binary");
     }
 
     $binary = str_split($binary);
-    $binary = array_map('intval', $binary);
-
-    foreach ($binary as $number) {
-        if (!in_array($number, [0, 1])) {
-            throw new Exception();
-        }
-    }
-
     $binary = array_reverse($binary);
 
-    array_walk($binary, function (int &$number, int $index) {
+    foreach ($binary as $index => &$number) {
+
+        if (!in_array($number, [0, 1])) {
+            throw new Exception("The binary `{$original}` contains numbers other than 0 or 1");
+        }
+
         $number = $number * 2 ** $index;
-    });
+
+    }
 
     $decimal = (int) array_sum($binary);
 
     return $decimal;
-
 }
