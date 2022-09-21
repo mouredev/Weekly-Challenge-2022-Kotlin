@@ -40,8 +40,8 @@ try {
 
 echo PHP_EOL;
 
-function convertBinaryToDecimal(string $binary): int {
-
+function convertBinaryToDecimal(string $binary): int
+{
     if (!is_numeric($binary)) {
         throw new Exception();
     }
@@ -64,5 +64,4 @@ function convertBinaryToDecimal(string $binary): int {
     $decimal = (int) array_sum($binary);
 
     return $decimal;
-
 }
