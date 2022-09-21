@@ -34,7 +34,7 @@ try {
 
 } catch (Exception $e) {
 
-    echo "The number \"{$binary}\" is not binary.";
+    echo $e->getMessage();
 
 }
 
@@ -42,8 +42,10 @@ echo PHP_EOL;
 
 function convertBinaryToDecimal(string $binary): int
 {
+    $original = $binary;
+
     if (!is_numeric($binary)) {
-        throw new Exception();
+        throw new Exception("The binary `{$original}` is not a valid binary");
     }
 
     $binary = str_split($binary);
@@ -51,7 +53,7 @@ function convertBinaryToDecimal(string $binary): int
 
     foreach ($binary as $number) {
         if (!in_array($number, [0, 1])) {
-            throw new Exception();
+            throw new Exception("The binary `{$original}` is not a valid binary");
         }
     }
 
