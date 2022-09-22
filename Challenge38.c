@@ -53,8 +53,8 @@ BOOL bin2int(char * bin, unsigned int * out){
 		//character iter:
 		c = *(bin+i);
 		
-		// we need expand other digit - necesitamos expandir otro digito:
-		//add 0 binary:
+		// we need expand other digit - necesitamos expandir otro digito 0 a la derecha:
+		//add 0 binary to right:
 		result <<= 1;
 		
 		if (c == '1')
