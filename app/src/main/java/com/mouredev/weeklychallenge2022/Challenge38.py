@@ -13,6 +13,8 @@ def main(bin):
         position=((size-1) -i)
         digit=bin[i]
         digit=int(digit)
+        if digit != 0 and digit != 1:
+            raise TypeError("You have to type a binary number")
         multi=digit*2**position
         total+=multi
             
