@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #38
  * BINARIO A DECIMAL
@@ -17,3 +19,43 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+/**
+ * Funcion principal
+ */
+fun main(){
+
+    println(binaryToDecimal("1010"))
+    println(binaryToDecimal("010111101111100001"))
+    println(binaryToDecimal("01200011"))
+
+}
+
+/**
+ * Funcion que transforma un numero binario a decimal
+ * @param binary numero binario
+ * @return numero decimal
+ */
+fun binaryToDecimal(binary: String): Int {
+    var decimal = 0
+    if(binary.isBinary){
+        binary.reversed().forEachIndexed { index, value ->
+            decimal += (value.toString().toInt() * 2.0.pow(index.toDouble())).toInt()
+        }
+    }
+    else{
+        println("El número binario no es correcto")
+    }
+    return decimal
+
+
+}
+
+/**
+ * Funcion de extension de String que comprueba si el numero binario es correcto
+ * @return true si es correcto, false si no lo es
+ */
+
+ val String.isBinary : Boolean
+    get() = Regex("^[0-1]+\$").matches(this)
+
