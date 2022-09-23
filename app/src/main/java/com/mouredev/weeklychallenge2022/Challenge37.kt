@@ -37,4 +37,3 @@ private fun daysAndYearsBetween(fistGameDate : String, secondGameDate : String){
         println("The total time between is $extractedYears years and $remainingDays days")
     }
 }
-

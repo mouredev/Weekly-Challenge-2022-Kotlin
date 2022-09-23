@@ -9,8 +9,13 @@ android {
 
     defaultConfig {
         applicationId "com.mouredev.weeklychallenge2022"
+<<<<<<< HEAD
         minSdk 23
         targetSdk 32
+=======
+        minSdk 26
+        targetSdk 31
+>>>>>>> f68a01206ec3dc8e7d0527e8ff9a4c9a2ca21ba6
         versionCode 1
         versionName "1.0"
 
