@@ -4,18 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.mouredev.weeklychallenge2022"
-<<<<<<< HEAD
         minSdk 23
-        targetSdk 32
-=======
-        minSdk 26
-        targetSdk 31
->>>>>>> f68a01206ec3dc8e7d0527e8ff9a4c9a2ca21ba6
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -40,8 +35,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 

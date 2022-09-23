@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #38
  * BINARIO A DECIMAL
@@ -17,3 +19,29 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main(){
+    println(baseIntConvertor("00101011"))
+    println(baseIntConvertor("00001011"))
+    println(baseIntConvertor("10001011"))
+}
+
+private fun baseIntConvertor(baseCode : String, base : Int = 2) : Int{
+    val baseCodeArray : List<Int>
+    var result = 0.0
+
+    try {
+        baseCodeArray = baseCode.toCharArray().reversedArray().map { it.digitToInt() }
+
+        baseCodeArray.forEachIndexed { index, value ->
+            result += base.toFloat().pow(index) * value
+        }
+
+        print("The $base code :$baseCode is equal to ")
+    } catch (e : Error){
+        println(e.message)
+        return 0
+    }
+
+    return result.toInt()
+}
