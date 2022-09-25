@@ -21,13 +21,26 @@ import kotlin.math.pow
  */
 
 fun main() {
-    print("Mete un numero en binario: ")
-    val binario:String = readLine()!!
+
+    /*  Porbas de testteo*/
+
+    print(deBinarioDecimal("1100011"))
+    println(" O resultado sería 99")
+    println("-----------------------------")
+    print(deBinarioDecimal("11000111000111000"))
+    println(" O resultado sería 101944")
+    println("-----------------------------")
+    print(deBinarioDecimal("1050"))
+    println(" O resultado sería null")
+
+}
+
+fun deBinarioDecimal(binario:String):Int? {
+
     val dous = 2.0
     var decimal= 0
     var exp = 0
-    var errorBinario = false
-
+    var esBinario = true
 
     for (x in binario.lastIndex downTo 0) {
         if (binario[x]== '0' || binario[x] == '1') {
@@ -35,12 +48,10 @@ fun main() {
             val paraSumar = dixito*dous.pow(exp++).toInt()
             decimal += paraSumar
         } else {
-            println("O número non está en formato binario.")
-            errorBinario = true
+            esBinario = false
             break
         }
     }
 
-    if (!errorBinario)  // o operador ! invierte el valor de un booleano
-        println("O numero decimal é: $decimal")
+    if (esBinario)  return decimal else return null
 }
