@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.pow
+
 /*
  * Reto #38
  * BINARIO A DECIMAL
@@ -17,3 +19,28 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    print("Mete un numero en binario: ")
+    val binario:String = readLine()!!
+    val dous = 2.0
+    var decimal= 0
+    var exp = 0
+    var errorBinario = false
+
+
+    for (x in binario.lastIndex downTo 0) {
+        if (binario[x]== '0' || binario[x] == '1') {
+            val dixito:Int = binario[x].toString().toInt()
+            val paraSumar = dixito*dous.pow(exp++).toInt()
+            decimal += paraSumar
+        } else {
+            println("O número non está en formato binario.")
+            errorBinario = true
+            break
+        }
+    }
+
+    if (!errorBinario)  // o operador ! invierte el valor de un booleano
+        println("O numero decimal é: $decimal")
+}
