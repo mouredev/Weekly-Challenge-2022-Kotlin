@@ -70,7 +70,8 @@ Tienes toda la información extendida sobre los retos de programación semanales
 * **#35** - 29/08/22 - [`BATALLA POKÉMON`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge35.kt)
 * **#36** - 06/09/22 - [`LOS ANILLOS DE PODER`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge36.kt)
 * **#37** - 14/09/22 - [`LOS LANZAMIENTOS DE "THE LEGEND OF ZELDA"`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge37.kt)
-* **#38** - 19/09/22 - `Publicación nuevo reto...`
+* **#38** - 19/09/22 - [`BINARIO A DECIMAL`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge38.kt)
+* **#39** - 27/09/22 - `Publicación nuevo reto...`
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
