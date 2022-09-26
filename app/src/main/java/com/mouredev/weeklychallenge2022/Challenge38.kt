@@ -82,21 +82,5 @@ fun deBinarioDecimal(binario:String):Int? {
 
 fun deBinarioDecimal(numBin:Long):Int? {
     val binario:String = numBin.toString()
-    val dous = 2.0
-    var decimal= 0
-    var exp = 0
-    var esBinario = true
-
-    for (x in binario.lastIndex downTo 0) {
-        if (binario[x]== '0' || binario[x] == '1') {
-            val dixito:Int = binario[x].toString().toInt()
-            val paraSumar = dixito*dous.pow(exp++).toInt()
-            decimal += paraSumar
-        } else {
-            esBinario = false
-            break
-        }
-    }
-
-    if (esBinario)  return decimal else return null
+    return deBinarioDecimal(binario)
 }
