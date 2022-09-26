@@ -20,6 +20,12 @@ import kotlin.math.pow
  *
  */
 
+/*
+* @AlexKum1980
+* Estoy aprendiendo a programar, en mi Ciclo de FP el profesor escogió el lenguaje kotlin,
+* y con lo que hemos visto en el curso, pude realizar esta solución al reto.
+*/
+
 fun main() {
 
     /*  Porbas de testteo*/
