@@ -17,3 +17,37 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+
+fun main(){
+
+    val binary1 = "10"
+    val binary2 = "11"
+    val binary3 = "1"
+    val binary4 = "100"
+    val binary5 = "111010110010110001111"
+
+    print(binaryToDec(binary5))
+
+}
+
+
+
+fun binaryToDec(binary:String):Int {
+
+
+    val stringArr = binary.reversed().toCharArray()
+
+    var bitCounter =1
+
+    var binary =0
+   stringArr.forEach {
+
+       if(it=='1'){
+               binary+=bitCounter
+       }
+       bitCounter*=2
+   }
+
+    return binary
+}
