@@ -79,6 +79,7 @@ fun deBinarioDecimal(binario:String):Int? {
 * Función que recibe un número binario en Long (los binarios tienen muchos digitos) y lo devuelve el decimal en Int.
 */
 
+
 fun deBinarioDecimal(numBin:Long):Int? {
     return deBinarioDecimal(numBin.toString())
 }
