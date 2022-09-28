@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reto 39</title>
+    <style>
+      .info {
+        display: flex;
+        width: calc(100% - 20px);
+        margin-top: 30px;
+        padding: 10px;
+        overflow-x: scroll;
+        border: 1px solid #cccccc;
+      }
+      .info div:first-child {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reto 39</h1>
+    <canvas id="draw-quick-sort"></canvas>
+    <div class="info">
+      <div>Original:</div>
+      <div id="originalArr"></div>
+    </div>
+    <div class="info">
+      <div>Ordenado:</div>
+      <div id="orderArr"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="./reto-39.js"></script>
+  </body>
+</html>
