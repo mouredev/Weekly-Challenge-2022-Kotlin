@@ -20,21 +20,39 @@ import kotlin.math.pow
  *
  */
 
-private fun passToDecimal(binaryNumber: String): Int {
-    var result = 0.0
-    binaryNumber.reversed().toCharArray().forEachIndexed { index, c ->
-        result += c.toString().toDouble() * 2.0.pow(index)
-    }
-    return result.toInt()
+fun main() {
+    println(binaryToDecimal("00110"))
+    println(binaryToDecimal("01100"))
+    println(binaryToDecimal("000000000"))
+    println(binaryToDecimal("00210"))
+    println(binaryToDecimal("001101001110"))
+    println(binaryToDecimal("00b10"))
+    println(binaryToDecimal(""))
+    println(binaryToDecimal("-00110"))
+    println(binaryToDecimal(" "))
+    println(binaryToDecimal(" 10011"))
+    println(binaryToDecimal("1O1OO11"))
 }
 
-fun main() {
-    val binaryNumbers = arrayOf("012", "01", "10", "10000000")
-    binaryNumbers.forEach { binaryNumber ->
-        if(binaryNumber.toCharArray().filter { it != '0' && it != '1' }.isEmpty()) {
-            println(passToDecimal(binaryNumber))
+private fun binaryToDecimal(binary: String): Int? {
+
+    val length = binary.length - 1
+
+    var decimal: Int? = null
+
+    for (index in 0..length) {
+        val digitChar = binary.toCharArray()[length - index]
+        if (digitChar == '0' || digitChar == '1') {
+            if (decimal == null) {
+                decimal = 0
+            }
+            decimal += digitChar.digitToInt() * 2.0.pow(index).toInt()
         } else {
-            println("No es un número binario correcto")
+            return null
         }
     }
+
+    return decimal
 }
+
+
