@@ -172,7 +172,7 @@ int main(int argc, char *argv[]) {
 	printf("Longitud array random: %d\n", lenght);
 	print_array("Array random desordenado:", array1, lenght);
 
-	sort_quicksort(array1, lenght);
+	int countChanges = sort_quicksort(array1, lenght);
 	
 	char isSorted = arrayIsSorted(array1, lenght);
 	
@@ -180,6 +180,8 @@ int main(int argc, char *argv[]) {
 		printf("Eso no deberia pasar nunca, el array no esta ordenado.\n");
 		return 1;
 		}
+	
+	printf("%d cambios realizados\n", countChanges);
 	
 	print_array("array ordenado:", array1, lenght);
 	
