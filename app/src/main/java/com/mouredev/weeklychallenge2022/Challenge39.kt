@@ -23,5 +23,39 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    val numArray = Array(40){it+1}
+    numArray.shuffle()
 
+    println("\n Final Result ${quickSort(numArray)}")
+}
 
+private fun quickSort(unsortedArray: Array<Int>, step : Int = 0): MutableList<Int> {
+
+    val pivot = unsortedArray[unsortedArray.size-1]
+    var smallerThanPivot = mutableListOf<Int>()
+    var biggerThanPivot = mutableListOf<Int>()
+
+    unsortedArray.forEach {
+        when {
+            it > pivot -> biggerThanPivot.add(it)
+            it < pivot -> smallerThanPivot.add(it)
+            else -> Unit
+        }
+    }
+    println("Step#$step ${unsortedArray.toMutableList()}=> $smallerThanPivot $biggerThanPivot, pivot: $pivot")
+
+    if (biggerThanPivot.size > 1) {
+        biggerThanPivot = quickSort(biggerThanPivot.toTypedArray(), step+1)
+    }
+    if (smallerThanPivot.size > 1) {
+        smallerThanPivot = quickSort(smallerThanPivot.toTypedArray(), step +1)
+    }
+
+    val resultArray = mutableListOf<Int>()
+    resultArray.addAll(smallerThanPivot)
+    resultArray.add(pivot)
+    resultArray.addAll(biggerThanPivot)
+
+    return resultArray
+}
