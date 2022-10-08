@@ -20,5 +20,37 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    drawPascalTriangle(0)
+    drawPascalTriangle(1)
+    drawPascalTriangle(3)
+    drawPascalTriangle(9)
+}
+
+private fun drawPascalTriangle(size: Int) {
+    if (size >= 1) {
+        print("With size: $size => \n")
+
+        val baseLine = mutableListOf(1)
+        val newLine = mutableListOf<Int>()
+
+        repeat(size) {
+
+            newLine.clear()
+            newLine.add(1)
+            if (baseLine.size >= 2) {
+                for (i in 0 until baseLine.size - 1) {
+                    newLine.add((baseLine[i] + baseLine[i + 1]))
+                }
+            }
+            newLine.add(1)
+
+            println(baseLine)
+            baseLine.clear()
+            baseLine.addAll(newLine)
+        }
+    } else println("Wrong size, must be more than 0")
+}
+
 
 
