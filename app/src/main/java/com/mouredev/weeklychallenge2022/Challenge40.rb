@@ -36,23 +36,24 @@ end
 # class to draw the method
 class PascalTriangle
   def draw(height)
-    triangle_container(height).each do |rows|
-      puts rows.join(' ').gsub(/0/, '').strip
-    end
+    triangle_container(height).each { |rows| puts rows.join(' ').gsub(/0/, '').strip }
   end
 
   def triangle_container(height)
-    # create triangle container
-    # triangle = []
-    # height.times { triangle << Array.new(height) }
-    # @triangle = Array.new(@height) { Array.new(@height, 0) }
-
-    # triangle.map.with_index do |rows, r_index|
-    #   rows.map.with_index do |_cell, c_index|
-    #     cell_value(r_index, c_index)
-    #   end
-    # end
-    Array.new(height) { |row| Array.new(height) { |column| cell_value(row, column) } }
+    case rand(2)
+    when 0
+      puts 'not recursive'
+      triangle = []
+      (0...height).each do |row|
+        temp = []
+        (0...height).each { |column| temp << cell_value1(triangle, row, column) }
+        triangle << temp
+      end
+      triangle
+    when 1
+      puts 'recursive'
+      Array.new(height) { |row| Array.new(height) { |column| cell_value(row, column) } }
+    end
   end
 
   private
@@ -62,5 +63,12 @@ class PascalTriangle
     return 0 if (row - column).negative?
 
     cell_value(row - 1, column - 1) + cell_value(row - 1, column)
+  end
+
+  def cell_value1(arr, row, column)
+    return 1 if column.zero? || row == column
+    return 0 if (row - column).negative?
+
+    arr[row - 1][column - 1] + arr[row - 1][column]
   end
 end
