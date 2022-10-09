@@ -53,11 +53,6 @@ function combining(n1: number, n2: number): number {
 export function pascalTriangle(size: number): number[]{
    let triangle = [];
 
-   var columns = 0
-   for(let i=size-1;i>=0;i--){
-        columns+=i
-   }
-
    for(let i = 0; i < size; i++) {
        for(let j = 0; j <= i; j++) {
             triangle.push(combining(i, j));
