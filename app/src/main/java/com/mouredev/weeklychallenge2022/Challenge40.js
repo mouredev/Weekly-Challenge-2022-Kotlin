@@ -25,6 +25,7 @@ module.exports.func = function pascalTriangle(height) {
     let temp = [];
     for (let column = 0; column < height; column++) {
       temp.push(cell_value(row, column));
+      // temp.push(cell_value1(triangle, row, column));
     }
     triangle.push(temp);
   }
@@ -36,6 +37,13 @@ const cell_value = (row, column) => {
   if (row - column < 0) return 0;
 
   return cell_value(row - 1, column - 1) + cell_value(row - 1, column);
+};
+
+const cell_value1 = (arr, row, column) => {
+  if (column == 0 || row == column) return 1;
+  if (row - column < 0) return 0;
+
+  return arr[row - 1][column - 1] + arr[row - 1][column];
 };
 
 const draw = (arr) => {
