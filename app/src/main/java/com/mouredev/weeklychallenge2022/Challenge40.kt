@@ -20,5 +20,37 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    pascalTriangle(5)
+    pascalTriangle(1)
+    pascalTriangle(0)
+    pascalTriangle(-5)
+}
 
+private fun pascalTriangle(size: Int) {
 
+    var lastRow = arrayListOf<Int>()
+
+    for (row in 0 until size) {
+
+        val currentRow = arrayListOf<Int>()
+
+        var triangleRow = ""
+
+        for (element in 0..row) {
+
+            if (element in 1 until row) {
+                val value = lastRow[element - 1] + lastRow[element]
+                triangleRow += "$value "
+                currentRow.add(value)
+            } else {
+                triangleRow += "1 "
+                currentRow.add(1)
+            }
+        }
+
+        println(" ".repeat(size - row) + triangleRow)
+
+        lastRow = currentRow
+    }
+}
