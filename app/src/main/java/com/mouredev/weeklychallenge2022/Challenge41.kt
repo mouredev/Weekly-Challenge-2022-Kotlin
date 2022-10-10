@@ -4,7 +4,7 @@ package com.mouredev.weeklychallenge2022
  * Reto #41
  * LA LEY DE OHM
  * Fecha publicación enunciado: 10/10/22
- * Fecha publicación resolución: 19/10/22
+ * Fecha publicación resolución: 17/10/22
  * Dificultad: FÁCIL
  *
  * Enunciado: Crea una función que calcule el valor del parámetro perdido correspondiente a la ley de Ohm.
