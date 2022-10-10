@@ -20,5 +20,66 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+/**
+ * Triángulo de Pascal
+ */
+
+fun main(){
+    drawPascalTriangle(3)
+    drawPascalTriangle(5)
+    drawPascalTriangle(6)
+}
+
+/**
+ * Funcion que realiza la operacion matematica de combinacion de dos elementos
+ * @param n primer elemento que se quiere combinar
+ * @param k segundo elemento que se quiere combinar
+ * @return resultado de la combinacion de los dos elementos
+ */
+private fun combination(n: Int, k: Int): Int {
+    return factorial(n) / (factorial(k) * factorial(n - k))
+}
+
+/**
+ * Funcion que calcula el factorial de un numero
+ * @param n numero del que se quiere calcular el factorial
+ * @return factorial del numero
+ */
+private fun factorial(n: Int): Int {
+    return if (n <= 1) 1 else n * factorial(n - 1)
+}
+
+/**
+ * Funcion que calcula el triangulo de pascal
+ * @param size tamaño del triangulo
+ * @return triangulo de pascal
+ */
+fun pascalTriangle(size: Int): List<Int> {
+    val triangle = mutableListOf<Int>()
+    for (i in 0 until size) {
+        for (j in 0..i) {
+            triangle.add(combination(i, j))
+        }
+    }
+    return triangle
+}
+
+
+/**
+ * Funcion que dibuja el triangulo de pascal
+ * @param size tamaño del triangulo
+ * @return triangulo de pascal dibujado
+ */
+fun drawPascalTriangle(size: Int) {
+    println("Pascal Triangle of size $size")
+    val triangle = pascalTriangle(size)
+    var index = 0
+    for (i in 0 until size) {
+        println(" ".repeat(size - i) + triangle.subList(index, index + i + 1).joinToString(" "))
+        index += i + 1
+    }
+    println("*".repeat(size*3))
+}
+
 
 
