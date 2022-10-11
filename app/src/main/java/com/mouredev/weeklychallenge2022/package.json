@@ -1,0 +1,15 @@
+{
+  "name": "weeklychallenge2022",
+  "version": "1.0.0",
+  "description": "package com.mouredev.weeklychallenge2022",
+  "main": "Challenge41.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitest": "^0.24.1"
+  }
+}
