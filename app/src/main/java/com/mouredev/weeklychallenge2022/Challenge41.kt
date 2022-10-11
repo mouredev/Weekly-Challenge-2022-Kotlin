@@ -19,4 +19,31 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(calculateOhm(v = 2.4, i = 0.5, r = 300.0))
+    println(calculateOhm(v = 2.4))
+    println(calculateOhm(v = 2.4, i = 0.0))
+    println(calculateOhm(v = 2.4, i = 0.5))
+    println(calculateOhm(v = 8.75, r = 200.0))
+    println(calculateOhm(i = 3.45, r = 65.0))
+}
 
+private fun calculateOhm(v: Double? = null, i: Double? = null, r: Double? = null): String {
+    var hasValues = 0
+    val items = listOf(v, i, r).onEach {
+        if (it != null && it != 0.0) {
+            hasValues++
+        }
+    }
+
+    if (hasValues != 2) {
+        return "Invalid values"
+    }
+    if (items[0] == null) {
+        return "${String.format("%.2f", items[1]!! * items[2]!!)} V"
+    }
+    if (items[1] == null) {
+        return "${String.format("%.2f", items[0]!! / items[2]!!)} A"
+    }
+    return "${String.format("%.2f", items[0]!! / items[1]!!)} Ω"
+}
