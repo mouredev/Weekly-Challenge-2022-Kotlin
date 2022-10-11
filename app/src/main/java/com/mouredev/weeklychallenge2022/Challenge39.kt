@@ -23,5 +23,56 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+// Basado en https://www.genbeta.com/desarrollo/implementando-el-algoritmo-quicksort
 
+fun main() {
+    val sortedArray = quicksort(arrayOf(3, 5, 1, 8, 9, 0))
+    sortedArray.forEach {
+        println(it)
+    }
+}
+
+private fun quicksort(array: Array<Int>): Array<Int> {
+    return if (array.isEmpty()) array else quicksort(array, 0, array.size - 1)
+}
+
+private fun quicksort(array: Array<Int>, first: Int, last: Int): Array<Int> {
+
+    var i = first
+    var j = last
+    var array = array
+    val pivot = (array[i] + array[j]) / 2
+
+    while (i < j) {
+
+        while (array[i] < pivot) {
+            i += 1
+        }
+
+        while (array[j] > pivot) {
+            j -= 1
+        }
+
+        if (i <= j) {
+
+            val x = array[j]
+
+            array[j] = array[i]
+            array[i] = x
+
+            i += 1
+            j -= 1
+        }
+    }
+
+    if (first < j) {
+        array = quicksort(array, first, j)
+    }
+
+    if (last > i) {
+        array = quicksort(array, i, last)
+    }
+
+    return array
+}
 
