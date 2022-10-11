@@ -1,9 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import androidx.annotation.VisibleForTesting
-import java.math.BigDecimal
-import java.math.RoundingMode
-
 /*
  * Reto #41
  * LA LEY DE OHM
@@ -35,8 +31,14 @@ internal fun calculateOhm(
     voltage: Double? = null, resistance: Double? = null, current: Double? = null
 ): String {
     // Validate if exist correct quantity of params to do calculates
-    val params = listOfNotNull(voltage, resistance, current)
-    if (params.size == 2) {
+    var validParams = 0
+    listOfNotNull(voltage, resistance, current).onEach {
+        if (it != 0.0) {
+            validParams++
+        }
+    }
+
+    if (validParams == 2) {
         return when(getCalculateType(voltage, current, resistance)) {
             CalculateType.VOLTAGE -> {
                 calculateVoltage(current = current, resistance = resistance)
@@ -68,8 +70,7 @@ private fun getCalculateType(
 
 private fun calculateVoltage(current: Double?, resistance: Double?): String {
     return if (current != null && resistance != null) {
-        BigDecimal(current * resistance)
-            .setScale(2, RoundingMode.FLOOR).toString()
+        String.format("%.2f V", current * resistance)
     } else {
         ""
     }
@@ -77,8 +78,7 @@ private fun calculateVoltage(current: Double?, resistance: Double?): String {
 
 private fun calculateResistance(voltage: Double?, current: Double?): String {
     return if (voltage != null && current != null) {
-        BigDecimal(voltage / current)
-            .setScale(2, RoundingMode.FLOOR).toString()
+        String.format("%.2f Ω", voltage / current)
     } else {
         ""
     }
@@ -86,8 +86,7 @@ private fun calculateResistance(voltage: Double?, current: Double?): String {
 
 private fun calculateCurrent(voltage: Double?, resistance: Double?): String {
     return if (voltage != null && resistance != null) {
-        BigDecimal(voltage / resistance)
-            .setScale(2, RoundingMode.FLOOR).toString()
+        String.format("%.2f A", voltage / resistance)
     } else {
         ""
     }
