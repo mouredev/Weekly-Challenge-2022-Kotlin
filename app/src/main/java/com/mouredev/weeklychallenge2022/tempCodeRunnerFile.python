@@ -1,2 +1,0 @@
-x = [1 for _ in range(15)]
-print(x)
