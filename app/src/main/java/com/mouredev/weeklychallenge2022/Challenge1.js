@@ -20,19 +20,14 @@
  *
  */
 function anagrama(p1, p2){
-    if (p1.toLowerCase()==p2.toLowerCase()){
-        return false;
-    }
+    if (p1.toLowerCase()==p2.toLowerCase()){return false;}
 
     let palabra1 = p1.toLowerCase().split("").sort();
     let palabra2 = p2.toLowerCase().split("").sort();
 
     for(let i=0;i<palabra1.length;i++){
-        if(palabra1[i]!==palabra2[i]){
-        return false;
-        }
+        if(palabra1[i]!==palabra2[i]){return false;}
     }
-        return true;
-    }
-
-    anagrama("amor","roma");
+    return true;
+}
+anagrama("amor","roma");
