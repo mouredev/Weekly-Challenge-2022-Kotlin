@@ -30,4 +30,4 @@ function anagrama(p1, p2){
     }
     return true;
 }
-anagrama("amor","roma");
+anagrama("roma","amor");
