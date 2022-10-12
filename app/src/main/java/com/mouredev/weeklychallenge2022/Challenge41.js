@@ -18,7 +18,25 @@
  */
 
 export function ohm(input) {
-  const errorMsg = "Invalid values";
-  if (typeof input !== "object" || Array.isArray(input)) return errorMsg;
-  else if (Object.keys(input).length !== 2) return errorMsg;
+  // input validation
+  const invalid =
+    typeof input !== "object" ||
+    Array.isArray(input) ||
+    Object.keys(input).length !== 2 ||
+    Object.keys(input).filter((key) => !["v", "r", "i"].includes(key)).length ||
+    Object.values(input).filter(
+      (value) => typeof value !== "number" || isNaN(value)
+    ).length;
+
+  if (invalid) return "Invalid values";
+
+  // calculation
+  const { v, r, i } = input;
+  const rounded = (num) => Math.round(num * 100) / 100;
+
+  return v === undefined
+    ? rounded(r * i)
+    : r === undefined
+    ? rounded(v / i)
+    : rounded(v / r);
 }
