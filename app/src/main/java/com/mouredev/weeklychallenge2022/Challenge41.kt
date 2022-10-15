@@ -19,4 +19,39 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
 
+    println(ohm(v = 12.0, r = 2.0, i = 0.0))
+    println(ohm(v = 0.0, r = 2.0, i = 6.0))
+    println(ohm(v = 12.0, r = 0.0, i = 6.0))
+    println(ohm(v = 12.0, r = 2.0))
+    println(ohm(r = 2.0, i = 6.0))
+    println(ohm(v = 12.0, i = 6.0))
+    println(ohm(v = 12.0, r = 0.0, i = 0.0))
+    println(ohm(v = 0.0, r = 0.0, i = 0.0))
+    println(ohm(v = 12.0, r = 2.0, i = 6.0))
+}
+
+fun ohm(v: Double? = null, r: Double? = null, i: Double? = null): String {
+
+    val values = listOfNotNull(v, r, i)
+    var count = 0
+
+    for (value in values) {
+        if (value != 0.0) {
+            count++
+        }
+    }
+
+    return if (count != 2) {
+        return "Invalid values"
+    } else if (v == 0.0 || v == null) {
+        "Tenemos un voltaje de %.2f V".format(i!! * r!!)
+    } else if (r == 0.0 || r == null) {
+        "Tenemos una resistencia de %.2f Ohms".format(v!! / i!!)
+    } else if (i == 0.0 || i == null) {
+        "Tenemos una intensidad de %.2f A".format(v!! / r!!)
+    } else {
+        "Invalid values"
+    }
+}
