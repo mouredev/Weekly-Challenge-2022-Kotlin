@@ -41,3 +41,5 @@ SELECT LeyOhm(74.41,5060,5)
 SELECT LeyOhm(0,5060,0)
 'Correcto
 SELECT LeyOhm(74.41,5060,0)
+
+'Ideado por SAuronREC
