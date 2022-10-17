@@ -1,8 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.lang.Math.round
-import kotlin.math.roundToInt
-
 /*
  * Reto #40
  * TRIÁNGULO DE PASCAL
@@ -23,34 +20,37 @@ import kotlin.math.roundToInt
  *
  */
 
-private fun printLine(line: MutableList<Int>, tab: Int) {
-    (0 until tab * 2 + (line.size / 2.0).roundToInt()).forEach { _ -> print(" ") }
-    line.forEachIndexed { index, i ->
-        if(index == line.size - 1) {
-            println(i)
-        } else {
-            print("$i${if(i<10 && line[index+1]<10) "  " else " "}")
-        }
-    }
-}
-
-private fun drawPascalTriangle(side: Int) {
-    var previousLine = mutableListOf(1)
-    (1 until side).forEach { row ->
-        var currentLine = mutableListOf(1)
-        printLine(previousLine, side - row)
-        (1 until row).forEach { column ->
-            currentLine.add(previousLine[column-1] + previousLine[column])
-        }
-        currentLine.add(1)
-        previousLine = currentLine
-    }
-    printLine(previousLine, 0)
-}
-
 fun main() {
-    drawPascalTriangle(9)
+    pascalTriangle(5)
+    pascalTriangle(1)
+    pascalTriangle(0)
+    pascalTriangle(-5)
 }
 
+private fun pascalTriangle(size: Int) {
 
+    var lastRow = arrayListOf<Int>()
 
+    for (row in 0 until size) {
+
+        val currentRow = arrayListOf<Int>()
+
+        var triangleRow = ""
+
+        for (element in 0..row) {
+
+            if (element in 1 until row) {
+                val value = lastRow[element - 1] + lastRow[element]
+                triangleRow += "$value "
+                currentRow.add(value)
+            } else {
+                triangleRow += "1 "
+                currentRow.add(1)
+            }
+        }
+
+        println(" ".repeat(size - row) + triangleRow)
+
+        lastRow = currentRow
+    }
+}
