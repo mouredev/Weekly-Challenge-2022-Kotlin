@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.DecimalFormat
+
 /*
  * Reto #41
  * LA LEY DE OHM
@@ -19,4 +21,47 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+/**
+ * Funcion principal
+ */
+fun main(){
+    println(ohmLaw(v=1.0, r=10.0))
+    println(ohmLaw(v=null,r=12.0, i=10.0))
+    println(ohmLaw(v=1.4,r=null, i=5.2))
+    println(ohmLaw(v=1.0,r=null))
+}
+
+/**
+ * Funcion que calcula la ley de Ohm , en funcion de los parametros que se le pasen.
+ * I = V / R
+ * V = I * R
+ * R = V / I
+ * @param V Valor del voltaje
+ * @param R Valor de la Resistencia
+ * @param I Valor de la Intensidad
+ * @returns Devuelve el valor calculado en funcion de los parametros dados
+ */
+fun ohmLaw(v: Double? = null , r: Double? =null, i: Double? =null): String {
+
+
+    v?.let {
+        r?.let {
+            return ((v / r).roundDecimal(2))
+
+        }
+        i?.let {
+            return (v * i).roundDecimal(2)
+        }
+    }
+    r?.let {
+        i?.let {
+            return (r*i).roundDecimal(2)
+
+        }
+    }
+
+    return "Params error or insufficient"
+}
+
+fun Double.roundDecimal(digit: Int) = "%.${digit}f".format(this).replace(",", ".")
 

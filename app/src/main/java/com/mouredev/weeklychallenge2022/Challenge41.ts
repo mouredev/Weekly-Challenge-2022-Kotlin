@@ -16,6 +16,12 @@
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+interface OhmLay{
+    V?: number;
+    R?: number;
+    I?: number;
+}
 /**
  * Funcion que calcula la ley de Ohm , en funcion de los parametros que se le pasen.
  * I = V / R
@@ -26,24 +32,24 @@
  * @param I Valor de la Intensidad
  * @returns Devuelve el valor calculado en funcion de los parametros dados
  */
-export function calculateOhm(V?:number, R?:number, I?:number) : number | string {
+export function calculateOhm(values : OhmLay) : number | string {
 
-    if (V && R) {
-        return Math.round((V / R) * 100) / 100;
-    } else if (V && I) {
-        return Math.round((V * I) * 100) / 100;
-    } else if (R && I) {
-        return Math.round((R * I) * 100) / 100;
+    if (values.V && values.R) {
+        return Math.round((values.V / values.R) * 100) / 100;
+    } else if (values.V && values.I) {
+        return Math.round((values.V * values.I) * 100) / 100;
+    } else if (values.R && values.I) {
+        return Math.round((values.R * values.I) * 100) / 100;
     } else {
         return "Params error or insufficient";
     }
 
 }
 
-console.log(calculateOhm(1,10));
-console.log(calculateOhm(NaN,12, 10));
-console.log(calculateOhm(1.4, NaN,5.2));
-console.log(calculateOhm(1,NaN));
+console.log(calculateOhm({V:1,R:10}));
+console.log(calculateOhm({R:12, I:10}));
+console.log(calculateOhm({R:1.4,I:5.2}));
+console.log(calculateOhm({R:1}));
 
 
 
