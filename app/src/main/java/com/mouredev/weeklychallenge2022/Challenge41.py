@@ -18,14 +18,20 @@
  *
  """
 
-def ohm(V, R, I):
+def calculo_ohm(V, R, I):
     try:
+
+        # Calculo Voltaje
         if V == None:
             calculo_V = (R * I)
             return print(calculo_V)
+
+        # Calculo Resistencia
         elif R == None:
             calculo_R = (V / I)
             return print(calculo_R)
+
+        # Calculo Corriente
         elif I == None:
             calculo_I = (R / I)
             return print(calculo_I)
@@ -34,4 +40,6 @@ def ohm(V, R, I):
         print("Invalid Values")
 
 if __name__ == "__main__":
-    ohm(None, 5, 6)
+
+    # Introduce aqui los valores (V, I, R)
+    calculo_ohm(None, 5, 6)
