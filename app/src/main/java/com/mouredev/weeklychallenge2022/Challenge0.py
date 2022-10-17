@@ -1,6 +1,4 @@
-package com.mouredev.weeklychallenge2022
-
-/*
+"""
  * Reto #0
  * EL FAMOSO "FIZZ BUZZ"
  * Fecha publicación enunciado: 27/12/21
@@ -17,21 +15,16 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
- */
+ """
 
-fun main() {
-
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
-    }
-}
+for index in range (1,100):
+    divisible_by_three = index %  3 == 0
+    divisible_by_five = index %  5 == 0
+    if (divisible_by_three & divisible_by_five):
+        print("FizzBuzz")
+    elif (divisible_by_three):
+        print("Fizz")
+    elif (divisible_by_five):
+        print("Buzz")
+    else:
+        print(index)

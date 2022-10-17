@@ -1,6 +1,4 @@
-package com.mouredev.weeklychallenge2022
-
-/*
+"""
  * Reto #1
  * ¿ES UN ANAGRAMA?
  * Fecha publicación enunciado: 03/01/22
@@ -18,8 +16,9 @@ package com.mouredev.weeklychallenge2022
  * - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
- */
+ """
 
+""" Resolucion Kotlin
 fun main() {
     println(isAnagram("amor", "roma"))
 }
@@ -30,3 +29,4 @@ private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
     }
     return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
+"""
