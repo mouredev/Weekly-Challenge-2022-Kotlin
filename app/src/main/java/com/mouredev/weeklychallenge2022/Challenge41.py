@@ -1,6 +1,5 @@
-package com.mouredev.weeklychallenge2022
 
-/*
+"""
  * Reto #41
  * LA LEY DE OHM
  * Fecha publicación enunciado: 10/10/22
@@ -17,6 +16,22 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en
  *   https://retosdeprogramacion.com/semanales2022.
  *
- */
+ """
 
+def ohm(V, R, I):
+    try:
+        if V == None:
+            calculo_V = (R * I)
+            return print(calculo_V)
+        elif R == None:
+            calculo_R = (V / I)
+            return print(calculo_R)
+        elif I == None:
+            calculo_I = (R / I)
+            return print(calculo_I)
+        
+    except TypeError:
+        print("Invalid Values")
 
+if __name__ == "__main__":
+    ohm(None, 5, 6)
