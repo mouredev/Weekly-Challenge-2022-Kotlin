@@ -21,3 +21,42 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(degreeConverter("45.5°C"))
+    println(degreeConverter("113.9°F"))
+    println(degreeConverter("50.°C"))
+    println(degreeConverter("122.0°F"))
+    println(degreeConverter("122.0"))
+    println(degreeConverter("122.0 F"))
+}
+
+private fun degreeConverter(input:String): String {
+    var temp: String
+    temp = input.replace("°", "")
+    temp = temp.replace("C", "")
+    temp = temp.replace("F", "")
+    var number = temp.toDouble()
+
+    if (!input.contains("°") || (!input.contains("C") && !input.contains("F"))) {
+        return "Error datos de entrada"
+    }
+
+    if (input.contains("C")){
+        return "$input -> ${celsiusToFahrenheit(number)}°F"
+    }
+
+    if (input.contains("F")){
+        return "$input -> ${fahrenheitToCelsius(number)}°C"
+    }
+
+    return "Error"
+}
+
+
+private fun celsiusToFahrenheit(celsius:Double) : Double {
+    return (1.8 * celsius) + 32.0
+}
+
+private fun fahrenheitToCelsius(fahrenheit:Double) : Double {
+    return 5.0 * (fahrenheit - 32.0) / 9.0
+}
