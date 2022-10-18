@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #0
  * EL FAMOSO "FIZZ BUZZ"
@@ -18,20 +16,22 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+package main
 
-fun main() {
+import "fmt"
 
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
+func main() {
+    for i := 1; i <= 100; i++ {
+        divisibleThree := i % 3 == 0
+        divisibleFive  := i % 5 == 0        
+        if divisibleThree && divisibleFive {
+            fmt.Println("fizzbuzz")
+        } else if divisibleThree {
+            fmt.Println("fizz")
+        } else if divisibleFive {
+            fmt.Println("buzz")
         } else {
-            println(index)
+            fmt.Println(i)
         }
     }
 }
