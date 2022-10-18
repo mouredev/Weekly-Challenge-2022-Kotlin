@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.DecimalFormat
+
 /*
  * Reto #41
  * LA LEY DE OHM
@@ -25,6 +27,7 @@ fun main() {
     leyOhm(mapOf(Pair(Ohm.RESISTANCE, 50f), Pair(Ohm.INTENSITY, 0.5f)))
     leyOhm(mapOf(Pair(Ohm.VOLTAGE, 50f), Pair(Ohm.INTENSITY, 2.5f)))
     leyOhm(mapOf(Pair(Ohm.VOLTAGE, 530f), Pair(Ohm.RESISTANCE, 51f), Pair(Ohm.INTENSITY, 43f)))
+    otherM4in()
 }
 
 private fun leyOhm(params: Map<Ohm, Float>) {
@@ -59,4 +62,33 @@ enum class Ohm {
     VOLTAGE, RESISTANCE, INTENSITY
 }
 
+private fun otherM4in() {
+    println(ohm())
+    println(ohm(v = 5.0))
+    println(ohm(v = 5.0, r = 4.0))
+    println(ohm(v = 5.0, i = 4.0))
+    println(ohm(r = 5.0, i = 4.0))
+    println(ohm(v = 5.125, r = 4.0))
+    println(ohm(v = 5.0, i = 4.125))
+    println(ohm(r = 5.0, i = 4.125))
+    println(ohm(v = 5.0, r = 0.0))
+    println(ohm(v = 5.0, i = 0.0))
+    println(ohm(r = 5.0, i = 0.0))
+    println(ohm(v = 5.0, r = 4.0, i = 3.0))
+}
 
+// V = R * I
+private fun ohm(v: Double? = null, r: Double? = null, i: Double? = null) : String {
+
+    val formatter = DecimalFormat("#.##")
+
+    if (v != null && r != null && i == null) {
+        return "I = ${formatter.format(v / r)}"
+    } else if (v != null && i != null && r == null) {
+        return "R = ${formatter.format(v / i)}"
+    } else if (r != null && i != null && v == null) {
+        return "V = ${formatter.format(r * i)}"
+    }
+
+    return "Invalid values"
+}
