@@ -20,4 +20,37 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+fun main() {
+    // Scenarios with error
+    println(convertTemperature("80F"))
+    println(convertTemperature("24°"))
+    println(convertTemperature("53D"))
+    println(convertTemperature("68"))
+    println(convertTemperature(""))
 
+    println()
+
+    // Scenarios with success
+    println(convertTemperature("25°C"))
+    println(convertTemperature("34°C"))
+    println(convertTemperature("18°C"))
+    println(convertTemperature("73°F"))
+    println(convertTemperature("86°F"))
+    println(convertTemperature("115°F"))
+}
+
+private fun convertTemperature(value: String): String {
+    val valueIsValid = Regex("^[0-9]+°[FC]").matches(value)
+
+    if (valueIsValid) {
+        val temperatureValue = value.split("°")[0].toInt()
+
+        return when (value.last()) {
+            'C' -> "F = ${(temperatureValue * 1.8 + 32).toInt()}°"
+            'F' -> "C = ${((temperatureValue - 32) / 1.8).toInt()}°"
+            else -> "Unknown unit"
+        }
+    }
+
+    return "Value cannot be converted"
+}
