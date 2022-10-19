@@ -1,4 +1,6 @@
-package com.mouredev.weeklychallenge2022
+package main
+
+import "fmt"
 
 /*
  * Reto #1
