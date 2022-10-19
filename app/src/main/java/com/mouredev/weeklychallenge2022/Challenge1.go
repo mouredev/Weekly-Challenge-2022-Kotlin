@@ -22,7 +22,7 @@ import "fmt"
  *
  */
 
-fun main() {
+func main() {
     println(isAnagram("amor", "roma"))
 }
 
