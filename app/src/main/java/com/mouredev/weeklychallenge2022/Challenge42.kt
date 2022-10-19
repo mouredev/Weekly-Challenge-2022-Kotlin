@@ -21,3 +21,35 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+
+    temperatura("30ºC")//86ºF
+    temperatura("86ºF")//30ºC
+    temperatura("hola")//error
+    temperatura("234ºW")
+    temperatura("hola mundo F")//error
+    temperatura("paracetamolºC")//error
+    temperatura("50ºtonto")//error
+}
+
+private fun temperatura(temp: String) {
+
+    if(temp.matches(Regex("[0-9]+º[FC]"))){
+        val num = Integer.parseInt(temp.split("º")[0])
+
+        if(temp.endsWith("ºF")){
+            println(""+((num-32)/1.8).toInt()+"ºC")
+        }else if(temp.endsWith("ºC")){
+            println(""+((num*9/5)+32).toInt()+"ºF")
+        }
+
+    }else{
+        println("ERROR DE ESCRITURA")
+    }
+
+//Mi primer ejercicio en Kotlin
+}
+
+
+
+
