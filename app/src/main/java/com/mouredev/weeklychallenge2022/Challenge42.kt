@@ -20,4 +20,34 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+import java.text.DecimalFormat
 
+fun main() {
+    println(TemperatureConversion("-25°C"))
+    println(TemperatureConversion("+34°C"))
+    println(TemperatureConversion("18 °C"))
+    println(TemperatureConversion("73° F"))
+    println(TemperatureConversion("86 ° F"))
+    println(TemperatureConversion("- 115°F"))
+    println(TemperatureConversion("22F"))
+    println(TemperatureConversion("15°"))
+}
+
+private fun TemperatureConversion(originalTemperature: String): String {
+    val pattern = Regex("^[-+]?[0-9]+°[FC]").matches(originalTemperature.replace("\\s".toRegex(), ""))
+    val formatter = DecimalFormat("#.#")
+
+    if (pattern) {
+        val CelsiusToFahrenheit = if (originalTemperature.contains("C")) true else false
+        val temperature= originalTemperature.split("°")[0].replace("\\s".toRegex(), "").toDouble()
+
+        return if (CelsiusToFahrenheit){
+            "Fahrenheit = ${formatter.format((temperature * 1.8) + 32)}°"
+        }
+        else {
+            "Celsius = ${formatter.format((temperature - 32) / 1.8)}°"
+        }
+    }
+
+    return "Formato no correcto"
+}
