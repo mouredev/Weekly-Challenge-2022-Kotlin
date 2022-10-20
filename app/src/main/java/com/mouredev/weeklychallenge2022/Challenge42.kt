@@ -21,3 +21,31 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    val type: String = "ºF"
+    val input: Double = 0.0       
+    
+    println("Input: $input $type   -   Output: ${convert(type, input)}")    
+}
+
+fun convert(type:String, input: Double): Double{    
+    if (type != "ºC" && type != "ºF") {
+        println ("Error en el tipo a convertir")
+        return 0.0
+    }
+    
+    if (type == "ºC") return celsiusToFarenheit(input)
+     
+    return farenheitToCelsius(input)
+}
+
+
+// Formula -> °F = °C*1.80 + 32.00
+fun celsiusToFarenheit (input: Double): Double{
+    return String.format("%.3f", ((input * 1.80)+32.00)).toDouble()
+}
+
+// Formula -> °C = (°F-32) ÷ 1.80
+fun farenheitToCelsius(input:Double): Double {
+    return String.format("%.3f", ((input - 32.00) / 1.80)).toDouble()
+}
