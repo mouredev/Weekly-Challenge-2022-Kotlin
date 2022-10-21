@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #42
  * CONVERSOR DE TEMPERATURA
@@ -21,3 +19,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+function degreeConverter(temperature) {
+  const isValid = /[0-9]+[ºC|F]{2}/.test(temperature);
+
+  if (!isValid) {
+    return `Enter a correct degree format, ex: '24ºC' or '24ºF'`;
+  }
+
+  const [number, type] = temperature.split('º');
+  const result = type === 'C' ?
+    `${(number * 9 / 5) + 32}ºF` :
+    `${(number - 32) * 5 / 9}ºC`;
+
+  return result;
+}
+
+degreeConverter('10ºC'); //'50ºF'
+degreeConverter('10ºF'); //'-12.222222222222221ºC'
