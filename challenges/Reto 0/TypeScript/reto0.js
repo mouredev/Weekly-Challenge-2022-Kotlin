@@ -17,16 +17,17 @@
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.resultPrint = void 0;
-const fizzBuzz = (max = 100) => {
-    for (let i = 1; i <= max; i++) {
+var fizzBuzz = function (max) {
+    if (max === void 0) { max = 100; }
+    for (var i = 1; i <= max; i++) {
         console.log((0, exports.resultPrint)(i));
     }
 };
-const resultPrint = (n) => {
-    const isMultipleOf3 = n % 3 === 0;
-    const isMultipleOf5 = n % 5 === 0;
+var resultPrint = function (n) {
+    var isMultipleOf3 = n % 3 === 0;
+    var isMultipleOf5 = n % 5 === 0;
     if (isMultipleOf3 && isMultipleOf5)
         return 'fizzbuzz';
     if (isMultipleOf3)
