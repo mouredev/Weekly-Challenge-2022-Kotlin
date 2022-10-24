@@ -21,3 +21,45 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+/**
+ * Funcion principal
+ */
+fun main(){
+
+    println(temperatureConverter("12°C"))
+    println(temperatureConverter("-4.2°F"))
+
+}
+
+/**
+ * Enumerado con las unidades de temperatura
+ */
+enum class TemperatureUnit(val symbol: String) {
+    CELSIUS("°C"),
+    FAHRENHEIT("°F")
+}
+/**
+ * Funcion que convierte la temperatura de una unidad de grados Centigrados a Fahrenheit
+ * @param temperature Expresion que contiene la temperatura a convertir con su unidad
+ * @returns Temperatura convertida a Fahrenheit o a Centigrados
+ */
+fun temperatureConverter(temperature: String) : String {
+
+    val regExpTemperature = Regex("^(-?\\d+(.\\d+)?)(°)([CF])")
+    val regExpNumber = Regex("^(-?\\d+(.\\d+)?)")
+    val regExpUnit = Regex("(°[CF])")
+
+    if (regExpTemperature.matches(temperature)) {
+
+        val number = regExpNumber.find(temperature)?.value?.toDouble()
+
+        return when (regExpUnit.find(temperature)?.value) {
+            TemperatureUnit.CELSIUS.symbol -> "${number!! * 1.8 + 32}${TemperatureUnit.FAHRENHEIT.symbol}"
+            TemperatureUnit.FAHRENHEIT.symbol -> "${(number!! - 32) / 1.8}${TemperatureUnit.CELSIUS.symbol}"
+            else -> "The unit is not valid"
+        }
+
+    }
+    return "The temperature $temperature is not valid"
+
+}
