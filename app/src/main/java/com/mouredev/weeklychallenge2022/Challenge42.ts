@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #42
  * CONVERSOR DE TEMPERATURA
@@ -21,45 +19,47 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-/**
- * Funcion principal
- */
-fun main(){
-
-    println(temperatureConverter("12°C"))
-    println(temperatureConverter("-4.2°F"))
-
-}
 
 /**
  * Enumerado con las unidades de temperatura
  */
-enum class TemperatureUnit(val symbol: String) {
-    CELSIUS("°C"),
-    FAHRENHEIT("°F")
+enum TemperatureUnit {
+  Celsius = "°C",
+  Fahrenheit = "°F",
 }
+
 /**
  * Funcion que convierte la temperatura de una unidad de grados Centigrados a Fahrenheit
  * @param temperature Expresion que contiene la temperatura a convertir con su unidad
  * @returns Temperatura convertida a Fahrenheit o a Centigrados
  */
-fun temperatureConverter(temperature: String) : String {
+export function convertTemperature(temperature: string): string {
 
-    val regExpTemperature = Regex("^(-?\\d+(.\\d+)?)(°)([CF])")
-    val regExpNumber = Regex("^(-?\\d+(.\\d+)?)")
-    val regExpUnit = Regex("(°[CF])")
+  const regExptemperature = /^(-?\d+(.\d+)?)(°)([CF])/g;
+  const regExpNumber = /\-?\d+(.\d+)?/g;
+  const regExpUnit = /\°[CF]/g;
 
-    if (regExpTemperature.matches(temperature)) {
+    if (regExptemperature.test(temperature)) {
 
-        val number = regExpNumber.find(temperature)?.value?.toDouble()
+        let value = temperature.match(regExpNumber);
+        let unit = temperature.match(regExpUnit);
 
-        return when (regExpUnit.find(temperature)?.value) {
-            TemperatureUnit.CELSIUS.symbol -> "${number!! * 1.8 + 32}${TemperatureUnit.FAHRENHEIT.symbol}"
-            TemperatureUnit.FAHRENHEIT.symbol -> "${(number!! - 32) / 1.8}${TemperatureUnit.CELSIUS.symbol}"
-            else -> "The unit is not valid"
+        const temperatureValue = Number(value);
+
+        if (unit?.[0]=== TemperatureUnit.Celsius) {
+            return `${((temperatureValue * 9) / 5 + 32)}${TemperatureUnit.Fahrenheit}`;
+        } else if (unit?.[0] === TemperatureUnit.Fahrenheit) {
+            return `${(((temperatureValue - 32) * 5) / 9)}${TemperatureUnit.Celsius}`;
         }
-
+        return `The unit ${unit} is not valid`;
     }
-    return "The temperature $temperature is not valid"
-
+    else{
+        return `The temperature ${temperature} is not valid`;
+    }
 }
+
+console.log(convertTemperature("-12°C"));
+console.log(convertTemperature("-4.2°F"));
+
+
+
