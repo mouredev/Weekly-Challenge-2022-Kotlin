@@ -21,3 +21,25 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+// usando javascript(regex expressions)
+
+const temperatureConverter = (temperature) => {
+    const checker = temperature.match(/(-?\d+\.?\d*)°(C|F)/)
+    let result = 0;
+    if (checker) {
+        const value = parseFloat(checker[1])
+        const unit = checker[2]
+
+        if (unit === 'C') {
+            result =`${value * 1.8 + 32}°F` 
+        } else {
+            result = `${(value - 32) / 1.8}°C`
+        }
+    }else {
+        return console.log('Error')
+    }
+    return result
+}
+
+
+temperatureConverter('95°c') // 32°F
