@@ -16,22 +16,38 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        string temp = Console.ReadLine();
-        //string temp = "25°C";
+        string? temp = Console.ReadLine();
+        
 
-        Console.WriteLine($"La temperatura de entrada es: {temp}. La conversión es: {CombertirGrados(temp)}");
+        Console.WriteLine($"La temperatura de entrada es: {temp}. La conversión es: {Convertir(temp)}");
     }
 
-    private static string CombertirGrados(string temperatura)
+    private static string Convertir(string? temperatura)
     {
-        if (temperatura.Contains("°") && temperatura.Contains("C") && temperatura.Equals("")==false)
+        if(String.IsNullOrEmpty(temperatura)== false)
         {
-            temperatura = temperatura.Remove(temperatura.Length - 2);
+            if (temperatura.Contains('°') && (temperatura.Contains('C') || temperatura.Contains('F')) && temperatura.Equals("") == false)
+            {
+                temperatura = temperatura.Remove(temperatura.Length - 2);
 
-            double temperaturaConvertida = Convert.ToDouble(temperatura);
-            double result = (temperaturaConvertida * 1.8) + 32;
+                double temperaturaConvertida = Convert.ToDouble(temperatura);
+                double result = 0;
 
-            return result.ToString() + "°F";
+                if (temperatura.Contains('C'))
+                {
+                    result = (temperaturaConvertida * 1.8) + 32;
+                    return result.ToString() + "°F";
+                }
+                else
+                {
+                    result = (temperaturaConvertida - 32) / 1.8;
+                    return result.ToString() + "°C";
+                }
+            }
+            else
+            {
+                return "Error en la conversión, la temperatura de entrada no es correcta.";
+            }
         }
         else
         {
