@@ -34,8 +34,8 @@ fun main() {
 
 private fun chineseZodiac(year: Int) : String {
 
-    val elements = arrayListOf<String>("madera", "fuego", "tierra", "metal", "agua")
-    val animals = arrayListOf<String>("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+    val elements = arrayListOf("madera", "fuego", "tierra", "metal", "agua")
+    val animals = arrayListOf("rata", "buey", "tigre", "conejo", "dragón", "serpiente", "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
 
     if (year < 604) {
         return "El ciclo sexagenario comenzó en el año 604."

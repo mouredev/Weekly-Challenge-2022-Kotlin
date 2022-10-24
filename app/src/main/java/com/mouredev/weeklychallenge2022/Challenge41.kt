@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.DecimalFormat
+
 /*
  * Reto #41
  * LA LEY DE OHM
@@ -19,25 +21,33 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private fun calculateOhmLayer(V: Double? = null, R: Double? = null, I: Double? = null): String {
-    return if(V == null && R != null && I != null) {
-        "%.2f".format(R!! * I!!)
-    } else if(R == null && V != null && I != null) {
-        "%.2f".format(V!! / I!!)
-    } else if(I == null && V != null && R != null) {
-        "%.2f".format(V!! / R!!)
-    } else {
-        "Invalid values"
-    }
-}
-
 fun main() {
-    println(calculateOhmLayer(5.0, 10.0, 0.5))
-    println(calculateOhmLayer(null, 10.0, 0.5))
-    println(calculateOhmLayer(5.0, null, 0.5))
-    println(calculateOhmLayer(5.0, 10.0, null))
-    println(calculateOhmLayer(null, null, 0.5))
+    println(ohm())
+    println(ohm(v = 5.0))
+    println(ohm(v = 5.0, r = 4.0))
+    println(ohm(v = 5.0, i = 4.0))
+    println(ohm(r = 5.0, i = 4.0))
+    println(ohm(v = 5.125, r = 4.0))
+    println(ohm(v = 5.0, i = 4.125))
+    println(ohm(r = 5.0, i = 4.125))
+    println(ohm(v = 5.0, r = 0.0))
+    println(ohm(v = 5.0, i = 0.0))
+    println(ohm(r = 5.0, i = 0.0))
+    println(ohm(v = 5.0, r = 4.0, i = 3.0))
 }
 
+// V = R * I
+private fun ohm(v: Double? = null, r: Double? = null, i: Double? = null) : String {
 
+    val formatter = DecimalFormat("#.##")
 
+    if (v != null && r != null && i == null) {
+        return "I = ${formatter.format(v / r)}"
+    } else if (v != null && i != null && r == null) {
+        return "R = ${formatter.format(v / i)}"
+    } else if (r != null && i != null && v == null) {
+        return "V = ${formatter.format(r * i)}"
+    }
+
+    return "Invalid values"
+}
