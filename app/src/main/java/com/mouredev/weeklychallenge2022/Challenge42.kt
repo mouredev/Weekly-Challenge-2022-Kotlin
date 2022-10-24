@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.DecimalFormat
+
 /*
  * Reto #42
  * CONVERSOR DE TEMPERATURA
@@ -21,3 +23,24 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(temperatureConversion("35ºC"))
+    println(temperatureConversion("35ºF"))
+    println(temperatureConversion("35ºZ"))
+    println(temperatureConversion("35 Cº"))
+}
+
+fun temperatureConversion(temperature: String): String {
+    val formatter = DecimalFormat("#.##")
+
+    return if (temperature.contains("ºC") or temperature.contains("ºF")) {
+        val data = temperature.split("º")
+        if (data[1] == "C") {
+            "$temperature = ${formatter.format((data[0].toDouble() * (9.0 / 5.0)) + 32)} ºF"
+        } else {
+            "$temperature = ${formatter.format((data[0].toDouble() - 32) * (5.0 / 9.0))} ºC"
+        }
+    } else {
+        "Error! Data not sent properly!"
+    }
+}
