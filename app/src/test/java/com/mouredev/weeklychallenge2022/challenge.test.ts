@@ -1,15 +1,15 @@
 import { expect } from 'chai';
-import { calculatePokeDamage,PokemonType } from '../../../../../main/java/com/mouredev/weeklychallenge2022/Challenge35';
+import { convertTemperature } from '../../../../../main/java/com/mouredev/weeklychallenge2022/Challenge42';
 
 describe('Test Challenge Moure dev', () => {
-    describe('Challenge #35', () => {
-        it('should return 100 : Water(50) vs Fire(50) ', () => {
-            var respuest =  calculatePokeDamage(PokemonType.WATER,PokemonType.FIRE,50,50);
-            expect(respuest).to.equal(100)
+    describe('Challenge #42', () => {
+        it("should return 107.6°F (42°C) ", () => {
+          var respuest = convertTemperature("42°C");
+          expect(respuest).to.equal("107.6°F");
         }),
-        it('should return 12.5 : Grass(20) vs Electric(80) ', () => {
-            var respuest =  calculatePokeDamage(PokemonType.GRASS,PokemonType.ELECTRIC,20,80);
-            expect(respuest).to.equal(12.5)
-        })
+          it("should return -20.11111111111111°C) ", () => {
+            var respuest = convertTemperature("-4.2°F");
+            expect(respuest).to.equal("-20.11111111111111°C");
+          });
  })}
 )
