@@ -1,4 +1,6 @@
-package com.mouredev.weeklychallenge2022
+package main
+
+import "fmt"
 
 /*
  * Reto #0
@@ -19,19 +21,19 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+func main() {
+	for i := 0; i <= 100; i++ {
+		divisibleFive := i%5 == 0
+		divisibleThree := i%3 == 0
 
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
-    }
+		if divisibleThree && divisibleFive {
+			fmt.Println("fizzbuzz")
+		} else if divisibleThree {
+			fmt.Println("fizz")
+		} else if divisibleFive {
+			fmt.Println("buzz")
+		} else {
+			fmt.Println(i)
+		}
+	}
 }
