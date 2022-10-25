@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #1
@@ -22,7 +20,7 @@ import "fmt"
  *
  */
 
-func main() {
+fun main() {
     println(isAnagram("amor", "roma"))
 }
 
