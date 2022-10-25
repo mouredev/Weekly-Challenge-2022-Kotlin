@@ -1,6 +1,6 @@
-package com.mouredev.weeklychallenge2022
+package main
 
-import java.math.BigInteger
+import "fmt"
 
 /*
  * Reto #2
@@ -21,17 +21,24 @@ import java.math.BigInteger
  *
  */
 
-fun main() {
+func main() {
 
-    var n0: Long = 0
-    var n1: Long = 1
+	var n0 = 0
+	var n1 = 1
 
-    (1..50).forEach { _ ->
+	for i := 1; i <= 50; i++ {
+		fmt.Println(n0)
+		fib := n0 + n1
+		n0 = n1
+		n1 = fib
+	}
 
-        println(n0)
+	// (1<=50).forEach { _ ->
 
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
-    }
+	//     println(n0)
+
+	//     val fib = n0 + n1
+	//     n0 = n1
+	//     n1 = fib
+	// }
 }
