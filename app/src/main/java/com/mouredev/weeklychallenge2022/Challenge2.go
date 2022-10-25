@@ -33,12 +33,4 @@ func main() {
 		n1 = fib
 	}
 
-	// (1<=50).forEach { _ ->
-
-	//     println(n0)
-
-	//     val fib = n0 + n1
-	//     n0 = n1
-	//     n1 = fib
-	// }
 }
