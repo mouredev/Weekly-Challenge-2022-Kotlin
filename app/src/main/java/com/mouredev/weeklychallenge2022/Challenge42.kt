@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.DecimalFormat
+
 /*
  * Reto #42
  * CONVERSOR DE TEMPERATURA
@@ -21,3 +23,43 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(temperatureConverter("100°C"))
+    println(temperatureConverter("100°F"))
+    println(temperatureConverter("100C"))
+    println(temperatureConverter("100F"))
+    println(temperatureConverter("100"))
+    println(temperatureConverter("100"))
+    println(temperatureConverter("- 100 °C "))
+    println(temperatureConverter("- 100 °F "))
+    println(temperatureConverter("100A°C"))
+    println(temperatureConverter("100A°F"))
+    println(temperatureConverter("°C"))
+    println(temperatureConverter("°F"))
+}
+
+private fun temperatureConverter(degrees: String): String? {
+
+    val formatter = DecimalFormat("#.##")
+
+    try {
+
+        if (degrees.replace(" ", "").contains("°C")) {
+            val celsiusDegrees = degrees.replace(" ", "")
+                .replace("°C", "")
+                .toDouble()
+            return "${formatter.format((celsiusDegrees * 9/5) + 32)}°F"
+
+        } else if (degrees.replace(" ", "").contains("°F")) {
+            val fahrenheitDegrees = degrees.replace(" ", "")
+                .replace("°F", "")
+                .toDouble()
+            return "${formatter.format((fahrenheitDegrees - 32) * 5/9)}°C"
+        }
+
+    } catch (e: Exception) {
+        return null
+    }
+
+    return null
+}
