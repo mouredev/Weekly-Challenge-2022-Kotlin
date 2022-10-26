@@ -36,3 +36,123 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+data class Kid (var Name: String, var Age: Int, var Height: Int)
+
+fun main() {
+
+    println("HALLOWEEN 2022. Selecciona Truco (1) o Trato (2)")
+    println("Introduce el numero a convertir: ")
+    var num =  readLine()?.toIntOrNull()
+    if (num != null) {
+        if (num == 1) {
+            TrickOrTreating(listOf(Kid("Tom", 2, 80), Kid("John", 6, 120), Kid("Martha", 26, 165), Kid("Peter", 12, 135)), "Trick")
+            TrickOrTreating(listOf(Kid("Harry", 11, 125), Kid("Hermione", 12, 120), Kid("Ron", 11, 119), Kid("Draco", 12, 135)), "Trick")
+        }
+        else if (num == 2)
+        {
+            TrickOrTreating(listOf(Kid("Tom", 2, 80), Kid("John", 6, 120), Kid("Martha", 26, 165), Kid("Peter", 12, 135)), "Threat")
+            TrickOrTreating(listOf(Kid("Harry", 11, 125), Kid("Hermione", 12, 120), Kid("Ron", 11, 119), Kid("Draco", 12, 135)), "Threat")
+        }
+        else {
+            println("Error: Introduce 1 o 2")
+        }
+    } else {
+        println("¡Eso no es un número entero!")
+    }
+}
+
+private fun TrickOrTreating(listKids: List<Kid>, action: String) {
+    var numberOfReward = 0
+
+    when(action) {
+        "Threat", "Trick" -> {
+            numberOfReward += NumberOfLettersInName(listKids, action)
+            numberOfReward += AgesOfKids(listKids, action)
+            numberOfReward += HeightOfKids(listKids, action)
+        }
+        else -> println("Error")
+    }
+
+    GiveReward(numberOfReward, action)
+}
+
+private fun NumberOfLettersInName(listKids: List<Kid>, action: String): Int {
+    var reward = 0
+
+    when(action) {
+        "Threat" -> {
+            listKids.forEach {
+                reward += it.Name.length
+            }
+        }
+        "Trick" -> {
+            listKids.forEach {
+                reward += it.Name.length / 2
+            }
+        }
+    }
+
+    return reward
+}
+
+private fun AgesOfKids(listKids: List<Kid>, action: String): Int {
+    var reward = 0
+
+    when(action) {
+        "Threat" -> {
+            listKids.forEach {
+                if (it.Age % 2 == 0)
+                    reward += 2
+            }
+        }
+        "Trick" -> {
+            listKids.forEach {
+                if (it.Age >= 10)
+                    reward += 3
+                else
+                    reward += it.Age / 3
+            }
+        }
+    }
+
+    return reward
+}
+
+private fun HeightOfKids (listKids: List<Kid>, action: String): Int {
+    var reward = 0
+    var totalHeight = 0
+
+    when(action) {
+        "Threat" -> {
+            listKids.forEach {
+                if (it.Height >= 150)
+                    reward += 6
+                else
+                    reward += 2 * (it.Height / 50)
+            }
+        }
+        "Trick" -> {
+            listKids.forEach {
+                totalHeight += it.Height
+            }
+            reward = 3 * totalHeight / 100
+        }
+    }
+
+    return reward
+}
+
+private fun GiveReward(numberOfReward: Int , action: String){
+    val Tricks = arrayOf("🎃","👻", "💀", "🕷", "🕸", "🦇")
+    val Treats = arrayOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩")
+    var Reward = ""
+
+    for (i in 1..numberOfReward)
+    {
+        if (action =="Trick")
+            Reward+= Tricks.random()
+        else
+            Reward+= Treats.random()
+    }
+    println(Reward)
+}
