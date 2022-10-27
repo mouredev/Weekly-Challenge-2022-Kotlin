@@ -1,3 +1,4 @@
+"use strict";
 /*
  * Reto #42
  * CONVERSOR DE TEMPERATURA
@@ -18,48 +19,41 @@
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
-
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.convertTemperature = void 0;
 /**
  * Enumerado con las unidades de temperatura
  */
-enum TemperatureUnit {
-  Celsius = "°C",
-  Fahrenheit = "°F",
-}
-
+var TemperatureUnit;
+(function (TemperatureUnit) {
+    TemperatureUnit["Celsius"] = "\u00B0C";
+    TemperatureUnit["Fahrenheit"] = "\u00B0F";
+})(TemperatureUnit || (TemperatureUnit = {}));
 /**
  * Funcion que convierte la temperatura de una unidad de grados Centigrados a Fahrenheit
  * @param temperature Expresion que contiene la temperatura a convertir con su unidad
  * @returns Temperatura convertida a Fahrenheit o a Centigrados
  */
-export function convertTemperature(temperature: string): string {
-
-  const regExpTemperature = /^(-?\d+(.\d+)?)(°)([CF])/g;
-  const regExpNumber = /-?\d+(.\d+)?/g;
-  const regExpUnit = /°[CF]/g;
-
+function convertTemperature(temperature) {
+    const regExpTemperature = /^(-?\d+(.\d+)?)(°)([CF])/g;
+    const regExpNumber = /-?\d+(.\d+)?/g;
+    const regExpUnit = /°[CF]/g;
     if (regExpTemperature.test(temperature)) {
-
         let value = temperature.match(regExpNumber);
         let unit = temperature.match(regExpUnit);
-
         const temperatureValue = Number(value);
-
-        if (unit?.[0]=== TemperatureUnit.Celsius) {
+        if ((unit === null || unit === void 0 ? void 0 : unit[0]) === TemperatureUnit.Celsius) {
             return `${((temperatureValue * 9) / 5 + 32)}${TemperatureUnit.Fahrenheit}`;
-        } else if (unit?.[0] === TemperatureUnit.Fahrenheit) {
+        }
+        else if ((unit === null || unit === void 0 ? void 0 : unit[0]) === TemperatureUnit.Fahrenheit) {
             return `${(((temperatureValue - 32) * 5) / 9)}${TemperatureUnit.Celsius}`;
         }
         return `The unit ${unit} is not valid`;
     }
-    else{
+    else {
         return `The temperature ${temperature} is not valid`;
     }
 }
-
+exports.convertTemperature = convertTemperature;
 console.log(convertTemperature("-12°C"));
 console.log(convertTemperature("-4.2°F"));
-
-
-
