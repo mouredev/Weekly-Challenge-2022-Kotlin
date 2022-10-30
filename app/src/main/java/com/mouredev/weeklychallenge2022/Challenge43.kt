@@ -36,3 +36,79 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main(){
+    trickOrTreat(
+        arrayListOf(Children("Barry", 8, 143),
+                    Children("Martha", 12, 150)),
+        Option.TRICK
+    )
+    trickOrTreat(
+        arrayListOf(Children("Isabel", 9, 140),
+                    Children("Mario", 7, 123)),
+        Option.TREAT
+    )
+}
+
+
+
+private fun trickOrTreat(personList:List<Children>,trickOrTreat:Option){
+    when(trickOrTreat){
+        Option.TRICK->{
+            println("TRICK")
+
+            var sumHeight=0
+            personList.forEach { person->
+                print("${person.name} :" )
+                println()
+                for(i in 1..person.name.replace(" ","").length){
+                    //un susto por cada  2 letras del nombre
+                    if(i%2==0) printScareOrSweetRandom(1,true)
+                }
+                //dos sustos por cada edad par
+                if(person.age%2==0) printScareOrSweetRandom(2,true)
+
+                sumHeight +=person.height
+                println()
+           }
+            //tres sustos por cada 100 cm de altura entre todas las personas
+            println("FOR ALL: ")
+
+            val numOfTimes=sumHeight /100 * 3
+            printScareOrSweetRandom(numOfTimes,true)
+            println()
+            println()
+        }
+        Option.TREAT->{
+            println("TREAT")
+
+            personList.forEach { person->
+                print("${person.name} :")
+                println()
+                //un dulce por cada letra del nombre
+                printScareOrSweetRandom(person.name.replace(" ","").length,false)
+                //un dulce por cada 3 años cumplidos hasta 10 años
+                for(year in 1..person.age){
+                     if(year%3==0 && year<10) printScareOrSweetRandom(1,false)
+                }
+                //Dos dulces por cada 50 cm de estatura de cada persona
+                val numOfTimes = person.height / 50 *2
+                printScareOrSweetRandom(numOfTimes, false)
+                println()
+            }
+        }
+    }
+
+}
+private fun printScareOrSweetRandom(timesToPrint:Int, isScare:Boolean){
+    val scareList= arrayListOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")
+    val sweetList= arrayListOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫" ,"🧁", "🍩")
+    for(i in 0 until timesToPrint) {
+        if (isScare) print(scareList[Random.nextInt(scareList.size)])else print(sweetList[Random.nextInt(sweetList.size)])
+        }
+}
+enum class Option{
+    TRICK,TREAT
+}
+data class Children(val name:String, val age:Int, val height:Int)
+
