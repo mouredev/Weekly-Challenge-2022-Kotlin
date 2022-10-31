@@ -36,3 +36,112 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+people = [
+  {name: 'Rodolfo', age: 5, height: 100, choise: 'trick'},
+  {name: 'Daniel', age: 10, height: 120, choise: 'treat'},
+  {name: 'Luis', age: 14, height: 130, choise: 'treat'},
+  {name: 'Maria', age: 20, height: 170, choise: 'trick'}
+]
+
+tricks = ['🎃','👻','💀','🕷','🕸','🦇']
+treats = ['🍰','🍬','🍡', '🍭', '🍪', '🍫', '🧁', '🍩']
+
+const peopleTricked = people.filter(person => person.choise === 'trick')
+const peopleTreated = people.filter(person => person.choise === 'treat')
+
+const getRandomArray = (array, length) => {
+  var randomArray = []
+  
+  for (var element = 0; element < length; element++) {
+    const randomIndex = Math.round(Math.random() * (array.length-1))
+    randomArray.push(array[randomIndex])
+  }
+  
+  return randomArray
+}
+
+peopleTricked.map((person) => {
+    const nameTrick = Math.round(person.name.length / 2)
+    const ageTrick = (person.age % 2 === 0) ? 2 : 0
+    const heightTrick = Math.round(person.height / 100) * 3
+    
+    const tricksToPerson = nameTrick + ageTrick + heightTrick
+    const scares = getRandomArray(tricks, tricksToPerson)
+
+    return {...person, scares}
+})
+
+/*
+  [
+    {
+      name: 'Rodolfo',
+      age: 5,
+      height: 100,
+      choise: 'trick',
+      scares: [
+        '💀', '👻', '💀',
+        '💀', '🕸',  '🕸',
+        '🕸'
+      ]
+    },
+    {
+      name: 'Maria',
+      age: 20,
+      height: 170,
+      choise: 'trick',
+      scares: [
+        '🕷',  '👻', '🕸',
+        '🕸',  '🕷',  '🦇',
+        '🎃', '🕷',  '🕸',
+        '💀', '💀'
+      ]
+    }
+  ]
+*/
+
+peopleTreated.map((person) => {
+  const nameLetterTreat = person.name.length
+  
+  const ageDivided3 = Math.round(person.age / 3)
+  const ageTreat = (ageDivided3 < 10) ? ageDivided3 : 10
+  
+  const heightDivided50 = Math.round(person.height / 50)
+  const heightDividedMoreThan3 = heightDivided50 < 3 ? heightDivided50 : 3
+  const heightTreat = heightDividedMoreThan3 * 2
+  
+  const treatsToPerson = nameLetterTreat + ageTreat + heightTreat
+  const sweets = getRandomArray(treats, treatsToPerson)
+  
+  return {...person, sweets}
+})
+
+/*
+  [
+    {
+      name: 'Daniel',
+      age: 10,
+      height: 120,
+      choise: 'treat',
+      sweets: [
+        '🍡', '🍩', '🍭',
+        '🍭', '🍫', '🍭',
+        '🍪', '🍰', '🧁',
+        '🍬', '🧁', '🍭',
+        '🧁'
+      ]
+    },
+    {
+      name: 'Luis',
+      age: 14,
+      height: 130,
+      choise: 'treat',
+      sweets: [
+        '🍫', '🍩', '🧁', '🍬',
+        '🍡', '🍭', '🍰', '🧁',
+        '🍬', '🍰', '🍫', '🍭',
+        '🍬', '🍬', '🍪'
+      ]
+    }
+  ]
+*/
