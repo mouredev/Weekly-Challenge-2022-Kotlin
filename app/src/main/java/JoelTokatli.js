@@ -21,8 +21,8 @@
  * - Dulces: 🍰 🍬 🍡 🍭 🍪 🍫 🧁 🍩
  */
 
-const treat = ["🎃", "👻", "💀", "🕷", "🕸", "🦇"];
-const trick = ["🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"];
+const treat = ["🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"];
+const trick = ["🎃", "👻", "💀", "🕷", "🕸", "🦇"];
 
 const people = [
   { name: "Juan", age: 12, height: 134 },
@@ -37,34 +37,33 @@ const randomEmoji = (arr) => {
   return arr[Math.floor(Math.random() * `${arr.length}`)];
 };
 
-// Función que se usa si se elige trick como parametro en la funcion principal
-const tricks = () => {
-  let totalTricks = 0;
-  people.map((person) => {
-    let nameTricks = person.name.length;
-    // si la condición se cumple (person.age > 10 retorna 3, de lo contrario, retorna (Math.floor(person.age / 3)) )
-    let ageTricks = person.age > 10 ? 3 : Math.floor(person.age / 3);
-    //
-    let heightTricks =
-      person.height >= 150 ? 3 : Math.floor(person.height / 50) * 2;
-    totalTricks += nameTricks + ageTricks + heightTricks;
-  });
-  return totalTricks;
-};
-
 // Función que se usa cuando se elige treat como parametro en la función principal
 const treats = () => {
-  let initialTreats = 0;
-  let totalHeight = 0;
-  people.map((person) => {
-    let nameTreats = Math.floor(person.name.length / 2);
-    let ageTreats = person.age % 2 ? 0 : 2;
-    totalHeight += person.height;
-    initialTreats += nameTreats += ageTreats;
+  let totalTreats = 0;
+  people.forEach((person) => {
+    const { name, age, height } = person;
+    let nameTreats = name.length;
+    let ageTreats = age >= 10 ? 3 : Math.floor(age / 3);
+    let heightTreats = height >= 150 ? 3 : Math.floor(person.height / 50) * 2;
+    totalTreats += nameTreats + ageTreats + heightTreats;
   });
-  let heightTreats = Math.floor(totalHeight / 100);
-  let totalTreats = initialTreats + heightTreats;
   return totalTreats;
+};
+
+// Función que se usa si se elige trick como parametro en la funcion principal
+const tricks = () => {
+  let initialTricks = 0;
+  let totalHeight = 0;
+  people.forEach((person) => {
+    const { name, age, height } = person;
+    let nameTricks = Math.floor(name.length / 2);
+    let ageTricks = age % 2 ? 0 : 2;
+    totalHeight += height;
+    initialTricks += nameTricks += ageTricks;
+  });
+  let heightTricks = Math.floor(totalHeight / 100);
+  let totalTricks = initialTricks + heightTricks;
+  return totalTricks;
 };
 
 // función principal.
@@ -73,19 +72,22 @@ const trickOrTreat = (choice) => {
     let result = [];
     for (i = 1; i <= treats(); i++) {
       result.push(randomEmoji(treat));
-      i == treats() ? console.log(result) : false;
+      if (i == treats()) {
+        return result;
+      }
     }
   } else if (choice == "trick") {
     let result = [];
     for (i = 1; i <= tricks(); i++) {
       result.push(randomEmoji(trick));
-      i == tricks() ? console.log(result) : false;
+      if (i == tricks()) {
+        return result;
+      }
     }
   }
 };
 
-//Descomenta la siguiente linea para usar trick
-/* trickOrTreat("trick"); */
-
 //Descomenta la siguiente linea para usar treat
-trickOrTreat("treat");
+/* console.log(trickOrTreat("treat")); */
+//Descomenta la siguiente linea para usar trick
+/* console.log(trickOrTreat("trick")); */
