@@ -94,7 +94,7 @@ class Jugar:
         total_altura = 0
         for x in range(len(self.lista_chicos)):
             total_altura += int(self.lista_chicos[x].altura)
-        valor_altura = total_altura / 100
+        valor_altura = int(total_altura / 100)
         print(f'\nAltura total en cm: {total_altura}')
         for _ in range(int(valor_altura * 3)):
             print(random.choice(self.lista_sustos), end=" ")
