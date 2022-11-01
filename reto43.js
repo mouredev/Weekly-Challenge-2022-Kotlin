@@ -1,6 +1,22 @@
+
+Mi respuesta, primera vez que participo, espero este bien...!!!  Gracias
+
+const kids = [ 
+  { name : 'Sam Hughes', age: 11, height: 87 },
+  { name : 'Terri Bishop', age: 5, height: 92 },
+  { name : 'Jar Burke', age: 11, height: 72 },
+  { name : 'Julio Miller', age: 10, height: 91 },
+  { name : 'Chester Flores', age: 10, height: 79 },
+  { name : 'Madison Marshall', age: 14, height: 115 },
+  { name : 'Ava Pena', age: 6, height: 58 },
+  { name : 'Gabriella Steward', age: 6, height: 64 },
+  { name : 'Charles Campbell', age: 6, height: 68 },
+  { name : 'Tiffany Lambert', age: 12, height: 141 },
+  { name : 'Antonio Gonzalez', age: 12, height: 126 },
+  { name : 'Aaron Garrett', age: 11, height: 109 }
+];
 const treaks = ["🎃","👻","💀","🕷","🕸","🦇"];
 const treats = ["🍰","🍬","🍡","🍭","🍪","🍫","🧁","🍩"];
-//console.log(treats)
 
 const arrayResp = (resp, size) => {
    let outArray = []
