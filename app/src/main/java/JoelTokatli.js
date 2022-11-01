@@ -25,11 +25,11 @@ const trickEmojis = ["🎃", "👻", "💀", "🕷", "🕸", "🦇"];
 const treatEmojis = ["🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"];
 
 const people = [
-  { name: "Juan", age: 12, height: 134 },
-  { name: "Manola", age: 11, height: 112 },
-  { name: "Fernando", age: 13, height: 139 },
-  { name: "Josefina", age: 8, height: 124 },
-  { name: "Roberto", age: 14, height: 144 },
+  { name: "Joel", age: 12, height: 105 },
+  { name: "Estefani", age: 8, height: 113 },
+  { name: "Fernando", age: 12, height: 149 },
+  { name: "Josefina", age: 11, height: 114 },
+  { name: "Pedro", age: 14, height: 144 },
 ];
 
 // Función para generar emojis aleatorios dependiendo del array seleccionado.
@@ -87,6 +87,6 @@ const trickOrTreat = (pick) => {
 };
 
 //Descomenta la siguiente linea para usar trick
-/* console.log(trickOrTreat("trick")); */
+console.log(trickOrTreat("trick"));
 //Descomenta la siguiente linea para usar treat
 /* console.log(trickOrTreat("treat")); */
