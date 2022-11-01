@@ -21,8 +21,8 @@
  * - Dulces: 🍰 🍬 🍡 🍭 🍪 🍫 🧁 🍩
  */
 
-const treat = ["🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"];
-const trick = ["🎃", "👻", "💀", "🕷", "🕸", "🦇"];
+const trickEmojis = ["🎃", "👻", "💀", "🕷", "🕸", "🦇"];
+const treatEmojis = ["🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"];
 
 const people = [
   { name: "Juan", age: 12, height: 134 },
@@ -35,19 +35,6 @@ const people = [
 // Función para generar emojis aleatorios dependiendo del array seleccionado.
 const randomEmoji = (arr) => {
   return arr[Math.floor(Math.random() * `${arr.length}`)];
-};
-
-// Función que se usa cuando se elige treat como parametro en la función principal
-const treats = () => {
-  let totalTreats = 0;
-  people.forEach((person) => {
-    const { name, age, height } = person;
-    let nameTreats = name.length;
-    let ageTreats = age >= 10 ? 3 : Math.floor(age / 3);
-    let heightTreats = height >= 150 ? 3 : Math.floor(person.height / 50) * 2;
-    totalTreats += nameTreats + ageTreats + heightTreats;
-  });
-  return totalTreats;
 };
 
 // Función que se usa si se elige trick como parametro en la funcion principal
@@ -66,28 +53,40 @@ const tricks = () => {
   return totalTricks;
 };
 
-// función principal.
-const trickOrTreat = (choice) => {
-  if (choice == "treat") {
-    let result = [];
-    for (i = 1; i <= treats(); i++) {
-      result.push(randomEmoji(treat));
-      if (i == treats()) {
-        return result;
-      }
-    }
-  } else if (choice == "trick") {
-    let result = [];
-    for (i = 1; i <= tricks(); i++) {
-      result.push(randomEmoji(trick));
-      if (i == tricks()) {
-        return result;
-      }
-    }
-  }
+// Función que se usa cuando se elige treat como parametro en la función principal
+const treats = () => {
+  let totalTreats = 0;
+  people.forEach((person) => {
+    const { name, age, height } = person;
+    let nameTreats = name.length;
+    let ageTreats = age >= 10 ? 3 : Math.floor(age / 3);
+    let heightTreats = height >= 150 ? 3 : Math.floor(person.height / 50) * 2;
+    totalTreats += nameTreats + ageTreats + heightTreats;
+  });
+  return totalTreats;
 };
 
-//Descomenta la siguiente linea para usar treat
-/* console.log(trickOrTreat("treat")); */
+// Función principal
+const trickOrTreat = (pick) => {
+  let result = [];
+  let count;
+  let choice;
+  if (pick == "trick") {
+    count = tricks();
+    choice = trickEmojis;
+  } else if (pick == "treat") {
+    count = treats();
+    choice = treatEmojis;
+  } else {
+    result = "Please, pick trick OR treat";
+  }
+  for (i = 1; i <= count; i++) {
+    result.push(randomEmoji(choice));
+  }
+  return result;
+};
+
 //Descomenta la siguiente linea para usar trick
 /* console.log(trickOrTreat("trick")); */
+//Descomenta la siguiente linea para usar treat
+/* console.log(trickOrTreat("treat")); */
