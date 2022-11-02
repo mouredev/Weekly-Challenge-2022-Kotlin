@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.random.Random
+
 /*
  * Reto #43
  * TRUCO O TRATO
