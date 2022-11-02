@@ -20,3 +20,19 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+public class Reto44MoureDev {
+
+    public static void main(String[] args) {
+        
+        Integer[] array = {2, 1, 2, 3, 3, 4, 2, 4};
+        Integer contador = 0;
+        
+        for (int i = 0; i < array.length - 2; i++) {
+            if (array[i] == array[i + 2] && array[i] != array[i + 1]) {
+                System.out.println("[" + array[i] + "," + array[i + 1] + "," + array[i + 2] + "]");
+                contador++;
+            }
+        }
+        System.out.println("Hay " + contador + " boomerangs.");
+    }
+}
