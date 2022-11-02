@@ -1,15 +1,19 @@
 import { expect } from 'chai';
-import { calculatePokeDamage,PokemonType } from '../../../../../main/java/com/mouredev/weeklychallenge2022/Challenge35';
+import {
+    Person,
+    TrickOrTreat,
+    trickOrTreat
+} from '../../../../../main/java/com/mouredev/weeklychallenge2022/Challenge43';
 
 describe('Test Challenge Moure dev', () => {
-    describe('Challenge #35', () => {
-        it('should return 100 : Water(50) vs Fire(50) ', () => {
-            var respuest =  calculatePokeDamage(PokemonType.WATER,PokemonType.FIRE,50,50);
-            expect(respuest).to.equal(100)
-        }),
-        it('should return 12.5 : Grass(20) vs Electric(80) ', () => {
-            var respuest =  calculatePokeDamage(PokemonType.GRASS,PokemonType.ELECTRIC,20,80);
-            expect(respuest).to.equal(12.5)
+    describe('Challenge #43', () => {
+        it('should return length treat array 40 : ', () => {
+            const response =  trickOrTreat(TrickOrTreat.TREAT, [new Person("Angel", 10, 145), new Person("Miguel Angel", 42, 178)])
+            expect(response.length).to.equal(40)
+        })
+        it('should return length trick array 20 ', () => {
+            const response =  trickOrTreat(TrickOrTreat.TRICK, [new Person("Carmen", 7, 124), new Person("Brais", 38, 170)])
+            expect(response.length).to.equal(20)
         })
  })}
 )
