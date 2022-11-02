@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.random.Random
+
 /*
  * Reto #43
  * TRUCO O TRATO
@@ -36,85 +38,79 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(trickOrTreat(Halloween.TRICK, arrayOf(
-        Person("Brais", 35, 177),
-        Person("Sara", 9, 122),
-        Person("Pedro", 5, 80),
-        Person("Roswell", 3, 54))))
 
-    println(trickOrTreat(Halloween.TREAT, arrayOf(
-        Person("Brais", 35, 177),
-        Person("Sara", 9, 122),
-        Person("Pedro", 5, 80),
-        Person("Roswell", 3, 54))))
+fun main(){
+    trickOrTreat(
+        arrayListOf(Children("Barry", 8, 143),
+                    Children("Martha", 12, 150)),
+        Option.TRICK
+    )
+    trickOrTreat(
+        arrayListOf(Children("Isabel", 9, 140),
+                    Children("Mario", 7, 123)),
+        Option.TREAT
+    )
 }
 
-enum class Halloween {
-    TRICK, TREAT
-}
 
-data class Person(val name: String, val age: Int, val height: Int)
 
-private fun trickOrTreat(halloween: Halloween, people: Array<Person>): String {
+private fun trickOrTreat(personList:List<Children>,trickOrTreat:Option){
+    when(trickOrTreat){
+        Option.TRICK->{
+            println("TRICK")
 
-    val scares = arrayOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")
-    val candies = arrayOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩")
-
-    var result = ""
-    var height = 0
-
-    people.forEach { person ->
-
-        when (halloween) {
-            Halloween.TRICK -> {
-
-                // Name
-                (1 .. (person.name.replace(" ", "").length / 2)).forEach { _ ->
-                    result += scares.random()
+            var sumHeight=0
+            personList.forEach { person->
+                print("${person.name} :" )
+                println()
+                for(i in 1..person.name.replace(" ","").length){
+                    //un susto por cada  2 letras del nombre
+                    if(i%2==0) printScareOrSweetRandom(1,true)
                 }
+                //dos sustos por cada edad par
+                if(person.age%2==0) printScareOrSweetRandom(2,true)
 
-                // Age
-                if (person.age % 2 == 0) {
-                    result += scares.random()
-                    result += scares.random()
+                sumHeight +=person.height
+                println()
+           }
+            //tres sustos por cada 100 cm de altura entre todas las personas
+            println("FOR ALL: ")
+
+            val numOfTimes=sumHeight /100 * 3
+            printScareOrSweetRandom(numOfTimes,true)
+            println()
+            println()
+        }
+        Option.TREAT->{
+            println("TREAT")
+
+            personList.forEach { person->
+                print("${person.name} :")
+                println()
+                //un dulce por cada letra del nombre
+                printScareOrSweetRandom(person.name.replace(" ","").length,false)
+                //un dulce por cada 3 años cumplidos hasta 10 años
+                for(year in 1..person.age){
+                     if(year%3==0 && year<10) printScareOrSweetRandom(1,false)
                 }
-
-                // Height
-                height += person.height
-                while (height >= 100) {
-                    result += scares.random()
-                    result += scares.random()
-                    result += scares.random()
-                    height -= 100
-                }
-
-            }
-            Halloween.TREAT -> {
-
-                // Name
-                (1 .. (person.name.replace(" ", "").length)).forEach { _ ->
-                    result += candies.random()
-                }
-
-                // Age
-                if (person.age <= 10) {
-                    (1 .. (person.age / 3)).forEach { _ ->
-                        result += candies.random()
-                    }
-                }
-
-                // Height
-                if (person.height <= 150) {
-                    (1 .. (person.height / 50)).forEach { _ ->
-                        result += candies.random()
-                        result += candies.random()
-                    }
-                }
+                //Dos dulces por cada 50 cm de estatura de cada persona
+                val numOfTimes = person.height / 50 *2
+                printScareOrSweetRandom(numOfTimes, false)
+                println()
             }
         }
-
     }
 
-    return result
 }
+private fun printScareOrSweetRandom(timesToPrint:Int, isScare:Boolean){
+    val scareList= arrayListOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")
+    val sweetList= arrayListOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫" ,"🧁", "🍩")
+    for(i in 0 until timesToPrint) {
+        if (isScare) print(scareList[Random.nextInt(scareList.size)])else print(sweetList[Random.nextInt(sweetList.size)])
+        }
+}
+enum class Option{
+    TRICK,TREAT
+}
+data class Children(val name:String, val age:Int, val height:Int)
+
