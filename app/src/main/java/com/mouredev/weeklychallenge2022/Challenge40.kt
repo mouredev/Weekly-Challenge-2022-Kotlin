@@ -51,6 +51,3 @@ private fun drawPascalTriangle(size: Int) {
         }
     } else println("Wrong size, must be more than 0")
 }
-
-
-
