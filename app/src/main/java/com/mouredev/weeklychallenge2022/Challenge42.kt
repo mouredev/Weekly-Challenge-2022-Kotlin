@@ -1,7 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import es.jaimefere.weeklychallenge2022.isNumber
+import java.text.DecimalFormat
 
 /*
  * Reto #42
@@ -24,38 +23,43 @@ import es.jaimefere.weeklychallenge2022.isNumber
  *
  */
 
-private enum class TemperatureUnit(val symbol: String) {
-    CELSIUS("C"),
-    FAHRENHEIT("F");
-
-    companion object {
-        fun isValid(symbol: String): Boolean {
-            return values().any { it.symbol == symbol }
-        }
-    }
-}
-
-private fun toggleTemperatureUnits(temperature: String): String {
-    val temperatureParts = temperature.replace(" ", "").uppercase().split("º")
-    return if(temperatureParts.size == 2 && isNumber(temperatureParts[0]) && TemperatureUnit.isValid(temperatureParts[1])) {
-        val value = temperatureParts[0].toDouble()
-        val units = temperatureParts[1]
-        if(units == TemperatureUnit.CELSIUS.symbol) {
-            "${"%.2f".format(value * 9.0 / 5.0 + 32.0)} º${TemperatureUnit.FAHRENHEIT.symbol}"
-        } else {
-             "${"%.2f".format((value - 32.0) * 5.0 / 9.0)} º${TemperatureUnit.CELSIUS.symbol}"
-        }
-    } else {
-        "Incorrect input"
-    }
-}
-
 fun main() {
-    println(toggleTemperatureUnits("60 F"))
-    println(toggleTemperatureUnits("ab ºC"))
-    println(toggleTemperatureUnits("273.15ºC"))
-    println(toggleTemperatureUnits("-40.0ºC"))
-    println(toggleTemperatureUnits("0 ºC"))
-    println(toggleTemperatureUnits("98.6ºF"))
-    println(toggleTemperatureUnits("212ºF"))
+    println(temperatureConverter("100°C"))
+    println(temperatureConverter("100°F"))
+    println(temperatureConverter("100C"))
+    println(temperatureConverter("100F"))
+    println(temperatureConverter("100"))
+    println(temperatureConverter("100"))
+    println(temperatureConverter("- 100 °C "))
+    println(temperatureConverter("- 100 °F "))
+    println(temperatureConverter("100A°C"))
+    println(temperatureConverter("100A°F"))
+    println(temperatureConverter("°C"))
+    println(temperatureConverter("°F"))
+}
+
+private fun temperatureConverter(degrees: String): String? {
+
+    val formatter = DecimalFormat("#.##")
+
+    try {
+
+        if (degrees.replace(" ", "").contains("°C")) {
+            val celsiusDegrees = degrees.replace(" ", "")
+                .replace("°C", "")
+                .toDouble()
+            return "${formatter.format((celsiusDegrees * 9/5) + 32)}°F"
+
+        } else if (degrees.replace(" ", "").contains("°F")) {
+            val fahrenheitDegrees = degrees.replace(" ", "")
+                .replace("°F", "")
+                .toDouble()
+            return "${formatter.format((fahrenheitDegrees - 32) * 5/9)}°C"
+        }
+
+    } catch (e: Exception) {
+        return null
+    }
+
+    return null
 }
