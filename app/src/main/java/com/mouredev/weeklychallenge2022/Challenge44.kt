@@ -20,3 +20,25 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+fun main(){
+    boomerang(arrayOf(2, 1, 2, 3, 3, 4, 2, 4, 4,8,4,2,10,6))
+}
+
+private fun boomerang(numbers:Array<Int>):Int{
+    var boomerangs=0
+    val boomerangsList:ArrayList<Int> = arrayListOf()
+
+    for(num in numbers.indices){
+        val temp=numbers[num]
+        if(num<numbers.size - 2 && numbers[num]==numbers[num + 2]){
+            boomerangs++
+            boomerangsList.add(temp)
+            boomerangsList.add(numbers[num+1])
+            boomerangsList.add(numbers[num+2])
+        }
+
+    }
+    println("Hay $boomerangs boomerangs")
+    println(boomerangsList)
+    return boomerangs
+}
