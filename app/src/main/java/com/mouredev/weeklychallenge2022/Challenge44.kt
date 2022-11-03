@@ -20,38 +20,25 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
-
-fun main() {
-
-    println(numberOfBoomerangs(arrayOf(2, 1, 2, 3, 3, 4, 2, 4)))
-    println(numberOfBoomerangs(arrayOf(2, 1, 2, 1, 2)))
-    println(numberOfBoomerangs(arrayOf(1, 2, 3, 4, 5)))
-    println(numberOfBoomerangs(arrayOf(2, 2, 2, 2, 2)))
-    println(numberOfBoomerangs(arrayOf(2, -2, 2, -2, 2)))
-    println(numberOfBoomerangs(arrayOf(2, -2)))
-    println(numberOfBoomerangs(arrayOf(2)))
-    println(numberOfBoomerangs(arrayOf()))
+fun main(){
+    boomerang(arrayOf(2, 1, 2, 3, 3, 4, 2, 4, 4,8,4,2,10,6))
 }
 
-private fun numberOfBoomerangs(numbers: Array<Int>): Int {
+private fun boomerang(numbers:Array<Int>):Int{
+    var boomerangs=0
+    val boomerangsList:ArrayList<Int> = arrayListOf()
 
-    if (numbers.size < 3) return 0
-
-    var boomerangs = 0
-
-    (1 until numbers.size - 1).forEach { index ->
-
-        val prev = numbers[index - 1]
-        val current = numbers[index]
-        val next = numbers[index + 1]
-
-        if (prev == next && prev != current) {
-            println("[$prev, $current, $next]")
-            boomerangs += 1
+    for(num in numbers.indices){
+        val temp=numbers[num]
+        if(num<numbers.size - 2 && numbers[num]==numbers[num + 2]){
+            boomerangs++
+            boomerangsList.add(temp)
+            boomerangsList.add(numbers[num+1])
+            boomerangsList.add(numbers[num+2])
         }
-    }
 
+    }
+    println("Hay $boomerangs boomerangs")
+    println(boomerangsList)
     return boomerangs
 }
-
-
