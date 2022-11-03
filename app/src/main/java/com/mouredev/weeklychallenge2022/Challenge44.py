@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #44
@@ -19,4 +19,22 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en
  *   https://retosdeprogramacion.com/semanales2022.
  *
- */
+ */ """
+
+
+
+def get_boomerang(number_list):
+
+    for i in range(len(number_list) - 2):
+        head = number_list[i]
+        tail = number_list[i+2]
+
+        if head == tail:
+            boomerang = [head, number_list[i+1], tail]
+            print(boomerang)
+
+
+
+number_list = [2, 1, 2, 3, 3, 4, 2, 4, 2]
+
+get_boomerang(number_list)
