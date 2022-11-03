@@ -1,3 +1,5 @@
+package app.src.main.java.com.mouredev.weeklychallenge2022;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
