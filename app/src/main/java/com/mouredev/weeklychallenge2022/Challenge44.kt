@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 /*
  * Reto #44
  * BUMERANES
@@ -21,5 +24,5 @@ package com.mouredev.weeklychallenge2022
  *
  */
 fun main(){
-    
+
 }
