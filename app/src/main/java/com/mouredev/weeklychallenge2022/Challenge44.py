@@ -22,8 +22,9 @@
  */ """
 
 
-
 def get_boomerang(number_list):
+
+    print("Sin borrar elementos de la lista")
 
     for i in range(len(number_list) - 2):
         head = number_list[i]
@@ -34,7 +35,25 @@ def get_boomerang(number_list):
             print(boomerang)
 
 
+def get_boomerang2(number_list):
 
-number_list = [2, 1, 2, 3, 3, 4, 2, 4, 2]
+    print("Borrando elementos de la lista")
+
+    while len(number_list) >= 3:
+        head = number_list[0]
+        tail = number_list[2]
+
+        if head == tail:
+            boomerang = [head, number_list[1], tail]
+            for i in boomerang:
+                number_list.remove(i)
+            print(boomerang)
+        else:
+            number_list.pop(0)
+
+
+number_list = [2, 1, 2, 3, 3, 4, 2, 4]
 
 get_boomerang(number_list)
+
+get_boomerang2(number_list)
