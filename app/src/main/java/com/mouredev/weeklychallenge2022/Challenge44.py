@@ -28,26 +28,23 @@ def get_boomerang(number_list):
 
     for i in range(len(number_list) - 2):
 
-        if number_list[i] == number_list[i+2]:
-            boomerang = [number_list[i], number_list[i+1], number_list[i+2]]
-            print(boomerang)
+        if number_list[i] == number_list[i+2] and number_list[i] != number_list[i+1]:
+            print(number_list[i:i+3])
 
 
 def get_boomerang2(number_list):
 
     print("Evitando la superposición")
 
-    number_list_temp = number_list.copy()
+    counter = 0
+    for i in number_list:
+        if counter <= len(number_list)-3:
+            if number_list[counter] == number_list[counter+2] and number_list[counter] != number_list[counter+1]:
+                print(number_list[counter:counter+3])
+                counter += 3
+            else:
+                counter += 1
 
-    while len(number_list_temp) >= 3:
-
-        if number_list_temp[0] == number_list_temp[2]:
-            boomerang = [number_list_temp[0], number_list_temp[1], number_list_temp[2]]
-            for i in boomerang:
-                number_list_temp.remove(i)
-            print(boomerang)
-        else:
-            number_list_temp.pop(0)
 
 
 number_list = [2, 1, 2, 3, 3, 4, 2, 4]
