@@ -70,6 +70,8 @@ int main()
     int bumeranes1[] = {2, 1, 2, 3, 3, 4, 2, 4};
     int bumeranes2[] = {2, 1, 2, 1, 3, 4, 2, 4};
     int bumeranes3[] = {4, 5, 6, 7, 6, 9, 5, 3, 4, 3, 4, 7, 8, 1, 8, 2, 3, 1};
+    int bumeranes4[] = {1, 2, 3};
+    int bumeranes5[] = {4, 5};
 
     print_array(bumeranes1);
     check_bumeranes(bumeranes1, sizeof(bumeranes1)/sizeof(bumeranes1[0]));
@@ -79,4 +81,10 @@ int main()
 
     print_array(bumeranes3);
     check_bumeranes(bumeranes3, sizeof(bumeranes3)/sizeof(bumeranes3[0]));
+
+    print_array(bumeranes4);
+    check_bumeranes(bumeranes4, sizeof(bumeranes4)/sizeof(bumeranes4[0]));
+
+    print_array(bumeranes5);
+    check_bumeranes(bumeranes5, sizeof(bumeranes5)/sizeof(bumeranes5[0]));
 }
