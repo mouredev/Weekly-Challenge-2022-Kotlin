@@ -36,3 +36,85 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(trickOrTreat(Halloween.TRICK, arrayOf(
+        Person("Brais", 35, 177),
+        Person("Sara", 9, 122),
+        Person("Pedro", 5, 80),
+        Person("Roswell", 3, 54))))
+
+    println(trickOrTreat(Halloween.TREAT, arrayOf(
+        Person("Brais", 35, 177),
+        Person("Sara", 9, 122),
+        Person("Pedro", 5, 80),
+        Person("Roswell", 3, 54))))
+}
+
+enum class Halloween {
+    TRICK, TREAT
+}
+
+data class Person(val name: String, val age: Int, val height: Int)
+
+private fun trickOrTreat(halloween: Halloween, people: Array<Person>): String {
+
+    val scares = arrayOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")
+    val candies = arrayOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩")
+
+    var result = ""
+    var height = 0
+
+    people.forEach { person ->
+
+        when (halloween) {
+            Halloween.TRICK -> {
+
+                // Name
+                (1 .. (person.name.replace(" ", "").length / 2)).forEach { _ ->
+                    result += scares.random()
+                }
+
+                // Age
+                if (person.age % 2 == 0) {
+                    result += scares.random()
+                    result += scares.random()
+                }
+
+                // Height
+                height += person.height
+                while (height >= 100) {
+                    result += scares.random()
+                    result += scares.random()
+                    result += scares.random()
+                    height -= 100
+                }
+
+            }
+            Halloween.TREAT -> {
+
+                // Name
+                (1 .. (person.name.replace(" ", "").length)).forEach { _ ->
+                    result += candies.random()
+                }
+
+                // Age
+                if (person.age <= 10) {
+                    (1 .. (person.age / 3)).forEach { _ ->
+                        result += candies.random()
+                    }
+                }
+
+                // Height
+                if (person.height <= 150) {
+                    (1 .. (person.height / 50)).forEach { _ ->
+                        result += candies.random()
+                        result += candies.random()
+                    }
+                }
+            }
+        }
+
+    }
+
+    return result
+}
