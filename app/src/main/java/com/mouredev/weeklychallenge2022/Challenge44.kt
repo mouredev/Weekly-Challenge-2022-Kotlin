@@ -20,3 +20,18 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    val array = arrayOf(2, 5, 2, 3, 3, 1, 2, 1, 2, 1, 2, 5)
+    var boomerangCount = 0
+
+    for (i in array.indices){
+        if (i == array.size-2)
+            break
+        if (array[i] == array[i+1])
+            continue
+        if (array[i] == array[i+2])
+            boomerangCount++
+    }
+    println(boomerangCount)
+}
