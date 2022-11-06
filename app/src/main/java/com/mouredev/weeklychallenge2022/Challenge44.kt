@@ -35,7 +35,7 @@ public class Bumeranes {
     public static int numerosBumerans(int array[]) {
         int contadorBumerans = 0;
         System.out.println("/(");
-        for (int x =0; x< array.length-3; x++) {
+        for (int x =0; x< array.length-2; x++) {
             if (array[x] == array[x+2] && array[x+1] != array[x]) {
                 contadorBumerans++;
                 System.out.print("["+array[x] + ", "+ array[x+1]+", "+array[x+2]+")");
