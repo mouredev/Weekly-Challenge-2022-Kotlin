@@ -18,8 +18,9 @@
 #   https://retosdeprogramacion.com/semanales2022.
 #
 
+
 def find_boomerang():
-    my_boomerang = [2, 1, 2, 3, 3, 4, 2, 4, 5, 7, 5]
+    my_boomerang = [2, 1, 2, 3, 3, 4, 2, 4, 5, 4, 5]
     counter = 0
 
     for i in range(len(my_boomerang) - 2):
