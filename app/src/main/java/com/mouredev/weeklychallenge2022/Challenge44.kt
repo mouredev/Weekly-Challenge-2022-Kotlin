@@ -20,3 +20,54 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+import java.util.Random;
+import java.util.Arrays;
+
+
+public class Bumeranes {
+    
+    /**
+     * Método que busca en un array bumeranes y los imprime.
+     * @param array
+     * @return el número de bumeranes
+     */
+    public static int numerosBumerans(int array[]) {
+        int contadorBumerans = 0;
+        System.out.println("/(");
+        for (int x =0; x< array.length-3; x++) {
+            if (array[x] == array[x+2] && array[x+1] != array[x]) {
+                contadorBumerans++;
+                System.out.print("["+array[x] + ", "+ array[x+1]+", "+array[x+2]+")");
+            }
+        }
+        System.out.println("/)");
+        return contadorBumerans;
+    }
+
+    /**
+     * Método para crear un array de forma aleatoría, con el fin de probar despues el metodo anterior.
+     * @param lonxitude
+     * @param maxValor
+     * @return
+     */
+    public static int[] crearTaboaAleatoria(int lonxitude, int maxValor) {
+        int x;
+        int taboaCreada [] = new int [lonxitude];
+        Random r = new Random();
+        for (x = 0; x < lonxitude; x++) {
+            taboaCreada[x] = r.nextInt(maxValor);
+        }
+        //Arrays.sort(taboaCreada);
+        return taboaCreada;
+    }
+
+    public static void main(String[] args) {
+        int taboa[];
+        taboa = crearTaboaAleatoria(200, 10);
+        System.out.println(Arrays.toString(taboa));
+        System.out.println("************************************************");
+        int bumerans = numerosBumerans(taboa);
+        System.out.println(bumerans);
+    }
+}
