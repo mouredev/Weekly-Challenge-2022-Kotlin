@@ -1,4 +1,7 @@
-package com.mouredev.weeklychallenge2022
+package retos_MouDev;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
  * Reto #44
@@ -20,3 +23,40 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+public class Reto44 {
+
+	public static void main(String... args) {
+		new Boomerang();
+	}
+
+	private static  class Boomerang {
+
+		private Boomerang() {
+			findBoomerang();
+			imprimeResultado();
+		}
+
+		private final int[] SECUENCIA = { 2, 1, 2, 3, 3, 4, 2, 4 };
+		private int countBoomerang = 0;
+		private ArrayList<int[]> boomerang = new ArrayList<int[]>();
+
+		private void findBoomerang() {
+			for (int i = 0; i < SECUENCIA.length - 2; i++) {
+				if (SECUENCIA[i] != SECUENCIA[i + 1] && SECUENCIA[i] == SECUENCIA[i + 2]) {
+					int[] auxBoomerang = { SECUENCIA[i], SECUENCIA[i + 1], SECUENCIA[i + 2] };
+					boomerang.add(auxBoomerang);
+					countBoomerang++;
+				}
+			}
+		}
+
+		private void imprimeResultado() {
+			System.out.println("En el array " + Arrays.toString(SECUENCIA) + " hay " + countBoomerang + " bumeranes:");
+			for (int[] auxArray : boomerang) {
+				System.out.println(Arrays.toString(auxArray));
+			}
+		}
+
+	}
+}
