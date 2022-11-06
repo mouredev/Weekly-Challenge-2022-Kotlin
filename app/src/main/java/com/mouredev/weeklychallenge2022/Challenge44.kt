@@ -20,3 +20,25 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    Boomerang(arrayOf(2, 1, 2, 3, 3, 4, 2, 4))
+    Boomerang(arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+    Boomerang(arrayOf(1, 2, 3))
+    Boomerang(arrayOf(1, 2, 1, 2, 3, 4, 3, 5, 4, 6))
+}
+
+private fun Boomerang(array: Array<Int>) {
+    var boomerangs = 0
+    var boomerangList = mutableListOf<Array<Int>>()
+    for (i in 0 until array.size - 2) {
+        if (array[i] == array[i + 2] && array[i] != array[i + 1]) {
+            boomerangs++
+            boomerangList.add(arrayOf(array[i], array[i + 1], array[i + 2]))
+        }
+    }
+    boomerangList.forEach{
+        println(it.contentToString())
+    }
+    println("Total boomerangs: $boomerangs")
+}
