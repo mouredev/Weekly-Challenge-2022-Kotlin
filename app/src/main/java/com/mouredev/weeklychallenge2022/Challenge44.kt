@@ -20,3 +20,26 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+const array = [2, 1, 2, 3, 3, 4, 2, 4, 2 ,2, 2];
+const BOOMERANG_LENGTH = 3;
+console.log(array);
+
+const arrayBumerangs = [];
+
+for(let index = 0; index < array.length - 2; index++) {
+ const testBoomeranElement = [ array[index], array[index +1], array[index + 2] ];
+if(isBoomerang(testBoomeranElement))
+  arrayBumerangs.push(testBoomeranElement);
+}
+
+
+const isBoomerang = (aux) => aux.length === BOOMERANG_LENGTH  && aux[0] === aux[2] && aux[0] !== aux[1];
+const arrayBumerangsToString = (array) =>  {
+  const boomerangToString = array.map((boomerang) => '[' + boomerang + ']')
+  const joinBoomerang = boomerangToString.join(' , ');
+  return joinBoomerang.substring( 0 , joinBoomerang.lastIndexOf(' , ')) + ' y '
+    + joinBoomerang.substring(joinBoomerang.lastIndexOf(' , ') + 3, joinBoomerang.length)
+}
+
+console.log("En el array ["+ array +"] hay "+ arrayBumerangs.length +" bumeranes (" + arrayBumerangsToString(arrayBumerangs) + ")");
