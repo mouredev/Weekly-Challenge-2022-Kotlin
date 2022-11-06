@@ -24,5 +24,27 @@ import java.text.DecimalFormat
  */
 
 fun main() {
+    println(temperatureConverter("0°C"))
+    println(temperatureConverter("120°F"))
+    println(temperatureConverter("-120°F"))
+    println(temperatureConverter("60F"))
+    println(temperatureConverter("60.4F"))
+    println(temperatureConverter("60.4°F"))
+    println(temperatureConverter("60.4°FC"))
+}
+
+// (0 °C × 9/5) + 32 = 32 °F
+private fun temperatureConverter(temperature : String) : String{
+
+    return if (temperature.matches("""([-]?[0-9]*([.][0-9]*)?°[C|F])""".toRegex())) {
+        val (tempValue, tempType) = temperature.split('°')
+        val formatter = DecimalFormat("#.##")
+
+        when (tempType) {
+            "C" -> "${formatter.format((tempValue.toDouble()*9/5)+32)}°F"
+            "F" -> "${formatter.format((tempValue.toDouble()-32)*5/9)}°C"
+            else -> "Wrong input"
+        }
+    } else "Wrong input"
 
 }

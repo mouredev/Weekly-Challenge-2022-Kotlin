@@ -37,5 +37,70 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val firstGroup = arrayOf(
+        Visitor("Pepito", 10, 70),
+        Visitor("Juana", 8, 79),
+        Visitor("Pulgarcito", 20, 29),
+        Visitor("Gigante", 5, 180))
 
+    Halloween().trickOrTreat(firstGroup, answer.Trick)
+    Halloween().trickOrTreat(firstGroup, answer.Treat)
+}
+
+private typealias Visitor = Halloween.Persona
+private typealias answer = Halloween.Surprises
+
+private class Halloween{
+    data class Persona( val name : String, val age : Int, val height: Int)
+
+    enum class Surprises(val options : List<String>){
+        Treat(listOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")),
+        Trick(listOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"));
+
+        fun getRandom(): String {
+            return this.options[(0 until this.options.size).random()]
+        }
+    }
+
+    fun trickOrTreat(group : Array<Persona>, selection : Surprises){
+        if (selection == Surprises.Treat){
+            var totalLetters = 0
+            var pairAges = 0
+            var totalHeight = 0
+
+            group.forEach {
+                totalLetters += it.name.length
+                if (it.age%2 == 0) pairAges ++
+                totalHeight += it.height
+            }
+
+            val numOfSurprises = totalLetters/2 + 2*pairAges + 3*(totalHeight/100)
+            println("This group gets $numOfSurprises tricks")
+            repeat(numOfSurprises) {
+                print(" ${selection.getRandom()}")
+            }
+        } else {
+            var totalLetters = 0
+            var everythree = 0
+            var totalHeightCount = 0
+
+            group.forEach {
+                totalLetters += it.name.length
+                everythree +=
+                    if (it.age >= 9) 3
+                    else it.age/3
+                totalHeightCount +=
+                    if (it.height >= 150) 3
+                    else it.age/50
+            }
+
+            val numOfSurprises = totalLetters + everythree + 2*totalHeightCount
+            println("This group gets $numOfSurprises treats")
+            repeat(numOfSurprises) {
+                print(" ${selection.getRandom()}")
+            }
+        }
+
+        println("\nHappy Halloween :D\n")
+    }
 }

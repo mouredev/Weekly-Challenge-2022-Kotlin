@@ -20,3 +20,30 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main (){
+
+    val set1 = intArrayOf(2, 1, 2, 3, 3, 4, 2, 4)
+    checkBoomerangs(set1)
+
+}
+
+private fun checkBoomerangs(input : IntArray): Int{
+
+    val existingBoomerangs = mutableListOf<IntArray>()
+    fun IntArray.getElements() = this.asList().toString()
+
+    for (x in 0..(input.size-3)){
+        if (input[x] == input[x+2] && input[x] != input[x+1])
+            existingBoomerangs.add(intArrayOf(input[x], input[x+1], input[x+2]))
+    }
+
+    println("In ${input.getElements()}, there are ${existingBoomerangs.size} boomerangs")
+    if (existingBoomerangs.isNotEmpty()){
+        existingBoomerangs.forEachIndexed { index, ints ->
+            println("Boomerang #$index : ${ints.getElements()}")
+        }
+    }
+
+    return existingBoomerangs.size
+}

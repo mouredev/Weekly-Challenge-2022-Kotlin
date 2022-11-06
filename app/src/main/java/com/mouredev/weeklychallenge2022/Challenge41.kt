@@ -22,5 +22,53 @@ import java.text.DecimalFormat
  */
 
 fun main() {
+    Circuit(r = 12.0, v = 150.0).ohmLaw()
+    Circuit(i = 2.0, r = 200.0).ohmLaw()
+    Circuit(v = 12.5, i = 0.5).ohmLaw()
+    Circuit(v = 12.5).ohmLaw()
+    Circuit(v = 12.5, i = 3.0, r = 20.0).ohmLaw()
+}
+
+private class Circuit(val r : Double? = null, val v: Double? = null, val i: Double? = null){
+
+    fun ohmLaw(): Double{
+
+        val twoDecimalFormat = DecimalFormat("#.##")
+        var result = 0.0
+
+        if(i == 0.0){
+            println("No current, open circuit")
+        } else if (v == 0.0){
+            println("No voltage = no current")
+        } else if (r == 0.0){
+            println("No resistance, short circuit")
+        } else {
+            result =  when {
+                (r == null && v != null && i != null ) -> {
+                    print("With V = $v and I = $i the R = ")
+                    v/i
+                }
+                (v == null && r != null && i != null ) -> {
+                    print("With R = $r and I = $i the V = ")
+                    r*i
+                }
+
+                (i == null && v != null && r != null ) -> {
+                    print("With V = $v and R = $r the I = ")
+                    v/r
+                }
+
+                else -> {
+                    println("Wrong input")
+                    0.0
+                }
+            }
+        }
+
+        if (result != 0.0)
+            println(twoDecimalFormat.format(result))
+
+        return result
+    }
 
 }
