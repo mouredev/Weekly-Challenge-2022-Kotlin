@@ -31,3 +31,12 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Console.WriteLine("Hello World");
+	}
+}
