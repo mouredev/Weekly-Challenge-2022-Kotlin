@@ -20,3 +20,34 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+public class Main {
+    public static void main(String[] args) {
+        var boomerang = Arrays.asList(2, 1, 2, 3, 3, 4, 2, 4);
+        System.out.println(boomerang);
+        System.out.println(getBoomerangs(boomerang));
+    }
+
+    private static Map<Integer, List<List<Integer>>> getBoomerangs(List<Integer> array) {
+        var result = new HashMap<Integer, List<List<Integer>>>();
+        var count = 0;
+        var boomerang = new ArrayList<List<Integer>>();
+        for (int i = 0; i < array.size() - 2; i++) {
+            // Asignación de numeros
+            var one = array.get(i);
+            var two = array.get(i + 1);
+            var three = array.get(i + 2);
+            if (one.equals(three) && !one.equals(two)) {
+                ++count;
+                // Crea sublista para añadir a la lista principal
+                var boom = new ArrayList<Integer>();
+                boom.add(one);
+                boom.add(two);
+                boom.add(three);
+                // Añade la sublista a la lista principal
+                boomerang.add(boom);
+            }
+        }
+        result.put(count, boomerang);
+        return result;
+    }
+}
