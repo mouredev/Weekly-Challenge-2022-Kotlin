@@ -46,7 +46,7 @@
                 foundBlocksInHeight++
             }
         }
-        if (foundBlocksInHeight !=  lastBlock-firstBlock+1)
+        if (foundBlocksInHeight !=  lastBlock-firstBlock+1 && firstBlock != -1)
             waterCount +=  (lastBlock-firstBlock+1)-foundBlocksInHeight
         else
             break
