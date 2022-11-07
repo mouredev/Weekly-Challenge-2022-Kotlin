@@ -1,3 +1,4 @@
+"use strict";
 // import { expect } from 'chai';
 // import { calculatePokeDamage,PokemonType } from '../../../../../main/java/com/mouredev/weeklychallenge2022/Challenge35';
 //
