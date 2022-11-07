@@ -1,22 +1,25 @@
-package com.mouredev.weeklychallenge2022
+#* Enunciado: Crea una función que retorne el número total de bumeranes de 
+#* un array de números enteros e imprima cada uno de ellos.
+#* - Un bumerán (búmeran, boomerang) es una secuencia formada por 3 números
+#*   seguidos, en el que el primero y el último son iguales, y el segundo
+#*   es diferente. Por ejemplo [2, 1, 2].
+#* - En el array [2, 1, 2, 3, 3, 4, 2, 4] hay 2 bumeranes ([2, 1, 2] 
+#*   y [4, 2, 4]).
 
-/*
- * Reto #44
- * BUMERANES
- * Fecha publicación enunciado: 02/10/22
- * Fecha publicación resolución: 07/11/22
- * Dificultad: FÁCIL
- *
- * Enunciado: Crea una función que retorne el número total de bumeranes de un array de números
- * enteros e imprima cada uno de ellos.
- * - Un bumerán (búmeran, boomerang) es una secuencia formada por 3 números seguidos, en el que el
- *   primero y el último son iguales, y el segundo es diferente. Por ejemplo [2, 1, 2].
- * - En el array [2, 1, 2, 3, 3, 4, 2, 4] hay 2 bumeranes ([2, 1, 2] y [4, 2, 4]).
- *
- * Información adicional:
- * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
- *   para preguntas, dudas o prestar ayuda a la comunidad.
- * - Tienes toda la información sobre los retos semanales en
- *   https://retosdeprogramacion.com/semanales2022.
- *
- */
+def sequence(initList):
+    init = 0
+    for i, num in enumerate(initList):
+        if i == init:
+            try:
+                if initList[init] != initList[init+1] and initList[init] == initList[init+2]:
+                    boomerangList.append(initList[init:init+3])
+                    init = i+3
+                else:
+                    init+=1
+            except:
+                pass
+    return(len(boomerangList))
+
+initList = [2, 1, 2, 3, 3, 4, 2, 4]
+boomerangList = []    
+print(f'En el array {initList} hay {sequence(initList)} bumeranes ({boomerangList})')
