@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #44
  * BUMERANES
@@ -20,3 +22,34 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main(){
+
+
+    println(boomerangs(arrayOf(2,1,2,4,2,4)).contentToString())
+    println(boomerangs(arrayOf(2, 1, 2, 3, 3, 4, 2, 4)).contentDeepToString())
+    println(boomerangs(arrayOf('a', 'b', 'a', 'c', 'c', 'd', 'a', 'd', 'b', 'd')).contentDeepToString())
+
+}
+
+/**
+ * Funcion que retorna el numero de bumeranes de un array de elementos T
+ * @param array Array de elementos T
+ * @return Array de bumeranes encontrados
+ */
+
+inline fun <reified T>boomerangs(numbers: Array<T>) : Array<String> {
+    var boomerangs = arrayOf<String>()
+    for (i in 0 until numbers.size - 2) {
+            if (numbers[i] == numbers[i + 2]) {
+                val boomerang = arrayOf(numbers[i], numbers[i + 1], numbers[i + 2])
+                boomerangs+= "{${boomerang.joinToString().trim()}}".trim()
+
+            }
+        }
+
+    return boomerangs
+
+
+
+}
