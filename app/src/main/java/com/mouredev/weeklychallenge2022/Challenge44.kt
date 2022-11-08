@@ -22,6 +22,7 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+// My solution
     val array = arrayOf(2, 5, 2, 3, 3, 1, 2, 1, 2, 1, 2, 5)
     var boomerangCount = 0
 
@@ -35,3 +36,36 @@ fun main() {
     }
     println(boomerangCount)
 }
+// mouredev's solution
+
+/*    println(numberOfBoomerangs(arrayOf(2, 1, 2, 3, 3, 4, 2, 4)))
+    println(numberOfBoomerangs(arrayOf(2, 1, 2, 1, 2)))
+    println(numberOfBoomerangs(arrayOf(1, 2, 3, 4, 5)))
+    println(numberOfBoomerangs(arrayOf(2, 2, 2, 2, 2)))
+    println(numberOfBoomerangs(arrayOf(2, -2, 2, -2, 2)))
+    println(numberOfBoomerangs(arrayOf(2, -2)))
+    println(numberOfBoomerangs(arrayOf(2)))
+    println(numberOfBoomerangs(arrayOf()))
+}
+
+private fun numberOfBoomerangs(numbers: Array<Int>): Int {
+
+    if (numbers.size < 3) return 0
+
+    var boomerangs = 0
+
+    (1 until numbers.size - 1).forEach { index ->
+
+        val prev = numbers[index - 1]
+        val current = numbers[index]
+        val next = numbers[index + 1]
+
+        if (prev == next && prev != current) {
+            println("[$prev, $current, $next]")
+            boomerangs += 1
+        }
+    }
+
+    return boomerangs
+
+}*/
