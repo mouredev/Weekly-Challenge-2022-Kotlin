@@ -101,6 +101,17 @@ assertEquals(7, getNumberOfWater([4, 0, 3, 6, 1, 3]));
  */
 assertEquals(8, getNumberOfWater([4, 0, 3, 6, 1, 3, 2, 3, 3, 1]));
 
+/*
+ *             ⏹
+ *         ⏹💧⏹
+ *         ⏹💧⏹
+ *   ⏹💧💧⏹💧⏹
+ *   ⏹💧⏹⏹💧⏹💧⏹
+ *   ⏹💧⏹⏹💧⏹⏹⏹⏹
+ *   ⏹💧⏹⏹⏹⏹⏹⏹⏹⏹
+ */
+assertEquals(11, getNumberOfWater([4, 0, 3, 6, 1, 7, 2, 3, 3, 1]));
+
 
 function assertEquals($expectedValue, $actualValue): void
 {
@@ -111,13 +122,6 @@ function assertEquals($expectedValue, $actualValue): void
     }
 }
 
-/**
- * This solution is not the most optimal solution but yes the one that is easier to maintain and understand. We
- * could improve it if the number of blocks will be big, otherwise is preferred to have understandable code.
- *
- * @param array $blocksCountByRow
- * @return int|mixed
- */
 function getNumberOfWater(array $blocksCountByRow): int
 {
 
@@ -126,35 +130,46 @@ function getNumberOfWater(array $blocksCountByRow): int
     }
 
     $watter = 0;
+    $highestNumberOfBlocksInPreviousRows = null;
+    $highestNumberOfBlocksInNextRows = null;
 
     for ($row = 1; $row < count($blocksCountByRow) - 1; $row++) {
         $currentRowBlocks = $blocksCountByRow[$row];
 
-        //Find the highest number of blocks in previous rows
-        $highestNumberOfBlocksInPreviousRows = findTheHighestBlockNumberBeingIncremental(
-            array_reverse(
+        if ($highestNumberOfBlocksInPreviousRows !== $currentRowBlocks) {
+            //Find the highest number of blocks in previous rows
+            $highestNumberOfBlocksInPreviousRows = findTheHighestBlockNumberBeingIncremental(
+                array_reverse(
+                    array_slice(
+                        $blocksCountByRow,
+                        0,
+                        $row)
+                )
+            );
+        }
+
+        if ($highestNumberOfBlocksInNextRows !== $currentRowBlocks) {
+            //Find the highest number of blocks in next rows
+            $highestNumberOfBlocksInNextRows = findTheHighestBlockNumberBeingIncremental(
                 array_slice(
                     $blocksCountByRow,
-                    0,
-                    $row)
-            )
-        );
-
-        //Find the highest number of blocks in next rows
-        $highestNumberOfBlocksInNextRows = findTheHighestBlockNumberBeingIncremental(
-            array_slice(
-                $blocksCountByRow,
-                $row
-            )
-        );
+                    $row
+                )
+            );
+        }
 
         if ($highestNumberOfBlocksInPreviousRows === null || $highestNumberOfBlocksInNextRows === null) {
             throw new LogicException(
                 sprintf(
                 "This can't happen because we iterate the blocks from the second one to the penultimate. \n
-                Values: %s, %s",
+                Values: %s, %s\n
+                Current number: %s\n
+                Current row: %s
+                ",
                     $highestNumberOfBlocksInPreviousRows,
-                    $highestNumberOfBlocksInNextRows
+                    $highestNumberOfBlocksInNextRows,
+                    $currentRowBlocks,
+                    $row
                 )
             );
         }
