@@ -59,7 +59,7 @@ def water_counter(list):
             container.append(i)
             container.sort(reverse=True)
             container_list.append(container)
-            container.clear()
+            container = []
             container.append(i)
 
     container.sort(reverse=True)
