@@ -33,18 +33,19 @@ package com.mouredev.weeklychallenge2022
 
 public class Reto45 {
 	
+	//private final static int[] CONTAINER = { 1, 4, 3, 4, 5, 4, 3, 2, 1 };
 	private final static int[] CONTAINER = { 4, 0, 3, 6, 1, 3 };
 
 	public static void main(String[] args) {
-		new WatterCalculator();
+		new WaterCalculator();
 
 	}
 
-	private static class WatterCalculator {
-		private static int watter;
+	private static class WaterCalculator {
+		private static int water;
 
-		private WatterCalculator() {
-			watter = 0;
+		private WaterCalculator() {
+			water = 0;
 			calculator();
 			printResult();
 
@@ -80,15 +81,15 @@ public class Reto45 {
 				// el agua que falta en esta posición
 				if (CONTAINER[index] < topLeft && CONTAINER[index] < topRight) {
 					top = (topLeft < topRight ? topLeft - CONTAINER[index] : topRight - CONTAINER[index]);
-					watter += top;
+					water += top;
 					System.out.println("POSICIÓN: " + index + "\tALTURA = " + CONTAINER[index] + "\ttopIZD = " + topLeft
-							+ "\ttopDER = " + topRight + "\tSUMAMOS = " + top + "\tAGUA TOTAL= " + watter);
+							+ "\ttopDER = " + topRight + "\tSUMAMOS = " + top + "\tAGUA TOTAL= " + water);
 				}
 			}
 		}
 
 		private void printResult() {
-			System.out.println("\nTOTAL AGUA: " + watter);
+			System.out.println("\nTOTAL AGUA: " + water);
 		}
 	}
 }
