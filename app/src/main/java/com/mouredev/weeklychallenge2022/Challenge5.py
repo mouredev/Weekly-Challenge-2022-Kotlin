@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import android.graphics.BitmapFactory
 import java.net.URL
@@ -63,4 +63,4 @@ class Challenge5() {
         return Pair(q.h, q.k)
     }
 
-}
+} """

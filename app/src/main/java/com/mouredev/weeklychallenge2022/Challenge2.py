@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import java.math.BigInteger
 
@@ -34,4 +34,17 @@ fun main() {
         n0 = n1
         n1 = fib
     }
-}
+} """
+
+def fibonacci(quantity_numbers):
+
+    numbers = [0, 1]
+
+    for i in range(quantity_numbers):
+
+        print(numbers[i])
+
+        numbers.append(numbers[-1] + numbers[-2])
+
+
+fibonacci(5)

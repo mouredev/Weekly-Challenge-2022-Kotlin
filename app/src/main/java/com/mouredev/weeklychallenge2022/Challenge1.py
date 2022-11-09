@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #1
@@ -30,3 +30,22 @@ private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
     }
     return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
+ """
+
+
+def anagrama(word1, word2):
+
+    is_anagrama = False
+
+    for char in word1.lower():
+        if word1.lower() == word2.lower():
+            is_anagrama = False
+            break
+        elif char.lower() in word2.lower():
+            is_anagrama = True
+        else:
+            is_anagrama = False
+
+    return is_anagrama
+
+print(anagrama("amor", "rosa"))

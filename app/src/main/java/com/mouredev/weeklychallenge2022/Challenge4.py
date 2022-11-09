@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #4
@@ -69,4 +69,28 @@ data class Square(val side: Double): Polygon {
 private fun area(polygon: Polygon): Double {
     polygon.printArea()
     return polygon.area()
-}
+} """
+
+
+class Poligon():
+
+    def __init__(self, poligon, base, height=0):
+        self.poligon = poligon
+        self.base = base
+        self. height = height
+
+    def area(self):
+        if self.poligon.lower() == "triangulo":
+            return (self.base * self.height) / 2
+        elif self.poligon.lower() == "rectangulo":
+            return self.base * self.height
+        elif self.poligon.lower() == "cuadrado":
+            return self.base ** 2
+        else:
+            return None
+
+def print_area(poligon, base, height=0):
+    poligon = Poligon(poligon, base, height)
+    print(f"El area del {poligon.poligon} es {poligon.area()}")
+
+print_area("triangulo", 10, 10)
