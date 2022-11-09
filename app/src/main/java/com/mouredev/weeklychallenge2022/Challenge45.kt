@@ -31,3 +31,64 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+public class Reto45 {
+	
+	private final static int[] CONTAINER = { 4, 0, 3, 6, 1, 3 };
+
+	public static void main(String[] args) {
+		new WatterCalculator();
+
+	}
+
+	private static class WatterCalculator {
+		private static int watter;
+
+		private WatterCalculator() {
+			watter = 0;
+			calculator();
+			printResult();
+
+		}
+
+		private void calculator() {
+			int topRight;
+			int topLeft;
+			int top;
+			
+			// este for global recorrerá el array de izquierda a derecha
+			for (int index = 1; index < CONTAINER.length - 1; index++) {
+				topRight = 0;
+				topLeft = 0;
+				top = 0;
+
+				// este for búscará el punto más alto a la izquierda de la posición actual
+				for (int i = 0; i < index; i++) {
+					if (CONTAINER[i] > topLeft) {
+						topLeft = CONTAINER[i];
+					}
+				}
+				
+				// este for buscará el punto más alto a la derecha de la posición actual
+				for (int i = CONTAINER.length - 1; i > index; i--) {
+					if (CONTAINER[i] > topRight) {
+						topRight = CONTAINER[i];
+					}
+				}
+
+				// si el top por la izquierda y el top por la derecha son más altos que el punto
+				// actual identificamos el top más bajo (izquierda o derecha) y sumamos al total
+				// el agua que falta en esta posición
+				if (CONTAINER[index] < topLeft && CONTAINER[index] < topRight) {
+					top = (topLeft < topRight ? topLeft - CONTAINER[index] : topRight - CONTAINER[index]);
+					watter += top;
+					System.out.println("POSICIÓN: " + index + "\tALTURA = " + CONTAINER[index] + "\ttopIZD = " + topLeft
+							+ "\ttopDER = " + topRight + "\tSUMAMOS = " + top + "\tAGUA TOTAL= " + watter);
+				}
+			}
+		}
+
+		private void printResult() {
+			System.out.println("\nTOTAL AGUA: " + watter);
+		}
+	}
+}
