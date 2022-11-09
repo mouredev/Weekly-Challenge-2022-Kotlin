@@ -9,6 +9,9 @@
 *.ap_
 *.aab
 
+/node_modules
+node_modules
+
 # Files for the ART/Dalvik VM
 *.dex
 
@@ -235,3 +238,4 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,kotlin
+
