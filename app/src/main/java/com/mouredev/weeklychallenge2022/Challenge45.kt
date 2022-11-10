@@ -30,6 +30,25 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+fun main(){
+    println(calculateWaterContain(arrayListOf(4, 0, 3, 6, 1, 3)))
+}
+
+private fun calculateWaterContain(container:ArrayList<Int>):Int{
+    var waterCount=0
+    val left=container[0]
+    val index=1
+    while(left>container[index]){
+        waterCount += left - container.removeAt(index)
+    }
+    container.removeAt(0)
+    if(container.size>1){
+        val reverseList=container.reversed() as ArrayList<Int>
+        waterCount +=calculateWaterContain(reverseList)
+    }
+
+    return waterCount
+}
 
 fun main() {
     println(calculateWaterUnits(arrayOf(4, 0, 3, 6)))
