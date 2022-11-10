@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "<a href=\"https://youtu.be/8HuQXzJl_1I\"><img src=\"http://i3.ytimg.com/vi/8HuQXzJl_1I/maxresdefault.jpg\" style=\"height: 50%; width:50%;\"/></a>",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "queue-fifo": "^0.2.6"
+  },
   "devDependencies": {
     "@types/chai": "^4.3.3",
     "@types/mocha": "^9.1.1",
@@ -13,7 +15,8 @@
     "typescript": "^4.8.3"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register './app/src/test /**/*.test.ts' --timeout 10000 --reporter spec --exit"
+    "dev": "ts-node ./app/src/main/java/com/mouredev/weeklychallenge2022/Challenge45.ts",
+    "test": "mocha -r ts-node/register './app/src/test/**/*.test.ts' --timeout 10000 --reporter spec --exit"
   },
   "repository": {
     "type": "git",
