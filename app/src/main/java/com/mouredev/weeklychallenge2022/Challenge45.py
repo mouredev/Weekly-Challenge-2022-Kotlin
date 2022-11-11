@@ -31,17 +31,25 @@ from typing import List, Tuple
 """
 
 def count_water_lr(blocks: List[int]) -> Tuple[int, int]:
-    count, first = 0, 0
+    """
+    De izquierda a derecha se busca bloques apilados que pueden contener agua y estos se
+    agregan al conteo teniendo en cuenta el maximo alto posible, complejidad O(n)
+    """
+    count, wall_index = 0, 0
     for i in range(1, len(blocks)):
-        if blocks[i] >= blocks[first]:
-            count += sum(blocks[first] - blocks[j] for j in range(first, i))
-            first = i
-    return count, first
+        if blocks[i] >= blocks[wall_index]:
+            count += sum(blocks[wall_index] - blocks[j] for j in range(wall_index, i))
+            wall_index = i
+    return count, wall_index
 
 def get_total_water(blocks: List[int]) -> int:
-    result, last = count_water_lr(blocks)
-    if last + 2 < len(blocks):
-        result += count_water_lr(blocks[:last - 1:-1])[0]
+    """
+    Se calcular el agua total utilizando la funcion count_water_lr, en caso de que esta funcion
+    no termine de procesar la lista, la volvemos a llamar con el resto invertido, complejidad O(n)
+    """
+    result, last_processed_wall = count_water_lr(blocks)
+    if last_processed_wall + 2 < len(blocks):
+        result += count_water_lr(blocks[:last_processed_wall - 1:-1])[0]
     return result
 
 def test_case(blocks: List[int], expected: int):
@@ -131,7 +139,7 @@ def main():
     test_case([3, 0, 2, 1, 4, 0, 2, 3, 2, 1, 4, 2, 5, 1, 3, 1, 2, 0, 2], 25)
 
     """
-          #   
+          #
           ####
          ######
         #########
@@ -139,7 +147,6 @@ def main():
     test_case([1, 2, 4, 3, 3, 3, 2, 1, 1], 0)
 
     """
-              
               #...#
             #.#...#.#
           #.#.#...#.#.#
