@@ -53,10 +53,17 @@ def get_total_water(blocks: List[int]) -> int:
     return result
 
 def test_case(blocks: List[int], expected: int):
+    check_valid_test_case(blocks)
     returned = get_total_water(blocks)
     if returned != expected:
         raise Exception(
             f"Case with blocks {blocks}, returns {returned} but it should be {expected}"
+        )
+
+def check_valid_test_case(blocks: List[int]):
+    if any(b < 0 for b in blocks):
+        raise Exception(
+            f"Case with block {blocks} is not valid, it should contain only positive values"
         )
 
 def main():
@@ -154,6 +161,42 @@ def main():
     """
     test_case([1, 0, 2, 0, 3, 0, 4, 0, 1, 0, 4, 0, 3, 0, 2, 0, 1], 23)
 
+    """
+        #.........#
+        #.#.....#.#
+        #.#.#.#.#.#
+        #.#.#.#.#.#
+        #.###.###.#
+    """
+    test_case([5, 0, 4, 1, 3, 0, 3, 1, 4, 0, 5], 29)
+
+    """
+            #.#
+            #.#
+          #.###.#
+        #.#.###.#.#
+        #.#######.#
+    """
+    test_case([2, 0, 3, 1, 5, 3, 5, 1, 3, 0, 2], 10)
+
+    """
+        #####.#####
+        ###########
+        ###########
+        ###########
+        ###########
+    """
+    test_case([5, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5], 1)
+
+    """
+        #....#....#
+        #....#....#
+        #...###...#
+        #..#####..#
+        ###########
+    """
+    test_case([5, 1, 1, 2, 3, 5, 3, 2, 1, 1, 5], 26)
+
     # Casos extremos, para comprobar complejidad O(n)
     test_case([i for i in range(1, 1000001)], 0)
     test_case([i % 2 for i in range(1000001)], 499999)
@@ -162,6 +205,13 @@ def main():
     test_case([99999 - i % 100000 for i in range(1000000)], 44999550000)
     test_case([1000000000 * (i % 2) for i in range(1000001)], 499999000000000)
     test_case([1000000000 * (1 - i % 2) for i in range(1000001)], 500000000000000)
+
+    # Casos extra
+    test_case([], 0)
+    test_case([1, 0], 0)
+    test_case([0, 1], 0)
+    test_case([1, 0, 1], 1)
+    test_case([0, 1, 0], 0)
 
     print("All cases passed!")
 
