@@ -31,3 +31,55 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 4, 0, 3, 6, 1, 3 })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 4, 0, 3, 6, 1, 3, 4 })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 4, 0, 4, 0, 0, 0, 0, 4 })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 1, 0, 3 })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 0, 0, 0, 4, 4, 0, 0, 0 })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 0, 0, 0, 0, 0, 0 })} unidades de agua");
+Console.WriteLine($"Quedarian atrapadas {ContenedorDeAgua(new int[] { 1, 0, 0, 0, 0, 0 })} unidades de agua");
+
+
+static int ContenedorDeAgua(int[] container) {
+	
+	int largo = container.Length;
+	if (largo == 0) return 0;       // Si no hay elementos, retorno 0
+
+	int altura = container.Max();
+	if (altura == 0) return 0;      // Si la altura es todo cero no hay bloques, retorno cero (no tiene donde quedar estancada el agua)
+
+	int unidadesAgua = 0;
+	for (int f = 0; f < altura; f++) {
+		int indexBlock = -1;
+		for (int c = 0; c < largo; c++) {
+			if (container[c] > f) {                         // Encontre un bloque
+				if (indexBlock == -1)                       // Si es el primero solo asigno indice donde se encuentra
+					indexBlock = c;
+				else {
+					unidadesAgua += c - indexBlock - 1;     // Al encontrar el siguiente bloque asigno cantidad de agua entre ellos 
+					indexBlock = c;                         // Muevo el indice al siguiente bloque
+				}
+			}
+		}
+	}
+
+	return unidadesAgua;
+	
+}
+
+/// <summary>
+/// Cambiar container.Max() por MaxIntArray(container) en caso de la pagina de prueba online no reconozca ".Max()"
+/// </summary>
+/// <param name="container">Array de elementos</param>
+/// <returns></returns>
+static int MaxIntArray(int[] container) {
+
+	int max = 0;
+	for (int i = 0; i < container.Length - 1; i++) {
+		if (container[i] > max)
+			max = container[i];
+	}
+	return max;
+}
