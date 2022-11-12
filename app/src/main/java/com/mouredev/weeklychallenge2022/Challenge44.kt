@@ -47,3 +47,4 @@ private fun checkBoomerangs(input : IntArray): Int{
 
     return existingBoomerangs.size
 }
+
