@@ -34,7 +34,7 @@ const getWater = (arr) => {
     waterCount += Math.min(leftBlock, rightBlock) - arr[i];
   }
   return console.log(
-    `El cantidad de agua atrapada entre los bloques es de: ${waterCount}`
+    `La cantidad de agua atrapada entre los bloques es de: ${waterCount}`
   );
 };
 
