@@ -1,0 +1,18 @@
+---
+BasedOnStyle: Google
+AlignConsecutiveAssignments: 'true'
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: Always
+Language: Cpp
+SortIncludes: 'false'
+SortUsingDeclarations: 'true'
+SpaceAfterLogicalNot: 'true'
+SpaceBeforeAssignmentOperators: 'true'
+SpaceBeforeParens: Never
+SpaceInEmptyParentheses: 'true'
+SpacesInCStyleCastParentheses: 'true'
+SpacesInContainerLiterals: 'true'
+SpacesInParentheses: 'true'
+SpacesInSquareBrackets: 'true'
+TabWidth: '2'
+UseTab: Never
