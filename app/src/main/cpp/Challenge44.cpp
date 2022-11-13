@@ -21,21 +21,9 @@
 
 #include <iostream>
 #include <vector>
+#include "utils.h"
 
 using namespace std;
-
-template<typename T, size_t n>
-void print_array(T const(& arr)[n])
-{
-    if (n > 0)
-    {
-        cout << '[';
-        for (size_t i = 0; i < n; i++) {
-            cout << arr[i] << ((i != n - 1) ? ", " : "");
-        }
-        cout << ']' << endl;  
-    }
-}
 
 void check_bumeranes(int array_bumeranes[], size_t size)
 {
