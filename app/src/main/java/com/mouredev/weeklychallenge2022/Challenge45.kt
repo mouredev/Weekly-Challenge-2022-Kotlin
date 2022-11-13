@@ -31,3 +31,73 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    drawPool(arrayOf(4, 0, 3, 6, 1, 3))
+    drawPool(arrayOf(5, 3, 7, 1, 1, 9, 2, 4))
+    drawPool(arrayOf(10, 1, 1, 8, 8, 1, 1, 10))
+}
+
+private fun drawPool(blueprint : Array<Int>) : Int{
+    val design = mutableListOf<Array<Boolean?>>()
+
+    var y = 0
+    val x = blueprint.size
+    var centerPoint = 0
+
+    blueprint.forEachIndexed { index , it ->
+        if (y < it ) {
+            y = it
+            centerPoint = index
+        }
+    }
+
+    // Set the blocks
+    repeat(x){
+        design.add(arrayOfNulls(y))
+        for (i in 0 until blueprint[it]){
+            design[it][i] = true
+        }
+    }
+
+    var numOfBlockInTheLeft = blueprint.first()
+    for (i in 1 ..centerPoint){
+        if (numOfBlockInTheLeft > blueprint[i])
+            repeat(numOfBlockInTheLeft){
+                if (design[i][it] == null  )
+                    design[i][it] = false
+            }
+        else
+            numOfBlockInTheLeft = blueprint[i]
+    }
+
+    var numOfBlockInTheRight = blueprint.last()
+    for (i in x-1 downTo centerPoint){
+        if (numOfBlockInTheRight > blueprint[i])
+            repeat(numOfBlockInTheRight){
+                if (design[i][it] == null )
+                    design[i][it] = false
+            }
+        else
+            numOfBlockInTheRight = blueprint[i]
+    }
+
+    var waterCounter = 0
+    repeat(y){  it_y ->
+        repeat(x){ it_x ->
+            print( when(design[it_x][(y-1)-it_y]){
+                false -> {
+                    waterCounter++
+                    "💧"
+                }
+                true -> "⏹"
+                null -> "\uD83D\uDCA6"
+            })
+        }
+        println()
+    }
+    repeat(x){ print("\"\'")}
+    println( "\nIt has a total of $waterCounter water blocks contained")
+
+    return waterCounter
+}
+
