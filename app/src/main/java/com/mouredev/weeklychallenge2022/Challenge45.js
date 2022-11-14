@@ -29,33 +29,85 @@
  *
  */
 
-module.exports.func = function waterContainers(input) {
-  let savedWater = 0;
-  for (let column = 1; column < input.length; column++) {
-    let leftWallHeight = findLeftWall(input, column);
-    let rightWallHeight = findRightWall(input, column);
-    if (input[column] < leftWallHeight && input[column] < rightWallHeight) {
-      savedWater +=
-        leftWallHeight < rightWallHeight
-          ? leftWallHeight - input[column]
-          : rightWallHeight - input[column];
+module.exports.func = function warterContainers(input) {
+  let saved_water = 0;
+  let column = 1;
+  while (column < input.length - 1) {
+    const leftWall = findLeftWallPosition(input, column);
+    const rightWall = findRightWallPosition(input, column);
+
+    if (input[column] >= input[leftWall] || input[column] >= input[rightWall]) {
+      column += 1;
+      continue;
+    }
+    saved_water += waterStored(input, leftWall, rightWall);
+    column = rightWall;
+  }
+  return saved_water;
+};
+
+const findLeftWallPosition = (blockList, rightLimit) => {
+  let leftWall = { val: 0, position: 0 };
+  for (let position = 0; position < rightLimit; position++) {
+    if (blockList[position] > leftWall.val) {
+      leftWall = { val: blockList[position], position: position };
     }
   }
-  return savedWater;
+  return leftWall.position;
 };
 
-const findLeftWall = (arr, rightLimit) => {
-  let leftWall = 0;
-  for (let i = 0; i < rightLimit; i++) {
-    if (arr[i] > leftWall) leftWall = arr[i];
+const findRightWallPosition = (blockList, leftLimit) => {
+  let rightWall = { val: 0, position: 0 };
+  for (let position = blockList.length - 1; position > leftLimit; position--) {
+    if (blockList[position] > rightWall.val) {
+      rightWall = { val: blockList[position], position: position };
+    }
   }
-  return leftWall;
+  return rightWall.position;
 };
 
-const findRightWall = (arr, leftLimit) => {
-  let rightWall = 0;
-  for (let i = arr.length - 1; i > leftLimit; i--) {
-    if (arr[i] > rightWall) rightWall = arr[i];
+const waterStored = (blockList, leftWall, rightWall) => {
+  let usedSpace = 0;
+  const height =
+    blockList[leftWall] < blockList[rightWall]
+      ? blockList[leftWall]
+      : blockList[rightWall];
+  const length = rightWall - (leftWall + 1);
+
+  for (let position = leftWall + 1; position < rightWall; position++) {
+    usedSpace += blockList[position];
   }
-  return rightWall;
+  return height * length - usedSpace;
 };
+
+// Code copied and adapted from Java Solution: https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/pull/1036/files
+// module.exports.func = function waterContainers(input) {
+//   let savedWater = 0;
+//   for (let column = 1; column < input.length; column++) {
+//     let leftWallHeight = findLeftWall(input, column);
+//     let rightWallHeight = findRightWall(input, column);
+//     if (input[column] < leftWallHeight && input[column] < rightWallHeight) {
+//       savedWater +=
+//         leftWallHeight < rightWallHeight
+//           ? leftWallHeight - input[column]
+//           : rightWallHeight - input[column];
+//     }
+//   }
+//   return savedWater;
+// };
+
+// const findLeftWall = (arr, rightLimit) => {
+//   let leftWall = 0;
+//   for (let i = 0; i < rightLimit; i++) {
+//     if (arr[i] > leftWall) leftWall = arr[i];
+//   }
+//   return leftWall;
+// };
+
+// const findRightWall = (arr, leftLimit) => {
+//   let rightWall = 0;
+//   for (let i = arr.length - 1; i > leftLimit; i--) {
+//     if (arr[i] > rightWall) rightWall = arr[i];
+//   }
+//   return rightWall;
+// };
