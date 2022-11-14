@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import kotlinx.coroutines.NonCancellable.children
-
 /*
  * Reto #44
  * BUMERANES
@@ -23,20 +21,37 @@ import kotlinx.coroutines.NonCancellable.children
  *
  */
 
-private fun getNumOfBoomerangs(numbers: Array<Int>): Int {
-    var numOfBoomerangs = 0
-    if(numbers.size >= 3) {
-        (0..numbers.size-3).forEach { index ->
-                if(numbers[index] == numbers[index+2] && numbers[index] != numbers[index+1]) {
-                    numOfBoomerangs += 1
-                    print("[${numbers[index]}, ${numbers[index+1]}, ${numbers[index+2]}] ")
-                }
-        }
-    }
-    return numOfBoomerangs
+fun main() {
+
+    println(numberOfBoomerangs(arrayOf(2, 1, 2, 3, 3, 4, 2, 4)))
+    println(numberOfBoomerangs(arrayOf(2, 1, 2, 1, 2)))
+    println(numberOfBoomerangs(arrayOf(1, 2, 3, 4, 5)))
+    println(numberOfBoomerangs(arrayOf(2, 2, 2, 2, 2)))
+    println(numberOfBoomerangs(arrayOf(2, -2, 2, -2, 2)))
+    println(numberOfBoomerangs(arrayOf(2, -2)))
+    println(numberOfBoomerangs(arrayOf(2)))
+    println(numberOfBoomerangs(arrayOf()))
 }
 
-fun main() {
-    println(getNumOfBoomerangs(arrayOf(2, 1)))
-    println(getNumOfBoomerangs(arrayOf(2, 1, 2, 3, 3, 4, 2, 4)))
+private fun numberOfBoomerangs(numbers: Array<Int>): Int {
+
+    if (numbers.size < 3) return 0
+
+    var boomerangs = 0
+
+    (1 until numbers.size - 1).forEach { index ->
+
+        val prev = numbers[index - 1]
+        val current = numbers[index]
+        val next = numbers[index + 1]
+
+        if (prev == next && prev != current) {
+            println("[$prev, $current, $next]")
+            boomerangs += 1
+        }
+    }
+
+    return boomerangs
 }
+
+
