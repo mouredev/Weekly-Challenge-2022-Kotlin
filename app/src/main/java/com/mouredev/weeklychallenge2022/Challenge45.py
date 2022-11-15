@@ -32,7 +32,6 @@
  */
  """
 
-import os
 
 def water_counter(list):
 
@@ -44,27 +43,31 @@ def water_counter(list):
     for i in list:
 
         if len(list) < 3 or i < 0 or isinstance(i, int) == False:
-            print("\n[!] Deben haber más de dos números enteros y positivos\n")
-            os._exit(1)
-        elif list[-1] == 0:
+            print("[!] Deben haber más de dos números enteros y positivos")
+            break
+        elif list[-1] == 0 or list[-1] <= list[-2]:
             list.pop(-1)
         elif i == 0 and max_blocks == 0:
             continue
         elif max_blocks == 0 and i != 0:
             max_blocks = i
 
-        if i <= max_blocks:
+        if i < max_blocks:
             container.append(i)
-        else:
+        elif i >= max_blocks:
             max_blocks = i
             container.append(i)
-            container.sort(reverse=True)
-            container_list.append(container)
-            container = []
-            container.append(i)
+            if container[0] == max_blocks and len(container) == 1:
+                continue
+            else:
+                container.sort(reverse=True)
+                container_list.append(container)
+                container = []
+                container.append(i)
 
-    container.sort(reverse=True)
-    container_list.append(container)
+    if len(container) > 1:    
+        container.sort(reverse=True)
+        container_list.append(container)
 
     for container in container_list:
         for i in container:
@@ -74,6 +77,6 @@ def water_counter(list):
     print(f"\n[+] Hay {water} unidades de agua\n")
 
 
-number_list = [4, 0, 3, 6, 1, 3]
-
-water_counter(number_list)
+water_counter([4, 0, 3, 6, 1, 3])#7
+water_counter([2, 0, 4, 0, 5, 0, 3, 0, 5, 0, 4, 0, 5, 0, 2])#31
+water_counter([5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5])#25
