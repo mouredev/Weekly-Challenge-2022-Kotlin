@@ -15,7 +15,6 @@
  *   secuencia de pasos gira 90 grados en el sentido contrario a las agujas
  *   del reloj.
  */
-
 // Origin Cords
 let x = 0;
 let y = 0;
