@@ -28,3 +28,28 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    MovingRobot(arrayOf(10, 5, -2));
+    MovingRobot(arrayOf(2, 5, -3, -8, 2, 0, 2, 1, 4));
+}
+
+fun MovingRobot(steps: Array<Int>){
+
+    var x = 0
+    var y = 0
+    var direction = 0
+
+    steps.forEach { step ->
+
+        when (direction) {
+            0 -> y += step
+            1 -> x -= step
+            2 -> y -= step
+            3 -> x += step
+        }
+
+        direction = (direction + 1) % 4
+    }
+
+    println("Posición final: ($x, $y)")
+}
