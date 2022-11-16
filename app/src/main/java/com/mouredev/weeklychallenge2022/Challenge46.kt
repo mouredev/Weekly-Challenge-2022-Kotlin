@@ -27,4 +27,56 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+enum class Direction(val value: Int) {
+    NORTH(0), WEST(1), SOUTH(2), EAST(3)
+}
 
+fun nextDirection(direction: Direction): Direction {
+    return if (direction == Direction.EAST) Direction.NORTH else Direction.values()[direction.value + 1]
+}
+
+fun calculateCoordinates(movements: Array<Int>): Pair<Int, Int> {
+    var x = 0
+    var y = 0
+
+    var direction = Direction.NORTH
+
+    movements.forEach { movement ->
+        when (direction) {
+            Direction.NORTH -> y += movement
+            Direction.WEST -> x -= movement
+            Direction.SOUTH -> y -= movement
+            Direction.EAST -> x += movement
+        }
+
+        direction = nextDirection(direction)
+    }
+
+    return Pair(x, y)
+}
+
+
+fun testCase(movements: Array<Int>, expectedX: Int, expectedY: Int) {
+    val coordinate = calculateCoordinates(movements)
+    val movementsInList = movements.toList()
+
+    if (coordinate.first != expectedX) {
+        throw Exception(
+            "Case with coordinate '${movementsInList}', returns ${coordinate.first} but it should be $expectedX"
+        )
+    } else if (coordinate.second != expectedY) {
+        throw Exception(
+            "Case with blocks '${movementsInList}', returns ${coordinate.second} but it should be $expectedY"
+        )
+    }
+    println("Moovements '${movementsInList}', coodinates '${coordinate}'")
+}
+
+fun main() {
+    testCase(arrayOf(10, 5, -2), expectedX = -5, expectedY = 12)
+    testCase(arrayOf(0, 5, -2, 6, 5, -4), expectedX = 5, expectedY = 7)
+    testCase(arrayOf(), expectedX = 0, expectedY = 0)
+    testCase(arrayOf(10), expectedX = 0, expectedY = 10)
+    testCase(arrayOf(10, 10), expectedX = -10, expectedY = 10)
+    testCase(arrayOf(3, -2, 4, 6, 9, 2, 1, 2, 3, 4), expectedX = 4, expectedY = 10)
+}
