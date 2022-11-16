@@ -27,4 +27,45 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+import json
 
+
+def wheres_robot(getPosition) :
+    x =0
+    y=0
+
+
+    getPosition = input()
+
+    movement = json.loads(getPosition)
+
+
+    n = len(movement)
+
+    a = 0
+    b = 0
+
+    for i in range(n) :
+
+        if i % 2 == 0: #NUMERO PAR
+  
+            if a % 2 == 0: y += int(movement[i])
+                        
+            else : y -= int(movement [i])   
+    
+            a += 1
+        
+
+        else : # n IMPAR
+        
+            if b % 2 == 0: x -= int(movement[i])   
+
+            else : x += int(movement[i])
+
+            b += 1
+
+    print ('X:',x,'Y:',y)
+
+getPosition = input()
+
+wheres_robot(getPosition)
