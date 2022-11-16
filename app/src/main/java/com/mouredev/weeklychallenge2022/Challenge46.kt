@@ -34,9 +34,6 @@ def wheres_robot(getPosition) :
     x =0
     y=0
 
-
-    getPosition = input()
-
     movement = json.loads(getPosition)
 
 
@@ -49,23 +46,26 @@ def wheres_robot(getPosition) :
 
         if i % 2 == 0: #NUMERO PAR
   
-            if a % 2 == 0: y += int(movement[i])
+            if a % 2 == 0: y += movement[i]
                         
-            else : y -= int(movement [i])   
+            else : y -= movement [i]
     
             a += 1
         
 
         else : # n IMPAR
         
-            if b % 2 == 0: x -= int(movement[i])   
+            if b % 2 == 0: x -= movement[i]  
 
-            else : x += int(movement[i])
+            else : x += movement[i]
 
             b += 1
 
     print ('X:',x,'Y:',y)
 
+print('Ingresa los pasos entre []')
+
 getPosition = input()
 
 wheres_robot(getPosition)
+
