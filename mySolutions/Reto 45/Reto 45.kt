@@ -28,7 +28,7 @@
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
- fun main() {
+ /*fun main() {
     val blockArray = arrayOf(4, 0, 3, 6, 1, 3)
     var height = 0
     var waterCount = 0
@@ -58,4 +58,4 @@
 
 
 
-}
+}*/
