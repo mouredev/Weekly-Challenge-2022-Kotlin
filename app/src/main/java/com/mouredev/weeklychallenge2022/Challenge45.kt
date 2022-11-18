@@ -1,7 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
 import java.util.ArrayDeque
-import kotlin.math.max
 
 /*
  * Reto #45
@@ -35,33 +34,59 @@ import kotlin.math.max
  */
 
 
+fun getTotalWater(blocks: Array<Int>): Long {
+    var (result, remaining) = countWaterLR(blocks)
+    if (remaining.size > 2) {
+        /**
+         * El resto de bloques podrian contener agua, ejecutamos countWaterLR sobre el resto de
+         * forma inversa para contarlos
+         */ 
+        result += countWaterLR(remaining.reversed().toTypedArray()).first
+    }
+    return result
+}
 
- fun getTotalWater(blocks: Array<Int>): Int {
-    var result = 0
+/**
+ * Cuenta el agua de izquierda a derecha, complejidad O(n):
+ * - Si se encuentra bloques apilados que son almenos igual de altos que todas ateriores, entonces
+ *   se cuenta toda el agua contenida hasta ese momento
+ * - Al final se retorna lo contado y los bloques apilados que no cumplieron la condicion anterior
+ */
+fun countWaterLR(blocks: Array<Int>): Pair<Long, Array<Int>> {
+    var count: Long = 0
     val deque = ArrayDeque<Int>()
     for (currentBlocks in blocks) {
         while(!deque.isEmpty() && deque.first() <= currentBlocks) {
-            result += deque.first() - deque.removeLast()
+            count += deque.first() - deque.removeLast()
         }
         deque.addLast(currentBlocks)
     }
-    if (deque.size > 1) {
-        // don't panic! this recursion should happen at most one time
-        result += getTotalWater(deque.reversed().toTypedArray())
+    return Pair(count, deque.toTypedArray())
+}
+
+fun testCase(blocks: Array<Int>, expected: Long) {
+    checkValidTestCase(blocks)
+    val returned = getTotalWater(blocks)
+    if (returned != expected) {
+        val blocksString = blocks.joinToString()
+        throw Exception(
+            "Case with blocks [$blocksString], returns $returned but it should be $expected"
+        )
     }
-    return result
- }
+}
 
- fun testCase(blocksCase: Array<Int>, expectedValue: Int) {
-    val valueReturned = getTotalWater(blocksCase)
-
-    if (valueReturned != expectedValue) {
-        val blockString = blocksCase.joinToString()
-        throw Exception("Case with blocks [$blockString], returns $valueReturned but it should be $expectedValue")
+fun checkValidTestCase(blocks: Array<Int>) {
+    blocks.forEach {
+        if (it < 0) {
+            val blocksString = blocks.joinToString()
+            throw Exception(
+                "Case with [$blocksString] is invalid, it should contain only positive values"
+            )
+        }
     }
- }
+}
 
- fun main() {
+fun main() {
     /*
            #
            #
@@ -148,11 +173,67 @@ import kotlin.math.max
      */
     testCase(arrayOf(1, 2, 4, 3, 3, 3, 2, 1, 1), 0)
 
-    // stress tests
+    /*
+              
+              #...#
+            #.#...#.#
+          #.#.#...#.#.#
+        #.#.#.#.#.#.#.#.#
+     */
+    testCase(arrayOf(1, 0, 2, 0, 3, 0, 4, 0, 1, 0, 4, 0, 3, 0, 2, 0, 1), 23)
 
+    /*
+        #.........#
+        #.#.....#.#
+        #.#.#.#.#.#
+        #.#.#.#.#.#
+        #.###.###.#
+     */
+    testCase(arrayOf(5, 0, 4, 1, 3, 0, 3, 1, 4, 0, 5), 29)
+
+    /*
+            #.#
+            #.#
+          #.###.#
+        #.#.###.#.#
+        #.#######.#
+     */
+    testCase(arrayOf(2, 0, 3, 1, 5, 3, 5, 1, 3, 0, 2), 10)
+
+    /*
+        #####.#####
+        ###########
+        ###########
+        ###########
+        ###########
+     */
+    testCase(arrayOf(5, 5, 5, 5, 5, 4, 5, 5, 5, 5, 5), 1)
+
+    /*
+        #....#....#
+        #....#....#
+        #...###...#
+        #..#####..#
+        ###########
+     */
+    testCase(arrayOf(5, 1, 1, 2, 3, 5, 3, 2, 1, 1, 5), 26)
+
+    // Casos extremos, para comprobar complejidad O(n)
     testCase(Array<Int>(1000000, {i -> i + 1}), 0)
+    testCase(Array<Int>(1000001, {i -> i % 2}), 499999)
     testCase(Array<Int>(1000001, {i -> 1 - i % 2}), 500000)
-    testCase(Array<Int>(1000000, {i -> i % 10}), 4499955)
+    testCase(Array<Int>(1000000, {i -> i % 100000}), 44999550000)
+    testCase(Array<Int>(1000000, {i -> 99999 - i % 100000}), 44999550000)
+    testCase(Array<Int>(1000001, {i -> 1000000000 * (i % 2)}), 499999000000000)
+    testCase(Array<Int>(1000001, {i -> 1000000000 * (1 - i % 2)}), 500000000000000)
+
+    // Casos extra
+    testCase(arrayOf(), 0)
+    testCase(arrayOf(1), 0)
+    testCase(arrayOf(1, 0), 0)
+    testCase(arrayOf(0, 1), 0)
+    testCase(arrayOf(1, 0, 1), 1)
+    testCase(arrayOf(0, 1, 0), 0)
 
     println("All cases passed!")
- }
+}
