@@ -27,6 +27,27 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+fun main(){
+    startRobot(arrayOf(10, 5, -2))
+    startRobot(arrayOf(-3, 10, 2, 5))
+}
+private fun startRobot(steps: Array<Int>){
+    var rotate=Axes.Yp
+    var xAxe=0
+    var yAxe=0
+    steps.forEach { step ->
+        when(rotate){
+            Axes.Yp->{yAxe +=step; rotate=Axes.Xn}
+            Axes.Xn->{xAxe -=step; rotate=Axes.Yn}
+            Axes.Yn->{yAxe -=step; rotate=Axes.Xp}
+            Axes.Xp->{xAxe +=step; rotate=Axes.Yp}
+        }
+    }
+    println("X= $xAxe Y= $yAxe")
+}
+enum class Axes {
+    Xp,Yp, Xn, Yn
+}
 
 fun main() {
     println(whereIsTheRobot(arrayOf(10, 5, -2)))
