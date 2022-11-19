@@ -100,4 +100,3 @@ private fun drawPool(blueprint : Array<Int>) : Int{
 
     return waterCounter
 }
-
