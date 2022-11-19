@@ -28,3 +28,50 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+fun main() {
+    println(wheresMyRobot(arrayOf(10, 5, -2)))
+    println(wheresMyRobot(arrayOf(1, 1, 1, 1)))
+    println(wheresMyRobot(arrayOf(-5, 5, -5, 5)))
+    println(wheresMyRobot(arrayOf(0, 0, 0, 0, 1, -1)))
+    println(wheresMyRobot(arrayOf(1, 1)))
+    println(wheresMyRobot(arrayOf()))
+}
+
+enum class RobotDirection {
+    Y_POSITIVE,
+    X_NEGATIVE,
+    Y_NEGATIVE,
+    X_POSITIVE;
+}
+
+private fun wheresMyRobot(moves: Array<Int>): String {
+    // robotPosition[0] --> X axis
+    // robotPosition[1] --> Y axis
+    val robotPosition = arrayOf(0, 0)
+    var direction = RobotDirection.Y_POSITIVE
+
+    moves.forEach { move ->
+        when (direction) {
+            RobotDirection.Y_POSITIVE -> {
+                robotPosition[1] += move
+                direction = RobotDirection.X_NEGATIVE
+            }
+            RobotDirection.X_NEGATIVE -> {
+                robotPosition[0] -= move
+                direction = RobotDirection.Y_NEGATIVE
+            }
+            RobotDirection.Y_NEGATIVE -> {
+                robotPosition[1] -= move
+                direction = RobotDirection.X_POSITIVE
+            }
+            RobotDirection.X_POSITIVE -> {
+                robotPosition[0] += move
+                direction = RobotDirection.Y_POSITIVE
+            }
+        }
+    }
+    return robotPosition.formatResult()
+}
+
+private fun Array<Int>.formatResult(): String = "(x: ${this[0]}, y: ${this[1]})"
