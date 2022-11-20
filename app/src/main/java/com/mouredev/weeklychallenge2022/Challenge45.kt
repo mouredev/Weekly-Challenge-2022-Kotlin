@@ -31,41 +31,42 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-private fun getWaterUnits(input: Array<Int>, draw: Boolean = true): Int {
-    var result = 0
-    val numRows = input.maxOrNull() ?: 0
-    (0 until numRows).forEach{ row ->
-        var line = ""
-        var previousBlockColumn = -1
-        input.indices.forEach { column ->
-            if(numRows-row <= input[column]) {
-                (previousBlockColumn+1 until column).forEach { _ ->
-                    if(previousBlockColumn == -1) {
-                        line += "➖"
-                    } else {
-                        line += "💧"
-                        result += 1
-                    }
+fun main() {
+    println(calculateWaterUnits(arrayOf(4, 0, 3, 6)))
+    println(calculateWaterUnits(arrayOf(4, 0, 3, 6, 1, 3)))
+    println(calculateWaterUnits(arrayOf(5, 4, 3, 2, 1, 0)))
+    println(calculateWaterUnits(arrayOf(0, 1, 2, 3, 4, 5)))
+    println(calculateWaterUnits(arrayOf(4, 0, 3, 6, 1, 3, 0, 1, 6)))
+}
+
+private fun calculateWaterUnits(container: Array<Int>): Int {
+
+    var units = 0
+    var wall = 0
+    var nextWall = 0
+
+    container.forEachIndexed { index, blocks ->
+
+        if (blocks < 0) {
+            return@forEachIndexed
+        }
+
+        if (index != container.size - 1 && (index == 0 || nextWall == blocks)) {
+
+            wall = if (index == 0) blocks else nextWall
+
+            nextWall = 0
+            for (nextBlocksIndex in index + 1 until container.size) {
+                if (container[nextBlocksIndex] >= nextWall) {
+                    nextWall = container[nextBlocksIndex]
                 }
-                line += ("⏹")
-                previousBlockColumn = column
             }
-        }
-        (line.replace("\uD83D","").length until input.size).forEach { _ ->
-            line += "➖"
-        }
-        if(draw) {
-            println(line)
+        } else {
+            val referenceWall = if (nextWall > wall) wall else nextWall
+            val currentBlocks = referenceWall - blocks
+            units += if (currentBlocks >= 0) currentBlocks else 0
         }
     }
-    return result
+
+    return units
 }
-
-fun main() {
-    println(getWaterUnits(arrayOf()))
-    println(getWaterUnits(arrayOf(1, 2, 3, 3, 2, 1)))
-    println(getWaterUnits(arrayOf(4, 3, 1, 1, 3, 4)))
-    println(getWaterUnits(arrayOf(4, 0, 3, 6, 1, 3)))
-}
-
-
