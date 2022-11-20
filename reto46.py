@@ -41,7 +41,7 @@ def donde_esta_robot(pasos):
         else:
             x += pasos[paso]
 
-        sentido = (sentido + 1) % 5
+        sentido = (sentido + 1) % 4
 
     cordenadas.append(x)
     cordenadas.append(y)
