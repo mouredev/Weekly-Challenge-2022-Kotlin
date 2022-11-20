@@ -28,3 +28,47 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+public class Reto46 {
+
+	static int[] secuencia1 = { 3, 5, 7, -1 };
+	static int[] secuencia2 = { 1 };
+	static int[] secuencia3 = { 1 };
+	static int[] secuencia4 = { 2 };
+	static int[] secuencia5 = { -2, 7, 8 };
+
+	static int[][] Recorrido = { secuencia1, secuencia2, secuencia3, secuencia4, secuencia5 };
+
+	static int numSecuencia = 0;
+	static boolean positive = false;
+
+	static int[] coordenadas = { 0, 0 };
+
+	public static void main(String[] args) {
+		avance(Recorrido[numSecuencia]);
+
+	}
+
+	static void avance(int[] secuencia) {
+		int index;
+		if (numSecuencia % 2 != 0) {
+			index = 0;
+		} else {
+			index = 1;
+			positive = !positive;
+		}
+
+		int total = 0;
+		
+		for (int i = 0; i < secuencia.length; i++) {
+			total += secuencia[i];
+		}
+		coordenadas[index] += total * (positive ? 1 : -1);
+		numSecuencia++;
+		System.out.println(coordenadas[0] + " " + coordenadas[1]);
+		if (numSecuencia == Recorrido.length) {
+
+		} else {
+			avance(Recorrido[numSecuencia]);
+		}
+	}
+}
