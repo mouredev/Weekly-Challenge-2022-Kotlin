@@ -28,3 +28,40 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+const calculatePositionRobot = (steps) => {
+ 
+  const position = [0, 0];
+  let direction = ['+', 'y'];
+ 
+  if(steps?.length <= 0) {
+    return position;
+  }
+ 
+  steps.forEach(step => {
+    const posOperation = direction[1] === 'x' ? 0 : 1;
+    const operation = direction[0] === '+' ? 1 : -1;
+   
+    position[posOperation] = position[posOperation] +  (step * operation);
+    direction = robotErrorDirection(direction);
+   
+  });
+ 
+  return position;
+ 
+}
+
+const robotErrorDirection = (direction) => {
+ const newDirection = [,];
+ (direction[1] === 'y') ? newDirection[1]= 'x' : newDirection[1]= 'y';
+ (direction[1] === 'y') ? (direction[0]=== '+' ? newDirection[0] = '-' : newDirection[0] ='+' ) : newDirection[0] = direction[0];
+  return newDirection;
+}
+
+
+
+console.log(calculatePositionRobot([1, 1, 1, 1])); //[0,0]
+console.log(calculatePositionRobot([1, -1, 1, -1])); //[0,0]
+console.log(calculatePositionRobot([-1, 1, -1, 1])); //[0,0]
+console.log(calculatePositionRobot([-1, -1, -1, -1])); //[0,0]
+console.log(calculatePositionRobot([1, -1, -1, -1])); //[0,2]
+console.log(calculatePositionRobot([10, 5, -2]));//[-5,12]
