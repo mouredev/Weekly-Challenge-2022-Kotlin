@@ -28,3 +28,37 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+import kotlin.math.sin
+import kotlin.math.cos
+import kotlin.math.PI
+import kotlin.math.roundToInt
+
+fun main() {
+    val startDegrees = 90.00
+    val rotationDegrees = 90.00
+    
+    val steps = listOf(10, 5, -2)    
+    
+    val finalPosition = moveRobot(startDegrees, rotationDegrees, steps)
+    
+    println("Posicion final: $finalPosition")
+}
+
+fun moveRobot(startDegrees: Double, rotationDegrees: Double, steps: List<Int>): Pair<Double, Double> {
+    var (x, y) = Pair(0.0, 0.0)
+    
+    var rotationRadian = startDegrees * (PI/180)            
+    var (x1, y1) = Pair(cos(rotationRadian), sin(rotationRadian))        
+    
+    steps.forEach { step ->                                     
+        x += x1 * step
+        y += y1 * step
+        
+        rotationRadian += rotationDegrees * (PI/180)                
+        
+        x1 = cos(rotationRadian)
+        y1 = sin(rotationRadian) 
+    }        
+    
+    return Pair((x * 100.0).roundToInt() / 100.0, (y*100.0).roundToInt() /100.0)
+}
