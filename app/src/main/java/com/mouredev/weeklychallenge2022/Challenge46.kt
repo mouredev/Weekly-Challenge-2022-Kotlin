@@ -29,6 +29,10 @@ package com.mouredev.weeklychallenge2022
  */
 private enum class Direction {
     NORTH, EAST, SOUTH, WEST;
+
+    fun turn(): Direction {
+        return values()[(this.ordinal+1) % values().size]
+    }
 }
 
 private data class Coordinates(var x: Int, var y: Int) {
@@ -42,24 +46,13 @@ private fun moveRobot(moves: Array<Int>): Coordinates {
     var direction = Direction.NORTH
 
     moves.forEach { move ->
-            when(direction) {
-                Direction.NORTH -> {
-                    coordinates.y += move
-                    direction = Direction.WEST
-                }
-                Direction.EAST -> {
-                    coordinates.x += move
-                    direction = Direction.NORTH
-                }
-                Direction.SOUTH -> {
-                    coordinates.y -= move
-                    direction = Direction.EAST
-                }
-                Direction.WEST -> {
-                    coordinates.x -= move
-                    direction = Direction.SOUTH
-                }
-            }
+        when(direction) {
+            Direction.NORTH -> coordinates.y += move
+            Direction.EAST -> coordinates.x += move
+            Direction.SOUTH -> coordinates.y -= move
+            Direction.WEST -> coordinates.x -= move
+        }
+        direction.turn()
     }
     return coordinates
 }
