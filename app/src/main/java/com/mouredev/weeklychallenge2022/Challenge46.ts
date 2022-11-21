@@ -90,14 +90,14 @@ export class Robot {
     /**
      * Devuelve las coordenadas actuales del robot
      */
-    getCoordinates() {
+    getCoordinates(): { x: number, y: number } {
         return {x: this.x, y: this.y}
     }
 
     /**
      * Pinta la ruta seguida actual por el robot.
      */
-    getRoute(){
+    getRoute():string{
         return this.route
     }
 }

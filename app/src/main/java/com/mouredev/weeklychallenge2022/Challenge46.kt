@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import kotlin.math.abs
+
 /*
  * Reto #46
  * ¿DÓNDE ESTÁ EL ROBOT?
@@ -28,3 +30,124 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+
+
+/**
+ * Función principal
+ */
+fun main(){
+    val robot = Robot()
+    robot.move(arrayOf(10, 5, -2))
+    robot.printPosition()
+    robot.printRoute()
+    robot.reset()
+}
+
+
+/**
+ * Clase que representa un robot
+ * Cada robot tiene las coordenadas (x, y) en las que se encuentra
+ * y un array de pasos que debe dar.
+ * Tambien tiene un atributo que indica la direccion en la que mira
+ */
+class Robot {
+
+    enum class Direction {
+        UP,
+        LEFT,
+        DOWN,
+        RIGHT
+    }
+
+    private var x = 0
+    private var y = 0
+    private var direction = Direction.UP
+    private var route:String = ""
+
+    /**
+     * Metodo que mueve al robot segun los pasos indicados en el array
+     * @param steps Array de pasos a dar
+     * en cada coordenadada de pasos el robot gira 90 grados hacia la izquierda
+     */
+    fun move(steps: Array<Int>) {
+        steps.forEach { step ->
+            when (direction) {
+                Direction.UP ->{
+                    route += if(step>0){
+                        "🡹".repeat(abs(step))
+                    } else{
+                        "🡻".repeat(abs(step))
+                    }
+                    y += step
+                }
+
+                Direction.RIGHT -> {
+                    route += if(step>0){
+                        "🡺".repeat(abs(step))
+                    } else{
+                        "🡸".repeat(abs(step))
+                    }
+                    x += step
+                }
+                Direction.DOWN -> {
+                    route += if(step>0){
+                        "🡻".repeat(abs(step))
+                    } else{
+                        "🡹".repeat(abs(step))
+                    }
+                    y -= step
+                }
+                Direction.LEFT ->{
+                    route += if(step>0){
+                        "🡸".repeat(abs(step))
+                    } else{
+                        "🡺".repeat(abs(step))
+                    }
+                    x -= step
+
+                }
+            }
+            turn()
+        }
+
+    }
+
+    /**
+     * Funcion que realiza el giro del robot
+     * cada vez que se mueve el robot gira 90 grados hacia la izquierda
+     */
+    private fun turn() {
+        direction = when (direction) {
+            Direction.UP -> Direction.LEFT
+            Direction.LEFT -> Direction.DOWN
+            Direction.DOWN -> Direction.RIGHT
+            Direction.RIGHT -> Direction.UP
+        }
+    }
+    /**
+     * Funcion que resetea al robot y lo devuelve a las coordenadas iniciales
+     */
+    fun reset(){
+        x = 0
+        y = 0
+        direction = Direction.UP
+        route = ""
+    }
+    /**
+     * Pinta la ruta seguida actual por el robot.
+     */
+
+    fun printRoute(){
+        println(route)
+    }
+    /**
+     * Devuelve las coordenadas actuales del robot
+     */
+    fun printPosition(){
+        println("x: $x, y: $y")
+    }
+
+    fun coordenates(): Pair<Int, Int> {
+        return Pair(x, y)
+    }
+}
