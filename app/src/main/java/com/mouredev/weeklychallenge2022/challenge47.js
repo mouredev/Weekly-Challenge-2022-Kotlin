@@ -31,5 +31,5 @@ function countVowels(str){
 	let max = Math.max(...Object.values(result)) // get the max value
 	return Object.keys(result).find(key => result[key] === max) //return the index with the max value
 }
-let str = 'bvvcfda'
+let str = 'Please count this text and count vowels'
 console.log(countVowels(str))
