@@ -21,6 +21,7 @@ function countVowels(str){
   	let regex = /[aeiou]/gi;
 	let text = str.match(regex) // only vowels
 	let result = {} //counter by vowel
+    	if (!text) return null
 	text.forEach(function(i){
 		if (typeof result[i] == 'undefined'){
   			result[i]=0
@@ -30,5 +31,5 @@ function countVowels(str){
 	let max = Math.max(...Object.values(result)) // get the max value
 	return Object.keys(result).find(key => result[key] === max) //return the index with the max value
 }
-let str = 'Please count this text and count vowels'
+let str = 'bvvcfda'
 console.log(countVowels(str))
