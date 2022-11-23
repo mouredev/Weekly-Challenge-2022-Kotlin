@@ -26,16 +26,22 @@ class Vowel
 
   def count_vowels(input)
     vowels = /[aeiou]/
-    vowels_numbers = {}
+    # vowels_numbers = {}
     # input.downcase.tr('áéíóúü', 'aeiouu').each_char do |elem|
-    input.downcase.gsub(/[áéíóúü]/, 'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u',
-                                    'ü' => 'u').each_char do |letter|
-      next unless letter.match(vowels)
+    # input.downcase.gsub(/[áéíóúü]/, 'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u',
+    # 'ü' => 'u').scan(vowels).each do |letter|
+    # input.downcase.gsub(/[áéíóúü]/, 'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u',
+    #                                 'ü' => 'u').each_char do |letter|
+    # next unless letter.match(vowels)
 
-      vowels_numbers[letter] = 0 unless vowels_numbers.keys.include?(letter)
-      vowels_numbers[letter] += 1
+    #   vowels_numbers[letter] = 0 unless vowels_numbers.keys.include?(letter)
+    #   vowels_numbers[letter] += 1
+    # end
+
+    input.downcase.gsub(/[áéíóúü]/, 'á' => 'a', 'é' => 'e', 'í' => 'i', 'ó' => 'o', 'ú' => 'u',
+                                    'ü' => 'u').scan(vowels).each.with_object(Hash.new(0)) do |letter, sum|
+      sum[letter] += 1
     end
-    vowels_numbers
   end
 
   def max_vowel(counted_vowels)
