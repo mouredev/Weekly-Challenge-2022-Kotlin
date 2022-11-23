@@ -16,6 +16,4 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en
  *   https://retosdeprogramacion.com/semanales2022.
  *
- */ PROBANDO PUSH actualizacion
-
-probando PULL
+ */ eliminadas las pruebas
