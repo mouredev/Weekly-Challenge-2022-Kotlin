@@ -3,7 +3,7 @@ package com.mouredev.weeklychallenge2022
 /*
  * Reto #46
  * ¿DÓNDE ESTÁ EL ROBOT?
- * Fecha publicación enunciado: 14/10/22
+ * Fecha publicación enunciado: 14/11/22
  * Fecha publicación resolución: 21/11/22
  * Dificultad: MEDIA
  *
@@ -28,3 +28,48 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println(whereIsTheRobot(arrayOf(10, 5, -2)))
+    println(whereIsTheRobot(arrayOf(0, 0, 0)))
+    println(whereIsTheRobot(arrayOf()))
+    println(whereIsTheRobot(arrayOf(-10, -5, 2)))
+    println(whereIsTheRobot(arrayOf(-10, -5, 2, 4, -8)))
+}
+
+private enum class Direction {
+
+    POSITIVEY, NEGATIVEX, NEGATIVEY, POSITIVEX;
+
+    fun turn(): Direction {
+
+        return when (this) {            POSITIVEY -> NEGATIVEX
+            NEGATIVEX -> NEGATIVEY
+            NEGATIVEY -> POSITIVEX
+            POSITIVEX -> POSITIVEY
+
+        }
+    }
+
+}
+
+private fun whereIsTheRobot(steps: Array<Int>): String {
+
+    var x = 0
+    var y = 0
+
+    var direction = Direction.POSITIVEY
+
+    steps.forEach { step ->
+
+        when (direction) {
+            Direction.POSITIVEY -> y += step
+            Direction.NEGATIVEX -> x -= step
+            Direction.NEGATIVEY -> y -= step
+            Direction.POSITIVEX -> x += step
+        }
+
+        direction = direction.turn()
+    }
+
+    return "x: $x, y: $y, direction: $direction"
+}
