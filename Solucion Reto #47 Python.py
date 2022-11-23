@@ -22,15 +22,12 @@ for word in text:
 
 # in case of more than 1 vowel repited de same number of times
 max_vowels = []
-print('max =>',max(count))
 for c in range(len(count)):
-    print(c,' ==> ',vowels[c],' ==> cant:',count[c])
     if count[c] == max(count):
         max_vowels.append(vowels[c])
 
         
 # Show the information    
-print(text)
 if len(max_vowels) > 1:
     print(f'Las letras que mas se repiten son {max_vowels} y se repiten {max(count)} veces')
 else:
