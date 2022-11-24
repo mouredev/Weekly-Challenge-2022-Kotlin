@@ -17,3 +17,16 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+def vocal_comun(texto):
+  texto_min=texto.lower()
+  vocales={'a':0, 'e':0, 'i':0, 'o':0,'u':0}
+  for letra in texto_min:
+    if letra in vocales.keys():
+      vocales[letra]+=1
+  max=0
+  max_vocal=''
+  for vocal,reps in vocales.items():
+    if reps>max:
+      max=reps
+      max_vocal=vocal
+  return max_vocal
