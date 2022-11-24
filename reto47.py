@@ -3,8 +3,10 @@
 #Recorrer esa lista y preguntar cuantas veces se repite dicha vocal en la lista
 #hacer uso de la funcion max o crear una funcion que recorrar el numero maximo
 from unicodedata import normalize
-string = "sdfcyafeweèaaaaàààààààààà"
+string = "sdfcyafeweèaaaaààààààààààIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
+print(string.lower())
 def search_vocal_more_repit(texto: str):
+  texto=texto.lower()
   list_vocal  = ["a","e","i","o","u"]
   my_dict = dict()
   val_return=""
