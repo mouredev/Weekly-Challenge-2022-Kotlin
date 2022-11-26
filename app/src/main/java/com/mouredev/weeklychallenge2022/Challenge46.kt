@@ -3,7 +3,7 @@ package com.mouredev.weeklychallenge2022
 /*
  * Reto #46
  * ¿DÓNDE ESTÁ EL ROBOT?
- * Fecha publicación enunciado: 14/10/22
+ * Fecha publicación enunciado: 14/11/22
  * Fecha publicación resolución: 21/11/22
  * Dificultad: MEDIA
  *
@@ -36,41 +36,41 @@ fun main (){
 
 }
 
-private class WalkingRobot{
+private class WalkingRobot {
     private var y = 0
     private var x = 0
     private var actualDirection = 0
     private var walkingDirection = Orientation.Up
 
-    private enum class Orientation(val xMultiplier : Int,val yMultiplier : Int){
+    private enum class Orientation(val xMultiplier: Int, val yMultiplier: Int) {
         Up(xMultiplier = 0, yMultiplier = 1),
         Left(xMultiplier = -1, yMultiplier = 0),
         Down(xMultiplier = 0, yMultiplier = -1),
         Right(xMultiplier = 1, yMultiplier = 0)
     }
 
-    fun goWalk(numberOfStepsList : List<Int>){
+    fun goWalk(numberOfStepsList: List<Int>) {
         printCoordinates()
         println("After the robot gets $numberOfStepsList by input...")
-        numberOfStepsList.forEach{takeSteps(it)}
+        numberOfStepsList.forEach { takeSteps(it) }
         printCoordinates()
         println()
     }
 
-    fun printCoordinates(){
+    fun printCoordinates() {
         println("The robot is at [X=$x|Y=$y], facing ${walkingDirection.name}")
     }
 
-    private fun takeSteps(numberOfSteps : Int){
-        x += walkingDirection.xMultiplier*numberOfSteps
-        y += walkingDirection.yMultiplier*numberOfSteps
+    private fun takeSteps(numberOfSteps: Int) {
+        x += walkingDirection.xMultiplier * numberOfSteps
+        y += walkingDirection.yMultiplier * numberOfSteps
         malfunction()
     }
 
-    private fun malfunction(){
+    private fun malfunction() {
         actualDirection++
         if (actualDirection == 4) actualDirection = 0
-        walkingDirection = when (actualDirection){
+        walkingDirection = when (actualDirection) {
             0 -> Orientation.Up
             1 -> Orientation.Left
             2 -> Orientation.Down
