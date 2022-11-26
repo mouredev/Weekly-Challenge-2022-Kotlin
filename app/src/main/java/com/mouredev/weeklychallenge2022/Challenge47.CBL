@@ -7,20 +7,20 @@
        FILE SECTION.
        WORKING-STORAGE SECTION.
          01 WS-VARIABLES.
-           05 WS-TEXT        PIC X(1000) VALUE SPACES.
-           05 WS-LENGTH      PIC 9(4)    VALUE ZEROS.
-           05 WS-I           PIC 9(4)    VALUE ZEROS.
-           05 WS-COUNT-PREV  PIC 9(4)    VALUE ZEROS.
+           05 WS-TEXT       PIC X(1000) VALUE SPACES.
+           05 WS-LENGTH     PIC 9(4)    VALUE ZEROS.
+           05 WS-I          PIC 9(4)    VALUE ZEROS.
+           05 WS-COUNT-PREV PIC 9(4)    VALUE ZEROS.
 
-         01 SW-SWITCHES      PIC X(1)    VALUE 'N'.
+         01 SW-SWITCHES     PIC X(1)    VALUE 'N'.
            88 SW-VOWELS                  VALUE 'Y'.
 
          01 TABLES.
-           05 WS-VOWELS-AUX  PIC X(20)   VALUE 'a000e000i000o000u000'.
-             05 FILLER REDEFINES WS-VOWELS-AUX.
-               10 WS-VOWELS OCCURS 5 INDEXED BY WS-J.
-                 15 WS-VOWEL PIC X(1).
-                 15 WS-COUNT PIC 9(3).
+           05 WS-VOWELS-AUX PIC X(20)   VALUE 'a000e000i000o000u000'.
+           05 FILLER REDEFINES WS-VOWELS-AUX.
+             10 WS-VOWELS OCCURS 5 INDEXED BY WS-J.
+               15 WS-VOWEL  PIC X(1).
+               15 WS-COUNT  PIC 9(3).
 
        PROCEDURE DIVISION.
            INITIALIZE WS-VARIABLES
