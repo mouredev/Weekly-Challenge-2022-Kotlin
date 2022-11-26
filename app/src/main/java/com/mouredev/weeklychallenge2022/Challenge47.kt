@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.Normalizer
+
 /*
  * Reto #47
  * VOCAL MÁS COMÚN
@@ -17,3 +19,38 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    println(getVocal(""))
+    println(getVocal("aeiou"))
+    println(getVocal("zxcvbnm,.@#¬1353<>~¨d+"))
+    println(getVocal("HOLA mundo"))
+    println(getVocal("aáÄÀA"))
+}
+
+fun getVocal(text: String): String {
+    val vocalsList = listOf('a', 'e', 'i', 'o', 'u')
+    val mostUsedVocals = mutableListOf<Char>()
+    var maxVocalCount = 0
+
+    //se eliminan todos los acentos o marcas
+    val normalizedText =
+        Normalizer.normalize(text, Normalizer.Form.NFD).lowercase().replace("\\p{M}+".toRegex(), "")
+
+    vocalsList.forEach { vocal ->
+        val vocalCount = normalizedText.count { it == vocal } //para cada vocal, almacena el número de vocales que contiene texto de entrada
+        if(vocalCount > maxVocalCount){
+            maxVocalCount = vocalCount
+            mostUsedVocals.clear()
+            mostUsedVocals.add(vocal)
+        }
+        else if(vocalCount == maxVocalCount && vocalCount != 0){
+            mostUsedVocals.add(vocal)
+        }
+    }
+
+    return if(mostUsedVocals.isEmpty())
+        "No hay vocales"
+    else
+        "Vocales más repetidas: $mostUsedVocals , repeticiones: $maxVocalCount"
+}
