@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #47
  * VOCAL MÁS COMÚN
@@ -17,3 +19,37 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+
+fun main(){
+    println(countVowels("Martha is a graphic designer"))
+    println(countVowels("aa eeee iiiii uuuuuu"))
+    println(countVowels(""))
+}
+private fun countVowels(text:String):String{
+    val vowels= mutableMapOf<String,Int>()
+
+    if(text.isEmpty())return ""
+
+    text.lowercase(Locale.getDefault()).replace("[^aeiou]".toRegex(),"").forEach { char->
+        if(vowels[char.toString()] !=null){
+            vowels[char.toString()] = vowels.getValue(char.toString()) + 1
+        }
+        else{
+            vowels[char.toString()]=1
+        }
+    }
+    var maxValue = 0
+    var vowelKey = ""
+    vowels.forEach{vowel->
+        maxValue=vowel.value
+        for(v in vowels){
+            if(v.value>maxValue){
+                maxValue=v.value
+                vowelKey=v.key
+
+            }
+        }
+    }
+    return "'${vowelKey}' se repite $maxValue veces"
+}
