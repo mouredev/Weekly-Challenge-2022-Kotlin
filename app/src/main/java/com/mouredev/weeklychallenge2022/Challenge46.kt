@@ -3,7 +3,7 @@ package com.mouredev.weeklychallenge2022
 /*
  * Reto #46
  * ¿DÓNDE ESTÁ EL ROBOT?
- * Fecha publicación enunciado: 14/10/22
+ * Fecha publicación enunciado: 14/11/22
  * Fecha publicación resolución: 21/11/22
  * Dificultad: MEDIA
  *
@@ -27,37 +27,49 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
-private enum class Direction {
-    NORTH, WEST, SOUTH, EAST;
-
-    fun turn(): Direction {
-        return values()[(this.ordinal+1) % values().size]
-    }
-}
-
-private data class Coordinates(var x: Int, var y: Int) {
-    override fun toString(): String {
-        return "(x: $x, y: $y)"
-    }
-}
-
-private fun moveRobot(moves: Array<Int>): Coordinates {
-    var coordinates = Coordinates(0, 0)
-    var direction = Direction.NORTH
-
-    moves.forEach { move ->
-        when(direction) {
-            Direction.NORTH -> coordinates.y += move
-            Direction.WEST -> coordinates.x -= move
-            Direction.SOUTH -> coordinates.y -= move
-            Direction.EAST -> coordinates.x += move
-        }
-        direction = direction.turn()
-    }
-    return coordinates
-}
 
 fun main() {
-    println(moveRobot(arrayOf(10, 5, -2)))
+    println(whereIsTheRobot(arrayOf(10, 5, -2)))
+    println(whereIsTheRobot(arrayOf(0, 0, 0)))
+    println(whereIsTheRobot(arrayOf()))
+    println(whereIsTheRobot(arrayOf(-10, -5, 2)))
+    println(whereIsTheRobot(arrayOf(-10, -5, 2, 4, -8)))
 }
 
+private enum class Direction {
+
+    POSITIVEY, NEGATIVEX, NEGATIVEY, POSITIVEX;
+
+    fun turn(): Direction {
+
+        return when (this) {            POSITIVEY -> NEGATIVEX
+            NEGATIVEX -> NEGATIVEY
+            NEGATIVEY -> POSITIVEX
+            POSITIVEX -> POSITIVEY
+
+        }
+    }
+
+}
+
+private fun whereIsTheRobot(steps: Array<Int>): String {
+
+    var x = 0
+    var y = 0
+
+    var direction = Direction.POSITIVEY
+
+    steps.forEach { step ->
+
+        when (direction) {
+            Direction.POSITIVEY -> y += step
+            Direction.NEGATIVEX -> x -= step
+            Direction.NEGATIVEY -> y -= step
+            Direction.POSITIVEX -> x += step
+        }
+
+        direction = direction.turn()
+    }
+
+    return "x: $x, y: $y, direction: $direction"
+}
