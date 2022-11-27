@@ -10,22 +10,22 @@ def most_repeated_vowels(text):
         print("There are no vowels in text provided")
     else:
         for n in range(len(text)):
-            if text[n] == "a":
+            if text[n].lower() == "a":
                 a += 1
-            elif text[n] == "e":
+            elif text[n].lower() == "e":
                 e += 1
-            elif text[n] == "o":
+            elif text[n].lower() == "o":
                 o += 1
-            elif text[n] == "i":
+            elif text[n].lower() == "i":
                 i += 1
-            elif text[n] == "u":
+            elif text[n].lower() == "u":
                 u += 1
             else:
                 continue
 
     values_dict = {'a': a, 'e': e, 'o': o, 'i': i, 'u': u}
 
-    print(f"the most repeated vowels is '{max(values_dict, key=values_dict.get)}'' with '{values_dict[max(values_dict, key=values_dict.get)]}' presences")
+    print(f"the most repeated vowels is '{max(values_dict, key=values_dict.get)}' with '{values_dict[max(values_dict, key=values_dict.get)]}' presences")
 
 #most_repeated_vowels('sdfghjy')
-most_repeated_vowels('rsedeeeioaa')
+most_repeated_vowels('rsedaaaioAa')
