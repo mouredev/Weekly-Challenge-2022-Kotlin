@@ -1,6 +1,6 @@
 package com.mouredev.weeklychallenge2022
 
-import java.text.Normalizer
+import java.util.*
 
 /*
  * Reto #47
@@ -10,8 +10,7 @@ import java.text.Normalizer
  * Dificultad: FÁCIL
  *
  * Enunciado: Crea un función que reciba un texto y retorne la vocal que más veces se repita.
- * - Ten cuidado con algunos casos especiales.
- * - Si no hay vocales podrá devolver vacío.
+ * Si no hay vocales podrá devolver vacío.
  *
  * Información adicional:
  * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
@@ -21,41 +20,36 @@ import java.text.Normalizer
  *
  */
 
-fun main() {
-    println(mostRepeatedVowel("aaaaaeeeeiiioou"))
-    println(mostRepeatedVowel("AáaaaEeeeIiiOoU"))
-    println(mostRepeatedVowel("eeeeiiioouaaaaa"))
-    println(mostRepeatedVowel(".-Aá?aaaBbEeeweIiiOoU:"))
-    println(mostRepeatedVowel(".-Aá?aaa BbEeew eIiiOoU:"))
-    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoU:"))
-    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoUuuuuu:"))
-    println(mostRepeatedVowel("aeiou"))
-    println(mostRepeatedVowel("brp qyz"))
+
+fun main(){
+    println(countVowels("Martha is a graphic designer"))
+    println(countVowels("aa eeee iiiii uuuuuu"))
+    println(countVowels(""))
 }
+private fun countVowels(text:String):String{
+    val vowels= mutableMapOf<String,Int>()
 
-private fun mostRepeatedVowel(text: String) : List<String> {
+    if(text.isEmpty())return ""
 
-    val vowelCount = mutableMapOf<Char, Int>()
-
-    Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).forEach { character ->
-        if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u') {
-            vowelCount[character] = vowelCount[character]?.plus(1) ?: 1
+    text.lowercase(Locale.getDefault()).replace("[^aeiou]".toRegex(),"").forEach { char->
+        if(vowels[char.toString()] !=null){
+            vowels[char.toString()] = vowels.getValue(char.toString()) + 1
+        }
+        else{
+            vowels[char.toString()]=1
         }
     }
+    var maxValue = 0
+    var vowelKey = ""
+    vowels.forEach{vowel->
+        maxValue=vowel.value
+        for(v in vowels){
+            if(v.value>maxValue){
+                maxValue=v.value
+                vowelKey=v.key
 
-    val mostRepeated = mutableListOf<String>()
-    var maxRepeated = 0
-
-    vowelCount.forEach { (vowel: Char, count: Int) ->
-        if (count >= maxRepeated) {
-            if (count > maxRepeated) {
-                mostRepeated.clear()
             }
-            mostRepeated.add(vowel.toString())
-
-            maxRepeated = count
         }
     }
-
-    return mostRepeated
+    return "'${vowelKey}' se repite $maxValue veces"
 }
