@@ -16,9 +16,10 @@
 module Challenge47 where
 
 import qualified Data.Map as Map
+import Data.Char
 
 vocals :: [Char]
-vocals = ['a', 'e', 'i', 'o', 'u']
+vocals = ['A', 'E', 'I', 'O', 'U']
 
 vocal :: (Num a) => Map.Map Char a
 vocal = Map.empty
@@ -26,8 +27,8 @@ vocal = Map.empty
 count :: (Enum b, Num b) => Map.Map Char b ->  String -> Map.Map Char b
 count v [] = v
 count v (t:ts)
-  | Map.member t v = count (Map.update (\x -> Just (succ x)) t v) ts
-  | elem t vocals = count (Map.insert t 1 v) ts
+  | Map.member (toUpper t) v = count (Map.update (\x -> Just (succ x)) (toUpper t) v) ts
+  | elem (toUpper t) vocals = count (Map.insert (toUpper t) 1 v) ts
   | otherwise = count v ts
 
 mostRepeatedVocal :: (Ord v, Enum v, Num v) => String -> Map.Map Char v
