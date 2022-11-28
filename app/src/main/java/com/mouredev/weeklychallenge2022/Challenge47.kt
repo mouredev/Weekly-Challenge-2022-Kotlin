@@ -22,10 +22,20 @@ import java.text.Normalizer
 
 fun main() {
 
-    mostCommonVowel("El ingenioso hidalgo Don Quijote de la Mancha\\\" En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor")
-    mostCommonVowel("sqrt")
+    println(mostCommonVowel("El ingenioso hidalgo Don Quijote de la Mancha\\\" En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor"))
+    println(mostCommonVowel("sqrt"))
+    println(mostCommonVowel("¿Son robos o sobornos?"))
+    println(mostCommonVowel(""))
+
 }
 
+/**
+ * Función que recibe un texto y retorna la vocal que más veces se repite y ademas la imprime en consola
+ * Si no hay vocales devolverá una cadena vacia
+ * @param text Texto a analizar
+ * @returns Vocal que más veces se repite
+ * @param text
+ */
 
 fun mostCommonVowel(text: String): String {
 
@@ -51,6 +61,11 @@ fun mostCommonVowel(text: String): String {
     return mostCommon
 }
 
+/**
+ * Función que normaliza el texto quitando los acentos y caracteres especiales
+ * @param str Texto a normalizar
+ * @returns Texto normalizado
+ */
 private fun String.normalize(): String {
     return Normalizer.normalize(this.lowercase(), Normalizer.Form.NFD)
         .replace("[^\\p{ASCII}]".toRegex(), "").lowercase()
