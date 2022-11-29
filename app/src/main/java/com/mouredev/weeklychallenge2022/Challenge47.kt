@@ -10,7 +10,8 @@ import java.text.Normalizer
  * Dificultad: FÁCIL
  *
  * Enunciado: Crea un función que reciba un texto y retorne la vocal que más veces se repita.
- * Si no hay vocales podrá devolver vacío.
+ * - Ten cuidado con algunos casos especiales.
+ * - Si no hay vocales podrá devolver vacío.
  *
  * Información adicional:
  * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
