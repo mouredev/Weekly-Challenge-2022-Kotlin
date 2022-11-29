@@ -46,5 +46,4 @@ def aviento(date: datetime):
     day = (date-datetime(year=2022, month=12, day=25, hour=23, minute= 59, second=59))
     time = timedelta(seconds=(day.seconds))
     print(f"Han pasado {day.days} dia(s) y {time} horas")
-
 aviento(datetime_str)
