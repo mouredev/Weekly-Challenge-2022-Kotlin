@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #11
@@ -51,4 +51,24 @@ private fun findNonCommon(str1: String, str2: String): String {
 private fun printNonCommonWithFilter(str1: String, str2: String) {
     println("out1: ${str1.lowercase().filter { !str2.lowercase().contains(it) }}")
     println("out2: ${str2.lowercase().filter { !str1.lowercase().contains(it) }}")
-}
+} """
+
+def non_common(string1, string2):
+
+    out1 = ""
+    out2 = ""
+
+    for i in string1.lower():
+        if i in string1 and i not in string2.lower():
+            out1 += i
+
+    for i in string2.lower():
+        if i in string2 and i not in string1.lower():
+            out2 += i
+
+    print(out1)
+    print(out2)
+
+non_common("brais","moure")
+non_common("Me gusta Java","Me gusta Kotlin")
+non_common("Siempre tendrás miedo","A aquello que no entiendas.")

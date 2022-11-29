@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import kotlin.math.pow
 
@@ -41,4 +41,17 @@ private fun isArmstrong(number: Int): Boolean {
 
         number == sum
     }
-}
+} """
+
+
+
+def is_armstrong(num):
+
+    result = 0
+
+    for i in str(num):
+        result += int(i) ** len(str(num))
+
+    return num == result
+
+print(is_armstrong(115132219018763992565095597973971522401))

@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #6
@@ -44,3 +44,34 @@ private fun recursiveReverse(text: String, index: Int = 0, reversedText: String 
     return newReversedText
 }
 
+ """
+
+def invert_string(string):
+
+    new_string = ""
+
+    for i in range((len(string)-1), -1, -1):
+        new_string += string[i]
+
+    print(new_string)
+
+invert_string("Hola mundo")
+
+def upside_down_word(word: str):
+
+    # Crea una nueva variable de tipo String
+    new_word = ""
+
+    # Para cada letra en el orden inverso de la palabra ingresada, se concatena en una nueva palabra
+    # Obteniendo la frase o palabra ingresada de forma inversa
+    for i in word[::-1]:
+        new_word += i
+
+    return new_word
+
+
+# Run Code
+phrase = "Hola Mundo"
+new_phrase = upside_down_word(phrase)
+
+print(f"The phrase '{phrase}', upside down is '{new_phrase}'.")

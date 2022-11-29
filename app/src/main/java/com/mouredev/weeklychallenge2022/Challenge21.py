@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import java.io.File
 
@@ -77,4 +77,25 @@ private fun calculate(filePath: String): String {
     }
 
     return if (fileError || lastOperator != null) "No se han podido resolver las operaciones" else result!!.toString()
-}
+} """
+
+def calculator(file):
+
+    try:
+
+        with open(file, 'r') as f:
+
+            line = f.read().replace("\n", "")
+
+            f.close()
+
+        return eval(line)
+
+    except Exception as e:
+
+        print("No se han podido resolver las operaciones")
+        return e
+
+    
+
+print(calculator("Challenge21.txt"))

@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -65,4 +65,26 @@ private fun daysBetween(firstDate: String, secondDate: String): Int {
         ).toInt().absoluteValue
     }
     throw DaysBetweenError()
-}
+} """
+
+import os
+
+from datetime import date
+
+
+def date_dif(string_date1, string_date2):
+
+    try:
+        date1 = "-".join(string_date1.split("/")[::-1])
+        date2 = "-".join(string_date2.split("/")[::-1])
+
+        dif_date = date.fromisoformat(date1) - date.fromisoformat(date2)
+
+        return dif_date.days if dif_date.days >= 0 else dif_date.days * -1
+
+    except ValueError:
+        print("\n[!] ERROR: El formato de las fechas debe ser 'dd/MM/yyyy'. Ej: '31/12/2000'\n")
+        os._exit(1)
+
+
+print(date_dif("11/12/2650", "30/07/1678"))

@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #16
@@ -34,4 +34,30 @@ private fun capitalize(text: String): String {
     }
 
     return capitalizedText
-}
+} """
+
+import re, string
+
+def capitalized(text):
+
+    symbols = string.punctuation + string.whitespace + "?¿"
+
+    pattern = "[a-zà-ú]"
+    new_text = ""
+
+    for i in range(len(text)):
+        char = text[i]
+        previous_char = text[i-1]
+
+        if char not in symbols and previous_char in symbols or char == text[0]:
+            s = re.sub(pattern, char.upper(), char)
+            new_text += s
+        else:
+            new_text += char
+
+    return new_text
+
+print(capitalized("¿hola qué tal estás?"))
+print(capitalized("¿hola      qué tal estás?"))
+print(capitalized("El niño ñoño"))
+print(capitalized("á"))

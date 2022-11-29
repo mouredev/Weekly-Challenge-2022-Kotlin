@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #7
@@ -44,3 +44,30 @@ fun countWords(text: String) {
     }
 }
 
+ """
+
+import string
+
+
+def word_counter(phrase):
+
+    puntuation = string.punctuation
+
+    for i in puntuation:
+        if i in phrase:
+            phrase = phrase.replace(i, " ")
+
+    phrase = phrase.lower().split()
+
+    count = {}
+
+    for word in phrase:
+        if word not in count:
+            count[word] = 1
+        else:
+            count[word] += 1
+
+    for word in count:
+        print(f"{word} : {count[word]}")
+
+word_counter("Hola, mi nombre es brais. Mi nombre completo es Brais Moure (MoureDev).")

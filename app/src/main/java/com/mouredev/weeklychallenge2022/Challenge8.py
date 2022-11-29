@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #8
@@ -38,3 +38,26 @@ fun decimalToBinary(decimal: Int): String {
     return binary.ifEmpty { "0" }
 }
 
+ """
+
+
+def dec_to_bin(decimal_num):
+
+    decimal = decimal_num
+    bin = ""
+
+    while decimal > 1:
+
+        if decimal % 2 == 0:
+            bin += "0"
+        else:
+            bin += "1"
+
+        decimal = decimal // 2
+        
+    else:
+        bin += "1"
+
+    print(f"El número decimal {decimal_num} es {bin[::-1]} en binario")
+
+dec_to_bin(174)

@@ -1,9 +1,7 @@
-package com.mouredev.weeklychallenge2022
-
-/*
+""" /*
  * Reto #46
  * ¿DÓNDE ESTÁ EL ROBOT?
- * Fecha publicación enunciado: 14/11/22
+ * Fecha publicación enunciado: 14/10/22
  * Fecha publicación resolución: 21/11/22
  * Dificultad: MEDIA
  *
@@ -26,50 +24,47 @@ package com.mouredev.weeklychallenge2022
  * - Tienes toda la información sobre los retos semanales en
  *   https://retosdeprogramacion.com/semanales2022.
  *
- */
+ */ """
 
-fun main() {
-    println(whereIsTheRobot(arrayOf(10, 5, -2)))
-    println(whereIsTheRobot(arrayOf(0, 0, 0)))
-    println(whereIsTheRobot(arrayOf()))
-    println(whereIsTheRobot(arrayOf(-10, -5, 2)))
-    println(whereIsTheRobot(arrayOf(-10, -5, 2, 4, -8)))
-}
+from pwn import *
+from time import sleep
 
-private enum class Direction {
 
-    POSITIVEY, NEGATIVEX, NEGATIVEY, POSITIVEX;
+def robot(mov: list[int]):
 
-    fun turn(): Direction {
+    direcction = 0
+    x = 0
+    y = 0
+    progress = log.progress("Robot steps")
+    step = 0
 
-        return when (this) {            POSITIVEY -> NEGATIVEX
-            NEGATIVEX -> NEGATIVEY
-            NEGATIVEY -> POSITIVEX
-            POSITIVEX -> POSITIVEY
+    for steps in mov:
+        if type(steps) == int:
+            if direcction == 0:
+                y += steps
+            elif direcction == 180:
+                y += steps * -1
+            elif direcction == 90:
+                x += steps
+            elif direcction == 270:
+                x += steps * -1
 
-        }
-    }
+            direcction = robot_direcction(direcction)
+            step += 1
+            total_steps = len(mov)
 
-}
+            progress.status(f"{step} de {total_steps}. X={x} Y={y}\n")
+            sleep(2)
 
-private fun whereIsTheRobot(steps: Array<Int>): String {
+        else:
+            print(f"\n[!] {steps} No es válido. Han de ser números enteros!!!\n")
+            break
 
-    var x = 0
-    var y = 0
 
-    var direction = Direction.POSITIVEY
+def robot_direcction(last_direcction: int):
 
-    steps.forEach { step ->
+    return 270 if last_direcction == 0 else last_direcction - 90
 
-        when (direction) {
-            Direction.POSITIVEY -> y += step
-            Direction.NEGATIVEX -> x -= step
-            Direction.NEGATIVEY -> y -= step
-            Direction.POSITIVEX -> x += step
-        }
 
-        direction = direction.turn()
-    }
-
-    return "x: $x, y: $y, direction: $direction"
-}
+robot([10, 5, -2])
+robot([10, 5, -2, 1, 5, -2, 10, 5, -2])
