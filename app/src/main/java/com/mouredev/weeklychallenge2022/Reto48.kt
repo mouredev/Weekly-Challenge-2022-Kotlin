@@ -22,6 +22,7 @@
 package retos
 
 import java.time.*
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
 
@@ -31,28 +32,31 @@ fun main() {
     println("Regalos disponibles: ${gifts.contentToString()}")
     println(calculateGiftDate(loadDateFrom(2022, 11, 29, 14, 23, 15)))
     println(calculateGiftDate(loadDateFrom(2022, 12, 24, 12, 59, 59)))
+    println(calculateGiftDate(loadDateFrom(2022, 12, 11, 12, 59, 59)))
     println(calculateGiftDate(loadDateFrom(2022, 12, 25, 0, 0, 0)))
     println(calculateGiftDate(loadDateFrom(2024, 12, 26, 14, 55, 40)))
 }
-/*
-Resultados:
+
+/*Resultados:
 Regalos disponibles: [Curso gratuito de Udemy, Libro de programacion en C#, Juego gratuito de Steam, Juego gratuito para móvil, Cupón de descuento en Amazon, Escoger uno de los premios disponibles]
-Faltan 1d 9h 36m 45s para que empiezen los sorteos de aDEViento :D
-El regalo de hoy es Curso gratuito de Udemy. Faltan 11h 1s para que acabe el evento
-La fecha de sorteos de aDEViento terminó hace 1s
-La fecha de sorteos de aDEViento terminó hace 2y 1d 14h 55m 41s
+Faltan 1d 9h 36m 45s CST para que empiezen los sorteos de aDEViento :D
+El regalo de hoy es Curso gratuito de Udemy. Faltan 11h 1s CST para que acabe el evento
+El regalo de hoy es Escoger uno de los premios disponibles. Faltan 11h 1s CST para el siguiente regalo
+La fecha de sorteos de aDEViento terminó hace 1s CST
+La fecha de sorteos de aDEViento terminó hace 2y 14h 55m 41s CST
 */
 
 fun calculateGiftDate(date: Date): String {
-    val startDate = loadDateFrom(2022, 12, 1, 0, 0, 0)
-    val endDate = loadDateFrom(2022, 12, 24, 23, 59, 59)
+    val calendarZone = ZoneId.of("Europe/Madrid")
+    val startDate = loadZonedDate(loadDateFrom(2022, 12, 1, 0, 0, 0), calendarZone)
+    val endDate = loadZonedDate(loadDateFrom(2022, 12, 24, 23, 59, 59), calendarZone)
     val zonedDate = loadZonedDate(date)
     return when {
-        date.time > endDate.time -> {
-            "La fecha de sorteos de aDEViento terminó hace ${format(calculateDifference(loadZonedDate(endDate), zonedDate))}"
+        zonedDate > endDate -> {
+            "La fecha de sorteos de aDEViento terminó hace ${format(calculateDifference(endDate, zonedDate))}"
         }
-        date.time < startDate.time -> {
-            "Faltan ${format(calculateDifference(zonedDate, loadZonedDate(startDate)))} para que empiezen los sorteos de aDEViento :D"
+        zonedDate < startDate -> {
+            "Faltan ${format(calculateDifference(zonedDate, startDate))} para que empiezen los sorteos de aDEViento :D"
         }
         else -> {
             val nextDay = nextDay(zonedDate)
@@ -73,11 +77,11 @@ fun loadDateFrom(year: Int, month: Int, day: Int, hour: Int, minute: Int, second
     )
 }
 
-fun loadZonedDate(date: Date): ZonedDateTime {
-    return ZonedDateTime.ofInstant(Instant.ofEpochMilli(date.time), ZoneId.systemDefault())
+fun loadZonedDate(date: Date, zoneId: ZoneId = ZoneId.systemDefault()): ZonedDateTime {
+    return ZonedDateTime.ofInstant(Instant.ofEpochMilli(date.time), zoneId)
 }
 
-fun calculateDifference(date1: ZonedDateTime, date2: ZonedDateTime): List<Pair<Long, Char>> {
+fun calculateDifference(date1: ZonedDateTime, date2: ZonedDateTime): List<Pair<Long, CharSequence>> {
     val duration = Duration.between(date1, date2)
     val years = date1.until(date2, ChronoUnit.YEARS)
     var months = date1.until(date2, ChronoUnit.MONTHS)
@@ -97,13 +101,16 @@ fun calculateDifference(date1: ZonedDateTime, date2: ZonedDateTime): List<Pair<L
     val hours = duration.toHoursPart().toLong()
     val minutes = duration.toMinutesPart().toLong()
     val seconds = duration.toSecondsPart().toLong()
-    return listOf(years to 'y', months to 'm', days to 'd', hours to 'h', minutes to 'm', seconds to 's')
+    val format = DateTimeFormatter.ofPattern("z")
+    val currentTime = ZonedDateTime.ofInstant(ZonedDateTime.now().toInstant(), ZoneId.systemDefault())
+    return listOf(years to "y", months to "M", days to "d", hours to "h", minutes to "m", seconds to "s", -1L to currentTime.format(format))
 }
 
 fun nextDay(date: ZonedDateTime): Date {
     return loadDateFrom(date.year, date.monthValue, date.dayOfMonth + 1, 0, 0, 0)
 }
 
-fun format(date: List<Pair<Long, Char>>): String {
-    return date.filter { it.first > 0 }.joinToString(separator = " ") { "${it.first}${it.second}" }
+fun format(date: List<Pair<Long, CharSequence>>): String {
+    return date.filter { it.first > 0 || it.first == -1L }
+        .joinToString(separator = " ") { "${if(it.first == -1L) "" else it.first}${it.second}" }
 }
