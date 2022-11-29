@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #13
@@ -29,3 +29,18 @@ private fun factorial(n: Int): Int? {
     return if (n < 0) null else if (n <= 1) 1 else n * (factorial(n - 1)!!)
 }
 
+ """
+
+import math
+
+
+def factorial(num):
+ 
+    if num < 0 or type(num) != int:
+        return None
+    elif num == 0:
+        return 1
+    else:
+        return math.factorial(num)
+
+print(factorial(5))

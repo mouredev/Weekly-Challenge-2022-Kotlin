@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #3
@@ -44,3 +44,21 @@ private fun isPrime(number: Int): Boolean {
 
 
 
+ """
+
+def is_prime(number):
+    if number < 2:
+        return False
+
+    for i in range(2, number):
+        if number % i == 0:
+            return False
+        
+    return True
+
+def print_prime(quantity_numbers):
+    for i in range(1, quantity_numbers + 1):
+        if is_prime(i):
+            print(i)
+
+print_prime(100)

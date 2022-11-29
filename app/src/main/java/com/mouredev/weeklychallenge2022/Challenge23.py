@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #23
@@ -47,3 +47,4 @@ private fun mcdRecursive(firstNumber: Int, secondNumber: Int): Int {
         else mcdRecursive(secondNumber, firstNumber % secondNumber)
 }
 
+ """

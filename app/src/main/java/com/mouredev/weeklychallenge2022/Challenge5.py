@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import android.graphics.BitmapFactory
 import java.net.URL
@@ -63,4 +63,47 @@ class Challenge5() {
         return Pair(q.h, q.k)
     }
 
-}
+} """
+
+# Se utiliza Open-CV para procesar la imagen
+import cv2
+import requests
+from fractions import Fraction
+
+url = "https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_github_profile.png"
+IMAGE_NAME = "image.png"
+
+
+def download_image(url_image: str):
+    response = requests.get(url_image)
+
+    # Escribe un archivo IMAGE_NAME.
+    with open(IMAGE_NAME, "wb") as file:
+        file.write(response.content)
+
+
+def ratio_net_image(url_image: str):
+    # Descarga la imagen
+    download_image(url_image)
+
+    # Si la imagen puede ser procesada por Open-CV se procesa la imagen.
+    if cv2.haveImageReader(IMAGE_NAME):
+        # Lee la imagen desde el fichero
+        img = cv2.imread(IMAGE_NAME)
+
+        # Extrae el alto y ancho.
+        dimension_image: tuple = img.shape
+        height: int = dimension_image[0]
+        width: int = dimension_image[1]
+
+        # Determina el ratio de la imagen como una fracción.
+        fraction: tuple = Fraction(width, height).as_integer_ratio()
+        aspect_ratio: str = f"{fraction[0]}:{fraction[1]}"
+
+        print(f"La relación de aspecto de la imagen es: {aspect_ratio}. Sus dimensiones son: {width}x{height} px.")
+
+    else:
+        print("La imagen no puede ser procesada, compruebe que sea la URL de una imagen.")
+
+
+ratio_net_image(url)

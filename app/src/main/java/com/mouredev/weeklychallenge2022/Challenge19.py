@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #19
@@ -31,4 +31,18 @@ fun timeToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
     val secondsToMillis = seconds.toLong() * 1000
 
     return daysInMillis + hoursInMillis + minutesInMillis + secondsToMillis
-}
+} """
+
+def time_to_milis(days:int=0, hours:int=0, minutes:int=0, seconds:int=0):
+    
+    days_milis = int(days) * 24 * 60 * 60 * 1000
+    hours_milis = int(hours) * 60 * 60 * 1000
+    minutes_milis = int(minutes) * 60 * 1000
+    seconds_milis = int(seconds) * 1000
+
+    return days_milis + hours_milis + minutes_milis + seconds_milis
+
+
+print(time_to_milis(0, 0, 0, 10))
+print(time_to_milis(2, 5, -45, 10))
+print(time_to_milis(2000000000, 5, 45, 10))

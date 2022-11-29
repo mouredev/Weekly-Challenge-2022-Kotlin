@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #9
@@ -95,4 +95,69 @@ private fun decoder(input: String): String {
     }
 
     return decodedInput
-}
+} """
+
+import re
+
+
+def morse_convert(phrase):
+
+    phrase_convert = ""
+
+    MORSE_DICT = {
+        "A": ".-", "N": "-.", "0": "-----",
+        "B": "-...", "Ñ": "--.--", "1": ".----",
+        "C": "-.-.", "O": "---", "2": "..---",
+        "CH": "----", "P": ".--.", "3": "...--",
+        "D": "-..", "Q": "--.-", "4": "....-",
+        "E": ".", "R": ".-.", "5": ".....",
+        "F": "..-.", "S": "...", "6": "-....",
+        "G": "--.", "T": "-", "7": "--...",
+        "H": "....", "U": "..-", "8": "---..",
+        "I": "..", "V": "...-", "9": "----.",
+        "J": ".---", "W": ".--", ".": ".-.-.-",
+        "K": "-.-", "X": "-..-", ",": "--..--",
+        "L": ".-..", "Y": "-.--", "?": "..--..",
+        "M": "--", "Z": "--..", "\"": ".-..-.", "/": "-..-."
+    }
+
+    # Natural to Morse
+
+    if re.findall("[A-Za-z0-9]", phrase):
+
+        phrase = phrase.upper()
+        ch = False
+
+        for index in range(len(phrase)):
+
+            next_index = index + 1
+
+            if ch == False:
+                if next_index < len(phrase) and phrase[index] == "C" and phrase[next_index] == "H":
+                    phrase_convert += MORSE_DICT["CH"]
+                    ch = True
+                elif phrase[index] == " ":
+                    phrase_convert += " "
+                else:
+                    phrase_convert += MORSE_DICT[phrase[index]]
+
+                phrase_convert += " "
+            else:
+                ch = False
+
+    else:
+        
+        for word in phrase.split("  "):
+            for char in word.split():
+                phrase_convert += list(MORSE_DICT.keys())[list(MORSE_DICT.values()).index(char)]
+            
+            phrase_convert += " "
+
+            
+
+    print(f"\nEl texto original es:\n{phrase}")
+    print(f"\nEl texto convertido es:\n{phrase_convert}")
+
+
+morse_convert("Chocapic. Es una marca de cereales?")
+morse_convert("---- --- -.-. .- .--. .. -.-. .-.-.-   . ...   ..- -. .-   -- .- .-. -.-. .-   -.. .   -.-. . .-. . .- .-.. . ... ..--..")

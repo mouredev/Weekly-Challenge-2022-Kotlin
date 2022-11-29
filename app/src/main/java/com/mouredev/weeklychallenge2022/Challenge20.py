@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #20
@@ -35,4 +35,24 @@ private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int)
         Thread.sleep((seconds * 1000).toLong())
         result(numberOne + numberTwo)
     }.start()
-}
+} """
+
+
+
+import asyncio
+
+
+async def async_sum(num1: int, num2: int, seconds: int):
+
+    await asyncio.sleep(seconds)
+    return print(num1 + num2)
+
+
+async def main():
+
+    await asyncio.gather(async_sum(1, 1, 3), async_sum(2, 2, 5), async_sum(10,10,1))
+
+
+if __name__ == "__main__":
+
+    asyncio.run(main())

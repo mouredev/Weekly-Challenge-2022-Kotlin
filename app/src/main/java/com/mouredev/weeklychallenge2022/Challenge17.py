@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #17
@@ -71,3 +71,32 @@ private fun checkRace(athlete: List<AthleteState>, track: String) : Boolean {
     return track == athleteTrack
 }
 
+ """
+
+def obstacle_course(runner: list|str, track: str) -> bool:
+
+    result = ""
+
+    if len(runner) >= len(track):
+        course = track
+    else:
+        course = runner
+    
+
+    for i in range(len(course)):
+        if runner[i] == "run" and track[i] != "_":
+            result += "/"
+        elif runner[i] == "jump" and track[i] != "|":
+            result += "x"
+        else:
+            result += track[i]
+
+    print(f"\n{result}")
+
+    return False if "x" in result or "/" in result else True
+
+
+print(obstacle_course(["run", "run", "run", "jump", "run", "run", "jump", "run"], "___|__|_"))
+print(obstacle_course(["run", "run", "run", "jump", "run", "jump", "run"], "___|__|_"))
+print(obstacle_course(["run", "run", "run", "run", "run", "jump", "run"], "___|__|_"))
+print(obstacle_course(["run", "run", "run", "jump", "run", "run", "jump", "run", "run", "jump"], "___|__|_|_"))

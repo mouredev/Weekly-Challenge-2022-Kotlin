@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import kotlin.math.absoluteValue
 
@@ -115,3 +115,85 @@ private fun checkTicTacToe(board: Array<Array<TicTacToeValue>>): TicTacToeResult
     return result
 }
 
+ """
+
+import numpy as np
+
+
+def tic_tac_toe(jugada):
+
+    x_win = 0
+    o_win = 0
+    x = 0
+    o = 0
+
+    if len(jugada) == 3 and len(jugada[0]) == 3 and len(jugada[1]) == 3 and len(jugada[2]) == 3:
+
+        np_jugada = np.array(jugada)
+
+        combinations = []
+
+        for i in range(3):
+            for j in range(3):
+                if jugada[i][j] == "X":
+                    x += 1
+                elif jugada[i][j] == "O":
+                    o += 1
+
+        for i in range(3):
+            combinations.append(list(np_jugada[i]))
+            combinations.append(list(np_jugada[:,i]))
+
+        combinations.append(list(np_jugada.diagonal()))
+        combinations.append(list(np.fliplr(np_jugada).diagonal()))
+        
+        for i in combinations:
+
+            if i.count("X") == 3:
+                x_win += 1
+            elif i.count("O") == 3:
+                o_win += 1
+
+        if abs(x - o) > 1:
+            return "NULL"
+
+        if abs(x_win - o_win) == 1:
+            if x_win > o_win:
+                return "X"
+            elif x_win < o_win:
+                return "O"
+        elif abs(x_win - o_win) == 0:
+            return "Empate"
+        else:
+            return "NULL"
+
+
+    else:
+        return "NULL"
+
+jugada1 = [["X", "O", "X"],
+           ["O", "X", "O"],
+           ["O", "O", "X"]]
+
+jugada2 = [["", "O", "X"],
+           ["", "X", "O"],
+           ["", "O", "X"]]
+
+jugada3 = [["O", "O", "O"],
+           ["O", "X", "X"],
+           ["O", "X", "X"]]
+
+jugada4 = [["X", "X", "O"],
+           ["X", "O", "X"],
+           ["O", "X", "O"]]
+
+jugada5 = [["X", "O", "X"],
+           ["X", "X", "O"],
+           ["X", "X", "X"]]
+
+
+print(tic_tac_toe(jugada1))
+print(tic_tac_toe(jugada2))
+print(tic_tac_toe(jugada3))
+print(tic_tac_toe(jugada4))
+print(tic_tac_toe(jugada5))

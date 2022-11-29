@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #10
@@ -51,4 +51,36 @@ private fun isBalanced(expression: String): Boolean {
     }
 
     return stack.isEmpty()
-}
+} """
+"""braces brackets parenthesis"""
+
+
+
+
+import re
+def is_balanced(expression):
+
+    symbols_list = re.findall("[\(\)\[\]\{\}]", expression)
+    empty_list = re.findall("[\(\)\[\]\{\}]", expression)
+
+    for symbol in symbols_list:
+        if symbol == "(" and ")" in empty_list and symbols_list.index(symbol) < symbols_list.index(")"):
+            empty_list.remove("(")
+            empty_list.remove(")")
+        elif symbol == "[" and "]" in empty_list and symbols_list.index(symbol) < symbols_list.index("]"):
+            empty_list.remove("[")
+            empty_list.remove("]")
+        elif symbol == "{" and "}" in empty_list and symbols_list.index(symbol) < symbols_list.index("}"):
+            empty_list.remove("{")
+            empty_list.remove("}")
+
+    return len(empty_list) == 0
+
+
+print(is_balanced("{a + b [c] * (2x2)}}}}"))
+print(is_balanced("{ [ a * ( c + d ) ] - 5 }"))
+print(is_balanced("{ a * ( c + d ) ] - 5 }"))
+print(is_balanced("{a^4 + (((ax4)}"))
+print(is_balanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
+print(is_balanced("{{{{{{(}}}}}}"))
+print(is_balanced("(a"))

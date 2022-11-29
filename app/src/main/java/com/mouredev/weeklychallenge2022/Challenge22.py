@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #22
@@ -55,4 +55,34 @@ private fun calculateSet(first: List<Int>, second: List<Int>, common: Boolean): 
 
         nonCommonResult
     }
-}
+} """
+
+
+def diferents_list(list1: list, list2: list, common: bool) -> list:
+
+    common_list = []
+    uncommon_list = []
+
+    for i in list1:
+        if i in list2 and i not in common_list:
+            common_list.append(i)
+
+        elif i not in list2 and i not in uncommon_list:
+            uncommon_list.append(i)
+
+    for i in list2:
+        if i not in list1:
+            uncommon_list.append(i)
+
+    return common_list if common else uncommon_list
+
+
+print(diferents_list([1, 2, 3, 3, 4], [2, 2, 3, 3, 3, 4, 6], True))
+print(diferents_list([1, 2, 3, 3, 4], [2, 2, 3, 3, 3, 4, 6], False))
+print("\n")
+print(diferents_list([1, 2, 3], [3, "4", 5], True))
+print(diferents_list([1, 2, 3], [3, "4", 5], False))
+print(diferents_list([1, "g", "3", 6, 7], ["3", "g", 5], True))
+print(diferents_list([1, "g", "3", 6, 7], ["3", "g", 5], False))
+print(diferents_list([1, 2, 3], [3, 4, 5, 8, 9], True))
+print(diferents_list([1, 2, 3], [3, 4, 5, 8, 9], False))
