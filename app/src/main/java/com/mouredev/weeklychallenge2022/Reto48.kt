@@ -84,16 +84,15 @@ fun calculateDifference(date1: ZonedDateTime, date2: ZonedDateTime): List<Pair<L
     var days = duration.toDaysPart()
     // Lo que está a continuación se hace debido a que da el tiempo exacto en esa unidad. Ej: 2 años = 24 meses, 2 meses = 60 dias aprox.
     // No lo dará dentro del rango. Ej: 2 años = 0 meses, 2 meses = 0 dias aprox.
-    // inclusiveDate2: Debido a que el rango de fechas es exclusivo, se le resta un día al calculo final para poder ser inclusivo
+    // Debido a que el rango de fechas es exclusivo, se le resta un día al calculo final para poder ser inclusivo
     // Ej: 01-01-2023 - 31-01-2023, en realidad compara hasta el 30 de enero, por eso hay que restar un día al resultado para incluir el 31
     // Suena raro, porque se pensaría que se debería sumar en vez de restar, pero al sumar, llegas al mismo resultado que si no sumas ni restas nada
     // Es dificil trabajar con fechas :')
-    val inclusiveDate2 = loadZonedDate(loadDateFrom(date2.year, date2.monthValue, date2.dayOfMonth, date2.hour, date2.minute, date2.second))
     if (months > 12) {
-        months = Period.between(date1.toLocalDate(), inclusiveDate2.toLocalDate()).months.toLong()
+        months = Period.between(date1.toLocalDate(), date2.toLocalDate()).months.toLong()
     }
     if (days > 31) {
-        days = Period.between(date1.toLocalDate(), inclusiveDate2.toLocalDate()).days.toLong() - 1
+        days = Period.between(date1.toLocalDate(), date2.toLocalDate()).days.toLong() - 1
     }
     val hours = duration.toHoursPart().toLong()
     val minutes = duration.toMinutesPart().toLong()
