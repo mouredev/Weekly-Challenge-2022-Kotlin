@@ -42,7 +42,7 @@ Regalos disponibles: [Curso gratuito de Udemy, Libro de programacion en C#, Jueg
 Faltan 1d 9h 36m 45s CST para que empiezen los sorteos de aDEViento :D
 El regalo de hoy es Curso gratuito de Udemy. Faltan 11h 1s CST para que acabe el evento
 El regalo de hoy es Escoger uno de los premios disponibles. Faltan 11h 1s CST para el siguiente regalo
-La fecha de sorteos de aDEViento terminó hace 1s CST
+La fecha de sorteos de aDEViento terminó hace d 1s CST
 La fecha de sorteos de aDEViento terminó hace 2y 14h 55m 41s CST
 */
 
@@ -82,22 +82,12 @@ fun loadZonedDate(date: Date, zoneId: ZoneId = ZoneId.systemDefault()): ZonedDat
 }
 
 fun calculateDifference(date1: ZonedDateTime, date2: ZonedDateTime): List<Pair<Long, CharSequence>> {
-    val duration = Duration.between(date1, date2)
-    val years = date1.until(date2, ChronoUnit.YEARS)
-    var months = date1.until(date2, ChronoUnit.MONTHS)
-    var days = duration.toDaysPart()
-    // Lo que está a continuación se hace debido a que da el tiempo exacto en esa unidad. Ej: 2 años = 24 meses, 2 meses = 60 dias aprox.
-    // No lo dará dentro del rango. Ej: 2 años = 0 meses, 2 meses = 0 dias aprox.
-    // Debido a que el rango de fechas es exclusivo, se le resta un día al calculo final para poder ser inclusivo
-    // Ej: 01-01-2023 - 31-01-2023, en realidad compara hasta el 30 de enero, por eso hay que restar un día al resultado para incluir el 31
-    // Suena raro, porque se pensaría que se debería sumar en vez de restar, pero al sumar, llegas al mismo resultado que si no sumas ni restas nada
     // Es dificil trabajar con fechas :')
-    if (months > 12) {
-        months = Period.between(date1.toLocalDate(), date2.toLocalDate()).months.toLong()
-    }
-    if (days > 31) {
-        days = Period.between(date1.toLocalDate(), date2.toLocalDate()).days.toLong() - 1
-    }
+    val duration = Duration.between(date1, date2)
+    val period = Period.between(date1.toLocalDate(), date2.toLocalDate())
+    val years = period.years.toLong()
+    val months = period.months.toLong()
+    val days = period.days - 1L
     val hours = duration.toHoursPart().toLong()
     val minutes = duration.toMinutesPart().toLong()
     val seconds = duration.toSecondsPart().toLong()
