@@ -1,3 +1,4 @@
+"""
 package com.mouredev.weeklychallenge2022
 
 /*
@@ -27,3 +28,43 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+ """
+
+from datetime import datetime, timedelta
+
+
+def gifts_of_the_advent_calendar() -> list:
+    gifts = []
+
+    for day in range(1, 24):
+        gifts.append({'date': datetime(2022, 12, day, 0, 0, 0), 'gift': f"Regalo {day}"})
+
+    return gifts
+
+
+def get_gift_of_the_advent_calendar(date: datetime) -> str:
+    initial_date = datetime(2022, 12, 1, 0, 0, 0)
+    if date < initial_date:
+        return f"{initial_date - date} until the calendar begins."
+
+    final_date = datetime(2022, 12, 24, 23, 59, 59)
+    if date > final_date:
+        return f"It has been {date - final_date} since the end of the calendar."
+
+
+    gift = "No gift available, sorry."
+    margin = timedelta(days=1)
+
+    for item in gifts_of_the_advent_calendar():
+        gift_day = item['date']
+
+        if gift_day <= date < gift_day + margin:
+            return f"The giveaway of the day is: '{item['gift']}' and there is {gift_day + margin - date} left in the draw."
+
+    return gift
+
+
+print(get_gift_of_the_advent_calendar(date=datetime(2022, 12, 1, 23, 59, 59)))
+print(get_gift_of_the_advent_calendar(date=datetime(2022, 12, 15, 13, 3, 12)))
+print(get_gift_of_the_advent_calendar(date=datetime(2022, 11, 1, 14, 34, 45)))
+print(get_gift_of_the_advent_calendar(date=datetime(2023, 2, 1, 6, 45, 45)))
