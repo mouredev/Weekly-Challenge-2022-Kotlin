@@ -19,6 +19,6 @@ def is_prime(number:int):
       if (number  % index==0):
         return False
     return True
-for index in range(1,100):
+for index in range(1,101):
   if(is_prime(index)):
     print(index)

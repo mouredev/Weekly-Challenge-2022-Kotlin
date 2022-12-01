@@ -47,3 +47,10 @@ def is_anagrama(word1: str, word2:str):
     return False
 
 print(is_anagrama("moras","amor"))
+
+def is_anagrama_optimizado(word1: str, word2:str):
+  if word2==word1:
+    return False  
+  return sorted(word1.lower())==sorted(word2.lower())
+
+print(is_anagrama_optimizado("mora","amor"))
