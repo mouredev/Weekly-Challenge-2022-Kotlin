@@ -43,7 +43,7 @@ for i in range(24+1):   # Sumamos un dia más pora tener en cuenta el último d�
     Regalos.append([start_date + timedelta(days=i), "Regalo {}".format(i)])
 
 # COMPARAMOS LAS FECHAS:
-def comprovar_fecha(date, start_date = datetime.strptime('01/12/2022', '%d/%m/%Y')):
+def comprobar_fecha(date, start_date = datetime.strptime('01/12/2022', '%d/%m/%Y')):
     if date < start_date:           # La fecha és anterior al concurso. Indicamos cuanto falta para que empieze el concurso.
         time = start_date - date    # Los timedelta solo almacena los días, segundos y microsegundos.
         d =time.days
@@ -91,24 +91,24 @@ def pedir_fecha():  # Pedir que el usuario introduzca una fecha o utilizar la fe
 #Caso que la fecha sea anterior al concurso
 año, mes, dia, hora, minuto, segundos = (2022, 11, 29, 23, 00, 30)
 fecha = datetime(año, mes, dia, hora, minuto, segundos)
-comprovar_fecha(fecha)
+comprobar_fecha(fecha)
 
 # Caso que la fecha sea posterior al concurso
 año, mes, dia, hora, minuto, segundos = (2022, 12, 25, 4, 00, 00)
 fecha = datetime(año, mes, dia, hora, minuto, segundos)
-comprovar_fecha(fecha)
+comprobar_fecha(fecha)
 
 # Caso que la fecha sea el primer dia del concurso
 año, mes, dia, hora, minuto, segundos = (2022, 12, 1, 1, 00, 00)
 fecha = datetime(año, mes, dia, hora, minuto, segundos)
-comprovar_fecha(fecha)
+comprobar_fecha(fecha)
 # Caso que la fecha sea intermedia al concurso
 año, mes, dia, hora, minuto, segundos = (2022, 12, 10, 12, 00, 00)
 fecha = datetime(año, mes, dia, hora, minuto, segundos)
-comprovar_fecha(fecha)
+comprobar_fecha(fecha)
 # Caso que la fecha sea el útlimo dia del concurso
 año, mes, dia, hora, minuto, segundos = (2022, 12, 24, 12, 00, 00)
 fecha = datetime(año, mes, dia, hora, minuto, segundos)
-comprovar_fecha(fecha)
+comprobar_fecha(fecha)
 
 
