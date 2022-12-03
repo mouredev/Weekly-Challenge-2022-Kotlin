@@ -24,7 +24,7 @@
  * - Tienes toda la información sobre los retos semanales en
  *   https://retosdeprogramacion.com/semanales2022.
  *
- */
+ */ OS DEJO MI SOLUCION AL RETO. ESCUCHO TODAS SUS SUGERENCIAS :)
  
 """ 
 from datetime import datetime, timedelta
