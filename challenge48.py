@@ -99,7 +99,7 @@ def pedirRegaloDeMoure(dtNowUTC):
     startEventDatetime = datetime(2022, 12, 1, 0, 0, 0);  #1 de diciembre
     endEventDatetime = datetime(2022, 12, 24, 0, 0, 0);   #24 de diciembre
 
-    #convertimos toda dos fechas a formato segundos:
+    #convertimos fechas a formato segundos:
     nowSecs = dtNowUTC.timestamp();
     startSecs = startEventDatetime.timestamp();
     endSecs = endEventDatetime.timestamp();
@@ -142,11 +142,4 @@ print("Fin del programa, saludos a MoureDev");
 
 #RearlanFDX
 
-
-
-
-
-
-
-
-
+input("pausa")
