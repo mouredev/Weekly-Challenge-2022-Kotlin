@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import java.lang.Math.abs
+import java.util.*
+
 /*
  * Reto #48
  * EL CALENDARIO DE ADEVIENTO 2022
@@ -27,3 +30,30 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main() {
+    println("${adventCalendar(Date(2022, 12, 4, 19, 36, 0))}")
+    println("${adventCalendar(Date(2022, 6, 10, 8, 15, 0))}")
+    println("${adventCalendar(Date(2022, 12, 1, 0, 1, 10))}")
+    println("${adventCalendar(Date(2022, 12, 25, 0, 0, 1))}")
+    println("${adventCalendar(Date(2023, 1, 5, 9, 27, 0))}")
+    println("${adventCalendar(Date(2022, 12, 24, 23, 59, 58))}")
+    println("${adventCalendar(Date(2022, 12, 10, 1, 36, 0))}")
+}
+
+private fun adventCalendar(date: Date): String {
+
+    var InitialDate = Date(2022, 12, 1, 0, 0, 0)
+    var FinalDate = Date(2022, 12, 24, 23, 59, 59)
+
+    if (date.before(InitialDate)) {
+        return "Faltan ${abs(InitialDate.year - date.year)} años, ${abs(InitialDate.month - date.month)} meses,  ${abs(InitialDate.day - date.day)} dias, ${abs(InitialDate.hours - date.hours)} horas, ${abs(InitialDate.minutes - date.minutes)} minutos y ${abs(InitialDate.seconds - date.seconds)} segundos  para que comience el calendario"
+    } else if (date.after(FinalDate)) {
+        return "Han pasado ${abs(date.year - FinalDate.year)} años, ${abs(date.month - FinalDate.month)} meses, ${abs(date.day - FinalDate.day)} dias, ${abs(date.hours - FinalDate.hours)} horas, ${abs(date.minutes - FinalDate.minutes)} minutos y ${abs(date.seconds - FinalDate.seconds)} segundos desde que finalizó el calendario"
+    } else {
+        return "Hoy toca el regalo número ${date.day} y faltan ${FinalDate.hours - date.hours} horas, ${FinalDate.minutes - date.minutes} minutos y ${FinalDate.seconds - date.seconds} segundos para que finalice el sorteo"
+    }
+
+    return ""
+
+}
