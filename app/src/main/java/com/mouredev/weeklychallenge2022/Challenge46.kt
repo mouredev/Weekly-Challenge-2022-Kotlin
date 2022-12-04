@@ -7,7 +7,7 @@ package com.mouredev.weeklychallenge2022
  * Fecha publicación resolución: 21/11/22
  * Dificultad: MEDIA
  *
- * Enunciado: Calcula dónde estará un robot (sus coordenadas finales) que se encuentra en una cudrícula
+ * Enunciado: Calcula dónde estará un robot (sus coordenadas finales) que se encuentra en una cuadrícula
  * representada por los ejes "x" e "y".
  * - El robot comienza en la coordenada (0, 0).
  * - Para idicarle que se mueva, le enviamos un array formado por enteros (positivos o negativos)
@@ -42,7 +42,8 @@ private enum class Direction {
 
     fun turn(): Direction {
 
-        return when (this) {            POSITIVEY -> NEGATIVEX
+        return when (this) {
+            POSITIVEY -> NEGATIVEX
             NEGATIVEX -> NEGATIVEY
             NEGATIVEY -> POSITIVEX
             POSITIVEX -> POSITIVEY
