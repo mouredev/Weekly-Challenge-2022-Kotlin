@@ -1,10 +1,12 @@
 package com.mouredev.weeklychallenge2022
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Calendar
-import java.util.Date
+import java.time.Month
+import java.time.temporal.ChronoUnit
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 /*
  * Reto #48
@@ -34,89 +36,72 @@ import java.util.Date
  *
  */
 
-fun main() {
+@RequiresApi(Build.VERSION_CODES.S)
+fun main(){
+    val date = LocalDateTime.of(2022, Month.DECEMBER,4,16,58,0)
+    val date1 = LocalDateTime.of(2022, Month.OCTOBER,20,1,46,0)
+    val date2 = LocalDateTime.of(2022, Month.DECEMBER,30,1,46,0)
+    giftOfAdventCalendar(date)
+    giftOfAdventCalendar(date1)
+    giftOfAdventCalendar(date2)
 
-//    aDEViento2022(LocalDateTime.of(2022, 12, 5, 20, 27, 56).toDate())
-
-    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
-    println(aDEViento2022(LocalDateTime.parse("2022/12/05 20:27:56", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/01 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/24 23:59:59", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/11/30 23:59:59", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/25 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/10/30 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/30 04:32:12", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2020/10/30 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2024/12/30 04:32:12", formatter).toDate()))
 }
 
-private fun LocalDateTime.toDate(): Date {
-    return Date.from(this.atZone(ZoneId.systemDefault()).toInstant())
-}
 
-private fun aDEViento2022(date: Date): String {
+@RequiresApi(Build.VERSION_CODES.S)
+private fun giftOfAdventCalendar(date: LocalDateTime){
 
-    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
-    val startDate = LocalDateTime.parse("2022/12/01 00:00:00", formatter).toDate()
-    val endDate = LocalDateTime.parse("2022/12/24 23:59:59", formatter).toDate()
+    val giftList= listOf(
+        "Gift-1","Gift-2","Gift-3","Gift-4","Gift-5","Gift-6","Gift-7","Gift-8","Gift-9","Gift-10",
+        "Gift-11","Gift-12","Gift-13","Gift-14","Gift-15","Gift-16","Gift-17","Gift-18","Gift-19","Gift-20",
+        "Gift-21","Gift-22","Gift-23","Gift-24"
+    )
 
-    if (date in startDate..endDate) {
+    val calendar= Calendar.getInstance()
+    val currentYear=calendar.get(Calendar.YEAR)
 
-        val gifts = arrayOf(
-            "El programador pragmático",
-            "while True: learn()",
-            "Aprende Javascript ES9, HTML, CSS3 y NodeJS desde cero",
-            "Patrones de Diseño en JavaScript y TypeScript",
-            "Aprende Python en un fin de semana",
-            "Regalo 6",
-            "Regalo 7",
-            "Regalo 8",
-            "Regalo 9",
-            "Regalo 10",
-            "Regalo 11",
-            "Regalo 12",
-            "Regalo 13",
-            "Regalo 14",
-            "Regalo 15",
-            "Regalo 16",
-            "Regalo 17",
-            "Regalo 18",
-            "Regalo 19",
-            "Regalo 20",
-            "Regalo 21",
-            "Regalo 22",
-            "Regalo 23",
-            "Regalo 24")
+    //fecha inicial y final del calendario de adviento
+    val initAdventCalendar= LocalDateTime.of(currentYear, Month.DECEMBER,1,0,0,0)
+    val endAdventCalendar= LocalDateTime.of(currentYear, Month.DECEMBER,24,23,59,59)
 
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        return "El regalo del día es: ${gifts[day - 1]} y el sorteo del día acaba en: ${diffTimeComponentsText(date, calendar.time)}"
+    if(date.isBefore(endAdventCalendar) && date.isAfter(initAdventCalendar)){
+        val endDay = date.withDayOfMonth(date.dayOfMonth + 1).withHour(0).withMinute(0).withSecond(0)
+        println("El regalo de hoy es: ${giftList[date.dayOfMonth-1] }")
+        val cal=getTime(endDay,date)
+        println("El sorteo termina en  ${cal.get(Calendar.HOUR_OF_DAY)} horas ${cal.get(Calendar.MINUTE)} minutos  ${cal.get(
+            Calendar.SECOND)} segundos")
+        println()
+    }
+    else if(date.isBefore(initAdventCalendar)){
+        val cal=getTime(initAdventCalendar,date)
+        println("El sorteo comenzará en ${cal.get(Calendar.DAY_OF_YEAR)} días ${cal.get(Calendar.HOUR_OF_DAY)} horas ${cal.get(
+            Calendar.MINUTE)} minutos  ${cal.get(Calendar.SECOND)} segundos")
+    }
+    else if(date.isAfter(endAdventCalendar)){
+        val cal=getTime(date,endAdventCalendar)
+        println("El sorteo terminó hace   ${cal.get(Calendar.DAY_OF_YEAR)} días  ${cal.get(Calendar.HOUR_OF_DAY)} horas ${cal.get(
+            Calendar.MINUTE)} minutos  ${cal.get(Calendar.SECOND)} segundos")
     }
 
-    val intro = if (date < startDate) "El calendario de aDEViento 2022 comenzará en:" else "El calendario de aDEViento 2022 ha finalizado hace:"
-    val timeComponents = diffTimeComponentsText(if (date < startDate) date else endDate,
-                                                if (date < startDate) startDate else date)
-    return "$intro $timeComponents"
+
+
 }
+@RequiresApi(Build.VERSION_CODES.S)
+private fun getTime(minDate: LocalDateTime, maxDate: LocalDateTime): Calendar {
 
-private fun diffTimeComponentsText(startDate: Date, endDate: Date): String {
 
-    val diffInMillis = endDate.time - startDate.time
+    val diffInMillis= ChronoUnit.MILLIS.between(minDate,maxDate)
 
-    println(diffInMillis)
+    val days= Math.abs(TimeUnit.MILLISECONDS.toDays(diffInMillis).toInt()) + 1
+    val hours: Long = ((diffInMillis / (1000 * 60 * 60)) % 24) + 1
+    val minutes: Long = ((diffInMillis / (1000 * 60))% 60)
+    val seconds: Long = ((diffInMillis / 1000)% 60)
 
-    val second = diffInMillis / 1000L % 60
-    val minutes = diffInMillis / (1000L * 60) % 60
-    val hours = diffInMillis / (1000L * 60 * 60) % 24
-    val days = diffInMillis / (1000L * 60 * 60 * 24) % 365
-    val years = diffInMillis / (1000L * 60 * 60 * 24 * 365)
+    val calendar= Calendar.getInstance()
 
-    return "$years años, $days días, $hours horas, $minutes minutos, $second segundos"
+    calendar.set(Calendar.DAY_OF_YEAR,days)
+    calendar.set(Calendar.HOUR_OF_DAY,hours.toInt())
+    calendar.set(Calendar.MINUTE,minutes.toInt())
+    calendar.set(Calendar.SECOND,seconds.toInt())
+    return calendar
 }
-
