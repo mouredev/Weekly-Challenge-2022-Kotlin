@@ -57,7 +57,7 @@ private fun calculateWaterUnits(container: Array<Int>): Int {
 
             nextWall = 0
             for (nextBlocksIndex in index + 1 until container.size) {
-                if (container[nextBlocksIndex] >= nextWall) {
+                if (container[nextBlocksIndex] >= nextWall && wall >= nextWall) {
                     nextWall = container[nextBlocksIndex]
                 }
             }

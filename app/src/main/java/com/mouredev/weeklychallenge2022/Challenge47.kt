@@ -10,7 +10,8 @@ import java.text.Normalizer
  * Dificultad: FÁCIL
  *
  * Enunciado: Crea un función que reciba un texto y retorne la vocal que más veces se repita.
- * Si no hay vocales podrá devolver vacío.
+ * - Ten cuidado con algunos casos especiales.
+ * - Si no hay vocales podrá devolver vacío.
  *
  * Información adicional:
  * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
@@ -19,29 +20,42 @@ import java.text.Normalizer
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
-private val REGEX_UNACCENTED = "\\p{InCombiningDiacriticalMarks}+".toRegex()
-
-fun CharSequence.unaccented(): String {
-    val temp = Normalizer.normalize(this, Normalizer.Form.NFD)
-    return REGEX_UNACCENTED.replace(temp, "")
-}
-
-fun getMostRepeatedVowels(text: String): String {
-    val cleanedText = text.unaccented().lowercase()
-    val vowelOccurrences: MutableMap<Char, Int> = mutableMapOf()
-    cleanedText.forEach { letter ->
-        if("aeiou".contains(letter)) {
-            vowelOccurrences[letter] = vowelOccurrences[letter]?.plus(1) ?: 1
-        }
-    }
-    val maxEntry = vowelOccurrences.maxByOrNull{ it.value }
-    return if(maxEntry == null) "[]" else vowelOccurrences.filter{ it.value == maxEntry.value }.keys.toString()
-}
 
 fun main() {
-    println(getMostRepeatedVowels("¡Pssst!"))
-    println(getMostRepeatedVowels("¡Hola Brais!"))
-    println(getMostRepeatedVowels("¡Adiós Brais!"))
-    println(getMostRepeatedVowels("¡Adiós Martín!"))
+    println(mostRepeatedVowel("aaaaaeeeeiiioou"))
+    println(mostRepeatedVowel("AáaaaEeeeIiiOoU"))
+    println(mostRepeatedVowel("eeeeiiioouaaaaa"))
+    println(mostRepeatedVowel(".-Aá?aaaBbEeeweIiiOoU:"))
+    println(mostRepeatedVowel(".-Aá?aaa BbEeew eIiiOoU:"))
+    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoU:"))
+    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoUuuuuu:"))
+    println(mostRepeatedVowel("aeiou"))
+    println(mostRepeatedVowel("brp qyz"))
 }
 
+private fun mostRepeatedVowel(text: String) : List<String> {
+
+    val vowelCount = mutableMapOf<Char, Int>()
+
+    Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).forEach { character ->
+        if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u') {
+            vowelCount[character] = vowelCount[character]?.plus(1) ?: 1
+        }
+    }
+
+    val mostRepeated = mutableListOf<String>()
+    var maxRepeated = 0
+
+    vowelCount.forEach { (vowel: Char, count: Int) ->
+        if (count >= maxRepeated) {
+            if (count > maxRepeated) {
+                mostRepeated.clear()
+            }
+            mostRepeated.add(vowel.toString())
+
+            maxRepeated = count
+        }
+    }
+
+    return mostRepeated
+}
