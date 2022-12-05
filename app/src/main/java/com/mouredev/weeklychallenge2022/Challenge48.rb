@@ -61,11 +61,11 @@ class Year
   def calculate_time(input)
     difference = calc_diff(input)
 
-    minutes, seconds = difference.divmod(60)
-    hours, minutes = minutes.divmod(60)
-    days, hours = hours.divmod(24)
-    months, days = days.divmod(30.437)
-    years, months = months.divmod(12)
+    partial_minutes, seconds = difference.divmod(60)
+    partial_hours, minutes = partial_minutes.divmod(60)
+    partial_days, hours = partial_hours.divmod(24)
+    partial_months, days = partial_days.divmod(30.437)
+    years, months = partial_months.divmod(12)
 
     { years: years.round, months: months.round, days: days.round, hours: hours.round, minutes: minutes.round,
       seconds: seconds.round }
