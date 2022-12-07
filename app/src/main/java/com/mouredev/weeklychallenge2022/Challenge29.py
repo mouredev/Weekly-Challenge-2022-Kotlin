@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #29
@@ -50,3 +50,34 @@ fun sort(numbers: List<Int>, asc: Boolean): List<Int> {
     return sortedNumbers
 }
 
+ """
+
+
+def list_sort(numbers: list[int], asc: bool) -> list[int]:
+
+    sorted_numbers = []
+
+    for number in numbers:
+
+        added = False
+
+        for index, sorted_number in enumerate(sorted_numbers):
+
+            if asc and number < sorted_number:
+                sorted_numbers.insert(index, number)
+                added = True
+                break
+
+            elif not asc and number > sorted_number:
+                sorted_numbers.insert(index, number)
+                added = True
+                break
+
+        if not added:
+            sorted_numbers.append(number)
+
+    return sorted_numbers
+
+
+print(list_sort([2, 4, 6, 1, 8, 9, 3], False))
+print(list_sort([2, 4, 6, 1, 8, 9, 3], True))

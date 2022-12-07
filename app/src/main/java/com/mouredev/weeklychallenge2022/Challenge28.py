@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #28
@@ -92,3 +92,96 @@ private  fun returnMoney(pendingMoney: Int, money: Array<Money> = arrayOf()): Ar
 
     return returnMoney(newPendingMoney, newMoney.toTypedArray())
 }
+ """
+
+
+from enum import Enum
+
+
+class Money(Enum):
+
+    FIVE = 5
+    TEN = 10
+    FIFTY = 50
+    ONEHUNDRED = 100
+    TWOHUNDRED = 200
+
+
+class Vending():
+
+    def __init__(self, moneys: list, product: str) -> None:
+
+        self.moneys = moneys
+        self.product = product
+        self.products_price = {'Agua': 50, 'Coca-Cola': 100,
+                               'Cerveza': 155, 'Pizza': 200, 'Donut': 75}
+
+    def money_into(self):
+
+        money_into = 0
+
+        for money in self.moneys:
+            money_into += money.value
+
+        return money_into
+
+    def money_return(self):
+
+        rest_money = self.money_into() - self.products_price[self.product]
+
+        money_return = []
+
+        while rest_money > 0:
+
+            if rest_money >= Money.TWOHUNDRED.value:
+                money_return.append(Money.TWOHUNDRED.name)
+                rest_money -= Money.TWOHUNDRED.value
+
+            elif rest_money >= Money.ONEHUNDRED.value:
+                money_return.append(Money.ONEHUNDRED.name)
+                rest_money -= Money.ONEHUNDRED.value
+
+            elif rest_money >= Money.FIFTY.value:
+                money_return.append(Money.FIFTY.name)
+                rest_money -= Money.FIFTY.value
+
+            elif rest_money >= Money.TEN.value:
+                money_return.append(Money.TEN.name)
+                rest_money -= Money.TEN.value
+
+            elif rest_money >= Money.FIVE.value:
+                money_return.append(Money.FIVE.name)
+                rest_money -= Money.FIVE.value
+
+        return money_return
+
+    def start_vending(self):
+
+        money_into = self.money_into()
+
+        if self.product not in self.products_price.keys():
+            return f"El producto {self.product} no se encuentra en la lista"
+
+        elif money_into < self.products_price[self.product]:
+            return f"El dinero introducido es insuficiente. Le faltan {self.products_price[self.product] - money_into} céntimos"
+
+        else:
+
+            return self.product, self.money_return()
+
+
+vending = Vending(
+    [Money.TEN, Money.FIVE, Money.ONEHUNDRED, Money.FIFTY], "Cerveza")
+print(vending.start_vending())
+
+vending = Vending(
+    [Money.TEN, Money.FIVE, Money.ONEHUNDRED, Money.FIFTY, Money.TEN, Money.TEN, Money.FIFTY], "Donut")
+print(vending.start_vending())
+
+vending = Vending(
+    [Money.TEN, Money.FIVE, Money.ONEHUNDRED, Money.FIFTY], "Birra")
+print(vending.start_vending())
+
+vending = Vending(
+    [Money.TEN, Money.FIVE, Money.FIFTY], "Cerveza")
+print(vending.start_vending())

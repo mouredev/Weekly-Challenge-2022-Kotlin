@@ -48,3 +48,33 @@ private fun mcdRecursive(firstNumber: Int, secondNumber: Int): Int {
 }
 
  """
+
+
+def mcm (num1: int, num2: int):
+
+    mcd = 0 # Solo para evitar que pylance marcara error ""mcd" is possibly unbound"
+
+# Máximo común divisor
+
+    if num1 > num2:
+        a = num1
+        b = num2
+
+    else:
+        a = num2
+        b = num1
+
+    while b != 0:
+
+        mcd = b
+        b = a % b
+        a = mcd
+
+# Mínimo común multiplo
+
+    mcm = (num1 * num2) // mcd
+
+    return f"El MCD de {num1} y {num2} es {mcd}. Y el mcm es {mcm}"
+
+
+print(mcm(72, 16))

@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #25
@@ -73,4 +73,47 @@ private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
     } else {
         "Player 2"
     }
-}
+} """
+
+
+from enum import Enum
+
+
+class Move(Enum):
+
+    ROCK = "ROCK"
+    PAPER = "PAPER"
+    SCISSORS = "SCISSORS"
+
+
+def play(games: list) -> str:
+
+    player1_win = 0
+    player2_win = 0
+
+    for game in games:
+
+        player1_move = game[0]
+        player2_move = game[1]
+
+        if (player1_move == Move.ROCK and player2_move == Move.SCISSORS or
+                player1_move == Move.PAPER and player2_move == Move.ROCK or
+                player1_move == Move.SCISSORS and player2_move == Move.PAPER):
+
+            player1_win += 1
+
+        else:
+            player2_win += 1
+
+    if player1_win == player2_win:
+        return "Tie"
+
+    elif player1_win > player2_win:
+        return "Player 1"
+
+    else:
+        return "Player 2"
+
+
+print(play([(Move.ROCK, Move.SCISSORS),
+      (Move.SCISSORS, Move.ROCK), (Move.PAPER, Move.SCISSORS)]))

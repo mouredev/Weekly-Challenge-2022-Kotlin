@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #27
@@ -26,4 +26,14 @@ fun main() {
 
 private fun areOrthogonal(vectorOne: Pair<Int, Int>, vectorTwo: Pair<Int, Int>): Boolean {
     return vectorOne.first * vectorTwo.first + vectorOne.second * vectorTwo.second == 0
-}
+} """
+
+
+
+def orthogonal_vectors(vector1: list, vector2:list) -> bool:
+
+    return True if vector1[0] * vector2[0] + vector1[1] * vector2[1] == 0 else False
+
+
+print(orthogonal_vectors([1, 2], [2, 1]))
+print(orthogonal_vectors([2, 1], [-1, 2]))

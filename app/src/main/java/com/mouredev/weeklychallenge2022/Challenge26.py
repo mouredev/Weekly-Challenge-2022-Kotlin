@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #26
@@ -59,4 +59,42 @@ private fun drawPolygon(size: Int, type: PolygonType) {
     }
 
     println("")
-}
+} """
+
+from enum import Enum
+
+
+class Polygon(Enum):
+
+    SQUARE = "SQUARE"
+    TRIANGLE = "TRIANGLE"
+
+
+def square(base: int, character: str):
+
+    if base > 1:
+        char = character[0]
+
+        print((char + " ") * base)
+
+        [print(char + " " + (base - 2) * "  " + char + " ")
+         for i in range(base-2)]
+
+        print((char + " ") * base)
+
+    else:
+        print("La base ha de ser mayor de 1")
+
+
+def triangle(base: int, character: str):
+
+    if base > 1:
+        char = character[0]
+
+        [print((base - i) * " " + i * "* ") for i in range(base+1)]
+
+    else:
+        print("La base ha de ser mayor de 1")
+
+
+triangle(4, "*")

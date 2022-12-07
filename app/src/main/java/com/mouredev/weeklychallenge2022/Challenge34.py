@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #34
@@ -71,4 +71,57 @@ private fun lostNumbers(numbers: List<Int>): List<Int> {
     }
 
     return lost
-}
+} """
+
+
+class LostNumberException(Exception):
+
+    def __init__(self, error) -> None:
+        self.error = error
+
+
+def lost_number(numbers: list[int]) -> list[int]:
+
+    # Errors
+
+    if len(numbers) != len(set(numbers)):
+        raise LostNumberException("No pueden haber numeros repetidos")
+    elif len(numbers) < 2:
+        raise LostNumberException("La lista tener dos numeros como mínimo")
+
+    fist_number: int = numbers[0]
+    last_number: int = numbers[-1]
+
+    asc: bool = fist_number < last_number
+
+    for index, number in enumerate(numbers):
+
+        if type(number) != int:
+            raise LostNumberException("Los numeros deben ser enteros")
+        elif number == numbers[-1]:
+            break
+        elif asc and number < numbers[index+1]:
+            continue
+        elif not asc and number > numbers[index+1]:
+            continue
+        else:
+            raise LostNumberException("Los numeros deben estar ordenados")
+
+    # Find lost numbres
+
+    full_list: list[int] = list(range(fist_number, last_number + 1))
+    lost: list[int] = []
+
+    for number in full_list:
+        if number not in numbers:
+            lost.append(number)
+
+    return lost
+
+
+print(lost_number([1, 3, 5]))
+print(lost_number([5, 1]))
+print(lost_number([-5, 1]))
+print(lost_number([1, 3, 3, 5]))
+print(lost_number([5, 7, 1]))
+print(lost_number([10, 7, 7, 1]))

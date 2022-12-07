@@ -34,7 +34,7 @@ from datetime import datetime
 
 def adviento_lottery(date: datetime) -> str:
 
-    REWARDS = {
+    REWARDS: dict[int, str] = {
         1: "Taza de MoureDev", 2: "Camiseta de MoureDev", 3: "Calcetines de MoureDev",
         4: "Gorra de MoureDev", 5: "Pantalón de MoureDev", 6: "Calzones de MoureDev",
         7: "Sudadera de MoureDev", 8: "Sartén de MoureDev", 9: "Jarra de MoureDev",
@@ -45,10 +45,10 @@ def adviento_lottery(date: datetime) -> str:
         22: "Auriculares de MoureDev", 23: "Ordenador de MoureDev", 24: "MoureDev pa ti sólo!!!"
     }
 
-    DATE_START = datetime(2022, 12, 1)
-    DATE_END = datetime(2022, 12, 24)
+    DATE_START: datetime = datetime(2022, 12, 1)
+    DATE_END: datetime = datetime(2022, 12, 24)
 
-    date = date.replace(microsecond=0)
+    date: datetime = date.replace(microsecond=0)
 
     if date >= DATE_START and date <= DATE_END:
 

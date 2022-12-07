@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #32
@@ -47,4 +47,29 @@ fun findSecondGreater(numbers: List<Int>): Int? {
     }
 
     return if(sortedNumbers.count() >= 2) sortedNumbers[1] else null
-}
+} """
+
+
+def second_greater(numbers: list):
+
+    sorted_numbers = []
+
+    for number in numbers:
+
+        added = False
+
+        for index, sorted_number in enumerate(sorted_numbers):
+
+            if number < sorted_number:
+                sorted_numbers.insert(index, number)
+                added = True
+                break
+
+        if not added:
+            sorted_numbers.append(number)
+
+    return sorted_numbers[-2] if len(sorted_numbers) > 1 else None
+
+
+print(second_greater([4, 6, 1, 8, 2]))
+print(second_greater([]))

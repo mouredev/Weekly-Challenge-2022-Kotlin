@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #30
@@ -52,3 +52,25 @@ private fun drawFrame(text: String) {
 
     println("*".repeat(maxLength + 4))
 }
+ """
+
+def text_frame(text: str):
+
+    lines = text.split()
+    max_char = 0
+
+    for line in lines:
+        if max_char < len(line):
+            max_char = len(line)
+
+    print("*" * (max_char + 4))
+
+    for line in lines:
+        print("* " + line + " " * (max_char - len(line)) + " *")
+
+    print("*" * (max_char + 4))
+
+
+text_frame("¿Qué te parece el reto?")
+text_frame("¿Qué te     parece el reto?")
+text_frame("¿Cuántos retos de código de la comunidad has resuelto?")

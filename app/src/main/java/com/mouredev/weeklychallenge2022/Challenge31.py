@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #31
@@ -37,4 +37,26 @@ private fun thirtyLeapYears(year: Int) {
 
         currentYear++
     }
-}
+} """
+
+
+import calendar
+def thirty_leap_years(year: int):
+
+    current_year = year
+    n_leap = 0
+
+    d = []
+
+    while n_leap < 30:
+
+        current_year += 1
+
+        if calendar.isleap(current_year):
+            print(current_year)
+            n_leap += 1
+            d.append(current_year)
+
+    print(len(d))
+
+thirty_leap_years(1999)

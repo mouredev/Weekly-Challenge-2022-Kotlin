@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #33
@@ -46,4 +46,23 @@ private fun chineseZodiac(year: Int) : String {
     val animal = animals[sexagenaryYear % 12]
 
     return "$year: $element $animal"
-}
+} """
+
+
+def chinese_zodiac(year: int):
+
+    elements = ("madera", "fuego", "tierra", "metal", "agua")
+    animals = ("rata", "buey", "tigre", "conejo", "dragón", "serpiente",
+               "caballo", "oveja", "mono", "gallo", "perro", "cerdo")
+
+    if year < 604:
+        return print("El ciclo sexagenario comenzó en el año 604.")
+
+    sexagenary_year = (year - 4) % 60
+    element = elements[int((sexagenary_year % 10) / 2)]
+    animal = animals[sexagenary_year % 12]
+
+    print(f"{year}: {element}, {animal}")
+
+
+chinese_zodiac(1984)
