@@ -31,8 +31,6 @@ class Text
       # for id handles and tag handles
       handles << word if word.match(/(^@([\w+]{1,15}))|(^#\w+)/)
 
-      # word if word.match(/^@\w+@\w+.\w+/)
-      # handles << word if word.match(/^#\w+$/)
       next unless word.match(%r{(https?://(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+
         [a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.
         [^\s]{2,}|https?://(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})})
@@ -41,17 +39,4 @@ class Text
     end
     handles
   end
-
-  # def id_handle(input)
-  #   # puts "id_handle: #{input}"
-  #   input.scan(/(?<!\w)@[\w+]{1,15}\b/).concat(input.scan(/@[\w+]{1,15}@[\w+]{1,15}.[\w+]{1,15}/))
-  # end
-
-  # def tag_handle(input)
-  #   input.scan(/(?<!\w)#[\w+]{1,15}\b/)
-  # end
-
-  # def url_handle(input)
-  #   input.scan(/(https?://(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?://(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/)
-  # end
 end
