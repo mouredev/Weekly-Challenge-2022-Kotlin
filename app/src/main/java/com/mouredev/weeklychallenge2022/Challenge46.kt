@@ -27,6 +27,47 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+import json
+
+
+def wheres_robot(getPosition) :
+    x =0
+    y=0
+
+    movement = json.loads(getPosition)
+
+
+    n = len(movement)
+
+    a = 0
+    b = 0
+
+    for i in range(n) :
+
+        if i % 2 == 0: #NUMERO PAR
+  
+            if a % 2 == 0: y += movement[i]
+                        
+            else : y -= movement [i]
+    
+            a += 1
+        
+
+        else : # n IMPAR
+        
+            if b % 2 == 0: x -= movement[i]  
+
+            else : x += movement[i]
+
+            b += 1
+
+    print ('X:',x,'Y:',y)
+
+print('Ingresa los pasos entre []')
+
+getPosition = input()
+
+wheres_robot(getPosition)
 
 fun main() {
     println(whereIsTheRobot(arrayOf(10, 5, -2)))

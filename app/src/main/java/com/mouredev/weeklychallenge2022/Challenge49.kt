@@ -21,5 +21,40 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+import re
+
+
+def getting_handles (frase):
+
+
+    handle_arroba = re.findall('@\w+',frase)  #imprimo una palabra con @ y caracteres Alfanumericos presentes
+
+    for arrobas in handle_arroba :
+
+        print(arrobas)
+
+    handle_numeral = re.findall('#\w+',frase)  #imprimo una palabra con @ y caracteres Alfanumericos presentes
+
+    for numerales in handle_numeral :
+
+        print(numerales)
+
+
+    handle_web = re.findall(r'http*\w*://[a-z]*[.\w+]+',frase)  # imprimo sitios web presentes comenzando por http://
+
+    for webs_http in handle_web :
+
+        print(webs_http)
+
+    # LLAMADO DE LA FUNCION GETTING_HANDLES :
+
+frase1 = "Hola, mis redes son @mytwitter, @myinstagram, my pagina web : www.myweb.es y"
+frase2 = "http://myotherweb.com, visita https://mouredev.dev/ #retosemanal "
+frase3 = "Participa en el evento #aDEViento, visita https://adeviento.dev"
+frase4 = "#thisiscool #lovedev @hameyoga en instagram https://otrositio.dev"
+
+frase = frase1 + frase2 + frase3 + frase4
+
+getting_handles(frase)
 
 
