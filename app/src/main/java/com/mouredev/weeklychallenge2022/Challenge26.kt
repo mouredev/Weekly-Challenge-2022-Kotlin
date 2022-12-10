@@ -13,6 +13,7 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+//SOLO ESTÁ TERMINADO EL CUADRADO, EL TRIANGULO ESTA PENDIENTE.
 fun main(){
     paintSquare(6)
 }
@@ -33,6 +34,10 @@ fun paintSquare(side : Int){
     }
 
     for (i in topAndBottonSideOfTheSquare.indices){
+        /*La función de extensión joinToString() es una utilidad que transforma una colección de
+        elementos en un String. Puedes personalizar al construcción a partir de parámetros que
+        especifican el separador, prefijo, sufijo, límite o transformación.*/
+
         if (i == 0 || i == topAndBottonSideOfTheSquare.size -1){
             println(topAndBottonSideOfTheSquare.joinToString(" "))
         }else{
