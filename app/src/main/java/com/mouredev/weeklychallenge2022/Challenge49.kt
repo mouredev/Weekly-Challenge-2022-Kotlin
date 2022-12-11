@@ -21,17 +21,30 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(handlesDetector("En esta actividad de @mouredev, resolvemos #retos de #programacion desde https://retosdeprogramacion.com/semanales2022, que @braismoure aloja en www.github.com"))
+fun main(){
+    println(matchHandles("www.linkedin.es #hashtag  @Martha"))
+    println(matchHandles("xww.linkedin.es hashtag  @Martha"))
+    println(matchHandles("http://www.linkedin.es #hashtag  @Martha"))
+    println(matchHandles("https://www.linkedin.es #ha_45htag"))
+    println(matchHandles("www.linkedin @Barry"))
 }
 
-private fun handlesDetector(text: String): Map<String, List<String>> {
+private fun matchHandles(text:String):List<String> {
+    var handlesList = arrayListOf<String>()
+    val hashtagHandle = Regex("#\\w+")
+    val userHandle = Regex("@\\w+")
+    val webHandle = Regex("(((http|https)://.)|(www.))[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
 
-    val handles = mutableMapOf<String, List<String>>()
+    val patternList = arrayListOf(hashtagHandle, userHandle,webHandle)
 
-    handles["user"] = "@(\\w{2,15})".toRegex().findAll(text).toList().map { it.value }
-    handles["hashtag"] = "#[^ !@$^#&,.?():%<>{}\\[\\]|\"]+".toRegex().findAll(text).toList().map { it.value }
-    handles["url"] = "((https?://(www\\.)?)|www\\.)[\\w#+\\=]{2,256}\\.[a-zA-Z]{2,7}[\\w\\/?=&.+-]*".toRegex().findAll(text).toList().map { it.value }
+    patternList.forEach { pattern->
+        val found=pattern.findAll(text)
+        found.forEach { match->
+            handlesList.add(match.value)
+        }
 
-    return handles
+    }
+    return handlesList
 }
+
+
