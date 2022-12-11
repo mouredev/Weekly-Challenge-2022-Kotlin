@@ -81,7 +81,8 @@ Tienes toda la información extendida sobre los retos de programación semanales
 * **#46** - 14/11/22 - [`¿DÓNDE ESTÁ EL ROBOT?`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge46.kt)
 * **#47** - 21/11/22 - [`VOCAL MÁS COMÚN`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge47.kt)
 * **#48** - 28/11/22 - [`EL CALENDARIO DE ADEVIENTO 2022`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge48.kt)
-* **#49** - 05/12/22 - `Publicación nuevo reto...`
+* **#49** - 05/12/22 - [`EL DETECTOR DE HANDLES`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge49.kt)
+* **#50** - 12/12/22 - `Publicación nuevo reto...`
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
