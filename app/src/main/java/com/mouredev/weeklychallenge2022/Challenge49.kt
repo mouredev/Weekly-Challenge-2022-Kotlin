@@ -21,5 +21,27 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main() {
+    println("${findHandles("Hola @mouredev, ¿qué tal? #retosdeprogramacion #kotlin #android https://mouredev.com")}")
+    println("${findHandles("@elonmusk va a destruir #Twitter. @mouredev, ¿qué opinas?")}")
+}
+
+fun findHandles(input: String): List<String> {
+    val handles = mutableListOf<String>()
+    val userHandlePattern = "@\\w+".toRegex()
+    val hashtagHandlePattern = "#\\w+".toRegex()
+    val webHandlePattern = "https?://(www\\.)?\\w+\\.[a-zA-Z]{2,3}".toRegex()
+
+    val userHandles = userHandlePattern.findAll(input)
+    val hashtagHandles = hashtagHandlePattern.findAll(input)
+    val webHandles = webHandlePattern.findAll(input)
+
+    userHandles.forEach { handles.add(it.value) }
+    hashtagHandles.forEach { handles.add(it.value) }
+    webHandles.forEach { handles.add(it.value) }
+
+    return handles
+}
+
 
 
