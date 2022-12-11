@@ -21,5 +21,30 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main(){
+    println(matchHandles("www.linkedin.es #hashtag  @Martha"))
+    println(matchHandles("xww.linkedin.es hashtag  @Martha"))
+    println(matchHandles("http://www.linkedin.es #hashtag  @Martha"))
+    println(matchHandles("https://www.linkedin.es #ha_45htag"))
+    println(matchHandles("www.linkedin @Barry"))
+}
+
+private fun matchHandles(text:String):List<String> {
+    var handlesList = arrayListOf<String>()
+    val hashtagHandle = Regex("#\\w+")
+    val userHandle = Regex("@\\w+")
+    val webHandle = Regex("(((http|https)://.)|(www.))[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
+
+    val patternList = arrayListOf(hashtagHandle, userHandle,webHandle)
+
+    patternList.forEach { pattern->
+        val found=pattern.findAll(text)
+        found.forEach { match->
+            handlesList.add(match.value)
+        }
+
+    }
+    return handlesList
+}
 
 
