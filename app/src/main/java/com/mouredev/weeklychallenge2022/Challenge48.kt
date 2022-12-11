@@ -1,11 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Calendar
-import java.util.Date
-
 /*
  * Reto #48
  * EL CALENDARIO DE ADEVIENTO 2022
@@ -33,90 +25,115 @@ import java.util.Date
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+import { sub , set, secondsToMilliseconds } from 'date-fns'
 
-fun main() {
+function generarRegalos():any{
 
-//    aDEViento2022(LocalDateTime.of(2022, 12, 5, 20, 27, 56).toDate())
-
-    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
-    println(aDEViento2022(LocalDateTime.parse("2022/12/05 20:27:56", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/01 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/24 23:59:59", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/11/30 23:59:59", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/25 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/10/30 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2022/12/30 04:32:12", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2020/10/30 00:00:00", formatter).toDate()))
-    println(aDEViento2022(LocalDateTime.parse("2024/12/30 04:32:12", formatter).toDate()))
+    let regalos=[{"fecha":new Date("2022-12-01T00:00:00"),"regalo":"libro 1"},
+                 {"fecha":new Date("2022-12-02T00:00:00"),"regalo":"libro 2"},
+                 {"fecha":new Date("2022-12-03T00:00:00"),"regalo":"libro 3"},
+                 {"fecha":new Date("2022-12-04T00:00:00"),"regalo":"libro 4"},
+                 {"fecha":new Date("2022-12-05T00:00:00"),"regalo":"libro 5"},
+                 {"fecha":new Date("2022-12-06T00:00:00"),"regalo":"curso 1"},
+                 {"fecha":new Date("2022-12-07T00:00:00"),"regalo":"curso 2"},
+                 {"fecha":new Date("2022-12-08T00:00:00"),"regalo":"curso 3"},
+                 {"fecha":new Date("2022-12-09T00:00:00"),"regalo":"curso 4"},
+                 {"fecha":new Date("2022-12-10T00:00:00"),"regalo":"curso 5"},
+                 {"fecha":new Date("2022-12-11T00:00:00"),"regalo":"suscripcion 1"},
+                 {"fecha":new Date("2022-12-12T00:00:00"),"regalo":"suscripcion 2"},
+                 {"fecha":new Date("2022-12-13T00:00:00"),"regalo":"suscripcion 3"},
+                 {"fecha":new Date("2022-12-14T00:00:00"),"regalo":"suscripcion 4"},
+                 {"fecha":new Date("2022-12-15T00:00:00"),"regalo":"suscripcion 5"},
+                 {"fecha":new Date("2022-12-16T00:00:00"),"regalo":"gadget 1"},
+                 {"fecha":new Date("2022-12-17T00:00:00"),"regalo":"gadget 2"},
+                 {"fecha":new Date("2022-12-18T00:00:00"),"regalo":"gadget 3"},
+                 {"fecha":new Date("2022-12-19T00:00:00"),"regalo":"gadget 4"},
+                 {"fecha":new Date("2022-12-20T00:00:00"),"regalo":"gadget 5"},
+                 {"fecha":new Date("2022-12-20T00:00:00"),"regalo":"gadget 5"},
+                 {"fecha":new Date("2022-12-21T00:00:00"),"regalo":"mentoria 1"},
+                 {"fecha":new Date("2022-12-22T00:00:00"),"regalo":"mentoria 2"},
+                 {"fecha":new Date("2022-12-23T00:00:00"),"regalo":"mentoria 3"},
+                 {"fecha":new Date("2022-12-24T00:00:00"),"regalo":"mentoria 4"},
+                ];
+   
+    return regalos; //arreglo de objetos
 }
 
-private fun LocalDateTime.toDate(): Date {
-    return Date.from(this.atZone(ZoneId.systemDefault()).toInstant())
-}
 
-private fun aDEViento2022(date: Date): String {
-
-    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
-    val startDate = LocalDateTime.parse("2022/12/01 00:00:00", formatter).toDate()
-    val endDate = LocalDateTime.parse("2022/12/24 23:59:59", formatter).toDate()
-
-    if (date in startDate..endDate) {
-
-        val gifts = arrayOf(
-            "El programador pragmático",
-            "while True: learn()",
-            "Aprende Javascript ES9, HTML, CSS3 y NodeJS desde cero",
-            "Patrones de Diseño en JavaScript y TypeScript",
-            "Aprende Python en un fin de semana",
-            "Regalo 6",
-            "Regalo 7",
-            "Regalo 8",
-            "Regalo 9",
-            "Regalo 10",
-            "Regalo 11",
-            "Regalo 12",
-            "Regalo 13",
-            "Regalo 14",
-            "Regalo 15",
-            "Regalo 16",
-            "Regalo 17",
-            "Regalo 18",
-            "Regalo 19",
-            "Regalo 20",
-            "Regalo 21",
-            "Regalo 22",
-            "Regalo 23",
-            "Regalo 24")
-
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        return "El regalo del día es: ${gifts[day - 1]} y el sorteo del día acaba en: ${diffTimeComponentsText(date, calendar.time)}"
+function buscarRegalo(date:Date):string{
+    let sorteo:string="";
+    if(date<new Date("2022-12-01T00:00:00")){
+        sorteo=earlierDate(date);
+        return sorteo;
     }
-
-    val intro = if (date < startDate) "El calendario de aDEViento 2022 comenzará en:" else "El calendario de aDEViento 2022 ha finalizado hace:"
-    val timeComponents = diffTimeComponentsText(if (date < startDate) date else endDate,
-                                                if (date < startDate) startDate else date)
-    return "$intro $timeComponents"
+    if(date>new Date("2022-12-24T23:59:59")){
+        sorteo=laterDate(date);
+        return sorteo;
+    }
+    if(date>=new Date("2022-12-01T00:00:00") && date<=new Date("2022-12-24T23:59:59")){
+        sorteo=matchDate(date);
+        return sorteo;
+    }
+    return sorteo;
 }
 
-private fun diffTimeComponentsText(startDate: Date, endDate: Date): String {
+function matchDate(date:Date):string{
+    
+    let regalos:string=generarRegalos();
+    let sorteo:string="";
 
-    val diffInMillis = endDate.time - startDate.time
+    for(let i=0;i<regalos.length;i++){
+        
+        let dateArr=new Date(regalos[i]["fecha"]);
 
-    println(diffInMillis)
+        if(dateArr.getDate()==date.getDate()){
 
-    val second = diffInMillis / 1000L % 60
-    val minutes = diffInMillis / (1000L * 60) % 60
-    val hours = diffInMillis / (1000L * 60 * 60) % 24
-    val days = diffInMillis / (1000L * 60 * 60 * 24) % 365
-    val years = diffInMillis / (1000L * 60 * 60 * 24 * 365)
+            let endTime=set(dateArr,{hours:23,minutes:59,seconds:59});
 
-    return "$years años, $days días, $hours horas, $minutes minutos, $second segundos"
+            //calcular tiempo faltante
+            let restTime=sub(endTime,{days:date.getDay(),hours:date.getHours(),minutes:date.getMinutes(),seconds:date.getSeconds()});
+
+            //retornar regalos y tiempo faltante
+            sorteo="Regalo del dia: "+regalos[i]["regalo"]+" 🎁"+"\n"+"El sorteo finalizará en: "+restTime.getDay()+" dias, "+restTime.getHours()+" horas, "+restTime.getMinutes()+" minutos, "+restTime.getSeconds()+" segundos.";
+        }
+    }
+    return sorteo;
 }
 
+
+function earlierDate(date:Date):string{
+    let startDate=new Date("2022-12-01T00:00:00");
+ 
+    let restTime=sub(startDate,{days:date.getDay(),hours:date.getHours(),minutes:date.getMinutes(),seconds:date.getSeconds()});
+
+    let sorteo:string="El sorteo comenzará en: "+restTime.getDay()+" dias, "+restTime.getHours()+" horas, "+restTime.getMinutes()+" minutos, "+restTime.getSeconds()+" segundos.";
+    
+    return sorteo;
+    
+    
+}
+
+function laterDate(date:Date):string{
+    let endDate:Date=new Date("2022-12-24T23:59:59");
+
+    let restTime=sub(date,{days:endDate.getDay(),hours:endDate.getHours(),minutes:endDate.getMinutes(),seconds:endDate.getSeconds()});
+   
+    let sorteo:string="El sorteo terminó hace: "+restTime.getDay()+" dias, "+restTime.getHours()+" horas, "+restTime.getMinutes()+" minutos, "+restTime.getSeconds()+" segundos.";
+    
+    return sorteo;
+}
+
+//main
+console.clear();
+
+let date:Date=new Date("2022-12-25T00:01:00");
+let sorteo:string=buscarRegalo(date);
+console.log(sorteo);
+
+let date1:Date=new Date("2022-11-30T23:59:00");
+let sorteo1:string=buscarRegalo(date1);
+console.log(sorteo1);
+
+let date2:Date=new Date();//today date
+let sorteo2:string=buscarRegalo(date2);
+console.log(sorteo2);
