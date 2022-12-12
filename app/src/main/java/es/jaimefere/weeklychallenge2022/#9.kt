@@ -99,4 +99,5 @@ fun translate(text: String): String {
 fun main() {
     println(translate("De texto a Morse"))
     println(translate("—·· ·  —— ——— ·—· ··· ·  ·—  — · —··— — ——— "))
+    println(translate("———— ——— —·—· ·— ·——· ·· —·—· ·—·—·—  · ···  ··— —· ·—  —— ·— ·—· —·—· ·—  —·· ·  —·—· · ·—· · ·— ·—·· · ··· ··——··"))
 }

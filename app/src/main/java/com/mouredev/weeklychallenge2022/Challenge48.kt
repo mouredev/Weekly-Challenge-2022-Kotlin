@@ -1,9 +1,10 @@
 package com.mouredev.weeklychallenge2022
 
-import java.net.HttpURLConnection
-import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Date
 
 /*
  * Reto #48
@@ -33,76 +34,90 @@ import java.util.*
  *
  */
 
-private fun scrapADEVientoPrizeFor(day: Int): String {
-    val url = URL("https://adviento.dev")
-    val urlConnection = url.openConnection() as HttpURLConnection
-    try {
-        val htmlText = urlConnection.inputStream.bufferedReader().readText()
-        val days = htmlText.split(")</span></span></h4>")
-        days.indices.forEach { index ->
-            if(days[index].contains("($day/24")) {
-                var prize = days[index+1].split("</div>")[0].split("\">")[1]
-                if(days[index+1].startsWith("<h4")) {
-                    prize = days[index+1].split("title=\"")[1].split("\">")[0]
-                }
-                return prize.replace("<b>", "").replace("</b>", "").replace("&quot;", "\"")
-            }
-        }
-        return "unknown"
-    } finally {
-        urlConnection.disconnect()
-    }
-}
-
-fun formatDateFrom(seconds: Int): String {
-    val d = seconds / 86400
-    val h = seconds / 3600
-    val m = seconds % 3600 / 60
-    val s = seconds % 60
-    val sd = if (d > 0) "$d d" else ""
-    val sh = (if (h in 1..23 && d > 0) "0" else "") + if (h > 0) if (d > 0 && m == 0) h.toString() else "$h h" else ""
-    val sm = (if (m in 1..9 && h > 0) "0" else "") + if (m > 0) if (h > 0 && s == 0) m.toString() else "$m min" else ""
-    val ss = if (s == 0 && (h > 0 || m > 0)) "" else (if (s < 10 && (h > 0 || m > 0)) "0" else "") + s.toString() + " " + "sec"
-    return sd + (if (d > 0) " " else "") + sh + (if (h > 0) " " else "") + sm + (if (m > 0) " " else "") + ss
-}
-
-private fun showADEVientoInfoFor(date: Date) {
-    val dateFormatter = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
-    val calendarStartDate = dateFormatter.parse( "2022/12/01 00:00:00")
-    val calendarEndDate = dateFormatter.parse("2022/12/24 23:59:59")
-
-    if(date.before(calendarStartDate)) {
-        println("El Calendario de aDEViento 2022 inicia en ${formatDateFrom((calendarStartDate.time - date.time).toInt() / 1000)}")
-    } else if(date.after(calendarEndDate)) {
-        println("El Calendario de aDEViento 2022 finalizó hace ${formatDateFrom((date.time - calendarEndDate.time).toInt() / 1000)}")
-    } else {
-        var calendar = Calendar.getInstance()
-        calendar.time = date
-        var dateDay = calendar[Calendar.DAY_OF_MONTH]
-        val prize = scrapADEVientoPrizeFor(dateDay)
-        if(prize != "unknown") {
-            val todayDay = Calendar.getInstance()[Calendar.DAY_OF_MONTH]
-            if(dateDay == todayDay) {
-                val endDay = dateFormatter.parse("2022/12/$dateDay 23:59:59")
-                println("Quedan ${formatDateFrom((endDay.time - Calendar.getInstance().timeInMillis).toInt() / 1000)} para participar en el sorteo de: $prize")
-            } else {
-                println("El premio fue: $prize")
-            }
-        } else {
-            val startDay = dateFormatter.parse("2022/12/$dateDay 00:00:00")
-            println("En ${formatDateFrom((startDay.time - Calendar.getInstance().timeInMillis).toInt() / 1000)} se conocerá el premio y comenzará el sorteo.")
-        }
-    }
-}
-
+/*
 fun main() {
-    val dateFormatter = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
-    showADEVientoInfoFor(dateFormatter.parse("2022/11/30 23:00:00"))
-    showADEVientoInfoFor(dateFormatter.parse("2022/12/26 01:00:00"))
-    showADEVientoInfoFor(dateFormatter.parse("2022/12/01 04:00:00"))
-    showADEVientoInfoFor(dateFormatter.parse("2022/12/02 08:00:00"))
-    showADEVientoInfoFor(dateFormatter.parse("2022/12/03 12:00:00"))
-    showADEVientoInfoFor(dateFormatter.parse("2022/12/04 16:00:00"))
-    showADEVientoInfoFor(Calendar.getInstance().time)
-    showADEVientoInfoFor(dateFormatter.parse("2022/12/07 20:00:00"))
+
+//    aDEViento2022(LocalDateTime.of(2022, 12, 5, 20, 27, 56).toDate())
+
+    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
+    println(aDEViento2022(LocalDateTime.parse("2022/12/05 20:27:56", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2022/12/01 00:00:00", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2022/12/24 23:59:59", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2022/11/30 23:59:59", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2022/12/25 00:00:00", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2022/10/30 00:00:00", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2022/12/30 04:32:12", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2020/10/30 00:00:00", formatter).toDate()))
+    println(aDEViento2022(LocalDateTime.parse("2024/12/30 04:32:12", formatter).toDate()))
 }
+
+private fun LocalDateTime.toDate(): Date {
+    return Date.from(this.atZone(ZoneId.systemDefault()).toInstant())
+}
+
+private fun aDEViento2022(date: Date): String {
+
+    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
+    val startDate = LocalDateTime.parse("2022/12/01 00:00:00", formatter).toDate()
+    val endDate = LocalDateTime.parse("2022/12/24 23:59:59", formatter).toDate()
+
+    if (date in startDate..endDate) {
+
+        val gifts = arrayOf(
+            "El programador pragmático",
+            "while True: learn()",
+            "Aprende Javascript ES9, HTML, CSS3 y NodeJS desde cero",
+            "Patrones de Diseño en JavaScript y TypeScript",
+            "Aprende Python en un fin de semana",
+            "Regalo 6",
+            "Regalo 7",
+            "Regalo 8",
+            "Regalo 9",
+            "Regalo 10",
+            "Regalo 11",
+            "Regalo 12",
+            "Regalo 13",
+            "Regalo 14",
+            "Regalo 15",
+            "Regalo 16",
+            "Regalo 17",
+            "Regalo 18",
+            "Regalo 19",
+            "Regalo 20",
+            "Regalo 21",
+            "Regalo 22",
+            "Regalo 23",
+            "Regalo 24")
+
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        return "El regalo del día es: ${gifts[day - 1]} y el sorteo del día acaba en: ${diffTimeComponentsText(date, calendar.time)}"
+    }
+
+    val intro = if (date < startDate) "El calendario de aDEViento 2022 comenzará en:" else "El calendario de aDEViento 2022 ha finalizado hace:"
+    val timeComponents = diffTimeComponentsText(if (date < startDate) date else endDate,
+                                                if (date < startDate) startDate else date)
+    return "$intro $timeComponents"
+}
+
+private fun diffTimeComponentsText(startDate: Date, endDate: Date): String {
+
+    val diffInMillis = endDate.time - startDate.time
+
+    println(diffInMillis)
+
+    val second = diffInMillis / 1000L % 60
+    val minutes = diffInMillis / (1000L * 60) % 60
+    val hours = diffInMillis / (1000L * 60 * 60) % 24
+    val days = diffInMillis / (1000L * 60 * 60 * 24) % 365
+    val years = diffInMillis / (1000L * 60 * 60 * 24 * 365)
+
+    return "$years años, $days días, $hours horas, $minutes minutos, $second segundos"
+}
+*/

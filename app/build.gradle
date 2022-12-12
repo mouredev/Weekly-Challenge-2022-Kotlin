@@ -2,15 +2,14 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
-apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 33
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.mouredev.weeklychallenge2022"
-        minSdk 24
-        targetSdk 33
+        minSdk 26
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -33,20 +32,22 @@ android {
     namespace 'com.mouredev.weeklychallenge2022'
 }
 
-dependencies {
+task unzipJar(type: Copy) {
+    from zipTree('../libs/java-rt-jar-stubs-1.5.0.jar')
+    into ("../libs/java-rt-jar-stubs")
+    include "**/*.class"
+    exclude "**/Date.class"
+}
 
+dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
-//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation files('../libs/java-rt-jar-stubs-1.5.0.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
 }

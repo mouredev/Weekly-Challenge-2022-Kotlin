@@ -1,7 +1,5 @@
 package es.jaimefere.weeklychallenge2022
 
-import org.omg.CORBA.Object
-
 /*
  * Reto #22
  * CONJUNTOS
