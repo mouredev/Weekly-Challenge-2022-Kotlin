@@ -21,5 +21,36 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
+fun main (){
+    println( getHandleListFrom( "@ ad@saf @firulais @gsar$-sad #gatoVerde " +
+            "asf# www.perros.woff htp://algo.com 3- asf www.perros.wof http://algo.com https://otracosa.mmm ") )
+}
+
+private fun getHandleListFrom( inputText : String ) : List<String>{
+
+    val handleList = mutableListOf<String>()
+
+    val userHandlePatter = Regex("^(@)\\w+")
+    val hashtagHandlePatter = Regex("^(#)\\w+")
+    val webHandlePatter = Regex("^((www.)|(http[s]?://))\\w+(.\\w{2,3})\$")
+
+    val segmentedInput = inputText.split(" ")
+
+    fun findHandler( evaluationPatter : Regex , title : String) {
+        handleList.add(title)
+        segmentedInput.forEach{
+            if (it.matches(evaluationPatter)){
+                handleList.add(it)
+            }
+        }
+    }
+
+    findHandler(userHandlePatter, "~User(s)~")
+    findHandler(hashtagHandlePatter ,"~Hashtag(s)~")
+    findHandler(webHandlePatter, "~Web(s)~")
+
+    return handleList
+}
+
 
 
