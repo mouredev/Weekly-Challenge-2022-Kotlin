@@ -45,14 +45,9 @@
  * @param regex Expresión regular a comprobar
  * @returns Array con los resultados coincidentes de la expresión regular
  */
-function checkRegex(text: string,regex:RegExp): string[]  {
+function checkRegex(text: string,regex:RegExp): Array<string>  {
     let handles: string[] = []
-    let matchUser = text.match(regex);
-
-    matchUser?.forEach(match => {
-        handles.push(match);
-    })
-
+    text.match(regex)?.map((handle) => { handles.push(handle) })
     return handles;
 
 }
@@ -62,7 +57,7 @@ function checkRegex(text: string,regex:RegExp): string[]  {
  * @param text Texto a comprobar los handles
  * @returns Array con los handles detectados (usuario, hashtag, web)
  */
-export function handleDetector(text:string):string[]{
+export function handleDetector(text:string):Array<string>{
     let handles:string[] = [];
     handles.push(...checkRegex(text,Handlers.user));
     handles.push(...checkRegex(text,Handlers.hashTag));
