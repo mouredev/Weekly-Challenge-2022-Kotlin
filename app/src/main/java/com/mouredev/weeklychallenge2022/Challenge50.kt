@@ -1,5 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
 /*
  * Reto #50
  * LA ENCRIPTACIÓN DE KARACA
@@ -17,3 +15,49 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+
+function karacasAlgorithm(text:string):string{
+    // reverse the input
+    let splitString = text.split(""); // ["h", "e", "l", "l", "o"]
+    let reverseArray = splitString.reverse(); // ["o", "l", "l", "e", "h"]
+    let joinArray = reverseArray.join(""); //"olleh"
+
+    //Replace all vowels {a => 0, e => 1, i => 2, o => 2, u => 3}
+    let replaceVovel=joinArray.replace(/a/g,"0").replace(/e/g,"1").replace(/i/g,"2").replace(/o/g,"2").replace(/u/g,"3");
+
+    //Add "aca" to the end of the word
+    let concatString=replaceVovel+"aca";
+
+    return concatString;
+}
+
+function main():void{
+    let text:string="apple";
+    let textEncrypt:string="";
+
+    textEncrypt=karacasAlgorithm(text);
+    console.log(`Encrypt(${text})`+" => "+`${textEncrypt}`) //"1lpp0aca"
+
+    text="banana";
+    textEncrypt=karacasAlgorithm(text);
+    console.log(`Encrypt(${text})`+" => "+`${textEncrypt}`) //"0n0n0baca"
+
+    text="karaca";
+    textEncrypt=karacasAlgorithm(text);
+    console.log(`Encrypt(${text})`+" => "+`${textEncrypt}`) //"0c0r0kaca"
+
+    text="burak";
+    textEncrypt=karacasAlgorithm(text);
+    console.log(`Encrypt(${text})`+" => "+`${textEncrypt}`) //"k0r3baca"
+
+    text="alpaca";
+    textEncrypt=karacasAlgorithm(text);
+    console.log(`Encrypt(${text})`+" => "+`${textEncrypt}`) //"0c0pl0aca"
+
+
+}
+
+//run
+console.clear();
+main();
