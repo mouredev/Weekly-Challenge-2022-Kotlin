@@ -1,3 +1,4 @@
+"""
 package com.mouredev.weeklychallenge2022
 
 /*
@@ -17,3 +18,16 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+ """
+
+def karaca(text:str) -> str:
+    encrypt = {"a" : 0, "e" : 1, "i" : 2, "o" : 2, "u" : 3}
+    reverse = text[::-1]
+    for letter in reverse:
+        if letter in encrypt.keys():
+            reverse = reverse.replace(letter,str(encrypt[letter]))
+    return reverse + 'aca'
+
+if __name__ == "__main__":
+    text = input("escribe la palabra: ").lower()
+    print(karaca(text))
