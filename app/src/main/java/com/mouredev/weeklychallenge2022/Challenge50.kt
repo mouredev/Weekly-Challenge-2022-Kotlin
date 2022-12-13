@@ -17,3 +17,41 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+public class Solucion_50 {
+
+public static void encriptadorKaraca(String texto) {
+        //Primero se reversa el texto original:
+        StringBuilder sb = new StringBuilder(texto).reverse();
+        texto = sb.toString().toLowerCase().replaceAll(" ", "");
+
+        //Segundo: se reemplazan las vocales presentes en el texto:
+        Map<Character, Character> mapaVocales = new HashMap<>();
+        mapaVocales.put('a', '0');
+        mapaVocales.put('e', '1');
+        mapaVocales.put('i', '2');
+        mapaVocales.put('o', '2');
+        mapaVocales.put('u', '3');
+        for(int i=0; i < texto.length(); i++) {
+            if(mapaVocales.containsKey(texto.charAt(i))) {
+                texto = texto.replace(texto.charAt(i), mapaVocales.get(texto.charAt(i)));
+            }
+        }
+
+        //Tercero: se agrega "aca" al final del texto resultante luego de los pasos anteriores:
+        texto = texto.concat("aca");
+
+        System.out.println(texto);
+
+    }
+
+
+    public static void main(String[] args) {
+        //karacasEncriptador("apple");
+        encriptadorKaraca("apple"); // esperado "1lpp0aca"
+        encriptadorKaraca("karaca"); // esperado "0c0r0kaca"
+        encriptadorKaraca("mouredev"); // esperado "v1d1r32maca"
+
+    }
+
+}
