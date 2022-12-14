@@ -24,12 +24,26 @@ public class Challenge1 {
 
     public static void main(String[] args) {
 
+        boolean a = anagrama("hola", "aloh");
+        System.out.println(a);
+
     }
 
-    public boolean anagrama (String palabra1, String palabra2){
+    public static boolean anagrama(String palabra1, String palabra2) {
 
+        boolean misma = false;
 
-        return
+        if (palabra1.length() == palabra2.length()) {
+
+            for (int i = 0; i < palabra1.length(); i++) {
+                if (palabra1.charAt(i) == palabra2.charAt((palabra1.length() - 1) - i)) {
+                    misma = true;
+                } else {
+                    misma = false;
+                    break;
+                }
+            }
+        }
+        return misma;
     }
-
 }
