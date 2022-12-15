@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+//package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #50
@@ -17,3 +17,24 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+import 'dart:io';
+
+void main() {
+  print("Enter a string: ");
+  String? text = stdin.readLineSync();
+  print(karaca(text!));
+}
+
+String karaca(String text) {
+  const encrypt = {"a": 0, "e": 1, "i": 2, "o": 2, "u": 3};
+  List? reverse = text.split('').toList();
+  final List keys = encrypt.keys.toList();
+  for (int i = 0; i < reverse.length; i++) {
+    if (keys.contains(reverse[i])) {
+      reverse[i] = encrypt[reverse[i]].toString();
+    }
+  }
+  final String output = reverse.join();
+  return output + 'aca';
+}
