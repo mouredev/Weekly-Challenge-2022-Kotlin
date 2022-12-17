@@ -11,7 +11,7 @@
 
 class Karaca:
     def encriptar(texto):
-        if texto[-3:].lower() == "aca" and any(num.isdigit() for num in texto):
+        if (texto[-3:].lower() == "aca" and any(num.isdigit() for num in texto)) or any(num.isdigit() for num in texto):
             return texto
 
         return (texto[::-1].translate(texto[::-1].maketrans("aeiouáéíóúü", "01234012344")).lower() + "aca")
@@ -37,9 +37,9 @@ def encripta(texto, modo):
     return " ".join(resultado)
 
 if __name__ == "__main__":
-    texto = "esta, es una prueba más"
+    texto = "100 horas"
     print(encripta(texto, True))
     
-    texto = ",0ts1aca s1aca 0n4aca 0b14rpaca s0maca"
+    texto = "100 s0r3haca"
     print(encripta(texto, False))
     
