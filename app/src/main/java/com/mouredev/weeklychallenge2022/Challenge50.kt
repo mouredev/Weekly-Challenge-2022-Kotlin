@@ -17,3 +17,22 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+
+fun main(){
+    karacaEncrypt("Martha", encrypt = true)
+    karacaEncrypt("0htr0M", encrypt = false)
+}
+private fun karacaEncrypt(text:String,encrypt:Boolean){
+    var reversedText=text.reversed()
+    val vowelsMap= mapOf("a" to 0,"e" to 1, "i" to 0, "o" to 0, "u" to 3)
+
+    vowelsMap.forEach {
+        reversedText = if(encrypt) {
+            reversedText.replace(it.key, it.value.toString())
+        }else{
+            reversedText.replace(it.value.toString(),it.key)
+        }
+    }
+
+    println(reversedText)
+}
