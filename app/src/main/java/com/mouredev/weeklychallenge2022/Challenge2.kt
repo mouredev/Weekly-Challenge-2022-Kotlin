@@ -21,17 +21,15 @@ import java.math.BigInteger
  *
  */
 
-fun main() {
 
-    var n0: Long = 0
-    var n1: Long = 1
+### SOLUCIÓN EN PYTHON ###
 
-    (1..50).forEach { _ ->
+numero_preanterior = 0
+numero_anterior = 1
+numero_actual = 0
 
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
-    }
-}
+for numero in range(1, 51):
+    print(numero_actual)
+    numero_actual = numero_preanterior + numero_anterior
+    numero_anterior = numero_actual
+    numero_preanterior = numero_anterior
