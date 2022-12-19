@@ -12,15 +12,12 @@ package com.openai.chat
  * - Los polígonos soportados serán Triángulo, Cuadrado y Rectángulo.
  * - Imprime el cálculo del área de un polígono de cada tipo.
  *
- * Resuelto: Sí. En 2 iteracciones.
- * Explicación:
- * · La función calcularAreaPoligono() recibe un objeto cualquiera y, usando el operador when, determina el tipo de polígono que se ha pasado como parámetro. Si el polígono es un triángulo, un cuadrado o un rectángulo,
+ * Resuelto: Sí.
+ * Iteracciones: 2
+ * Explicación: La función calcularAreaPoligono() recibe un objeto cualquiera y, usando el operador when, determina el tipo de polígono que se ha pasado como parámetro. Si el polígono es un triángulo, un cuadrado o un rectángulo,
  * se calcula y se retorna su área. En caso contrario, se retorna 0.0.
  * Conversación:
  * - Vale, ¿cómo sería la definición de las clases de los polígonos?
- * + La clase Poligono es la clase base abstracta para todos los polígonos. Define el método calcularArea() que deberán implementar las clases de polígonos concretas. Las clases Triangulo, Cuadrado y Rectangulo heredan de Poligono y
- * implementan el método calcularArea() para calcular el área de cada tipo de polígono.
- * + Luego, en lugar de usar la función que propuse en mi respuesta anterior, podrías usar el método calcularArea() de cada polígono para calcular su área
  *
  */
 

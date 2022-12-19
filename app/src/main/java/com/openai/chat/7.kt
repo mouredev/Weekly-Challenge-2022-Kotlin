@@ -12,9 +12,9 @@ package com.openai.chat
  * - Una palabra es la misma aunque aparezca en mayúsculas y minúsculas.
  * - No se pueden utilizar funciones propias del lenguaje que lo resuelvan automáticamente.
  *
- * Resuelto: Sí. A la primera.
- * Explicación:
- * · Este código utiliza un mapa (también conocido como diccionario) para almacenar las palabras y su recuento. Luego, itera sobre cada palabra de la frase ingresada por el usuario,
+ * Resuelto: Sí.
+ * Iteracciones: 1
+ * Explicación: Este código utiliza un mapa (también conocido como diccionario) para almacenar las palabras y su recuento. Luego, itera sobre cada palabra de la frase ingresada por el usuario,
  * elimina los signos de puntuación y convierte la palabra a minúsculas. Después, si la palabra ya existe en el mapa, aumenta su recuento en 1, de lo contrario, agrega la palabra al mapa
  * con un recuento de 1. Finalmente, se muestra el recuento final de cada palabra.
  * Nota: si se le pide un programa no suele implementar una función reusable a llamar desde el main.

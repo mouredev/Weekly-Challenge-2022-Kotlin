@@ -28,9 +28,9 @@ import kotlin.time.DurationUnit
 
 fun main() {
 
-    printDaysBetween("18/05/2022", "29/05/2022")
-    printDaysBetween("mouredev", "29/04/2022")
-    printDaysBetween("18/5/2022", "29/04/2022")
+    printDaysBetween("18/05/2022", "29/05/2022")    // 10
+    printDaysBetween("mouredev", "29/04/2022")      // Error en el parse de alguna fecha
+    printDaysBetween("18/5/2022", "29/04/2022")     // Error en el formato de alguna fecha
 }
 
 private fun printDaysBetween(firstDate: String, secondDate: String) {

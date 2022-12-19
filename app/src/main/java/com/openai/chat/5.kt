@@ -15,18 +15,15 @@ import javax.imageio.ImageIO
  * - Url de ejemplo: https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_github_profile.png
  * - Por ratio hacemos referencia por ejemplo a los "16:9" de una imagen de 1920*1080px.
  *
- * Resuelto: Sí. En 2 iteracciones.
- * Explicación:
- * · Para calcular el aspect ratio de una imagen a partir de una URL en Kotlin, podemos seguir los siguientes pasos:
+ * Resuelto: Sí.
+ * Iteracciones: 2
+ * Explicación: Para calcular el aspect ratio de una imagen a partir de una URL en Kotlin, podemos seguir los siguientes pasos:
  * 1. Descargar la imagen de la URL especificada.
  * 2. Leer la imagen y obtener sus dimensiones (ancho y alto en píxeles).
  * 3. Dividir el ancho por el alto para calcular el aspect ratio.
  * 4. Mostrar el aspect ratio en la salida estándar.
  * Conversación:
  * - El aspect ratio se suele mostrar separado por dos puntos (:)
- * + Exactamente. En lugar de mostrar el aspect ratio como un número decimal, se suele mostrar en formato "ancho:alto", por ejemplo, "16:9".
- * + Para hacerlo, podemos utilizar la función gcd de la clase kotlin.math.BigIntegerKt para calcular el máximo común divisor del ancho y el alto de la imagen,
- * y luego dividir el ancho y el alto por ese valor para obtener el aspect ratio en formato "ancho:alto"
  *
  */
 

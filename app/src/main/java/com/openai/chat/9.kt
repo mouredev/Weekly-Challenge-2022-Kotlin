@@ -14,26 +14,15 @@ import es.jaimefere.weeklychallenge2022.translate
  * - En morse se soporta raya "—", punto ".", un espacio " " entre letras o símbolos y dos espacios entre palabras "  ".
  * - El alfabeto morse soportado será el mostrado en https://es.wikipedia.org/wiki/Código_morse.
  *
- * Resuelto: Sí. En 5 iteracciones.
- * Explicación:
- * · El programa lee un texto desde la consola y utiliza el diccionario morseAlphabet para realizar la conversión. Si el texto contiene puntos (.) o rayas
+ * Resuelto: Sí.
+ * Iteracciones: 6
+ * Explicación: El programa lee un texto desde la consola y utiliza el diccionario morseAlphabet para realizar la conversión. Si el texto contiene puntos (.) o rayas
  * Conversación:
- * - Hay un error de sintaxis en it.value == it
- * + Sí, hay un error de sintaxis en la línea que contiene first { it.value == it }. La comparación debería ser entre el valor del diccionario y el código Morse que se está buscando,
- * en lugar de comparar el valor con el propio elemento del diccionario.
+ * - Hay un error de sintaxis
  * - Se debería comparar con la letra no con la palabra.
- * + Sí, en efecto, en lugar de comparar el código Morse con la palabra completa, se debería comparar cada letra del código Morse con el código Morse correspondiente en el diccionario.
- * + En esta corrección, se utiliza la variable letter en lugar de la variable word para realizar la comparación en el predicado del método first. Con esta corrección, el programa debería funcionar correctamente.
  * - Para los casos en los que la entrada es código Morse, la salida de texto natural es una lista en lugar de una cadena
- * + Sí, en efecto, en el caso en que la entrada sea código Morse, el resultado de la conversión se almacena en una lista de palabras (cada palabra es una lista de letras). Para convertir esta lista en una cadena,
- * se puede utilizar el método joinToString
  * - En entradas de texto natural no traduce a Morse ni la letra CH ni símbolos de puntuación o interrogación.
- * + Sí, en efecto, el programa actual no está diseñado para traducir la letra CH ni símbolos de puntuación o interrogación al código Morse. Para agregar soporte para estos caracteres, se puede agregar
- * una nueva entrada al diccionario morseAlphabet para cada uno de ellos.
  * - Vale, pero no escatimes, ponme todos los símbolos de interrogación, exclamación y puntuación que se te ocurran.
- * + Con estas entradas, el programa debería ser capaz de traducir correctamente todos los símbolos de interrogación, exclamación y puntuación al código Morse.
- * + Es importante tener en cuenta que este diccionario no es exhaustivo, y que pueden existir otros símbolos que no se encuentren incluidos en él. Si es necesario agregar soporte para otros símbolos,
- * basta con agregar una nueva entrada al diccionario con el símbolo y su código Morse correspondiente.
  *
  */
 

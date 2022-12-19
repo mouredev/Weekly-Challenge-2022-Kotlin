@@ -27,12 +27,12 @@ import kotlin.math.abs
  */
 
 fun main() {
-    println(daysInterval("16/04/2022", "16-04-2022"))
-    println(daysInterval("16/04/2022", "16/13/2022"))
-    println(daysInterval("16/04/2022", "32/04/2022"))
-    println(daysInterval("16/04/2022", "17/04/2022"))
-    println(daysInterval("17/04/2022", "16/04/2022"))
-    println(daysInterval("17/04/2022", "16/04/2023"))
+    println(daysInterval("16/04/2022", "16-04-2022"))   // java.text.ParseException: Unparseable date: "16-04-2022"
+    println(daysInterval("16/04/2022", "16/13/2022"))   // java.text.ParseException: Unparseable date: "16/13/2022"
+    println(daysInterval("16/04/2022", "32/04/2022"))   // java.text.ParseException: Unparseable date: "32/04/2022"
+    println(daysInterval("16/04/2022", "17/04/2022"))   // 1
+    println(daysInterval("17/04/2022", "16/04/2022"))   // 1
+    println(daysInterval("17/04/2022", "16/04/2023"))   // 364
 }
 
 fun daysInterval(dateText1: String, dateText2: String): Int {

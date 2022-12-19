@@ -11,12 +11,12 @@ import java.math.BigInteger
  *
  * Enunciado: Escribe un programa en Kotlin que imprima los 50 primeros números de la sucesión de Fibonacci empezando en 0.
  *
- * Resuelto: Sí. A la primera.
- * Explicación:
- * · En este programa, se declaran dos variables a y b que se inicializan con los valores 0 y 1, que son los dos primeros números de la sucesión de Fibonacci. Luego se imprime en pantalla estos valores.
- * · A continuación, se itera desde el índice 2 hasta el 49 (los 50 primeros números de la sucesión menos los dos ya impresos). En cada iteración, se calcula el siguiente número de la sucesión como
+ * Resuelto: Sí.
+ * Iteracciones: 1
+ * Explicación: En este programa, se declaran dos variables a y b que se inicializan con los valores 0 y 1, que son los dos primeros números de la sucesión de Fibonacci. Luego se imprime en pantalla estos valores.
+ * A continuación, se itera desde el índice 2 hasta el 49 (los 50 primeros números de la sucesión menos los dos ya impresos). En cada iteración, se calcula el siguiente número de la sucesión como
  * la suma de los dos anteriores y se imprime en pantalla. Finalmente, se actualizan las variables a y b para que almacenen los valores del último y penúltimo número de la sucesión, respectivamente.
- * · Este programa imprimirá en pantalla los 50 primeros números de la sucesión de Fibonacci empezando en 0, separados por comas.
+ * Este programa imprimirá en pantalla los 50 primeros números de la sucesión de Fibonacci empezando en 0, separados por comas.
  *
  */
 

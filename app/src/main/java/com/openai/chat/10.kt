@@ -13,10 +13,9 @@ package com.openai.chat
  * - Expresión balanceada: { [ a * ( c + d ) ] - 5 }
  * - Expresión no balanceada: { a * ( c + d ) ] - 5 }
  *
- * Resuelto: Sí. A la primera.
- * Explicación:
- * · A continuación se presenta un posible programa en Kotlin que verifica si una expresión dada tiene los paréntesis, llaves y corchetes equilibrados.
- * Este programa utiliza una pila para almacenar los delimitadores abiertos que se encuentran en la expresión y luego verifica si estos se cierran en el orden correcto.
+ * Resuelto: Sí.
+ * Iteracciones: 1
+ * Explicación: Este programa utiliza una pila para almacenar los delimitadores abiertos que se encuentran en la expresión y luego verifica si estos se cierran en el orden correcto.
  *
  */
 

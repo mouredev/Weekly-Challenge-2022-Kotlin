@@ -21,7 +21,7 @@ import java.text.Normalizer
 
 fun main() {
     val number = 10
-    println("$number! = ${calculateFactorial(number)}")
+    println("$number! = ${calculateFactorial(number)}")     // 3628800
 }
 
 private fun calculateFactorial(number: Int): Int {

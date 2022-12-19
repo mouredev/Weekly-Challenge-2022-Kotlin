@@ -18,11 +18,11 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(factorial(0) ?:run { "No tiene factorial" })
-    println(factorial(7) ?:run { "No tiene factorial" })
-    println(factorial(10) ?:run { "No tiene factorial" })
-    println(factorial(1) ?:run { "No tiene factorial" })
-    println(factorial(-1) ?:run { "No tiene factorial" })
+    println(factorial(0) ?:run { "No tiene factorial" })    // 1
+    println(factorial(7) ?:run { "No tiene factorial" })    // 5040
+    println(factorial(10) ?:run { "No tiene factorial" })   // 3628800
+    println(factorial(1) ?:run { "No tiene factorial" })    // 1
+    println(factorial(-1) ?:run { "No tiene factorial" })   // No tiene factorial
 }
 
 private fun factorial(n: Int): Int? {

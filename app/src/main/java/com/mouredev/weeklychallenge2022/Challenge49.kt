@@ -23,7 +23,7 @@ import java.awt.SystemColor.text
  *
  */
 
-//En Kotlin, podríamos crear una función que tome una cadena de texto como entrada y utilice expresiones regulares para buscar y retornar handles en el texto.
+// En Kotlin, podríamos crear una función que tome una cadena de texto como entrada y utilice expresiones regulares para buscar y retornar handles en el texto.
 // Podríamos utilizar la clase Regex de Kotlin para facilitar el trabajo con expresiones regulares. La función podría tener la siguiente apariencia:
 fun detectHandles(text: String): List<String> {
     val handles = mutableListOf<String>()
