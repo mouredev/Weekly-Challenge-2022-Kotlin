@@ -15,15 +15,12 @@ import java.awt.SystemColor.text
  * - Handle hashtag: Los que comienzan por "#"
  * - Handle web: Los que comienzan por "www.", "http://", "https://" y finalizan con un dominio (.com, .es...)
  *
- * Información adicional:
- * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
- *   para preguntas, dudas o prestar ayuda a la comunidad.
- * - Tienes toda la información sobre los retos semanales en
- *   https://retosdeprogramacion.com/semanales2022.
+ * Resuelto: Sí
+ * Iteracciones: 1
+ * Explicación: En Kotlin, podríamos crear una función que tome una cadena de texto como entrada y utilice expresiones regulares para buscar y retornar handles en el texto.
  *
  */
 
-// En Kotlin, podríamos crear una función que tome una cadena de texto como entrada y utilice expresiones regulares para buscar y retornar handles en el texto.
 // Podríamos utilizar la clase Regex de Kotlin para facilitar el trabajo con expresiones regulares. La función podría tener la siguiente apariencia:
 fun detectHandles(text: String): List<String> {
     val handles = mutableListOf<String>()
