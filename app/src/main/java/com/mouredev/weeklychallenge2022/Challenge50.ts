@@ -1,7 +1,3 @@
-package com.mouredev.weeklychallenge2022
-
-import java.text.Normalizer
-
 /*
  * Reto #50
  * LA ENCRIPTACIÓN DE KARACA
@@ -20,15 +16,6 @@ import java.text.Normalizer
  *
  */
 
-fun main(){
-
-    printKaraca("Reto#50MoureDev")
-    printKaraca("La cria de berberechos en cautividad es una actividad que ha ganado popularidad " +
-            "en los últimos años debido a la alta demanda de este marisco en el mercado. Los berberechos son una especie de " +
-            "molusco bivalvo que se encuentra en aguas templadas y salobres, y que se caracteriza por su sabor y textura únicos")
-
-}
-
 
 /***************************** NOTA IMPORTANTE *************************
  * Aunque el algoritmo diseñado tiene en cuenta los acentos y caracteres especiales, al desencriptar suponemos cierta
@@ -43,18 +30,19 @@ fun main(){
 /**
  * Mapa de sustitución de vocales
  */
+let vowelsMap = new Map<string,string>()
+vowelsMap.set('a', '0')
+vowelsMap.set('e', '1')
+vowelsMap.set('i', '2')
+vowelsMap.set('o', '3')
+vowelsMap.set('u', '4')
+vowelsMap.set('A', '5')
+vowelsMap.set('E', '6')
+vowelsMap.set('I', '7')
+vowelsMap.set('O', '8')
+vowelsMap.set('U', '9')
 
-val vowelsMap = mapOf(
-    'a' to 0,
-    'e' to 1,
-    'i' to 2,
-    'o' to 4,
-    'u' to 5,
-    'A' to 6,
-    'E' to 7,
-    'I' to 8,
-    'O' to 9,
-)
+
 /**
  * Funcion que encripta un texto utilizando el algoritmo de encriptación de Karaca
  * El algoritmo consiste en:
@@ -74,13 +62,16 @@ val vowelsMap = mapOf(
 
  * @param text Texto a encriptar
  */
-fun karacaEncrypt(text: String): String {
-    return Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).split(' ').map { word ->
-        word.reversed().replace(Regex("[aeiouAEIOU]")) { vowelsMap[it.value[0]].toString()
-        }.plus("aca")
-    }.joinToString(" ")
+function karacaEncrypt(text: string): string {
+
+    return normalizeText(text).split(' ').map((value) => {
+        return value.split('').reverse().join('').replace(/[aeiouAEIOU]/g, (v) => {
+            return vowelsMap.get(v)!!
+        }) + 'aca'
+    }).join(' ')
 
 }
+
 
 /**
  * Función que desencripta un texto utilizando el algoritmo de encriptación de Karaca inverso al de encriptación
@@ -101,21 +92,43 @@ fun karacaEncrypt(text: String): String {
  *
  * @param text
  */
-fun karacaDecrypt(text: String): String {
-    return Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).split(' ').map { word ->
-        word.removeSuffix("aca").reversed().replace(Regex("[0-9]")) {
-            vowelsMap.filterValues { value -> value == it.value[0].toString().toInt() }.keys.first().toString()
-        }
+function karacaDecrypt(text: string): string {
+    return normalizeText(text).split(' ').map(value => {
+        return value.replace(/aca$/, '').split('').reverse().join('').replace(/[0123456789]/g, (v) => {
+            let key = Array.from(vowelsMap.keys()).find(key => vowelsMap.get(key) === v)
+            return key!!
+        })
+    }).join(' ')
 
-    }.joinToString(" ")
+
 }
 
 /**
- * Funcion que imprime por pantalla el texto encriptado y desencriptado
+ * Función que normaliza el texto quitando los acentos y caracteres especiales
+ * @param str Texto a normalizar
+ * @returns Texto normalizado
  */
-fun printKaraca(text: String) {
-    println("Original Text: $text")
-    val encrypted = karacaEncrypt(text)
-    println("Encrypt: $encrypted")
-    println("Decrypt: ${karacaDecrypt(encrypted)}")
+function normalizeText(str:string) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
+
+
+function printKaraca(text: string) {
+    console.log("**********************")
+    const encryptedText = karacaEncrypt(text)
+    console.log(`Original text: ${text}`)
+    console.log(`Encrypted text: ${encryptedText}`)
+    console.log(`Decrypted text: ${karacaDecrypt(encryptedText)}`)
+
+}
+
+/**
+ * Casos de prueba
+ */
+
+printKaraca('Reto#50MoureDev')
+printKaraca('La cria de berberechos en cautividad es una actividad que ha ganado popularidad en los últimos años debido a la alta demanda de este marisco en el mercado. Los berberechos son una especie de molusco bivalvo que se encuentra en aguas templadas y salobres, y que se caracteriza por su sabor y textura únicos')
+
+
+
+
