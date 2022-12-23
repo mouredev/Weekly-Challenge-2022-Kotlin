@@ -3,7 +3,7 @@ package com.mouredev.weeklychallenge2022
 /*
  * Reto #49
  * EL DETECTOR DE HANDLES
- * Fecha publicación enunciado: 05/11/22
+ * Fecha publicación enunciado: 05/12/22
  * Fecha publicación resolución: 12/12/22
  * Dificultad: FÁCIL
  *
