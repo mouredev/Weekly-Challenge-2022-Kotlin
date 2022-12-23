@@ -12,3 +12,4 @@ while int_limite <=100:
     else:#Si no hay multiplos, imprime el numero
         print(int_limite)
     int_limite = int_limite + 1#Hace avanzar al contador
+    #prueba
