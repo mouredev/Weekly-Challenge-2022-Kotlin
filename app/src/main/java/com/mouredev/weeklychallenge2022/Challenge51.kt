@@ -7,12 +7,28 @@ package com.mouredev.weeklychallenge2022
  * Fecha publicación resolución: 26/12/22
  * Dificultad: ?
  *
- * Enunciado: Crea tu propio enunciado para que forme parte de los retos de 2023.
- * - Ten en cuenta que su dificultad debe ser asumible por la comunidad y seguir un estilo
- * semejante a los que hemos realizado durante el año.
- * - Si quieres también puedes proponer tu propia solución al reto (en el lenguaje que quieras).
- *
- * El día 26/12/22 presentaré las novedades para el nuevo año.
- * Prepárate para los nuevos retos de 2023...
+ * Mi enunciado : Dados tres números deducir cuál es el central.
  *
  */
+
+//mi solucion
+
+fun main() {
+    numeroCentral(5, 6, 7)
+    numeroCentral(10, 2, 2)
+}
+
+private fun numeroCentral(numeroUno: Int, numeroDos: Int, numeroTres: Int) {
+
+    if (numeroUno >= numeroDos && numeroUno <= numeroTres) {
+        println("El numero Centrado es : $numeroUno")
+    }
+
+    if (numeroDos >= numeroUno && numeroDos <= numeroTres) {
+        println("El numero Centrado es : $numeroDos")
+    }
+
+    if (numeroTres >= numeroDos && numeroTres <= numeroUno) {
+        println("El numero Centrado es : $numeroTres")
+    }
+}
