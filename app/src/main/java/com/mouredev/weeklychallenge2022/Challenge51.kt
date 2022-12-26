@@ -12,6 +12,8 @@ Ejemplo:
 
 countUpAndDown(5) -> [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0]
 
+    --------------
+
 Propuesta #2: Imprimir numeros con pasos
 
 Enunciado: Crea una función que reciba un número entero positivo n y devuelva una lista de enteros
@@ -21,11 +23,15 @@ Ejemplo:
 
 countDown(5) -> [5, 4, 3, 2, 1, 0]
 
+    --------------
+
 Propuesta #3: Validar una arbol binario de busqueda
 
 Enunciado: Dado un nodo, validar el árbol de búsqueda binario, asegurándose de que el hijo izquierdo
 de cada nodo es menor que el valor del nodo padre, y que el hijo derecho de cada nodo es mayor que
 el padre.
+
+    --------------
 
 Propuesta #4: Letra rodeada
 
@@ -43,6 +49,8 @@ surroundedLetter("+a+b+") // true
 
 surroundedLetter("+a++b++") // true
 
+    --------------
+
 Propuesta #5: Monedas
 
 Enunciado: Dada una cantidad de dinero y una matriz de monedas escribe un método que calcule el
@@ -51,6 +59,8 @@ número de formas de hacer la cantidad de dinero con monedas de las monedas disp
 Ejemplo:
 
 coins(4, [1, 2, 3]) // 4
+
+    --------------
 
 Propuesta #6: Transciptor de ARN
 
@@ -69,6 +79,8 @@ complemento:
     C -> G
     T -> A
     A -> U
+
+    --------------
 
 Propuesta #7: Color de la resistencia
 
@@ -112,7 +124,9 @@ a su índice en la matriz: Más Vale Que Sea Correcto O Sus Grandes Valores Se E
 Puede encontrar más información sobre la codificación de colores de las resistencias en el artículo
 de Wikipedia Código electrónico de colores.
 
-Y para acabar, un par de retos dificiles
+    --------------
+
+Y para acabar, tres retos que se podrian catalogar como dificiles
 
 
 Propuesta #8: Simulacion de cuenta bancaria
@@ -126,6 +140,8 @@ y reintegros por Internet, teléfono móvil, etc. Los comercios pueden cobrar co
 Crea una cuenta a la que se pueda acceder desde múltiples hilos/procesos.
 
 Debe ser posible cerrar una cuenta; las operaciones contra una cuenta cerrada deben fallar.
+
+    --------------
 
 Propuesta #9: Edad espacial
 
@@ -142,5 +158,16 @@ Enunciado: Dada una edad en segundos, calcula cuántos años tendría alguien en
 
 Por tanto, si te dijeran que alguien tiene 1.000.000.000 de segundos, deberías poder decir que
 tiene 31,69 años terrestres.
+
+    --------------
+
+Propuesta #10: Calculadora de complejos
+
+Enunciado: Suponga que el lenguaje de programación que está utilizando no tiene una implementación
+de números complejos. Implementar las sigueintes operaciones: suma, resta, multiplicación y división
+de dos números complejos. Ademas calcular el conjugado, valor absoluto, modulo y exponente de un
+número complejo dado.
+
+
 
  */
