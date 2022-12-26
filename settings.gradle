@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Weekly Challenge 2022"
 include ':app'
+include ':Weekly-Challenge-2022-Java'
