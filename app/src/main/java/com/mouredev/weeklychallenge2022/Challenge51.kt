@@ -16,3 +16,13 @@ package com.mouredev.weeklychallenge2022
  * Prepárate para los nuevos retos de 2023...
  *
  */
+
+/*
+ *
+ * EL SISTEMA SOLAR
+ * Enunciado: Implementa una función que reciba como parámetros 2 planetas del Sistema Solar y devuelva una tupla
+ * con el planeta de mayor diámetro en el primer valor y el planeta más cercano al sol en el segundo.
+ * - La cercanía al Sol varía según la órbita del planeta, toma su valor medio.
+ * - Si quieres puedes tener en cuenta los exoplanetas y planetas enanos.
+ *
+ */
