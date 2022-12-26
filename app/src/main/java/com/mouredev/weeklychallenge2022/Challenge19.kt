@@ -18,9 +18,10 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(timeToMillis(0, 0, 0, 10))
-    println(timeToMillis(2, 5, -45, 10))
-    println(timeToMillis(2000000000, 5, 45, 10))
+    println(timeToMillis(0, 0, 0, 10))          // 10000
+    println(timeToMillis(2, 5, -45, 10))        // 188110000
+    println(timeToMillis(2000000000, 5, 45, 10))// 172800000020710000
+    println(timeToMillis(1, 12, 30, 45))        // 131445000
 }
 
 fun timeToMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {

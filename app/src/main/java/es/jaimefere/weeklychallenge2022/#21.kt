@@ -82,9 +82,9 @@ fun processOperations(fileName: String): String {
 }
 
 fun main() {
-    println(processOperations("Challenge21"))
-    println(processOperations("OneValue"))
-    println(processOperations("TooNumbers"))
-    println(processOperations("TooOperators"))
-    println(processOperations("WithDecimals"))
+    println(processOperations("Challenge21"))   // 18.5
+    println(processOperations("OneValue"))      // 5.0
+    println(processOperations("TooNumbers"))    // Las operaciones no han podido ser resueltas.
+    println(processOperations("TooOperators"))  // Las operaciones no han podido ser resueltas.
+    println(processOperations("WithDecimals"))  // 17.7
 }

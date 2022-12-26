@@ -24,6 +24,6 @@ fun getMillis(days: Int, hours: Int, minutes: Int, seconds: Int): Long {
 }
 
 fun main() {
-    println(getMillis(-365, 0, 0 , 0))
-    println(getMillis(365, 0, 0 , 0))
+    println(getMillis(-365, 0, 0 , 0))  // 31536000000
+    println(getMillis(365, 0, 0 , 0))   // 31536000000
 }

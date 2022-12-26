@@ -28,7 +28,7 @@ suspend fun delayedAddition(num1: Int, num2: Int, seconds: Int): Int {
 
 fun main() {
     runBlocking {
-        async { println(delayedAddition(10, 30, 5)) }
-        async { println(delayedAddition(15, 35, 6)) }
+        async { println(delayedAddition(10, 30, 5)) }   // 40
+        async { println(delayedAddition(15, 35, 6)) }   // 50
     }
 }

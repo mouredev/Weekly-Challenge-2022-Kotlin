@@ -3,7 +3,7 @@ package com.mouredev.weeklychallenge2022
 /*
  * Reto #50
  * LA ENCRIPTACIÓN DE KARACA
- * Fecha publicación enunciado: 12/11/22
+ * Fecha publicación enunciado: 12/12/22
  * Fecha publicación resolución: 19/12/22
  * Dificultad: FÁCIL
  *
@@ -17,35 +17,46 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
-fun karacaEncrypt(text: String): String {
-    val vowels = "aeiou"
-    var result = ""
-    text.reversed().forEach {
-        result = "$result${if(vowels.contains(it)) vowels.indexOf(it) else it}"
-    }
-    return "${result}aca"
-}
-
-fun karacaDecrypt(text: String): String {
-    val vowels = "aeiou"
-    var result = ""
-    text.substring(0, text.length - 3).reversed().forEach {
-        result = "$result${if(it.code in 48..52) vowels[it.code - 48] else it}"
-    }
-    return result
-}
 
 fun main() {
-    var text = "apple"
-    var encryptedText = karacaEncrypt(text)
-    println(encryptedText)  // Imprime "1lpp0aca"
-    var decryptedText = karacaDecrypt(encryptedText)
-    println(decryptedText)  // Imprime "apple"
-    text = "banana"
-    encryptedText = karacaEncrypt(text)
-    println(encryptedText)  // Imprime "0n0n0baca"
-    decryptedText = karacaDecrypt(encryptedText)
-    println(decryptedText)  // Imprime "banana"
+
+    println(karaca("placa", false))
+    println(karaca("0c0lpaca", true))
+
+    println(karaca("Este es el penúltimo reto de programación del año", false))
+    println(karaca("1ts1aca s1aca l1aca 3m2tlún1paca 3t1raca 1daca nó2c0m0rg3rpaca l1daca 3ñ0aca", true))
+
+    // El algoritmo no soporta estos casos
+    println(karaca("1", false))
+    println(karaca("1aca ", true))
 }
 
+private fun karaca(text: String, isKaraca: Boolean): String {
 
+    var result = ""
+
+    text.lowercase().split(" ").forEach { word ->
+
+        if (isKaraca) {
+            result += word
+                .dropLast(3)
+                .replace("0", "a")
+                .replace("1", "e")
+                .replace("2", "i")
+                .replace("3", "o")
+                .replace("4", "u")
+                .reversed().plus(" ")
+        } else {
+            result += word
+                .reversed()
+                .replace("a", "0")
+                .replace("e", "1")
+                .replace("i", "2")
+                .replace("o", "3")
+                .replace("u", "4")
+                .plus("aca ")
+        }
+    }
+
+    return result
+}

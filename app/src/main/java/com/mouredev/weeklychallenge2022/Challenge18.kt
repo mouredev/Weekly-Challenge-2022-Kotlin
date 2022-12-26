@@ -29,22 +29,22 @@ fun main() {
     println(checkTicTacToe(arrayOf(
         arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
         arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.O),
-        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.X))))
+        arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.X))))    // X
 
     println(checkTicTacToe(arrayOf(
         arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X),
         arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.X, TicTacToeValue.O),
-        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X))))
+        arrayOf(TicTacToeValue.EMPTY, TicTacToeValue.O, TicTacToeValue.X))))    // DRAW
 
     println(checkTicTacToe(arrayOf(
         arrayOf(TicTacToeValue.O, TicTacToeValue.O, TicTacToeValue.O),
         arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X),
-        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X))))
+        arrayOf(TicTacToeValue.O, TicTacToeValue.X, TicTacToeValue.X))))    // O
 
     println(checkTicTacToe(arrayOf(
         arrayOf(TicTacToeValue.X, TicTacToeValue.O, TicTacToeValue.X),
         arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.O),
-        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.X))))
+        arrayOf(TicTacToeValue.X, TicTacToeValue.X, TicTacToeValue.X))))    // NULL
 }
 
 private enum class TicTacToeValue {

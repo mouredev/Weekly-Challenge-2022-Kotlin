@@ -83,7 +83,8 @@ Tienes toda la información extendida sobre los retos de programación semanales
 * **#48** - 28/11/22 - [`EL CALENDARIO DE ADEVIENTO 2022`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge48.kt)
 * **#49** - 05/12/22 - [`EL DETECTOR DE HANDLES`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge49.kt)
 * **#50** - 12/12/22 - [`LA ENCRIPTACIÓN DE KARACA`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge50.kt)
-* **#51** - 19/12/22 - `Publicación nuevo reto...`
+* **#51** - 19/12/22 - [`EL RETO RANDOM`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge51.kt)
+* **FIN** - 26/12/22 - `Presentación de los retos de programación semanales para 2023`
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
