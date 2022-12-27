@@ -109,8 +109,6 @@ private fun diffTimeComponentsText(startDate: Date, endDate: Date): String {
 
     val diffInMillis = endDate.time - startDate.time
 
-    println(diffInMillis)
-
     val second = diffInMillis / 1000L % 60
     val minutes = diffInMillis / (1000L * 60) % 60
     val hours = diffInMillis / (1000L * 60 * 60) % 24
