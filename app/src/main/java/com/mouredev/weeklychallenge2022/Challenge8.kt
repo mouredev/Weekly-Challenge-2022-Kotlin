@@ -17,24 +17,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(decimalToBinary(387))
-    println(decimalToBinary(0))
-}
+binario = []
+n = 0
+def decimalToBinary(n):
+    while n > 0:
+        resto = n % 2
+        n //= 2
+        binario.append(str(resto))
+    return binario
 
-fun decimalToBinary(decimal: Int): String {
+while n <= 0:
+    try:
+        n = int(input("Introduce un numero positivo para convertir a binario: "))
+        bin = decimalToBinary(n)
+    except ValueError:
+        print("Recuerda que debes introducir un valor numerico")
 
-    var number = decimal
-    var binary = ""
-
-    while (number != 0) {
-
-        val reminder = number % 2
-        number /= 2
-
-        binary = "$reminder$binary"
-    }
-
-    return binary.ifEmpty { "0" }
-}
-
+print(f"El numero {n} es {''.join(bin)} en binario")
