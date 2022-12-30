@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.stream.LongStream
+
 /*
  * Reto #3
  * ¿ES UN NÚMERO PRIMO?
@@ -27,20 +29,9 @@ fun main() {
     }
 }
 
-private fun isPrime(number: Int): Boolean {
-
-    if (number < 2) {
-        return false
-    }
-
-    for (i in 2 until number) {
-        if (number % i == 0) {
-            return false
-        }
-    }
-
-    return true
+fun isPrime(number: Int): Boolean {
+    return number > 1 &&
+            LongStream
+                .rangeClosed(2, Math.sqrt(number.toDouble()).toLong())
+                .noneMatch { index -> number % index == 0L }
 }
-
-
-

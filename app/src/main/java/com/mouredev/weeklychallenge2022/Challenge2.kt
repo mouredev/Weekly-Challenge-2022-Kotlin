@@ -23,15 +23,11 @@ import java.math.BigInteger
 
 fun main() {
 
-    var n0: Long = 0
-    var n1: Long = 1
+    fun fibonacci(n: Int)  =
+        (2L until n+2L).fold(0L to 1L) { (prev, curr), _ ->
+            println(prev)
+            curr to (prev + curr)
+        }.second
 
-    (1..50).forEach { _ ->
-
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
-    }
+    fibonacci(50)
 }
