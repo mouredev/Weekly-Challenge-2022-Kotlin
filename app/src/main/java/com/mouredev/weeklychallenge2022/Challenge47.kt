@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.text.Normalizer
+
 /*
  * Reto #47
  * VOCAL MÁS COMÚN
@@ -8,7 +10,8 @@ package com.mouredev.weeklychallenge2022
  * Dificultad: FÁCIL
  *
  * Enunciado: Crea un función que reciba un texto y retorne la vocal que más veces se repita.
- * Si no hay vocales podrá devolver vacío.
+ * - Ten cuidado con algunos casos especiales.
+ * - Si no hay vocales podrá devolver vacío.
  *
  * Información adicional:
  * - Usa el canal de nuestro Discord (https://mouredev.com/discord) "🔁reto-semanal"
@@ -19,27 +22,40 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    val vocal =
-        maxRepeatVocal("Enunciado: Crea un función que reciba un texto y retorne la vocal que más veces se repita.")
-    println("La vocal ${vocal.first} se repite ${vocal.second} veces.")
+    println(mostRepeatedVowel("aaaaaeeeeiiioou"))
+    println(mostRepeatedVowel("AáaaaEeeeIiiOoU"))
+    println(mostRepeatedVowel("eeeeiiioouaaaaa"))
+    println(mostRepeatedVowel(".-Aá?aaaBbEeeweIiiOoU:"))
+    println(mostRepeatedVowel(".-Aá?aaa BbEeew eIiiOoU:"))
+    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoU:"))
+    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoUuuuuu:"))
+    println(mostRepeatedVowel("aeiou"))
+    println(mostRepeatedVowel("brp qyz"))
 }
 
+private fun mostRepeatedVowel(text: String) : List<String> {
 
-private fun maxRepeatVocal(text: String): Pair<String, Int> {
-    val repeatVocalMap = mutableMapOf("A" to 0, "E" to 0, "I" to 0, "O" to 0, "U" to 0)
+    val vowelCount = mutableMapOf<Char, Int>()
 
-    for (i in text.indices) {
-        when (text.uppercase()[i]) {
-            'A', 'Á' -> repeatVocalMap["A"]?.let { repeatVocalMap.replace("A", it.plus(1)) }
-            'E', 'É' -> repeatVocalMap["E"]?.let { repeatVocalMap.replace("E", it.plus(1)) }
-            'I', 'Í' -> repeatVocalMap["I"]?.let { repeatVocalMap.replace("I", it.plus(1)) }
-            'O', 'Ó' -> repeatVocalMap["O"]?.let { repeatVocalMap.replace("O", it.plus(1)) }
-            'U', 'Ú' -> repeatVocalMap["U"]?.let { repeatVocalMap.replace("U", it.plus(1)) }
+    Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).forEach { character ->
+        if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u') {
+            vowelCount[character] = vowelCount[character]?.plus(1) ?: 1
         }
     }
 
-    return repeatVocalMap.toList()
-        .sortedBy { (key, value) -> value }
-        .reversed()[0]
-    ;
+    val mostRepeated = mutableListOf<String>()
+    var maxRepeated = 0
+
+    vowelCount.forEach { (vowel: Char, count: Int) ->
+        if (count >= maxRepeated) {
+            if (count > maxRepeated) {
+                mostRepeated.clear()
+            }
+            mostRepeated.add(vowel.toString())
+
+            maxRepeated = count
+        }
+    }
+
+    return mostRepeated
 }
