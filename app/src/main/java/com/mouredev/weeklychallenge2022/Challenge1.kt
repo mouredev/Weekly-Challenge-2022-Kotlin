@@ -20,13 +20,25 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(isAnagram("amor", "roma"))
-}
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
-}
+### SOLUCIÓN CON PYTHON ###
+
+def anagrama(palabra1: str, palabra2: str):
+    if palabra1 == palabra2:
+        return "iguales"
+    elif sorted(palabra1.lower()) == sorted(palabra2.lower()):
+        return True
+    else:
+        return False
+
+palabra1 = "amor"
+palabra2 = "roma"
+
+respuesta = anagrama(palabra1, palabra2)
+
+if respuesta == "iguales":
+    print(f"Has introducido la misma palabra.")
+elif respuesta == True:
+    print(f"Las palabras '{palabra1}' y '{palabra2}' sí son anagramas.")
+else:
+    print(f"Las palabras '{palabra1}' y '{palabra2}' no son anagramas.")
