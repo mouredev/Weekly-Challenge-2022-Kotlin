@@ -18,20 +18,23 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+#include <iostream>
+using namespace std;
+constexpr int count = 100;
 
-fun main() {
+int main (){
+    for (int i = 1; i<= count; ++i) {
+         if (i%3 == 0)
+         cout << "Fizz, ";
+         else if (i%5 == 0)
+         cout << "Buzz, ";
+         else if((i%3) ==0 &&(i%5) == 0)
+         cout << "FizzBuzz, ";
+         else
+            cout << i << ", ";
 
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
+
+
     }
+    return 0;
 }
