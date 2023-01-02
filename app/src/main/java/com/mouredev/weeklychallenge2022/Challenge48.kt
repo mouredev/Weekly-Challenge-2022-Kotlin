@@ -34,6 +34,7 @@ import java.util.Date
  *
  */
 
+/*
 fun main() {
 
 //    aDEViento2022(LocalDateTime.of(2022, 12, 5, 20, 27, 56).toDate())
@@ -117,4 +118,4 @@ private fun diffTimeComponentsText(startDate: Date, endDate: Date): String {
 
     return "$years años, $days días, $hours horas, $minutes minutos, $second segundos"
 }
-
+*/

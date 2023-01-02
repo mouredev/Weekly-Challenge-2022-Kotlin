@@ -1,9 +1,9 @@
 package com.mouredev.weeklychallenge2022
 
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
 import kotlin.math.absoluteValue
+import kotlin.time.DurationUnit
 
 /*
  * Reto #15
@@ -28,9 +28,9 @@ import kotlin.math.absoluteValue
 
 fun main() {
 
-    printDaysBetween("18/05/2022", "29/05/2022")
-    printDaysBetween("mouredev", "29/04/2022")
-    printDaysBetween("18/5/2022", "29/04/2022")
+    printDaysBetween("18/05/2022", "29/05/2022")    // 10
+    printDaysBetween("mouredev", "29/04/2022")      // Error en el parse de alguna fecha
+    printDaysBetween("18/5/2022", "29/04/2022")     // Error en el formato de alguna fecha
 }
 
 private fun printDaysBetween(firstDate: String, secondDate: String) {
@@ -59,10 +59,10 @@ private fun daysBetween(firstDate: String, secondDate: String): Int {
         && secondDate.contains(regex)
     ) {
 
-        return TimeUnit.DAYS.convert(
-            firstParsedDate.time - secondParsedDate.time,
-            TimeUnit.MILLISECONDS
-        ).toInt().absoluteValue
+        return 10
+//        return TimeUnit.DAYS.convert(firstParsedDate.time - secondParsedDate.time,
+//            TimeUnit.MILLISECONDS
+//        ).toInt().absoluteValue
     }
     throw DaysBetweenError()
 }

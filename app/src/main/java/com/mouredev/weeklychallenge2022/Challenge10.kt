@@ -22,13 +22,13 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isBalanced("{a + b [c] * (2x2)}}}}"))
-    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))
-    println(isBalanced("{ a * ( c + d ) ] - 5 }"))
-    println(isBalanced("{a^4 + (((ax4)}"))
-    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }"))
-    println(isBalanced("{{{{{{(}}}}}}"))
-    println(isBalanced("(a"))
+    println(isBalanced("{a + b [c] * (2x2)}}}}"))               // false
+    println(isBalanced("{ [ a * ( c + d ) ] - 5 }"))            // true
+    println(isBalanced("{ a * ( c + d ) ] - 5 }"))              // false
+    println(isBalanced("{a^4 + (((ax4)}"))                      // false
+    println(isBalanced("{ ] a * ( c + d ) + ( 2 - 3 )[ - 5 }")) // false
+    println(isBalanced("{{{{{{(}}}}}}"))                        // false
+    println(isBalanced("(a"))                                   // false
 }
 
 private fun isBalanced(expression: String): Boolean {

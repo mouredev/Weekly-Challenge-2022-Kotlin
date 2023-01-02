@@ -21,10 +21,10 @@ import kotlin.math.pow
  */
 
 fun main() {
-    println(isArmstrong(371))
-    println(isArmstrong(-371))
-    println(isArmstrong(372))
-    println(isArmstrong(0))
+    println(isArmstrong(371))   // Output: true
+    println(isArmstrong(-371))  // Output: false
+    println(isArmstrong(372))   // Output: false
+    println(isArmstrong(0))     // Output: true
 }
 
 private fun isArmstrong(number: Int): Boolean {

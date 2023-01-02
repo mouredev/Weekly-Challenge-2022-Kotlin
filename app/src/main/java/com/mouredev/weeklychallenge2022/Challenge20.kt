@@ -23,11 +23,11 @@ fun main() {
 
     asyncSum(5, 2, 10) { result ->
         println(result)
-    }
+    }   // 7
 
     asyncSum(1, 3, 5) { result ->
         println(result)
-    }
+    }   // 4
 }
 
 private fun asyncSum(numberOne: Int, numberTwo: Int, seconds: Int, result: (Int) -> Unit) {
