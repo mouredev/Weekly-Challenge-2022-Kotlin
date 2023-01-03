@@ -19,14 +19,14 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
+def EsAnagrama(word1, word2):
+    if sorted(word1.lower()) == sorted(word2.lower()):
+        return "sí"
+    return "no"
 
-fun main() {
-    println(isAnagram("amor", "roma"))
-}
+word1 = "Japones"
+word2 = "Esponja"
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
-}
+res_anagrama = EsAnagrama(word1, word2)
+
+print(f'Las palabras {word1} y {word2} {res_anagrama} son anagramas')
