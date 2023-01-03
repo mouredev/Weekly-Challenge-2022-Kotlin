@@ -21,17 +21,10 @@ import java.math.BigInteger
  *
  */
 
-fun main() {
+fibonacci = [0,1]
 
-    var n0: Long = 0
-    var n1: Long = 1
+for i in range(1, 49):
+    n = fibonacci[i] + fibonacci[i-1]
+    fibonacci.append(n)
 
-    (1..50).forEach { _ ->
-
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
-    }
-}
+print(fibonacci)
