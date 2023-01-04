@@ -1,4 +1,3 @@
-package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #1
@@ -20,13 +19,32 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(isAnagram("amor", "roma"))
+function isAnAnagram(word1, word2){
+
+    if(word1 == word2){
+        return false;
+    }else{
+        let first = word1.split("");
+        let second = word2.split("");
+        let count = 0;
+
+        first.sort();
+        second.sort();
+
+        for(let i = 0; i < first.length; i++){
+            for(let j = 0; j < second.length;j++){
+                if(first[i] == second[j]){
+                    count++;
+                }
+            }
+        }
+
+        if(count == first.length){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
-        return false
-    }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
-}
+isAnAnagram("amores", "roma");
