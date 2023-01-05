@@ -74,7 +74,18 @@ Tienes toda la información extendida sobre los retos de programación semanales
 * **#39** - 27/09/22 - [`TOP ALGORITMOS: QUICK SORT`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge39.kt)
 * **#40** - 03/10/22 - [`TRIÁNGULO DE PASCAL`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge40.kt)
 * **#41** - 10/10/22 - [`LA LEY DE OHM`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge41.kt)
-* **#42** - 17/10/22 - `Publicación nuevo reto...`
+* **#42** - 17/10/22 - [`CONVERSOR DE TEMPERATURA`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge42.kt)
+* **#43** - 24/10/22 - [`TRUCO O TRATO`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge43.kt)
+* **#44** - 02/11/22 - [`BUMERANES`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge44.kt)
+* **#45** - 07/11/22 - [`CONTENEDOR DE AGUA`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge45.kt)
+* **#46** - 14/11/22 - [`¿DÓNDE ESTÁ EL ROBOT?`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge46.kt)
+* **#47** - 21/11/22 - [`VOCAL MÁS COMÚN`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge47.kt)
+* **#48** - 28/11/22 - [`EL CALENDARIO DE ADEVIENTO 2022`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge48.kt)
+* **#49** - 05/12/22 - [`EL DETECTOR DE HANDLES`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge49.kt)
+* **#50** - 12/12/22 - [`LA ENCRIPTACIÓN DE KARACA`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge50.kt)
+* **#51** - 19/12/22 - [`EL RETO RANDOM`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge51.kt)
+
+> **[🆕ACCEDE A LOS NUEVOS RETOS SEMANALES PARA 2023](https://github.com/mouredev/retos-programacion-2023)**
 
 <a href="https://youtu.be/ydH_B5KuqGs"><img src="http://i3.ytimg.com/vi/ydH_B5KuqGs/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
@@ -91,6 +102,18 @@ Tienes toda la información extendida sobre los retos de programación semanales
 <a href="https://youtu.be/nOB_4le7718"><img src="http://i3.ytimg.com/vi/nOB_4le7718/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
 
 *Corección retos del 21 al 30 en vídeo*
+
+<a href="https://youtu.be/8-IOU3Qlgws"><img src="http://i3.ytimg.com/vi/8-IOU3Qlgws/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
+
+*Corección retos del 31 al 40 en vídeo*
+
+<a href="https://youtu.be/LpnVqgonptI"><img src="http://i3.ytimg.com/vi/LpnVqgonptI/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
+
+*Corección retos del 41 al 46 en vídeo*
+
+<a href="https://youtu.be/nOrqQcHUhxc"><img src="http://i3.ytimg.com/vi/nOrqQcHUhxc/maxresdefault.jpg" style="height: 50%; width:50%;"/></a>
+
+*Corección retos del 47 al 51 en vídeo*
 
 ### ¿Cómo puedo participar?
 
