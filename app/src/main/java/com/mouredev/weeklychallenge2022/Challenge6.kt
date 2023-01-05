@@ -44,3 +44,28 @@ private fun recursiveReverse(text: String, index: Int = 0, reversedText: String 
     return newReversedText
 }
 
+//Sin usar ninguna funcion predeterminda de Python
+def invertir_cadena(text):
+  
+  text = list(text)
+
+  print(text)
+
+  l1 = text[-1]
+  l2 = text[-2]
+  l3 = text[-3]
+  l4 = text[-4]
+  l5 = text[-5]
+  l6 = text[-6]
+  l7 = text[-7]
+  l8 = text[-8]
+  l9 = text[-9]
+  l10 = text[-10]
+
+  inver = l1+l2+l3+l4+l5+l6+l7+l8+l9+l10
+
+  print(inver)  
+
+invertir_cadena("Hola mundo")
+
+
