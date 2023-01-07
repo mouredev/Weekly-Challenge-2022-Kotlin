@@ -1,4 +1,5 @@
-package com.mouredev.weeklychallenge2022
+#include <iostream>
+using namespace std;
 
 /*
  * Reto #3
@@ -18,29 +19,20 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+bool isPrime(int number) {
+	
+	if (number < 2 || (number % 2 == 0 && number != 2)) return false;
 
-    (1..100).forEach { number ->
-        if (isPrime(number)) {
-            println(number)
-        }
-    }
-}
+	for (int i = 3; i <= (number / 2); i += 2) {
+		if (number % i == 0) return false;
+	}
 
-private fun isPrime(number: Int): Boolean {
-
-    if (number < 2) {
-        return false
-    }
-
-    for (i in 2 until number) {
-        if (number % i == 0) {
-            return false
-        }
-    }
-
-    return true
+	return true;
 }
 
 
-
+int main() {
+	for (int i = 1; i <= 100; i++) {
+		if (isPrime(i)) cout << i << endl;
+	}
+}
