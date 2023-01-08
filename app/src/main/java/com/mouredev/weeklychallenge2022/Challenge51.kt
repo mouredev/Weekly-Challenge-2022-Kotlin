@@ -16,3 +16,8 @@ package com.mouredev.weeklychallenge2022
  * Prepárate para los nuevos retos de 2023...
  *
  */
+
+ Enunciado: Crea un programa que cifre y descifre informacion mediante el algoritmo RSA de cifrado asimetrico.
+ Considerar la clave publica y privada en este algoritmo, ya que ambas son necesarias para descifrar la informacion.
+ Considerar que la informacion puede ser una desde un caracter, una setencia, oracion o textos completos, por lo cual se deben considerar los espacios y saltos de linea.
+ 
