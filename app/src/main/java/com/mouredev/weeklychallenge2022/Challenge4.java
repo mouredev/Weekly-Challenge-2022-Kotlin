@@ -14,15 +14,13 @@ public class Challenge4 {
     }
 
 
-    private static class Polygon {
+    private interface Polygon {
 
-        public double area(){
-            return 0.0;
-        }
+         double area();
 
     }
 
-    public static class Triangle extends Polygon{
+    public static class Triangle implements Polygon{
 
         private double a;
         private double b;
@@ -44,7 +42,7 @@ public class Challenge4 {
 
     }
 
-    public static class Square extends Polygon{
+    public static class Square implements Polygon{
 
         private double a;
 
@@ -65,7 +63,7 @@ public class Challenge4 {
 
     }
 
-    public static class Rectangle extends Polygon{
+    public static class Rectangle implements Polygon{
 
         private double a;
         private double b;
