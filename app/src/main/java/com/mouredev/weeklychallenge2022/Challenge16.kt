@@ -20,18 +20,21 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(capitalize("¿hola qué tal estás?"))
-    println(capitalize("¿hola      qué tal estás?"))
-    println(capitalize("El niño ñoño"))
+    val text =
+        "Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.\n" +
+                "  1 subiré una posible solución al ejercicio el lunes siguiente al de su publicación."
+    println(upperFirstLetter(text))
 }
 
-private fun capitalize(text: String): String {
-
-    var capitalizedText = text
-
-    text.replace("[^A-zÀ-ú]".toRegex(), " ").split(" ").forEach { word ->
-        capitalizedText = capitalizedText.replace(word, word.replaceFirstChar { it.uppercase() })
+fun upperFirstLetter(text: String): String {
+    val textArray = text.toCharArray()
+    for ((i, elem) in textArray.withIndex()) {
+        if (i > 0 && elem.isLetter() && (textArray[i - 1] == ' '
+                    || textArray[i - 1] == '\n' || textArray[i - 1] == '\t')) {
+            textArray[i] = elem.uppercaseChar()
+        } else if (i == 0) {
+            textArray[i] = elem.uppercaseChar()
+        }
     }
-
-    return capitalizedText
+    return String(textArray)
 }

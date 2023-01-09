@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 /*
  * Reto #31
  * AÑOS BISIESTOS
@@ -17,8 +20,35 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
 fun main() {
+    println(whitCalendar(2020))
+    println(classic(2020))
+    println(whitCalendar(2050))
+    println(classic(2050))
+}
+
+private fun whitCalendar(year: Int): ArrayList<String> {
+    val results = arrayListOf<String>()
+    val cal = Calendar.getInstance()
+    cal.set(Calendar.YEAR, year)
+    for (i in 0..30) {
+        if (cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365) {
+            results.add(cal.get(Calendar.YEAR).toString())
+        }
+        cal.add(Calendar.YEAR, 1)
+    }
+    return results
+}
+private fun classic(year: Int): ArrayList<Int> {
+    val results = arrayListOf<Int>()
+    for (i in year..year+30) {
+        if(i % 4 == 0){
+            results.add(i)
+        }
+    }
+    return results
+}
+fun mainOtro() {
     thirtyLeapYears(1999)
     thirtyLeapYears(-500)
 }

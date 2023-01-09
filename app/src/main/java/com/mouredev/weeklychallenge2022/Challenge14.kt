@@ -21,24 +21,24 @@ import kotlin.math.pow
  */
 
 fun main() {
-    println(isArmstrong(371))
-    println(isArmstrong(-371))
-    println(isArmstrong(372))
-    println(isArmstrong(0))
+	val number = 269
+	if (amstrongNumber(number)) {
+		println("El número $number es un número de Amstrong")
+	} else {
+		println("El número $number no es un número de Amstrong")
+	}
 }
 
-private fun isArmstrong(number: Int): Boolean {
+fun amstrongNumber(number: Int): Boolean {
+	val numberLength = number.toString().length.toDouble()
+	var temp = number
+	var amstrong = 0.0
 
-    return if (number < 0) {
-        false
-    } else {
-        var sum = 0
-        val powValue = number.toString().length
+	while (temp > 0) {
+		val a: Int = temp % 10
+		temp /= 10
+		amstrong += a.toDouble().pow(numberLength)
+	}
 
-        number.toString().forEach { character ->
-            sum += character.toString().toDouble().pow(powValue).toInt()
-        }
-
-        number == sum
-    }
+	return amstrong == number.toDouble()
 }

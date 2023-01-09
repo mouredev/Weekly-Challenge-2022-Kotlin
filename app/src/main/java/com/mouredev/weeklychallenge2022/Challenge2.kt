@@ -1,7 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.math.BigInteger
-
 /*
  * Reto #2
  * LA SUCESIÓN DE FIBONACCI
@@ -22,16 +20,45 @@ import java.math.BigInteger
  */
 
 fun main() {
+    var n = 50
 
-    var n0: Long = 0
-    var n1: Long = 1
-
-    (1..50).forEach { _ ->
-
-        println(n0)
-
-        val fib = n0 + n1
-        n0 = n1
-        n1 = fib
+    println("==> Fibonacci recursive <==")
+    for (it in 0..(n-1).toLong()) {
+        print(recursiveFibonacci(it))
+        if (it != (n-1).toLong()) {
+            print(", ")
+        }
     }
+
+    println("\n==> Fibonacci fast <==")
+    for ((index, item) in fastFibonacci(n).withIndex()) {
+        print(item)
+        if (index != n - 1) {
+            print(", ")
+        }
+
+    }
+}
+
+fun recursiveFibonacci(n: Long): Long {
+    if (n <= 1) {
+        return n
+    }
+    return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2)
+}
+
+fun fastFibonacci(n: Int): LongArray {
+    var f = LongArray(n)
+    if (n == 0)
+        return f
+    f[0] = 0
+    if (n == 1)
+        return f
+    f[1] = 1
+    if (n > 1) {
+        for (it in 2..n - 1) {
+            f[it] = f[it - 1] + f[it - 2]
+        }
+    }
+    return f
 }
