@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import java.text.DecimalFormat
 
@@ -62,4 +62,22 @@ private fun temperatureConverter(degrees: String): String? {
     }
 
     return null
-}
+} """
+
+
+def temp_conversor(temp: str) -> str|None:
+
+    if "ºC" in temp:
+        temp = temp.replace("ºC", "").replace(" ", "")
+        return f"{temp}ºC = {float(temp) * 1.8 + 32}ºF"
+    elif "ºF" in temp:
+        temp = temp.replace("ºF", "").replace(" ", "")
+        return f"{temp}ºF = {(float(temp) - 32) / 1.8}ºC"
+
+    return None
+
+
+print(temp_conversor("34ºC"))
+print(temp_conversor("93.2ºF"))
+print(temp_conversor("-34 ºC"))
+print(temp_conversor("34C"))

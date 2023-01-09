@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #39
@@ -76,3 +76,29 @@ private fun quicksort(array: Array<Int>, first: Int, last: Int): Array<Int> {
     return array
 }
 
+ """
+
+
+def quick_sort(array: list[int]) -> list:
+
+    if len(array) < 1:
+        return []
+
+    left: list = []
+    right: list = []
+    pivot: int = array[0]
+
+    for i in range(1, len(array)):
+
+        if array[i] < pivot:
+            left.append(array[i])
+
+        else:
+            right.append(array[i])
+
+    return quick_sort(left) + [pivot] + quick_sort(right)
+    
+
+
+print(quick_sort([3, 5, 7, 8, 6, 9, 4, 1, 2]))
+print(quick_sort([-34, 45, 3, 75, -5, -5, -5]))

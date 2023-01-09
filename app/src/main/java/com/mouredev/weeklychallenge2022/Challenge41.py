@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import java.text.DecimalFormat
 
@@ -50,4 +50,31 @@ private fun ohm(v: Double? = null, r: Double? = null, i: Double? = null) : Strin
     }
 
     return "Invalid values"
-}
+} """
+
+
+def ohm(v: None, i: None, r: None) -> str:
+
+    if v != None and i != None and r == None:
+        return f"R = {v / i}"
+    elif i != None and r != None and v == None:
+        return f"V = {r * i}"
+    elif r != None and v != None and i == None:
+        return f"I = {v / r}"
+
+    return "Invalid values"
+
+
+
+print(ohm())
+print(ohm(v = 5.0))
+print(ohm(v = 5.0, r = 4.0))
+print(ohm(v = 5.0, i = 4.0))
+print(ohm(r = 5.0, i = 4.0))
+print(ohm(v = 5.125, r = 4.0))
+print(ohm(v = 5.0, i = 4.125))
+print(ohm(r = 5.0, i = 4.125))
+print(ohm(v = 5.0, r = 0.0))
+print(ohm(v = 5.0, i = 0.0))
+print(ohm(r = 5.0, i = 0.0))
+print(ohm(v = 5.0, r = 4.0, i = 3.0))

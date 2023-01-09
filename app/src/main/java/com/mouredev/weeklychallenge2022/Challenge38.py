@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import kotlin.math.pow
 
@@ -56,3 +56,25 @@ private fun binaryToDecimal(binary: String): Int? {
 }
 
 
+ """
+
+
+def bin_to_dec(bin_num: int) -> int:
+
+    negative: bool = False
+    decimal: int = 0
+
+    if bin_num < 0:
+        negative = True
+
+    for digit in str(bin_num):
+
+        if digit == "1":
+            decimal = decimal * 2 + 1
+        elif digit == "0":
+            decimal = decimal * 2
+
+    return decimal if not negative else decimal * -1 
+
+
+print(bin_to_dec(-1010))

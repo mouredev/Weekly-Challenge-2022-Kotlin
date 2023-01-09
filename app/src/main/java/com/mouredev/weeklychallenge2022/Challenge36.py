@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #36
@@ -97,4 +97,51 @@ private fun battleForTheMiddleEarth(kindArmy: List<Pair<KindArmy, Int>>, evilArm
         println("Empate")
     }
 
-}
+} """
+
+
+from enum import Enum
+
+
+class WhiteArmy(Enum):
+
+    HARFOOR = 1
+    GOOD_SOUTHERNER = 2
+    DWARF = 3
+    NUMENOREAN = 4
+    ELF = 5
+
+
+class DarkArmy(Enum):
+
+    BAD_SOUTHERNER = 2
+    ORC = 2
+    GOBLIN = 2
+    WARG = 3
+    TROLL = 5
+
+
+def battle(white_army: list[list[WhiteArmy | int]], dark_army: list[list[DarkArmy | int]]) -> str:
+
+    points_white_army: int = 0
+    points_dark_army: int = 0
+
+    for bravery in white_army:
+        points_white_army += bravery[0].value * bravery[1]
+
+    for bravery in dark_army:
+        points_dark_army += bravery[0].value * bravery[1]
+
+    if points_white_army > points_dark_army:
+        return f"Ha ganado el ejercito blanco {points_white_army} puntos a {points_dark_army} puntos"
+    elif points_dark_army > points_white_army:
+        return f"Ha ganado el ejercito oscuro {points_dark_army} puntos a {points_white_army} puntos"
+    else:
+        return f"Han empatado a {points_white_army} puntos"
+
+
+print(battle([[WhiteArmy.HARFOOR, 1]], [[DarkArmy.ORC, 1]]))
+print(battle([[WhiteArmy.HARFOOR, 2]], [[DarkArmy.ORC, 1]]))
+print(battle([[WhiteArmy.HARFOOR, 3]], [[DarkArmy.ORC, 1]]))
+print(battle([[WhiteArmy.ELF, 3], [WhiteArmy.GOOD_SOUTHERNER, 10]], [
+      [DarkArmy.TROLL, 4], [DarkArmy.GOBLIN, 4]]))

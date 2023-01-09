@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #35
@@ -68,4 +68,45 @@ private fun battle(attacker: PokemonType, defender: PokemonType, attack: Int, de
     }
 
     return 50 * attack.toDouble() / defense.toDouble() * effectivity
-}
+} """
+
+
+from enum import Enum
+
+
+class Effectivity(Enum):
+
+    WATER: dict[str, float] = {"water": 0.5, "fire": 2.0, "grass": 0.5, "electric": 1.0} # type: ignore
+    FIRE: dict[str, float] = {"water": 0.5, "fire": 0.5, "grass": 2.0, "electric": 1.0} # type: ignore
+    GRASS: dict[str, float] = {"water": 2.0, "fire": 0.5, "grass": 0.5, "electric": 1.0} # type: ignore
+    ELECTRIC: dict[str, float] = {"water": 2.0, "fire": 1.0, "grass": 0.5, "electric": 0.5} # type: ignore
+
+
+def damage(pkm_attack: str, pkm_def: str, attack: int, defense: int) -> int | None:
+
+    if attack <= 0 or defense > 100 or attack > 100 or defense <= 0:
+        print("El valor de ataque y/o defensa debe estar entre 0 y 100")
+        return None
+
+    if pkm_attack.lower() not in Effectivity.WATER.value or pkm_def.lower() not in Effectivity.WATER.value:
+        print("Los tipos de pokemon són: water, fire, grass o electric")
+        return None
+
+    effectivity: float = 0
+    
+    match pkm_attack.lower():
+        case "water":
+            effectivity: float = Effectivity.WATER.value[pkm_def.lower()]
+        case "fire":
+            effectivity: float = Effectivity.FIRE.value[pkm_def.lower()]
+        case "grass":
+            effectivity: float = Effectivity.GRASS.value[pkm_def.lower()]
+        case "electric":
+            effectivity: float = Effectivity.ELECTRIC.value[pkm_def.lower()]
+
+    return int(50 * (attack / defense) * effectivity)
+
+
+
+
+print(damage("water", "fire", 20, 20))

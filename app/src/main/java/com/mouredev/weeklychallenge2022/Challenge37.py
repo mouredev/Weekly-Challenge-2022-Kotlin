@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 import java.text.SimpleDateFormat
 import java.util.*
@@ -126,4 +126,55 @@ enum class ZeldaGame(val title: String) {
         return "No se ha podido calcular el tiempo entre fechas de lanzamiento"
     }
 
-}
+} """
+
+
+from datetime import date, timedelta
+from enum import Enum
+
+
+class ZeldaGame(Enum):
+
+    THE_LEGEND_OF_ZELDA = date(1986, 2, 12)
+    THE_ADVENTURE_OF_LINK = date(1987, 1, 14)
+    A_LINK_TO_THE_PAST = date(1991, 11, 21)
+    LINKS_AWAKENING = date(1993, 6, 6)
+    OCARINA_OF_TIME = date(1998, 11, 21)
+    MAJORAS_MASK = date(2000, 4, 27)
+    ORACLE_OF_SEASONS = date(2001, 2, 27)
+    ORACLE_OF_AGES = date(2001, 2, 27)
+    FOUR_SWORDS = date(2001, 12, 3)
+    THE_WIND_WAKER = date(2001, 12, 13)
+    FOUR_SWORDS_ADVENTURES = date(2004, 3, 18)
+    THE_MINISH_CUP = date(2004, 11, 4)
+    TWILIGHT_PRINCES = date(2006, 11, 19)
+    PHANTHOM_HOURGLASS = date(2007, 6, 23)
+    SPIRIT_TRACKS = date(2009, 12, 7)
+    SKYWARD_SWORD = date(2011, 11, 18)
+    A_LINK_BETWEEN_WORLDS = date(2013, 11, 23)
+    TRI_FORCE_HEROES = date(2015, 10, 11)
+    BREATH_OF_THE_WILD = date(2017, 3, 3)
+    TEARS_OF_THE_KINGDOM = date(2023, 5, 12)
+
+
+def time_between_zeldas(game1: ZeldaGame, game2: ZeldaGame) -> str:
+
+    if game1.value < game2.value:
+        valor1: ZeldaGame = game2
+        valor2: ZeldaGame = game1
+    else:
+        valor1: ZeldaGame = game1
+        valor2: ZeldaGame = game2
+
+    time_between: timedelta = valor1.value - valor2.value
+
+    years: int = int(time_between.days / 365)
+    month: int = int(time_between.days / 30 % 12)
+    days: int = time_between.days % 12 % 365
+
+    return f"Entre {game1.name} y {game2.name} han pasado {years} años, {month} meses y {days} días"
+
+
+print(time_between_zeldas(ZeldaGame.THE_ADVENTURE_OF_LINK, ZeldaGame.TEARS_OF_THE_KINGDOM))
+print(time_between_zeldas(ZeldaGame.PHANTHOM_HOURGLASS, ZeldaGame.BREATH_OF_THE_WILD))
+print(time_between_zeldas(ZeldaGame.THE_LEGEND_OF_ZELDA, ZeldaGame.TEARS_OF_THE_KINGDOM))

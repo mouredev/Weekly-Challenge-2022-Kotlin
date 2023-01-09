@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #43
@@ -118,3 +118,69 @@ private fun trickOrTreat(halloween: Halloween, people: Array<Person>): String {
 
     return result
 }
+ """
+
+from enum import Enum
+from random import sample
+
+
+class Person():
+
+    def __init__(self, name, age, height) -> None:
+        self.name: str = name
+        self.age: int = age
+        self.height: int = height
+
+
+class Halloween(Enum):
+
+    TRICK = "trick"
+    TREAT = "treat"
+
+
+def trick_or_treat(halloween: Halloween, persons: list[Person]) -> list:
+    
+    scares = ["scare1", "scare2", "scare3", "scare4", "scare5", "scare6","scare7", "scare8", "scare9"]
+    candies = ["candy1", "candy2", "candy3", "candy4", "candy5", "candy6", "candy7", "candy8", "candy9"]
+    result = []
+    height = 0
+
+    for person in persons:
+
+        if halloween.value == "trick":
+            # Name
+            result.extend(sample(scares, len(person.name) // 2))
+            # Age
+            if person.age % 2 == 0:
+                result.extend(sample(scares, 2))
+            # Height
+            height += person.height
+            while height >= 100:
+                result.extend(sample(scares, 3))
+                height -= 100
+
+        elif halloween.value == "treat":
+
+            # Name
+            result.extend(sample(candies, len(person.name)))
+            # Age
+            if person.age <= 10:
+                result.extend(sample(candies, person.age // 3))
+            # Height
+            if person.height <= 150:
+                result.extend(sample(candies, person.height // 50))
+            
+
+    return result
+
+
+print(trick_or_treat(Halloween.TRICK, [Person("Brais", 35, 177), 
+                                       Person("Sara", 10, 122), 
+                                       Person("Pedro", 5, 80), 
+                                       Person("Roswell", 3, 54)]))
+
+
+print(trick_or_treat(Halloween.TREAT, [Person("Brais", 35, 177), 
+                                       Person("Sara", 10, 122), 
+                                       Person("Pedro", 5, 80), 
+                                       Person("Roswell", 3, 54)]))

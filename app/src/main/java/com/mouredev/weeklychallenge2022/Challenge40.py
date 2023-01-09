@@ -1,4 +1,4 @@
-package com.mouredev.weeklychallenge2022
+""" package com.mouredev.weeklychallenge2022
 
 /*
  * Reto #40
@@ -54,3 +54,24 @@ private fun pascalTriangle(size: Int) {
         lastRow = currentRow
     }
 }
+ """
+
+
+from math import factorial
+
+
+def pascal_tri(numRows):
+    for i in range(numRows):
+        for j in range(numRows-i+1):
+            print(end=" ")
+
+        for j in range(i+1):
+            print(factorial(i)//(factorial(j)*factorial(i-j)), end=" ")
+
+        print("\n")
+
+
+pascal_tri(5)
+pascal_tri(15)
+pascal_tri(0)
+pascal_tri(-5)
