@@ -26,7 +26,7 @@
  *
  */ """
 
-from pwn import *
+from pwn import log
 from time import sleep
 
 
