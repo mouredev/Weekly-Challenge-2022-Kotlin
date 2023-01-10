@@ -21,12 +21,21 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(isAnagram("amor", "roma"))
+    val word1 = "night"
+    val word2 = "thing";
+
+    val isAnagram = word1.isAnagramOf(word2)
+
+    print("$word1 is ")
+    if (!isAnagram) print("not ")
+    println("an anagram of $word2")
 }
 
-private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
-    if (wordOne.lowercase() == wordTwo.lowercase()) {
+
+fun String.isAnagramOf(wordTwo: String): Boolean {
+    if (this.lowercase() == wordTwo.lowercase()) {
         return false
     }
-    return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
+    return this.lowercase().toCharArray().sortedArray()
+        .contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
