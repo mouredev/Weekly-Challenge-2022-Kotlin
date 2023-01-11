@@ -20,6 +20,10 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    for (num in 1..100) {
+        println(printFizzBuzz(num))
+    }
+}
 
     for (index in 1..100) {
         val divisibleByThree = index % 3 == 0
