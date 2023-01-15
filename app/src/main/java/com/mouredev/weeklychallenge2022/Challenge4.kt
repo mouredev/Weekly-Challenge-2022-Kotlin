@@ -20,53 +20,39 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+def calcularArea(poligono):
+    poli, b, h= poligono[0], poligono[1], poligono[2]
+    if poli == "t":
+        return (b*h)/2
+    elif poli == "r":
+        return b*h 
+    elif poli == "c":
+        return b**2
 
-    area(Triangle(10.0, 5.0))
-    area(Rectangle(5.0, 7.0))
-    area(Square(4.0))
-}
+# Inicializacion de variables
+base = 0
+altura = 0
+poli = ''
 
-interface Polygon {
+# Comprobar si introduccion de los datos del usuario
+while poli != 't' and poli != 'r' and poli != 'c':
+    poli = input("introduce poligono: [triangulo:t, rectangulo:r, cuadrado:c]: ")
 
-    fun area(): Double
-    fun printArea()
-}
+while base <= 0:
+    try:
+        base = int(input("Introduce la base (>0): "))
+    except ValueError:
+        print("Debes introducir un numero mayor que 0")
 
-data class Triangle(val base: Double, val height: Double): Polygon {
+# Si el poligono es cuadrado 'c' no se pide la altura
+if poli != "c":
+    while altura <= 0:
+        try:
+            altura = int(input("Introduce la altura (>0): "))
+        except ValueError:
+            print("Debes introducir un numero mayor que 0")
 
-    override fun area(): Double {
-        return (base * height) / 2
-    }
+poligono = [poli, base, altura]
+area = calcularArea(poligono)
+print(f"El area del poligono seleccionado es: {area}")
 
-    override fun printArea() {
-        println("El área del triángulo es ${area()}")
-    }
-}
-
-data class Rectangle(val length: Double, val width: Double): Polygon {
-
-    override fun area(): Double {
-        return length * width
-    }
-
-    override fun printArea() {
-        println("El área del rectángulo es ${area()}")
-    }
-}
-
-data class Square(val side: Double): Polygon {
-
-    override fun area(): Double {
-        return side * side
-    }
-
-    override fun printArea() {
-        println("El área del cuadrado es ${area()}")
-    }
-}
-
-private fun area(polygon: Polygon): Double {
-    polygon.printArea()
-    return polygon.area()
-}
