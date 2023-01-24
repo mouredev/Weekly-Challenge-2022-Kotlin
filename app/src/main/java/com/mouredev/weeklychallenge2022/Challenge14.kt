@@ -20,6 +20,7 @@ import kotlin.math.pow
  *
  */
 
+/* Solucion por Mourodev con Kotlin: 
 fun main() {
     println(isArmstrong(371))
     println(isArmstrong(-371))
@@ -42,3 +43,23 @@ private fun isArmstrong(number: Int): Boolean {
         number == sum
     }
 }
+*/
+
+/*Mi Solución con python*/
+n=int(input("Ingrese un numero para identificar si es narcicista: ")) #245
+m=n
+digitos=len(str(n)) #3
+
+suma= 0
+if n<0:
+    n=n*-1
+
+while n != 0:
+   digito=n%10                    #5, 4, 2 
+   suma=suma+((digito)**digitos)  #125, 189, 197
+   n=n//10  #24, 2, 0
+
+if m==suma:
+    print("El numero "+str(m)+" es narcisista") 
+else: 
+    print("El numero "+str(m)+" no es narcisista") # el numero 245 no es narcisista
