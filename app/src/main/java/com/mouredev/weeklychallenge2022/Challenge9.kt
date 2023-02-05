@@ -21,7 +21,6 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-
     val naturalText = "Chocapic. Es una marca de cereales?"
     val morseText = decoder(naturalText)
     println(morseText)
