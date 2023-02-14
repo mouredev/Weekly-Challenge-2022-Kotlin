@@ -1,0 +1,45 @@
+'RETO SOLUCIONADO CON mariaDB SQL
+' CREAMOS UNA FUNCION EN MARIADB
+CREATE FUNCTION `LeyOhm`(R decimal, V decimal, I decimal) RETURNS varchar(50) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci
+BEGIN
+		DECLARE res decimal;
+		DECLARE Valor int;
+		
+		SET res=0;
+		IF R<>0 THEN 
+			SET Valor=Valor+1;
+		END IF;
+		IF V<>0 THEN 
+			SET Valor=Valor+1;
+		END IF;
+		IF I<>0 THEN 
+			SET Valor=Valor+1;
+		END IF;
+		IF Valor=1 OR Valor>2 THEN
+			SET res=1001;
+		END IF;
+		IF R+V+I=0 THEN 
+			SET res=1002;
+		END IF;
+		IF R=0 THEN 
+			RETURN CONCAT('Resistencia: ',CAST(ROUND(V/I,2) AS varchar(50)));
+		END IF;
+		IF V=0 THEN 
+			RETURN CONCAT('Voltage: ',CAST(ROUND(R*I,2) AS varchar(50)));
+		END IF;
+		IF I=0 THEN 
+			RETURN CONCAT('Intensidad: ',CAST(ROUND(V/R,2) AS varchar(50)));
+		END IF; 
+	 
+	 RETURN CONCAT('Fallo en el pasao de parametros: ',CAST(res AS varchar(20)));
+END
+
+'Para realizar pruebas
+'Fallo 1:
+SELECT LeyOhm(74.41,5060,5)
+'Fallo 2
+SELECT LeyOhm(0,5060,0)
+'Correcto
+SELECT LeyOhm(74.41,5060,0)
+
+'Ideado por SAuronREC
