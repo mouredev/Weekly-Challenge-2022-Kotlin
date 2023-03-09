@@ -32,7 +32,7 @@ Tienes toda la información extendida sobre los retos de programación semanales
 
 ### [Aquí](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/tree/main/app/src/main/java/com/mouredev/weeklychallenge2022) tienes un fichero con el enunciado y el código para cada reto
 
-* **#0** - 27/12/21 - [`EL FAMOSO "FIZZ BUZZ"`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge0.kt) - [Python Solution](app/src/main/python/challenge_00.py)
+* **#0** - 27/12/21 - [`EL FAMOSO "FIZZ BUZZ"`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge0.kt) - [`✅ Python Solution`](app/src/main/python/challenge_00.py)
 * **#1** - 03/01/22 - [`¿ES UN ANAGRAMA?`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge1.kt)
 * **#2** - 10/01/22 - [`LA SUCESIÓN DE FIBONACCI`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge2.kt)
 * **#3** - 17/01/22 - [`¿ES UN NÚMERO PRIMO?`](https://github.com/mouredev/Weekly-Challenge-2022-Kotlin/blob/main/app/src/main/java/com/mouredev/weeklychallenge2022/Challenge3.kt)
