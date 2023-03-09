@@ -22,16 +22,18 @@
 def main():
     """Función main del programa"""
     for i in range(100):
-        if (i+1) % 3 == 0:
-            if (i+1) % 5 == 0:
-                print("fizzbuzz")
-            else:
-                print("fizz")
+        divisible_entre_tres = bool((i+1) % 3 == 0)
+        divisible_entre_cinco = bool((i+1) % 5 == 0)
+        # Condiciones de impresión
+        if divisible_entre_tres and divisible_entre_cinco:
+            print("fizzbuzz")
+        elif divisible_entre_tres:
+            print("fizz")
+        elif divisible_entre_cinco:
+            print("buzz")
         else:
-            if (i+1) % 5 == 0:
-                print("buzz")
-            else:
-                print(f"{i+1}")
+            print(f"{i+1}")
+
 
 if __name__ == "__main__":
     main()
