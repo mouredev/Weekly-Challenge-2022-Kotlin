@@ -6,7 +6,7 @@
 
 El proyecto principal de retos de programación semanales se ha creado utilizando Android Studio y resolviendo cada uno de los ejercicio utilizando el lenguaje de programación Kotlin (ya que lo utilizo frecuentemente, su sintaxis es simple y tenía que elegir alguno como ejemplo 😁). 
 
->>Voy a utilizar Python para resolver los retos
+>Voy a utilizar Python para resolver los retos
 
 [![Python](https://img.shields.io/badge/python-3.10-green?longCache=true&style=popout-square)](https://www.python.org/)
 
