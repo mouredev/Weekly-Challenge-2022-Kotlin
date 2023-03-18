@@ -17,15 +17,24 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(factorial(0) ?:run { "No tiene factorial" })
-    println(factorial(7) ?:run { "No tiene factorial" })
-    println(factorial(10) ?:run { "No tiene factorial" })
-    println(factorial(1) ?:run { "No tiene factorial" })
-    println(factorial(-1) ?:run { "No tiene factorial" })
+fun main(){
+    var number = 5
+    println("\nThe factorial of $number is: ${getFactorial(number)}")
+    number = -5
+    println("\nThe factorial of $number is: ${getFactorial(number)}")
 }
 
-private fun factorial(n: Int): Int? {
-    return if (n < 0) null else if (n <= 1) 1 else n * (factorial(n - 1)!!)
+private fun getFactorial(number : Int): Int{
+    if (number < 0){
+        println("\nWrong number, only positive integers")
+        return 0
+    }
+    return if( number > 1){
+        val num = getFactorial(number-1)
+        print("|$num x $number|")
+        number * num
+    } else {
+        print("|$number|")
+        number
+    }
 }
-

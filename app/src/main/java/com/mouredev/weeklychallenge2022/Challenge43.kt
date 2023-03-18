@@ -37,84 +37,70 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    println(trickOrTreat(Halloween.TRICK, arrayOf(
-        Person("Brais", 35, 177),
-        Person("Sara", 9, 122),
-        Person("Pedro", 5, 80),
-        Person("Roswell", 3, 54))))
+    val firstGroup = arrayOf(
+        Visitor("Pepito", 10, 70),
+        Visitor("Juana", 8, 79),
+        Visitor("Pulgarcito", 20, 29),
+        Visitor("Gigante", 5, 180))
 
-    println(trickOrTreat(Halloween.TREAT, arrayOf(
-        Person("Brais", 35, 177),
-        Person("Sara", 9, 122),
-        Person("Pedro", 5, 80),
-        Person("Roswell", 3, 54))))
+    Halloween().trickOrTreat(firstGroup, answer.Trick)
+    Halloween().trickOrTreat(firstGroup, answer.Treat)
 }
 
-enum class Halloween {
-    TRICK, TREAT
-}
+private typealias Visitor = Halloween.Persona
+private typealias answer = Halloween.Surprises
 
-data class Person(val name: String, val age: Int, val height: Int)
+private class Halloween{
+    data class Persona( val name : String, val age : Int, val height: Int)
 
-private fun trickOrTreat(halloween: Halloween, people: Array<Person>): String {
+    enum class Surprises(val options : List<String>){
+        Treat(listOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")),
+        Trick(listOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"));
 
-    val scares = arrayOf("🎃", "👻", "💀", "🕷", "🕸", "🦇")
-    val candies = arrayOf("🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩")
+        fun getRandom(): String {
+            return this.options[(0 until this.options.size).random()]
+        }
+    }
 
-    var result = ""
-    var height = 0
+    fun trickOrTreat(group : Array<Persona>, selection : Surprises){
+        if (selection == Surprises.Treat){
+            var totalLetters = 0
+            var pairAges = 0
+            var totalHeight = 0
 
-    people.forEach { person ->
-
-        when (halloween) {
-            Halloween.TRICK -> {
-
-                // Name
-                (1 .. (person.name.replace(" ", "").length / 2)).forEach { _ ->
-                    result += scares.random()
-                }
-
-                // Age
-                if (person.age % 2 == 0) {
-                    result += scares.random()
-                    result += scares.random()
-                }
-
-                // Height
-                height += person.height
-                while (height >= 100) {
-                    result += scares.random()
-                    result += scares.random()
-                    result += scares.random()
-                    height -= 100
-                }
-
+            group.forEach {
+                totalLetters += it.name.length
+                if (it.age%2 == 0) pairAges ++
+                totalHeight += it.height
             }
-            Halloween.TREAT -> {
 
-                // Name
-                (1 .. (person.name.replace(" ", "").length)).forEach { _ ->
-                    result += candies.random()
-                }
+            val numOfSurprises = totalLetters/2 + 2*pairAges + 3*(totalHeight/100)
+            println("This group gets $numOfSurprises tricks")
+            repeat(numOfSurprises) {
+                print(" ${selection.getRandom()}")
+            }
+        } else {
+            var totalLetters = 0
+            var everythree = 0
+            var totalHeightCount = 0
 
-                // Age
-                if (person.age <= 10) {
-                    (1 .. (person.age / 3)).forEach { _ ->
-                        result += candies.random()
-                    }
-                }
+            group.forEach {
+                totalLetters += it.name.length
+                everythree +=
+                    if (it.age >= 9) 3
+                    else it.age/3
+                totalHeightCount +=
+                    if (it.height >= 150) 3
+                    else it.age/50
+            }
 
-                // Height
-                if (person.height <= 150) {
-                    (1 .. (person.height / 50)).forEach { _ ->
-                        result += candies.random()
-                        result += candies.random()
-                    }
-                }
+            val numOfSurprises = totalLetters + everythree + 2*totalHeightCount
+            println("This group gets $numOfSurprises treats")
+            repeat(numOfSurprises) {
+                print(" ${selection.getRandom()}")
             }
         }
 
+        println("\nHappy Halloween :D\n")
     }
-
-    return result
 }

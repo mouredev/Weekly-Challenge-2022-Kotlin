@@ -20,25 +20,23 @@ import kotlin.math.pow
  *
  */
 
-fun main() {
-    println(isArmstrong(371))
-    println(isArmstrong(-371))
-    println(isArmstrong(372))
-    println(isArmstrong(0))
+fun main (){
+    // Los primeros números narcisistas: 1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407, 1634, 8208, 9474 y 54748.
+    isNarcissist("1")
+    isNarcissist("5")
+    isNarcissist("20")
+    isNarcissist("100")
+    isNarcissist("153")
+    isNarcissist("8208")
 }
 
-private fun isArmstrong(number: Int): Boolean {
-
-    return if (number < 0) {
-        false
-    } else {
-        var sum = 0
-        val powValue = number.toString().length
-
-        number.toString().forEach { character ->
-            sum += character.toString().toDouble().pow(powValue).toInt()
-        }
-
-        number == sum
+private fun isNarcissist(n:String){
+    val result = n.toList().map { it.toString().toInt() }.sumOf {
+        var x : Int = 1
+        if (n.length>1){
+            for(i in 1..n.length){x*=it}
+        } else x = it
+        x
     }
+    println("If $n is equal to $result then $n is narcissist : ${n.toInt()==result}")
 }

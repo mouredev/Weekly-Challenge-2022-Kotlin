@@ -31,42 +31,72 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(calculateWaterUnits(arrayOf(4, 0, 3, 6)))
-    println(calculateWaterUnits(arrayOf(4, 0, 3, 6, 1, 3)))
-    println(calculateWaterUnits(arrayOf(5, 4, 3, 2, 1, 0)))
-    println(calculateWaterUnits(arrayOf(0, 1, 2, 3, 4, 5)))
-    println(calculateWaterUnits(arrayOf(4, 0, 3, 6, 1, 3, 0, 1, 6)))
+fun main(){
+    drawPool(arrayOf(4, 0, 3, 6, 1, 3))
+    drawPool(arrayOf(5, 3, 7, 1, 1, 9, 2, 4))
+    drawPool(arrayOf(10, 1, 1, 8, 8, 1, 1, 10))
 }
 
-private fun calculateWaterUnits(container: Array<Int>): Int {
+private fun drawPool(blueprint : Array<Int>) : Int{
+    val design = mutableListOf<Array<Boolean?>>()
 
-    var units = 0
-    var wall = 0
-    var nextWall = 0
+    var y = 0
+    val x = blueprint.size
+    var centerPoint = 0
 
-    container.forEachIndexed { index, blocks ->
-
-        if (blocks < 0) {
-            return@forEachIndexed
-        }
-
-        if (index != container.size - 1 && (index == 0 || nextWall == blocks)) {
-
-            wall = if (index == 0) blocks else nextWall
-
-            nextWall = 0
-            for (nextBlocksIndex in index + 1 until container.size) {
-                if (container[nextBlocksIndex] >= nextWall && wall >= nextWall) {
-                    nextWall = container[nextBlocksIndex]
-                }
-            }
-        } else {
-            val referenceWall = if (nextWall > wall) wall else nextWall
-            val currentBlocks = referenceWall - blocks
-            units += if (currentBlocks >= 0) currentBlocks else 0
+    blueprint.forEachIndexed { index , it ->
+        if (y < it ) {
+            y = it
+            centerPoint = index
         }
     }
 
-    return units
+    // Set the blocks
+    repeat(x){
+        design.add(arrayOfNulls(y))
+        for (i in 0 until blueprint[it]){
+            design[it][i] = true
+        }
+    }
+
+    var numOfBlockInTheLeft = blueprint.first()
+    for (i in 1 ..centerPoint){
+        if (numOfBlockInTheLeft > blueprint[i])
+            repeat(numOfBlockInTheLeft){
+                if (design[i][it] == null  )
+                    design[i][it] = false
+            }
+        else
+            numOfBlockInTheLeft = blueprint[i]
+    }
+
+    var numOfBlockInTheRight = blueprint.last()
+    for (i in x-1 downTo centerPoint){
+        if (numOfBlockInTheRight > blueprint[i])
+            repeat(numOfBlockInTheRight){
+                if (design[i][it] == null )
+                    design[i][it] = false
+            }
+        else
+            numOfBlockInTheRight = blueprint[i]
+    }
+
+    var waterCounter = 0
+    repeat(y){  it_y ->
+        repeat(x){ it_x ->
+            print( when(design[it_x][(y-1)-it_y]){
+                false -> {
+                    waterCounter++
+                    "💧"
+                }
+                true -> "⏹"
+                null -> "\uD83D\uDCA6"
+            })
+        }
+        println()
+    }
+    repeat(x){ print("\"\'")}
+    println( "\nIt has a total of $waterCounter water blocks contained")
+
+    return waterCounter
 }

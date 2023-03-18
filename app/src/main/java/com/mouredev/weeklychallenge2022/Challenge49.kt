@@ -21,17 +21,33 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(handlesDetector("En esta actividad de @mouredev, resolvemos #retos de #programacion desde https://retosdeprogramacion.com/semanales2022, que @braismoure aloja en www.github.com"))
+fun main (){
+    println( getHandleListFrom( "@ ad@saf @firulais @gsar$-sad #gatoVerde " +
+            "asf# www.perros.woff htp://algo.com 3- asf www.perros.wof http://algo.com https://otracosa.mmm ") )
 }
 
-private fun handlesDetector(text: String): Map<String, List<String>> {
+private fun getHandleListFrom( inputText : String ) : List<String>{
 
-    val handles = mutableMapOf<String, List<String>>()
+    val handleList = mutableListOf<String>()
 
-    handles["user"] = "@(\\w{2,15})".toRegex().findAll(text).toList().map { it.value }
-    handles["hashtag"] = "#[^ !@$^#&,.?():%<>{}\\[\\]|\"]+".toRegex().findAll(text).toList().map { it.value }
-    handles["url"] = "((https?://(www\\.)?)|www\\.)[\\w#+\\=]{2,256}\\.[a-zA-Z]{2,7}[\\w\\/?=&.+-]*".toRegex().findAll(text).toList().map { it.value }
+    val userHandlePatter = Regex("^(@)\\w+")
+    val hashtagHandlePatter = Regex("^(#)\\w+")
+    val webHandlePatter = Regex("^((www.)|(http[s]?://))\\w+(.\\w{2,3})\$")
 
-    return handles
+    val segmentedInput = inputText.split(" ")
+
+    fun findHandler( evaluationPatter : Regex , title : String) {
+        handleList.add(title)
+        segmentedInput.forEach{
+            if (it.matches(evaluationPatter)){
+                handleList.add(it)
+            }
+        }
+    }
+
+    findHandler(userHandlePatter, "~User(s)~")
+    findHandler(hashtagHandlePatter ,"~Hashtag(s)~")
+    findHandler(webHandlePatter, "~Web(s)~")
+
+    return handleList
 }

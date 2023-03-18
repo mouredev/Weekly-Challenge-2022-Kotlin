@@ -25,56 +25,76 @@ import java.io.File
  *
  */
 
-fun main() {
-    println(calculate("app/src/main/java/com/mouredev/weeklychallenge2022/Challenge21.txt"))
+fun main(){
+    val fileName1 = "Challenge21.txt"
+    println(getDataFromFile(fileName1))
+
+    val fileName2 = "Challenge21Wrong.txt"
+    println(getDataFromFile(fileName2))
 }
 
-private fun calculate(filePath: String): String {
-
-    var fileError = false
-    var result: Double? = null
-    var lastOperator: String? = null
-
+private fun getDataFromFile(fileName : String) : Float?{
+    var result : Float? = null
     try {
-        File(filePath).forEachLine { line ->
+        val rootFolder = "app/src/main/java/com/mouredev/weeklychallenge2022/"
+        val data = File(rootFolder,fileName).readLines()
+        data.forEach { print(it) }
+        print("\n")
+        result = compute(data)
+    } catch (e:Exception){
+        print(e)
+    }
+    return result
+}
 
-            line.toDoubleOrNull()?.let { number ->
-                if (result == null) {
-                    result = number
+private fun compute(operationList : List<String>):Float?{
+    val result = ArrayList<String>()
+    val itIsOk = validate(operationList)
+
+    return if (!itIsOk){
+        println("Error in the file data")
+        null
+    } else{
+        var i = 1
+        var jump = false
+        try {
+            while ( i<operationList.size ){
+                jump = if (operationList[i] == "*"){
+                    result.add((operationList[i-1].toFloat()*operationList[i+1].toFloat()).toString())
+                    true
+                } else if (operationList[i] == "/"){
+                    result.add((operationList[i-1].toFloat()/operationList[i+1].toFloat()).toString())
+                    true
                 } else {
-                    when(lastOperator) {
-                        "+"-> {
-                            result = result?.plus(number)
-                        }
-                        "-"-> {
-                            result = result?.minus(number)
-                        }
-                        "*"-> {
-                            result = result?.times(number)
-                        }
-                        "/"-> {
-                            result = result?.div(number)
-                        }
-                        else -> {
-                            fileError = true
-                            return@forEachLine
-                        }
-                    }
-                    lastOperator = null
+                    if (!jump)
+                        result.add(operationList[i-1])
+                    result.add(operationList[i])
+                    false
                 }
-            } ?: run {
-                if (lastOperator == null) {
-                    lastOperator = line
-                } else {
-                    fileError = true
-                    return@forEachLine
-                }
+                i+=2
             }
+        }catch (e : ArithmeticException){
+            println(e.message)
+            return null
         }
 
-    } catch (e: Exception) {
-        fileError = true
+        i = 1
+        var resultFinal = result[0].toFloat()
+        result.forEach{ print(it)}
+        print("\n")
+        while (i<result.size){
+            if (result[i] == "+")
+                resultFinal += result[i+1].toFloat()
+            else
+                resultFinal -= result[i+1].toFloat()
+            i+=2
+        }
+        return resultFinal
     }
+}
 
-    return if (fileError || lastOperator != null) "No se han podido resolver las operaciones" else result!!.toString()
+private fun validate(operationList: List<String>) : Boolean{
+    var oneLine = ""
+    operationList.forEach { oneLine += it }
+    return oneLine.matches("""([+/*-]?[0-9*]\.?[0-9*]?)*""".toRegex())
 }

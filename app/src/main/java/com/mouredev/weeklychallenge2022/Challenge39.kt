@@ -23,56 +23,39 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-// Basado en https://www.genbeta.com/desarrollo/implementando-el-algoritmo-quicksort
-
 fun main() {
-    val sortedArray = quicksort(arrayOf(3, 5, 1, 8, 9, 0))
-    sortedArray.forEach {
-        println(it)
-    }
+    val numArray = Array(40){it+1}
+    numArray.shuffle()
+
+    println("\n Final Result ${quickSort(numArray)}")
 }
 
-private fun quicksort(array: Array<Int>): Array<Int> {
-    return if (array.isEmpty()) array else quicksort(array, 0, array.size - 1)
+private fun quickSort(unsortedArray: Array<Int>, step : Int = 0): MutableList<Int> {
+
+    val pivot = unsortedArray[unsortedArray.size-1]
+    var smallerThanPivot = mutableListOf<Int>()
+    var biggerThanPivot = mutableListOf<Int>()
+
+    unsortedArray.forEach {
+        when {
+            it > pivot -> biggerThanPivot.add(it)
+            it < pivot -> smallerThanPivot.add(it)
+            else -> Unit
+        }
+    }
+    println("Step#$step ${unsortedArray.toMutableList()}=> $smallerThanPivot $biggerThanPivot, pivot: $pivot")
+
+    if (biggerThanPivot.size > 1) {
+        biggerThanPivot = quickSort(biggerThanPivot.toTypedArray(), step+1)
+    }
+    if (smallerThanPivot.size > 1) {
+        smallerThanPivot = quickSort(smallerThanPivot.toTypedArray(), step +1)
+    }
+
+    val resultArray = mutableListOf<Int>()
+    resultArray.addAll(smallerThanPivot)
+    resultArray.add(pivot)
+    resultArray.addAll(biggerThanPivot)
+
+    return resultArray
 }
-
-private fun quicksort(array: Array<Int>, first: Int, last: Int): Array<Int> {
-
-    var i = first
-    var j = last
-    var array = array
-    val pivot = (array[i] + array[j]) / 2
-
-    while (i < j) {
-
-        while (array[i] < pivot) {
-            i += 1
-        }
-
-        while (array[j] > pivot) {
-            j -= 1
-        }
-
-        if (i <= j) {
-
-            val x = array[j]
-
-            array[j] = array[i]
-            array[i] = x
-
-            i += 1
-            j -= 1
-        }
-    }
-
-    if (first < j) {
-        array = quicksort(array, first, j)
-    }
-
-    if (last > i) {
-        array = quicksort(array, i, last)
-    }
-
-    return array
-}
-

@@ -20,55 +20,63 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    try {
-        println(lostNumbers(arrayListOf(1, 3, 5)))
-        println(lostNumbers(arrayListOf(5, 3, 1)))
-        println(lostNumbers(arrayListOf(5, 1)))
-        println(lostNumbers(arrayListOf(-5, 1)))
-        //println(lostNumbers(arrayListOf(1, 3, 3, 5)))
-        //println(lostNumbers(arrayListOf(5, 7, 1)))
-        println(lostNumbers(arrayListOf(10, 7, 7, 1)))
-    } catch (e: LostNumbersException) {
-        println(e.message)
-    }
+    val example1 = arrayOf(1,3,6,8)
+    val example2 = arrayOf(10,1)
+    val example3 = arrayOf(5,7,2,1)
+    val example4 = arrayOf(5)
+    val example5 = arrayOf(5,2,2,1)
+
+    lookupForMissingOnes(example1)?.asList()?: println("Wrong input \n")
+    lookupForMissingOnes(example2)?.asList()?: println("Wrong input \n")
+    lookupForMissingOnes(example3)?.asList()?: println("Wrong input \n")
+    lookupForMissingOnes(example4)?.asList()?: println("Wrong input \n")
+    lookupForMissingOnes(example5)?.asList()?: println("Wrong input \n")
 }
 
-class LostNumbersException: Exception() {
+private fun lookupForMissingOnes(numberList: Array<Int>): Array<Int>? {
 
-    override val message: String?
-        get() = "El listado no puede poseer repetidos ni estar desordenado, y debe tener mínimo 2 valores."
+    val missingOnes = mutableListOf<Int>()
+    var completeListItemCounter = 0
 
-}
+    // First validation filter
+    if (numberList.size < 2 || numberList.first() == numberList.last())
+        return null
 
-private fun lostNumbers(numbers: List<Int>): List<Int> {
-
-    // Errors
-    if (numbers.count() < 2) {
-        throw LostNumbersException()
-    }
-
-    val first = numbers.first()
-    val last = numbers.last()
-    val asc = first < last
-
-    var prev: Int? = null
-    numbers.forEach { number ->
-        prev?.let { prev ->
-            if (if (asc) number <= prev else number >= prev) {
-                throw LostNumbersException()
+    if (numberList.first() > numberList.last()) {
+        // Down count
+        while (completeListItemCounter < numberList.size-1) {
+            val first = numberList[completeListItemCounter++]
+            val second = numberList[completeListItemCounter]
+            if (first - second > 1 ) {
+                var x = 1
+                repeat(first-second-1){
+                    missingOnes.add(first-x++)
+                }
+            } else if (first - second != 1){
+                // Second validation filter
+                return null
             }
         }
-        prev = number
-    }
+    } else {
+        // Up count
+        while (completeListItemCounter < numberList.size-1) {
+            val first = numberList[completeListItemCounter++]
+            val second = numberList[completeListItemCounter]
 
-    // Lost
-    val lost = mutableListOf<Int>()
-
-    for (number in (if(asc) first else last)..(if(asc) last else first)) {
-        if (!numbers.contains(number)) {
-            lost.add(number)
+            if (first - second < -1) {
+                var x = 1
+                repeat(second-first-1) {
+                    missingOnes.add(first + x++)
+                }
+            } else if (first - second != -1){
+                // Second validation filter
+                return null
+            }
         }
     }
 
-    return lost
+    if (missingOnes.isNotEmpty())
+        println("In the number array: ${numberList.asList()} \n The missing ones are: $missingOnes \n")
+
+    return missingOnes.toTypedArray()
 }

@@ -21,37 +21,30 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
+fun main (){
 
-    println(numberOfBoomerangs(arrayOf(2, 1, 2, 3, 3, 4, 2, 4)))
-    println(numberOfBoomerangs(arrayOf(2, 1, 2, 1, 2)))
-    println(numberOfBoomerangs(arrayOf(1, 2, 3, 4, 5)))
-    println(numberOfBoomerangs(arrayOf(2, 2, 2, 2, 2)))
-    println(numberOfBoomerangs(arrayOf(2, -2, 2, -2, 2)))
-    println(numberOfBoomerangs(arrayOf(2, -2)))
-    println(numberOfBoomerangs(arrayOf(2)))
-    println(numberOfBoomerangs(arrayOf()))
+    val set1 = intArrayOf(2, 1, 2, 3, 3, 4, 2, 4)
+    checkBoomerangs(set1)
+
 }
 
-private fun numberOfBoomerangs(numbers: Array<Int>): Int {
+private fun checkBoomerangs(input : IntArray): Int{
 
-    if (numbers.size < 3) return 0
+    val existingBoomerangs = mutableListOf<IntArray>()
+    fun IntArray.getElements() = this.asList().toString()
 
-    var boomerangs = 0
+    for (x in 0..(input.size-3)){
+        if (input[x] == input[x+2] && input[x] != input[x+1])
+            existingBoomerangs.add(intArrayOf(input[x], input[x+1], input[x+2]))
+    }
 
-    (1 until numbers.size - 1).forEach { index ->
-
-        val prev = numbers[index - 1]
-        val current = numbers[index]
-        val next = numbers[index + 1]
-
-        if (prev == next && prev != current) {
-            println("[$prev, $current, $next]")
-            boomerangs += 1
+    println("In ${input.getElements()}, there are ${existingBoomerangs.size} boomerangs")
+    if (existingBoomerangs.isNotEmpty()){
+        existingBoomerangs.forEachIndexed { index, ints ->
+            println("Boomerang #$index : ${ints.getElements()}")
         }
     }
 
-    return boomerangs
+    return existingBoomerangs.size
 }
-
 

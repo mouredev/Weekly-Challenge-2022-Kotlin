@@ -20,39 +20,28 @@ import kotlin.math.pow
  *
  */
 
-fun main() {
-    println(binaryToDecimal("00110"))
-    println(binaryToDecimal("01100"))
-    println(binaryToDecimal("000000000"))
-    println(binaryToDecimal("00210"))
-    println(binaryToDecimal("001101001110"))
-    println(binaryToDecimal("00b10"))
-    println(binaryToDecimal(""))
-    println(binaryToDecimal("-00110"))
-    println(binaryToDecimal(" "))
-    println(binaryToDecimal(" 10011"))
-    println(binaryToDecimal("1O1OO11"))
+fun main(){
+    println(baseIntConvertor("00101011"))
+    println(baseIntConvertor("00001011"))
+    println(baseIntConvertor("10001011"))
 }
 
-private fun binaryToDecimal(binary: String): Int? {
+private fun baseIntConvertor(baseCode : String, base : Int = 2) : Int{
+    val baseCodeArray : List<Int>
+    var result = 0.0
 
-    val length = binary.length - 1
+    try {
+        baseCodeArray = baseCode.toCharArray().reversedArray().map { it.digitToInt() }
 
-    var decimal: Int? = null
-
-    for (index in 0..length) {
-        val digitChar = binary.toCharArray()[length - index]
-        if (digitChar == '0' || digitChar == '1') {
-            if (decimal == null) {
-                decimal = 0
-            }
-            decimal += digitChar.digitToInt() * 2.0.pow(index).toInt()
-        } else {
-            return null
+        baseCodeArray.forEachIndexed { index, value ->
+            result += base.toFloat().pow(index) * value
         }
+
+        print("The $base code :$baseCode is equal to ")
+    } catch (e : Error){
+        println(e.message)
+        return 0
     }
 
-    return decimal
+    return result.toInt()
 }
-
-

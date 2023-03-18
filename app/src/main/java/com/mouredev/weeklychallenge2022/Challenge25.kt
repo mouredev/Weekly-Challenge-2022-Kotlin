@@ -21,56 +21,95 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.ROCK))))
-    println(rockScissorsPaper(arrayListOf(Pair(Move.ROCK, Move.SCISSORS))))
-    println(rockScissorsPaper(arrayListOf(Pair(Move.PAPER, Move.SCISSORS))))
-    println(rockScissorsPaper(arrayListOf(
-        Pair(Move.ROCK, Move.ROCK),
-        Pair(Move.SCISSORS, Move.SCISSORS),
-        Pair(Move.PAPER, Move.PAPER))))
-    println(rockScissorsPaper(arrayListOf(
-        Pair(Move.ROCK, Move.SCISSORS),
-        Pair(Move.SCISSORS, Move.PAPER),
-        Pair(Move.SCISSORS, Move.ROCK))))
-    println(rockScissorsPaper(arrayListOf(
-        Pair(Move.ROCK, Move.PAPER),
-        Pair(Move.SCISSORS, Move.ROCK),
-        Pair(Move.PAPER, Move.SCISSORS))))
+fun main(){
+    repeat(5){
+        RPS().playGame()
+    }
 }
 
-enum class Move {
-    ROCK, SCISSORS, PAPER
-}
+private class RPS{
+    private val gameSet = mutableListOf<Pair<PlayerChoices, PlayerChoices>>()
 
-private fun rockScissorsPaper(games: List<Pair<Move, Move>>): String {
+    enum class WinLoseTie(val result: String){
+        WIN("Winner"),
+        LOSE("Lose"),
+        TIE("Tie")
+    }
 
-    var playerOneGames = 0
-    var playerTwoGames = 0
+    enum class PlayerChoices(val choice :String){
+        R("Rock") {
+            override fun versus(opponent: PlayerChoices): WinLoseTie {
+                return  when(opponent){
+                    P -> WinLoseTie.LOSE
+                    S -> WinLoseTie.WIN
+                    R -> WinLoseTie.TIE
+                }
+            } },
+        P("Paper"){
+            override fun versus(opponent: PlayerChoices): WinLoseTie {
+                return  when(opponent){
+                    S -> WinLoseTie.LOSE
+                    R -> WinLoseTie.WIN
+                    P -> WinLoseTie.TIE
+                }
+            } },
+        S("Scissor"){
+            override fun versus(opponent: PlayerChoices): WinLoseTie {
+                return  when(opponent){
+                    R -> WinLoseTie.LOSE
+                    P -> WinLoseTie.WIN
+                    S -> WinLoseTie.TIE
+                }
+            } };
 
-    games.forEach { game ->
+        abstract fun versus(opponent : PlayerChoices): WinLoseTie
+    }
 
-        val playerOneMove = game.first
-        val playerTwoMove = game.second
+    private fun  getRandomChoice(): PlayerChoices {
+        return PlayerChoices.values()[(0..2).random()]
+    }
 
-        if (playerOneMove != playerTwoMove) {
+    private fun getGameSet() : List<Pair<PlayerChoices,PlayerChoices>> {
+        repeat((1..10).random()) {
+            val turn = getRandomChoice() to getRandomChoice()
+            gameSet.add(turn)
+        }
+        return gameSet
+    }
 
-            if (playerOneMove == Move.ROCK && playerTwoMove == Move.SCISSORS
-                || playerOneMove == Move.SCISSORS && playerTwoMove == Move.PAPER
-                || playerOneMove == Move.PAPER && playerTwoMove == Move.ROCK) {
+    private fun printGameSet(gameSet :List<Pair<PlayerChoices,PlayerChoices>>){
+        print("{ ")
+        gameSet.forEach{
+            print("[${it.first.choice}|${it.second.choice}] ")
+        }
+        print("}\n")
+    }
 
-                playerOneGames += 1
-            } else {
-                playerTwoGames += 1
+    private fun getWinner() : String{
+        var player1 = 0
+        var player2 = 0
+        gameSet.forEach{
+            when (it.first.versus(it.second)){
+                WinLoseTie.WIN -> player1++
+                WinLoseTie.LOSE -> player2++
+                WinLoseTie.TIE -> {
+                    player1++
+                    player2++
+                }
             }
+        }
+        return if (player1 == player2) {
+            WinLoseTie.TIE.result
+        } else if (player1 > player2) {
+            "Player1 Wins"
+        } else {
+            "Player2 Wins"
         }
     }
 
-    return if (playerOneGames == playerTwoGames) {
-        "Tie"
-    } else if (playerOneGames > playerTwoGames) {
-        "Player 1"
-    } else {
-        "Player 2"
+    fun playGame() {
+        getGameSet()
+        printGameSet(gameSet)
+        println("${getWinner()}\n")
     }
 }

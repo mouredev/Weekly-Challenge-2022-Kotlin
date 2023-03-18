@@ -22,32 +22,53 @@ import java.text.DecimalFormat
  */
 
 fun main() {
-    println(ohm())
-    println(ohm(v = 5.0))
-    println(ohm(v = 5.0, r = 4.0))
-    println(ohm(v = 5.0, i = 4.0))
-    println(ohm(r = 5.0, i = 4.0))
-    println(ohm(v = 5.125, r = 4.0))
-    println(ohm(v = 5.0, i = 4.125))
-    println(ohm(r = 5.0, i = 4.125))
-    println(ohm(v = 5.0, r = 0.0))
-    println(ohm(v = 5.0, i = 0.0))
-    println(ohm(r = 5.0, i = 0.0))
-    println(ohm(v = 5.0, r = 4.0, i = 3.0))
+    Circuit(r = 12.0, v = 150.0).ohmLaw()
+    Circuit(i = 2.0, r = 200.0).ohmLaw()
+    Circuit(v = 12.5, i = 0.5).ohmLaw()
+    Circuit(v = 12.5).ohmLaw()
+    Circuit(v = 12.5, i = 3.0, r = 20.0).ohmLaw()
 }
 
-// V = R * I
-private fun ohm(v: Double? = null, r: Double? = null, i: Double? = null) : String {
+private class Circuit(val r : Double? = null, val v: Double? = null, val i: Double? = null){
 
-    val formatter = DecimalFormat("#.##")
+    fun ohmLaw(): Double{
 
-    if (v != null && r != null && i == null) {
-        return "I = ${formatter.format(v / r)}"
-    } else if (v != null && i != null && r == null) {
-        return "R = ${formatter.format(v / i)}"
-    } else if (r != null && i != null && v == null) {
-        return "V = ${formatter.format(r * i)}"
+        val twoDecimalFormat = DecimalFormat("#.##")
+        var result = 0.0
+
+        if(i == 0.0){
+            println("No current, open circuit")
+        } else if (v == 0.0){
+            println("No voltage = no current")
+        } else if (r == 0.0){
+            println("No resistance, short circuit")
+        } else {
+            result =  when {
+                (r == null && v != null && i != null ) -> {
+                    print("With V = $v and I = $i the R = ")
+                    v/i
+                }
+                (v == null && r != null && i != null ) -> {
+                    print("With R = $r and I = $i the V = ")
+                    r*i
+                }
+
+                (i == null && v != null && r != null ) -> {
+                    print("With V = $v and R = $r the I = ")
+                    v/r
+                }
+
+                else -> {
+                    println("Wrong input")
+                    0.0
+                }
+            }
+        }
+
+        if (result != 0.0)
+            println(twoDecimalFormat.format(result))
+
+        return result
     }
 
-    return "Invalid values"
 }

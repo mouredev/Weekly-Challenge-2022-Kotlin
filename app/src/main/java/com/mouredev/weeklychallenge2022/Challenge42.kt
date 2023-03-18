@@ -24,42 +24,27 @@ import java.text.DecimalFormat
  */
 
 fun main() {
-    println(temperatureConverter("100°C"))
-    println(temperatureConverter("100°F"))
-    println(temperatureConverter("100C"))
-    println(temperatureConverter("100F"))
-    println(temperatureConverter("100"))
-    println(temperatureConverter("100"))
-    println(temperatureConverter("- 100 °C "))
-    println(temperatureConverter("- 100 °F "))
-    println(temperatureConverter("100A°C"))
-    println(temperatureConverter("100A°F"))
-    println(temperatureConverter("°C"))
-    println(temperatureConverter("°F"))
+    println(temperatureConverter("0°C"))
+    println(temperatureConverter("120°F"))
+    println(temperatureConverter("-120°F"))
+    println(temperatureConverter("60F"))
+    println(temperatureConverter("60.4F"))
+    println(temperatureConverter("60.4°F"))
+    println(temperatureConverter("60.4°FC"))
 }
 
-private fun temperatureConverter(degrees: String): String? {
+// (0 °C × 9/5) + 32 = 32 °F
+private fun temperatureConverter(temperature : String) : String{
 
-    val formatter = DecimalFormat("#.##")
+    return if (temperature.matches("""([-]?[0-9]*([.][0-9]*)?°[C|F])""".toRegex())) {
+        val (tempValue, tempType) = temperature.split('°')
+        val formatter = DecimalFormat("#.##")
 
-    try {
-
-        if (degrees.replace(" ", "").contains("°C")) {
-            val celsiusDegrees = degrees.replace(" ", "")
-                .replace("°C", "")
-                .toDouble()
-            return "${formatter.format((celsiusDegrees * 9/5) + 32)}°F"
-
-        } else if (degrees.replace(" ", "").contains("°F")) {
-            val fahrenheitDegrees = degrees.replace(" ", "")
-                .replace("°F", "")
-                .toDouble()
-            return "${formatter.format((fahrenheitDegrees - 32) * 5/9)}°C"
+        when (tempType) {
+            "C" -> "${formatter.format((tempValue.toDouble()*9/5)+32)}°F"
+            "F" -> "${formatter.format((tempValue.toDouble()-32)*5/9)}°C"
+            else -> "Wrong input"
         }
+    } else "Wrong input"
 
-    } catch (e: Exception) {
-        return null
-    }
-
-    return null
 }

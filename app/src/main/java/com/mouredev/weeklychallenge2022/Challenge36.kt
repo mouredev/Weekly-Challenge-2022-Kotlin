@@ -28,73 +28,59 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
+    val firstGoodSquad = Squadron(band = Good.SouthGoodOnes, 3)
+    val secondGoodSquad = Squadron(band = Good.Pelosos, 5)
 
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 1)),
-        listOf(Pair(EvilArmy.TROLL, 1)))
+    val firstEvilSquad = Squadron(band = Evil.Huargos, 1)
+    val secondEvilSquad = Squadron(band = Evil.Trolls, 3)
 
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 1), Pair(KindArmy.HARFOOT, 1)),
-        listOf(Pair(EvilArmy.TROLL, 1)))
-
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 1), Pair(KindArmy.HARFOOT, 1)),
-        listOf(Pair(EvilArmy.TROLL, 1), Pair(EvilArmy.ORC, 1)))
-
-    battleForTheMiddleEarth(
-        listOf(Pair(KindArmy.ELF, 56), Pair(KindArmy.HARFOOT, 80), Pair(KindArmy.DWARF, 5)),
-        listOf(Pair(EvilArmy.TROLL, 17), Pair(EvilArmy.ORC, 51), Pair(EvilArmy.WARG, 10), Pair(EvilArmy.SOUTHERNER, 2)))
+    firstEvilSquad.fightWith(firstGoodSquad)
+    firstGoodSquad.fightWith(secondEvilSquad)
+    secondGoodSquad.fightWith(secondEvilSquad)
+    secondEvilSquad.fightWith(firstGoodSquad)
 }
 
-enum class KindArmy() {
+private class Squadron(private val band: Race, private val quantity: Int) {
 
-    HARFOOT, SOUTHERNER, DWARF, NUMENOREAN, ELF;
+    private val totalPower = band.racePower * quantity
 
-    var bravery: Int = 0
-        get() {
-            return when (this) {
-                HARFOOT -> 1
-                SOUTHERNER -> 2
-                DWARF -> 3
-                NUMENOREAN -> 4
-                ELF -> 5
+    fun fightWith(enemy: Squadron): Int {
+        println("$quantity ${band.raceName} fight(s) with ${enemy.quantity} ${enemy.band.raceName}")
+        return when {
+            totalPower > enemy.totalPower -> {
+                println("And Win!!")
+                1
+            }
+            totalPower < enemy.totalPower -> {
+                println("And Lose")
+                -1
+            }
+            else -> {
+                println("It was a draw")
+                0
             }
         }
+    }
 }
 
-enum class EvilArmy() {
-
-    SOUTHERNER, ORC, GOBLIN, WARG, TROLL;
-
-    var bravery: Int = 0
-        get() {
-            return when (this) {
-                SOUTHERNER, ORC, GOBLIN -> 2
-                WARG -> 3
-                TROLL -> 5
-            }
-        }
+private enum class Good(override val raceName: String, override val racePower: Int) : Race {
+    Pelosos("Pelosos",1),
+    SouthGoodOnes("Sureños buenos",2),
+    Enanos("Enanos",3),
+    Numenoreanos("Númenóreanos",4),
+    Elfos("Elfos",5)
 }
 
-private fun battleForTheMiddleEarth(kindArmy: List<Pair<KindArmy, Int>>, evilArmy: List<Pair<EvilArmy, Int>>) {
-
-    var kindArmyPoints = 0
-    var evilArmyPoints = 0
-
-    kindArmy.forEach { army ->
-        kindArmyPoints += army.first.bravery * army.second
-    }
-
-    evilArmy.forEach { army ->
-        evilArmyPoints += army.first.bravery * army.second
-    }
-
-    if (kindArmyPoints > evilArmyPoints) {
-        println("Gana el bien")
-    } else if (evilArmyPoints > kindArmyPoints) {
-        println("Gana el mal")
-    } else {
-        println("Empate")
-    }
-
+private enum class Evil(override val raceName: String, override val racePower: Int) : Race {
+    SouthBadOnes("Sureños malos",2),
+    Orcos("Orcos",2),
+    Goblins("Goblins",2),
+    Huargos("Huargos",3),
+    Trolls("Trolls",5)
 }
+
+private interface Race {
+    val raceName : String
+    val racePower: Int
+}
+

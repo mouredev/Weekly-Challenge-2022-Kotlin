@@ -28,49 +28,54 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    println(whereIsTheRobot(arrayOf(10, 5, -2)))
-    println(whereIsTheRobot(arrayOf(0, 0, 0)))
-    println(whereIsTheRobot(arrayOf()))
-    println(whereIsTheRobot(arrayOf(-10, -5, 2)))
-    println(whereIsTheRobot(arrayOf(-10, -5, 2, 4, -8)))
-}
-
-private enum class Direction {
-
-    POSITIVEY, NEGATIVEX, NEGATIVEY, POSITIVEX;
-
-    fun turn(): Direction {
-
-        return when (this) {
-            POSITIVEY -> NEGATIVEX
-            NEGATIVEX -> NEGATIVEY
-            NEGATIVEY -> POSITIVEX
-            POSITIVEX -> POSITIVEY
-
-        }
-    }
+fun main (){
+    val littleWalkingRobot = WalkingRobot()
+    littleWalkingRobot.goWalk(listOf(10,5,-2))
+    littleWalkingRobot.goWalk(listOf(3,-3,9))
+    littleWalkingRobot.goWalk(listOf(4,-2,5,10,-29,-7))
 
 }
 
-private fun whereIsTheRobot(steps: Array<Int>): String {
+private class WalkingRobot {
+    private var y = 0
+    private var x = 0
+    private var actualDirection = 0
+    private var walkingDirection = Orientation.Up
 
-    var x = 0
-    var y = 0
-
-    var direction = Direction.POSITIVEY
-
-    steps.forEach { step ->
-
-        when (direction) {
-            Direction.POSITIVEY -> y += step
-            Direction.NEGATIVEX -> x -= step
-            Direction.NEGATIVEY -> y -= step
-            Direction.POSITIVEX -> x += step
-        }
-
-        direction = direction.turn()
+    private enum class Orientation(val xMultiplier: Int, val yMultiplier: Int) {
+        Up(xMultiplier = 0, yMultiplier = 1),
+        Left(xMultiplier = -1, yMultiplier = 0),
+        Down(xMultiplier = 0, yMultiplier = -1),
+        Right(xMultiplier = 1, yMultiplier = 0)
     }
 
-    return "x: $x, y: $y, direction: $direction"
+    fun goWalk(numberOfStepsList: List<Int>) {
+        printCoordinates()
+        println("After the robot gets $numberOfStepsList by input...")
+        numberOfStepsList.forEach { takeSteps(it) }
+        printCoordinates()
+        println()
+    }
+
+    fun printCoordinates() {
+        println("The robot is at [X=$x|Y=$y], facing ${walkingDirection.name}")
+    }
+
+    private fun takeSteps(numberOfSteps: Int) {
+        x += walkingDirection.xMultiplier * numberOfSteps
+        y += walkingDirection.yMultiplier * numberOfSteps
+        malfunction()
+    }
+
+    private fun malfunction() {
+        actualDirection++
+        if (actualDirection == 4) actualDirection = 0
+        walkingDirection = when (actualDirection) {
+            0 -> Orientation.Up
+            1 -> Orientation.Left
+            2 -> Orientation.Down
+            3 -> Orientation.Right
+            else -> Orientation.Up
+        }
+    }
 }

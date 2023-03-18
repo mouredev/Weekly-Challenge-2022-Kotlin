@@ -1,5 +1,7 @@
 package com.mouredev.weeklychallenge2022
 
+import java.util.*
+
 /*
  * Reto #11
  * ELIMINANDO CARACTERES
@@ -20,35 +22,74 @@ package com.mouredev.weeklychallenge2022
  */
 
 fun main() {
-    printNonCommon("brais","moure")
-    printNonCommon("Me gusta Java","Me gusta Kotlin")
-    printNonCommon("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
-        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+    val a = "Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación"
+    val b = "Subiré una posible solución al ejercicio el lunes siguiente al de su publicación"
 
-    // Otra solución utilizando funciones de orden superior
-    printNonCommonWithFilter("Usa el canal de nuestro discord (https://mouredev.com/discord) \"\uD83D\uDD01reto-semanal\" para preguntas, dudas o prestar ayuda a la comunidad",
-        "Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.")
+    println("Example strings\nString1: $a\nString2: $b")
+    aSinByBSinA(a , b)
 }
 
-private fun printNonCommon(str1: String, str2: String) {
-    println("out1: ${findNonCommon(str1, str2)}")
-    println("out2: ${findNonCommon(str2, str1)}")
+fun aSinByBSinA(a : String, b : String){
+
+    println("\nClassification by words")
+    wordsSegregation(a,b)
+
+    println("\nClassification by letters")
+    characterSegregation(a,b)
 }
 
-private fun findNonCommon(str1: String, str2: String): String {
+fun separationInLetters(phrase: String): CharArray {
+    val step1 = phrase.lowercase(Locale.ROOT).split(" ")
 
-    var out = ""
-
-    str1.lowercase().forEach {
-        if (!str2.lowercase().contains(it)) {
-            out += it
-        }
+    var step2 = ""
+    step1.forEach {
+        step2 += it
     }
 
-    return out
+    return step2.toCharArray()
 }
 
-private fun printNonCommonWithFilter(str1: String, str2: String) {
-    println("out1: ${str1.lowercase().filter { !str2.lowercase().contains(it) }}")
-    println("out2: ${str2.lowercase().filter { !str1.lowercase().contains(it) }}")
+fun characterSegregation(a: String, b: String){
+    val componentsOfA = separationInLetters(a)
+    val componentsOfB = separationInLetters(b)
+
+    val aSinB = componentsOfA.filter {
+        !componentsOfB.contains(it)
+    }
+
+    val bSinA = componentsOfB.filter {
+        !componentsOfA.contains(it)
+    }
+
+    println("$aSinB\n$bSinA")
+}
+
+private fun wordsSegregation(a: String, b: String){
+    val step1A = a.lowercase(Locale.ROOT).split(" ")
+    val step1B = b.lowercase(Locale.ROOT).split(" ")
+
+    val step2A = makeOfMap(step1A)
+    val step2B = makeOfMap(step1B)
+
+    val aSinB :String = step1A.filter {
+        !step2B.containsKey(it)
+    }.toString()
+
+    val bSinA :String = step1B.filter {
+        !step2A.containsKey(it)
+    }.toString()
+
+    println("$aSinB\n$bSinA")
+}
+
+private fun makeOfMap(words : List<String>) : MutableMap<String,Int>{
+    val resultMap = mutableMapOf<String,Int>()
+    words.forEach{
+        if(!resultMap.containsKey(it)){
+            resultMap[it] = 1
+        }else{
+            resultMap[it] = resultMap[it]!!+1
+        }
+    }
+    return  resultMap
 }

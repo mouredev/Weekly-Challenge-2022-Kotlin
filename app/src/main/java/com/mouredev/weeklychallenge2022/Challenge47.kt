@@ -1,6 +1,5 @@
 package com.mouredev.weeklychallenge2022
 
-import java.text.Normalizer
 
 /*
  * Reto #47
@@ -21,41 +20,61 @@ import java.text.Normalizer
  *
  */
 
-fun main() {
-    println(mostRepeatedVowel("aaaaaeeeeiiioou"))
-    println(mostRepeatedVowel("AáaaaEeeeIiiOoU"))
-    println(mostRepeatedVowel("eeeeiiioouaaaaa"))
-    println(mostRepeatedVowel(".-Aá?aaaBbEeeweIiiOoU:"))
-    println(mostRepeatedVowel(".-Aá?aaa BbEeew eIiiOoU:"))
-    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoU:"))
-    println(mostRepeatedVowel(".-Aá?aaa BbEeew eEIiiOoUuuuuu:"))
-    println(mostRepeatedVowel("aeiou"))
-    println(mostRepeatedVowel("brp qyz"))
+fun main(){
+    mostRepeatedVocalIn("Enunciado: Crea un función que reciba un texto y retorne la vocal que más veces se repita." +
+            " * Si no hay vocales podrá devolver vacío.")
+    mostRepeatedVocalIn("")
 }
 
-private fun mostRepeatedVowel(text: String) : List<String> {
+private fun mostRepeatedVocalIn(textForAnalysis : String) : Char?{
+    val totalLettersCharMap = mutableMapOf<Char, Int>()
 
-    val vowelCount = mutableMapOf<Char, Int>()
-
-    Normalizer.normalize(text.lowercase(), Normalizer.Form.NFD).forEach { character ->
-        if (character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u') {
-            vowelCount[character] = vowelCount[character]?.plus(1) ?: 1
+    fun addOrCount(letter : Char){
+        if (totalLettersCharMap.containsKey(letter)){
+            totalLettersCharMap[letter] = totalLettersCharMap[letter]!!.plus(1)
+        } else {
+            totalLettersCharMap[letter] = 1
         }
     }
 
-    val mostRepeated = mutableListOf<String>()
-    var maxRepeated = 0
+    textForAnalysis.split(" ").forEach {
+        it.toCharArray().forEach { singleLetter ->
+            addOrCount(singleLetter)
+        }
+    }
 
-    vowelCount.forEach { (vowel: Char, count: Int) ->
-        if (count >= maxRepeated) {
-            if (count > maxRepeated) {
-                mostRepeated.clear()
+    var mostRepeated : Char? = null
+    var totalCount = 0
+
+    fun computeMostRepeatedVocal(){
+        val vocals = listOf('a', 'e', 'i', 'o', 'u')
+        vocals.forEach{ vocal ->
+            if (totalLettersCharMap.containsKey(vocal)){
+                if (totalLettersCharMap[vocal]!! > totalCount){
+                    mostRepeated = vocal
+                    totalCount = totalLettersCharMap[vocal]!!
+
+                    println("$vocal , $totalCount")
+                }
             }
-            mostRepeated.add(vowel.toString())
-
-            maxRepeated = count
         }
     }
+
+    fun computeMostRepeatedLetter(){
+        totalLettersCharMap.forEach{
+            if (it.value > totalCount){
+                totalCount = it.value
+                mostRepeated = it.key
+            }
+        }
+    }
+
+    computeMostRepeatedVocal()
+    if (mostRepeated != null)
+        println("Int the text : \"$textForAnalysis\", " +
+            "the most repeated vocal is $mostRepeated $totalCount times")
+    else
+        println("Null")
 
     return mostRepeated
 }
