@@ -10,7 +10,7 @@
 # Si no conoces qué es un número de Armstrong, debes buscar información al respecto.#
 
 # Hora de inicio 19:20
-# Hora de inicio 19:
+# Hora de cierre 19:42
 
 def is_amstrong(number) 
     powers=number.digits.length
