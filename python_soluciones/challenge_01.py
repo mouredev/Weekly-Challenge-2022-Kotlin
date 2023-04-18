@@ -29,10 +29,6 @@ def main():
 def anagrama(texto_01: str, texto_02: str) -> bool:
     """Recibe dos textos y determina si es un anagrama"""
 
-    # Comprobación de textos vacíos
-    if texto_01 == "" or texto_02 == "":
-        return False
-
     # Como lo aclara el reto, dos textos iguales no son un anagrama
     if texto_01 == texto_02:
         return False
