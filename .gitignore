@@ -238,3 +238,4 @@ fabric.properties
 
 ### Entorno Python ###
 venv/
+.venv/
