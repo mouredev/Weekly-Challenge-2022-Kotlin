@@ -19,11 +19,12 @@
         - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
 """
 
+
 def main():
     """Función main del programa"""
     for i in range(100):
-        divisible_entre_tres = bool((i+1) % 3 == 0)
-        divisible_entre_cinco = bool((i+1) % 5 == 0)
+        divisible_entre_tres = bool((i + 1) % 3 == 0)
+        divisible_entre_cinco = bool((i + 1) % 5 == 0)
         # Condiciones de impresión
         if divisible_entre_tres and divisible_entre_cinco:
             print("fizzbuzz")
