@@ -1,3 +1,26 @@
+SubProceso calcular_fizzbuzz(num Por Referencia)
+	Si num mod 3 = 0 y num mod 5 = 0 Entonces
+		Mostrar num ", fizzbuzz"
+	SiNo
+		Si num mod 3 = 0 Entonces
+			Mostrar num ", fizz"
+		SiNo
+			Si num mod 5 = 0 Entonces
+				Mostrar num ", buzz"
+			SiNo
+				Mostrar num 
+			FinSi
+		FinSi
+		
+	Fin Si
+FinSubProceso
+
+SubProceso calcular_conteo()
+	Para num=1 Hasta 100 Con Paso 1 Hacer
+		calcular_fizzbuzz(num)
+	Fin Para
+FinSubProceso
+
 Algoritmo reto_fizzbuzz
 	//package com.mouredev.weeklychallenge2022
 	
@@ -22,25 +45,6 @@ Algoritmo reto_fizzbuzz
 	
 	num = 1
 	
-	//Repetir
-		//Mostrar "Número: " iteracion
-		//iteracion = iteracion + 1
-	//Hasta Que iteracion > 100
+	calcular_conteo()
 	
-	Para num=1 Hasta 100 Con Paso 1 Hacer
-		Si num mod 3 = 0 y num mod 5 = 0 Entonces
-			Mostrar num ", fizzbuzz"
-		SiNo
-			Si num mod 3 = 0 Entonces
-				Mostrar num ", fizz"
-			SiNo
-				Si num mod 5 = 0 Entonces
-					Mostrar num ", buzz"
-				SiNo
-					Mostrar num 
-				FinSi
-			FinSi
-			
-		Fin Si
-	Fin Para
 FinAlgoritmo
