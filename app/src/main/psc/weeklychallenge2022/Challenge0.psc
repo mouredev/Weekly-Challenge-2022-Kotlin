@@ -15,7 +15,7 @@ SubProceso calcular_fizzbuzz(num Por Referencia)
 	Fin Si
 FinSubProceso
 
-SubProceso calcular_conteo()
+SubProceso calcular_conteo(num)
 	Para num=1 Hasta 100 Con Paso 1 Hacer
 		calcular_fizzbuzz(num)
 	Fin Para
@@ -41,10 +41,11 @@ Algoritmo reto_fizzbuzz
 	// - Puedes hacer un Fork del repo y una Pull Request al repo original para que veamos tu solución aportada.
 	// - Revisaré el ejercicio en directo desde Twitch el lunes siguiente al de su publicación.
 	// - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
+	
 	Definir num Como Entero
 	
 	num = 1
 	
-	calcular_conteo()
+	calcular_conteo(num)
 	
 FinAlgoritmo
