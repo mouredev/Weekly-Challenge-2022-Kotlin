@@ -4,6 +4,8 @@
 # - No se pueden utilizar operaciones del lenguaje que 
 #   lo resuelvan directamente.
 # Hora inicio: 19:12
+# Hora inicio: 19:44
+# Tiempo transcurrido : 32m
 
  def get_greatest_common_divisor(num1,num2)
     divisors_without_residuals=[]
