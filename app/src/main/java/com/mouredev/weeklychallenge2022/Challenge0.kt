@@ -18,20 +18,18 @@ package com.mouredev.weeklychallenge2022
  * - Subiré una posible solución al ejercicio el lunes siguiente al de su publicación.
  *
  */
-
-fun main() {
-
-    for (index in 1..100) {
-        val divisibleByThree = index % 3 == 0
-        val divisibleByFive = index % 5 == 0
-        if (divisibleByThree && divisibleByFive) {
-            println("fizzbuzz")
-        } else if (divisibleByThree) {
-            println("fizz")
-        } else if (divisibleByFive) {
-            println("buzz")
-        } else {
-            println(index)
-        }
+public class Challenge0 {
+    public static void main(){
+	for(int i = 1; i<=100;i++){
+	    if(i%3 == 0){
+		System.out.println(i + ": fizz");
+	    } else if(i%5 == 0){
+		System.out.println(i + ": buzz");
+	    } else if (i%3 == 0 && i%5 == 0){
+		System.out.println(i + ": fizzbuzz");
+	    } else {
+		System.out.println(i + ":");
+	    }
+	}
     }
 }
