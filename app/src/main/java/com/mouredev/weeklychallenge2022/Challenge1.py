@@ -28,7 +28,7 @@ try:
     
     if sorted(word1) == sorted (word2):
        print ("Son anagramas")
-    else:
+    else<:
         print("No son anagramas")
 
 except ValueError as e:
