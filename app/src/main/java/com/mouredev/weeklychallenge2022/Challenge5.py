@@ -24,14 +24,15 @@ from PIL import Image
 from io import BytesIO
 
 def getApectRatio(imageUrl):
+    # Descargar la imagen del enlace
     response = requests.get(imageUrl)
     if response.status_code != 200:
         raise Exception("Error getting image")
-
+     # Abrir la imagen con PIL
     image = Image.open(BytesIO(response.content))
-
+    # Obtener las dimensiones
     width, height = image.size
-
+    # Calcular el aspect ratio
     aspectRatio = width/height
     return aspectRatio
 
