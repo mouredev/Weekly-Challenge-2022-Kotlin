@@ -22,21 +22,29 @@
 import requests
 from PIL import Image
 from io import BytesIO
+from math import gcd
 
 def getApectRatio(imageUrl):
-    # Descargar la imagen del enlace
-    response = requests.get(imageUrl)
-    if response.status_code != 200:
-        raise Exception("Error getting image")
-     # Abrir la imagen con PIL
-    image = Image.open(BytesIO(response.content))
-    # Obtener las dimensiones
-    width, height = image.size
-    # Calcular el aspect ratio
-    aspectRatio = width/height
-    return aspectRatio
+
+    try:
+        # Descargar la imagen del enlace
+        response = requests.get(imageUrl)
+        if response.status_code != 200:
+            raise Exception("Error al descargar la imagen")
+        # Abrir la imagen con PIL
+        image = Image.open(BytesIO(response.content))
+        # Obtener las dimensiones
+        width, height = image.size
+        divisor = gcd(width, height)
+        # Calcular el aspect ratio
+        aspectRatio = ((width/divisor),(height/divisor))
+        return aspectRatio
+    except Exception as e:
+        print(e)
 
 url= "https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_github_profile.png"
-print(getApectRatio(url))
+aspectRatio = getApectRatio(url)
+
+print(f" {int(aspectRatio[0])}:{ int(aspectRatio[1])}")
 
 
