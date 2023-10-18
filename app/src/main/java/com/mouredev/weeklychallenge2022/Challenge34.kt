@@ -19,56 +19,75 @@ package com.mouredev.weeklychallenge2022
  *
  */
 
-fun main() {
-    try {
-        println(lostNumbers(arrayListOf(1, 3, 5)))
-        println(lostNumbers(arrayListOf(5, 3, 1)))
-        println(lostNumbers(arrayListOf(5, 1)))
-        println(lostNumbers(arrayListOf(-5, 1)))
-        //println(lostNumbers(arrayListOf(1, 3, 3, 5)))
-        //println(lostNumbers(arrayListOf(5, 7, 1)))
-        println(lostNumbers(arrayListOf(10, 7, 7, 1)))
-    } catch (e: LostNumbersException) {
-        println(e.message)
-    }
+
+
+fun main(){
+
+
+    println(missingNumbers(arrayOf(1,6,10)).toList())
+    println(missingNumbers(arrayOf(16,1)).toList())
+    println(missingNumbers(arrayOf(1,2,2,10,30)).toList())
 }
 
-class LostNumbersException: Exception() {
 
-    override val message: String?
-        get() = "El listado no puede poseer repetidos ni estar desordenado, y debe tener mínimo 2 valores."
+/**
+ * Función que calcula los números perdidos entre el mayor y el menor de un array de enteros ordenado y sin repetidos.
+ * @param array Array de enteros ordenado y sin repetidos.
+ * @return Array de enteros con los números no encontrados.
+ */
+fun missingNumbers(array: Array<Int>): Array<Int> {
 
-}
 
-private fun lostNumbers(numbers: List<Int>): List<Int> {
+    if(!checkArray(array))
+        return arrayOf()
 
-    // Errors
-    if (numbers.count() < 2) {
-        throw LostNumbersException()
-    }
 
-    val first = numbers.first()
-    val last = numbers.last()
-    val asc = first < last
+    val min = array.first()
+    val max = array.last()
 
-    var prev: Int? = null
-    numbers.forEach { number ->
-        prev?.let { prev ->
-            if (if (asc) number <= prev else number >= prev) {
-                throw LostNumbersException()
-            }
-        }
-        prev = number
-    }
+    val missing = mutableListOf<Int>()
 
-    // Lost
-    val lost = mutableListOf<Int>()
+    for (i in min..max){
+        if (!array.contains(i)){
+            missing.add(i)
 
-    for (number in (if(asc) first else last)..(if(asc) last else first)) {
-        if (!numbers.contains(number)) {
-            lost.add(number)
         }
     }
 
-    return lost
+    return missing.toTypedArray()
+
+}
+
+/**
+ * Función que comprueba si un array es correcto.
+ * Comprueba si es tiene al menos 2 elementos , que no tenga elementos repetidos y que este ordenado
+ * @param array Array de enteros
+ * @return True si es correcto, false en caso contrario.
+ */
+private fun checkArray(array: Array<Int>): Boolean{
+
+    if(array.isEmpty()){
+        print("Array vacío ")
+        return false
+    }
+
+
+    if(array.size< 2) {
+        print("El array debe tener al menos 2 elementos ")
+        return false
+    }
+
+
+    if(array.distinct().size!= array.size) {
+        print("El array no puede tener elementos repetidos ")
+        return false
+    }
+
+    if(!array.copyOf().sortedArray().contentEquals(array)){
+        print("El array debe estar ordenado ")
+        return false
+    }
+
+    return true
+
 }
