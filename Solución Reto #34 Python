@@ -1,0 +1,32 @@
+def numeros_perdidos(arr):
+    '''
+    arr: lista de numeros enteros
+    '''
+    # Creación de listas y variables necesarias.
+    aux = []
+    finalArray = []
+    m,m2 = min(arr),max(arr)
+     # Comprobación sin duplicados y valores enteros.
+    for num in arr:
+        if num not in aux and type(num) == int:
+            aux.append(num)
+    # Ordenar variable aux
+    aux.sort()
+    # Comprobación que ambos arrays coinciden
+    if (arr == aux) == True:
+        for num in range(m,m2,1):
+            if num not in arr:
+                finalArray.append(num)
+            else:
+                pass
+        print(finalArray)
+    else:
+        print("No has introducido un array con las caracteristicas necesarias")
+
+# PRUEBAS
+# lista correcta
+numeros_perdidos([2,4,5,8,9,11])
+# lista con duplicados
+numeros_perdidos([2,4,5,5,9,11])
+# lista desordenada
+numeros_perdidos([2,9,5,8,10])
