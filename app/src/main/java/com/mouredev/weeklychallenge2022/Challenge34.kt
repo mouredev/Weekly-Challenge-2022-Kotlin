@@ -18,6 +18,23 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+const arrayNum = [10,2,7,8,21]
+const main = (array) => {
+  if(Array.isArray(array)){
+  const arrayResult = []
+  const minNumber = Math.min(...array)
+  const maxNumber = Math.max(...array)
+  for(var i = minNumber; i<maxNumber;i++){
+      if(!array.includes(i)){
+        arrayResult.push(i)
+      }
+    }
+    return arrayResult
+  }
+  console.log('No es un array')
+}
+
+console.log(main(arrayNum))
 
 fun main() {
     try {
