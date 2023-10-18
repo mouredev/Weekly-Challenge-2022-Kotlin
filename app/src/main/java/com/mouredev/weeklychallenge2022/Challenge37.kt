@@ -1,5 +1,8 @@
 package com.mouredev.weeklychallenge2022
 
+<<<<<<< HEAD
+
+=======
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -127,3 +130,4 @@ enum class ZeldaGame(val title: String) {
     }
 
 }
+>>>>>>> f68a01206ec3dc8e7d0527e8ff9a4c9a2ca21ba6
