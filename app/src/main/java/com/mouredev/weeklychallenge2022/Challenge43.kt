@@ -35,6 +35,82 @@ package com.mouredev.weeklychallenge2022
  *   https://retosdeprogramacion.com/semanales2022.
  *
  */
+import random
+
+personas = {"name": ["Estheban", "Diego", "Luis", "David", "Jared", "Mayra"], "edad": [0, -10, 9, 30, 11, 34], "altura": [1.2, 150, 300, 250, 9, 10]}
+sustos = ["🎃", "👻", "🦇", "💀", "🕷", "🕸"]
+dulces = ["🍰", "🍬", "🍭", "🍡", "🍪", "🍫", "🍩", "🧁"]
+
+option = True
+
+# Validacion de solo dos opciones para continuar
+while option:
+    trickortreat = input("Escoge Truco o Trato: ").lower()
+    if trickortreat == "truco" or trickortreat == "trato":
+        option = False
+    else:
+        print("Escribe solo una opción ya sea TRUCO o TRATO \n")
+
+letras = 0
+edades = 0
+alturas = []
+
+# Validación del total de letras en el nombre
+for nombre in personas["name"]:
+    for letra in nombre:
+        if letra.lower() in ["a", "e", "i", "o", "u"]:
+            letras += 1
+        
+# Validación de rangos razonables de altura y en caso de metros
+for altura in personas["altura"]:
+    if 9>=altura>0:
+        conversion = altura * 100
+        if conversion > 250:
+            alturas.append(250)
+        else:
+            alturas.append(conversion)
+    elif 250>altura>40:
+        alturas.append(altura)
+    elif altura >= 250:
+        alturas.append(250)
+    else:
+        alturas.append(0)
+
+# Imprimir los trucos
+if trickortreat == "truco":
+    
+    for edad in personas["edad"]:
+        if edad % 2 == 0:
+            edades += 1
+        
+    total = int(letras/2) + edades + int((sum(alturas))/100) 
+    for i in range(total):
+        print(random.choice(sustos), end=" ")
+    print(f'\nTotal: {total}')
+        
+# Imprimir los Dulces
+if trickortreat == "trato":
+    
+    for edad in personas["edad"]:
+        if edad >= 10:
+            edades += 3
+        elif edad > 0:
+            edades += int(edad / 3)
+        else:
+            continue
+        
+    dulces_cuenta = 0
+    
+    for altura in alturas:
+        if altura >= 150:
+            dulces_cuenta += 3
+        else:
+            dulces_cuenta += int(altura / 50)
+        
+    total = letras + dulces_cuenta + edades
+    for i in range(total):
+        print(random.choice(dulces), end=" ")
+    print(f'\nTotal: {total}')
 
 fun main() {
     println(trickOrTreat(Halloween.TRICK, arrayOf(
