@@ -30,3 +30,11 @@ private fun isAnagram(wordOne: String, wordTwo: String): Boolean {
     }
     return wordOne.lowercase().toCharArray().sortedArray().contentEquals(wordTwo.lowercase().toCharArray().sortedArray())
 }
+
+/*
+# Solucion de python en una linea
+
+esAnagrama = lambda palabra1, palabra2 : sorted(list(palabra1.lower())) == sorted(list(palabra2.lower()))
+print(esAnagrama("roma", "Amor")
+
+*/
