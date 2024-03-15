@@ -1,0 +1,55 @@
+import 'dart:io';
+
+void main() {
+  var map = {'1924' : ['Rata','Madera'], '1925' : ['Buey','Madera'],
+    '1926' : ['Tigre','Fuego'], '1927' : ['Conejo','Fuego'],
+    '1928' : ['Dragón','Tierra'], '1929' : ['Serpiente','Tierra'],
+    '1930' : ['Caballo','Metal'], '1931' : ['Oveja','Metal'],
+    '1932' : ['Mono','Agua'], '1933' : ['Gallo','Agua'],
+    '1934' : ['Perro','Madera'], '1935' : ['Cerdo','Madera'],
+    '1936' : ['Rata','Fuego'], '1937' : ['Buey','Fuego'],
+    '1938' : ['Tigre','Tierra'], '1939' : ['Conejo','Tierra'],
+    '1940' : ['Dragón','Metal'], '1941' : ['Serpiente','Metal'],
+    '1942' : ['Caballo','Agua'], '1943' : ['Oveja','Agua'],
+    '1944' : ['Mono','Madera'], '1945' : ['Gallo','Madera'],
+    '1946' : ['Perro','Fuego'], '1947' : ['Cerdo','Fuego'],
+    '1948' : ['Rata','Tierra'], '1949' : ['Buey','Tierra'],
+    '1950' : ['Tigre','Metal'], '1951' : ['Conejo','Metal'],
+    '1952' : ['Dragón','Agua'], '1953' : ['Serpiente','Agua'],
+    '1954' : ['Caballo','Madera'], '1955' : ['Oveja','Madera'],
+    '1956' : ['Mono','Fuego'], '1957' : ['Gallo','Fuego'],
+    '1958' : ['Perro','Tierra'], '1959' : ['Cerdo','Tierra'],
+    '1960' : ['Rata','Metal'], '1961' : ['Buey','Metal'],
+    '1962' : ['Tigre','Agua'], '1963' : ['Conejo','Agua'],
+    '1964' : ['Dragón','Madera'], '1965' : ['Serpiente','Madera'],
+    '1966' : ['Caballo','Fuego'], '1967' : ['Oveja','Fuego'],
+    '1968' : ['Mono','Tierra'], '1969' : ['Gallo','Tierra'],
+    '1970' : ['Perro','Metal'], '1971' : ['Cerdo','Metal'],
+    '1972' : ['Rata','Agua'], '1973' : ['Buey','Agua'], 
+    '1974' : ['Tigre','Madera'], '1975' : ['Conejo','Madera'],
+    '1976' : ['Dragón','Fuego'], '1977' : ['Serpiente','Fuego'],
+    '1978' : ['Caballo','Tierra'], '1979' : ['Oveja','Tierra'],
+    '1980' : ['Mono','Metal'], '1981' : ['Gallo','Metal'],
+    '1982' : ['Perro','Agua'], '1983' : ['Cerdo','Agua'],
+    '1984' : ['Rata','Madera'], '1985' : ['Buey','Madera'],
+    '1986' : ['Tigre','Fuego'], '1987' : ['Conejo','Fuego'],
+    '1988' : ['Dragón','Tierra'], '1989' : ['Serpiente','Tierra'],
+    '1990' : ['Caballo','Metal'], '1991' : ['Oveja','Metal'],
+    '1992' : ['Mono','Agua'], '1993' : ['Gallo','Agua'],
+    '1994' : ['Perro','Madera'], '1995' : ['Cerdo','Madera'],
+    '1996' : ['Rata','Fuego'], '1997' : ['Buey','Fuego'],
+    '1998' : ['Tigre','Tierra'], '1999' : ['Conejo','Tierra'],
+    '2000' : ['Dragón','Metal'], '2001' : ['Serpiente','Metal'],
+    '2002' : ['Caballo','Agua'], '2003' : ['Oveja','Agua']
+  };
+  
+  print("Indique su año de nacimiento:");
+  var resp = stdin.readLineSync();
+  var anyo = int.tryParse(resp);
+  
+  if (anyo != null && (anyo > 1923 && anyo < 2004)) {
+      print("Según el zodiaco chino, su animal es ${map[resp]?[0]} y su elemento ${map[resp]?[1]}");
+  } else {
+      return print('Introduzca su año de nacimiento');
+  }
+}

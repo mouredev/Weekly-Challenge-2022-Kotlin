@@ -1,0 +1,7 @@
+numeros = [3, 8, 25, 48, 9]
+
+def secondGreaterNumber():
+ orden = sorted(numeros)
+ return orden[-2]
+
+print(secondGreaterNumber())
