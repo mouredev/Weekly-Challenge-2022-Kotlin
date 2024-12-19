@@ -1,0 +1,30 @@
+#solucion ejercicio #1 anagrama en python
+#doko
+def Anagram(word1, word2):
+  if word1 == word2:
+    return False # no pueden ser iguales 
+  elif word1 != word2: #si palabras son diferentes 
+    if len(word1) == len(word2): # si la longitud es la misma 
+      dict1 = {}
+      dict2 = {}
+      for x in word1: #recorrer palabra 1 y almacenar letras y su cantidad en diccionario
+          if x in dict1:
+            dict1[x] += 1
+          else:
+            dict1[x] = 1
+      
+      for i in word2: #recorrer palabra 2 y almacenar letras y su cantidad en diccionario
+        if i in dict2:
+          dict2[i] += 1
+        else:
+          dict2[i] = 1 
+        
+      return dict1 == dict2 #comparar diccionarios, retorna true o false
+    else:
+      return False #false si no tienen misma longitud
+    
+o1 = 'roma'
+o2 = 'amor'
+
+anagrama = Anagram(o1,o2)
+print(anagrama)
