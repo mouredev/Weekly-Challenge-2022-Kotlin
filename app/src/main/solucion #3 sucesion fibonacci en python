@@ -1,0 +1,13 @@
+#ejercicio #3 la sucesion de fibonacci
+#doko
+
+a = 0
+b = 1
+maxi = 0 
+
+while maxi != 49: 
+  c = a + b 
+  a = b 
+  b = c 
+  maxi += 1 
+  print ( b )
