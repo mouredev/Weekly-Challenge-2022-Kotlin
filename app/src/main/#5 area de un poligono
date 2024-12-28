@@ -1,0 +1,32 @@
+#5 area de un poligono
+#doko
+
+def poligono():
+  print("1.-triangulo")
+  print("2.-cuadrado")
+  print("3.-rectangulo")
+  
+  figura = input("Seleccionar poligono")
+  
+  
+  if figura == "1":
+    print("poligono seleccionado, triangulo")
+    base = input("ingresa la base")
+    altura = input("ingresa la altura")
+    calculo = (float(base) * float(altura)) / 2
+    print("El area de tu triangulo es ",calculo, "cm²")
+    
+  elif figura == "2":
+    print("poligono seleccionado, cuadrado")
+    lado = input("Ingresa un lado del cuadrado")
+    calculo = float(lado) ** 2
+    print("El area de tu cuadrado es ",calculo, "cm²")
+  elif figura == "3":
+    print("poligono seleccionado, rectangulo")
+    base = input("Ingresa la base ")
+    altura = input("Ingresa la altura")
+    calculo = (float(base) * float(altura))
+    print("El area de tu rectangulo es ",calculo, "cm²")
+  else:
+    print("Selecciona una opcion valida ")
+poligono()
