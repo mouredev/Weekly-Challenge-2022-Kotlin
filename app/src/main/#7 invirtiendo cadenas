@@ -1,0 +1,10 @@
+#solucion ejercicio #7 en python
+#doko
+
+palabra = "hola mundo"
+almacenar = ""
+
+for x in palabra:
+  almacenar = x + almacenar
+
+print(almacenar)
