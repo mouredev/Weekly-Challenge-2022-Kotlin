@@ -1,0 +1,27 @@
+#ejercico 8 
+#doko
+
+
+palabra = 'Hola CoMo Esta.s.. HOOLA'
+
+contador = {}
+no_permitidos = ('.', ',', ';', '!', '?', '-', '_')
+
+for x in palabra.split(): 
+    minu = x.lower()
+    limpiar = ''
+    
+    if '.' or ',' or  ';' or '!' or '?' or '-' or '_' in minu:
+        for i in minu:
+            if i == '.':
+                break
+            else: 
+                limpiar += i
+        contador[limpiar] = 1
+        
+    elif minu in contador:
+        contador[minu] += 1
+    else:
+        contador[minu] = 1
+        
+print(contador)
