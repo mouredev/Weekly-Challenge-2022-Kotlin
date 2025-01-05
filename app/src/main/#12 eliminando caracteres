@@ -1,0 +1,25 @@
+#12 eliminando caracteres
+#doko
+def Ecaracteres(str1,str2):
+    
+    out1 = ''
+    out2 = ''
+    
+    for x in str1:
+        if x in str2:
+            continue
+        else:
+            out1 += x
+        
+    for i in str2:
+        if i in str1:
+            continue
+        else:
+            out2 += i
+        
+    return out1,out2
+    
+out1, out2 = Ecaracteres('hola','como')
+
+print(out1)
+print(out2)
