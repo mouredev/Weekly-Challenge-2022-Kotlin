@@ -1,0 +1,17 @@
+#ejercicio 9 decimal a binario
+#doko 
+numero = 555
+binario = ''
+
+while numero != 0 :
+    
+    if numero % 2 == 0:
+        binario = '0' + binario
+    elif numero % 2 == 1 :
+        binario = '1' + binario
+    
+    dividir = numero // 2 
+
+    numero = dividir
+
+print(binario)       
