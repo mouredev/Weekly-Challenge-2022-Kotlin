@@ -1,0 +1,9 @@
+#13 es un palindromo?
+#doko
+
+palabra = 'anita lava la tina'
+
+if palabra.replace(" ",'').lower() == palabra[::-1].replace(" ",'').lower():
+    print('palindromo')
+else:
+    print('no es palindromo')
